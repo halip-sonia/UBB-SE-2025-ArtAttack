@@ -1,0 +1,10 @@
+{
+  "profiles": {
+    "ArtAttack (Package)": {
+      "commandName": "MsixPackage"
+    },
+    "ArtAttack (Unpackaged)": {
+      "commandName": "Project"
+    }
+  }
+}
