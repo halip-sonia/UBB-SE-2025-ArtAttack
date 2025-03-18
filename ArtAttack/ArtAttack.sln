@@ -8,14 +8,29 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Entities", "Entities", "{D9873E25-51D0-4BD5-BCC7-A00694EDDF3A}"
+	ProjectSection(SolutionItems) = preProject
+		Purchase.sql = Purchase.sql
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Procedures", "Procedures", "{EB403D3E-5ADD-4D55-9503-6D7E7BBC5DD1}"
+	ProjectSection(SolutionItems) = preProject
+		AddPurchase.sql = AddPurchase.sql
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{7874997E-E23B-4BC7-A362-6F62527D80EF}"
+	ProjectSection(SolutionItems) = preProject
+		Purchase.cs = Purchase.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{CA45AB99-AAAF-4059-8277-E0F24233305A}"
+	ProjectSection(SolutionItems) = preProject
+		PurchaseModel.cs = PurchaseModel.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ViewModel", "ViewModel", "{1856C839-6A1F-41FB-9C1B-D0CDE9898A44}"
+	ProjectSection(SolutionItems) = preProject
+		PurchaseViewModel.cs = PurchaseViewModel.cs
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}"
 	ProjectSection(SolutionItems) = preProject
