@@ -1,0 +1,76 @@
+# Ignore build results
+bin/
+obj/
+
+# User-specific files
+*.user
+*.userosscache
+*.suo
+*.userprefs
+*.vcxproj.user
+
+# Backup and crash files
+*.bak
+*.old
+*.tmp
+
+# Visual Studio specific
+.vscode/
+.vs/
+*.dbmdl
+*.psess
+*.vsp
+*.vspx
+*.vspscc
+*.vssscc
+
+# NuGet packages
+packages/
+*.nupkg
+# Uncomment if you're using package restore
+# !packages/build/
+
+# Windows Installer files
+*.msi
+*.msm
+*.cab
+
+# Logs and other output
+*.log
+
+# Compiled DLLs and executables
+*.dll
+*.exe
+*.appx
+*.appxbundle
+*.msix
+*.msixbundle
+
+# App package logs and artifacts
+AppPackages/
+BundleArtifacts/
+TestResults/
+
+# Publish folder
+publish/
+
+# WinUI auto-generated cache
+Generated Files/
+ipch/
+*.cache
+*.ilk
+*.pdb
+*.obj
+*.iobj
+*.ipdb
+*.tlog
+
+# CMake-generated files (if applicable)
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+
+# Rider / JetBrains Rider
+.idea/
+*.sln.iml
