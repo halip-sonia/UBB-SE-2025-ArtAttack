@@ -34,7 +34,7 @@ namespace ArtAttack.Domain
                         .FontColor(Colors.Blue.Medium);
 
                     page.Content()
-                        .Text("Hello, this is a generated PDF using QuestPDF!")
+                        .Text("Hello, this is a generated PDF by Darius, Cailor")
                         .FontSize(14);
 
                     page.Footer()
