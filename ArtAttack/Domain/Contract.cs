@@ -43,7 +43,7 @@ namespace ArtAttack.Domain
                 });
             });
 
-            document.GeneratePdf("C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\output.pdf"); // Saves the PDF file
+            document.GeneratePdf("C:\\Users\\User\\Downloads\\output.pdf"); // Saves the PDF file
         }
         
     }

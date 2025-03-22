@@ -7,7 +7,7 @@ create table [Order](
 	OrderType varchar(10) not null check (OrderType in ('new', 'used', 'borrowed')),
     PaymentMethod varchar(10) not null check (PaymentMethod in ('card', 'cash', 'wallet')),
 	[OrderSummaryID] integer foreign key references [OrderSummary]([ID]),
-	[OrderDate] timestamp default current_timestamp
+	[OrderDate] timestamp default current_timestamp,
 	[OrderHistoryID] bigint foreign key references [OrderHistory]([ID])
 
 );
