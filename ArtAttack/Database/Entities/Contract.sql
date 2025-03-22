@@ -17,4 +17,6 @@ create table [Contract](
 
 	[predefinedContractID] integer foreign key references [PredefinedContract]([ID]),
 	[pdfID] integer not null foreign key references [PDF]([ID]),
+
+	[renewedFromContractID] integer null foreign key references [Contract]([ID])
 );
