@@ -58,6 +58,10 @@
             "Microsoft.WindowsAppSDK": {
               "target": "Package",
               "version": "[1.7.250310001, )"
+            },
+            "QuestPDF": {
+              "target": "Package",
+              "version": "[2025.1.6, )"
             }
           },
           "imports": [

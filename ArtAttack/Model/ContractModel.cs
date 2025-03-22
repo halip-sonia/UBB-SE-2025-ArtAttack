@@ -1,8 +1,8 @@
 ﻿using System;
 
-public class Class1
+namespace ArtAttack.Model 
 {
-	public Class1()
+	public class ContractViewModel
 	{
 	}
 }

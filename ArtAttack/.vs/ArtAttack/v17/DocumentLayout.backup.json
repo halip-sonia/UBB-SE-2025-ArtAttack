@@ -1,9 +1,46 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\UBB-SE-2025-ArtAttack\\ArtAttack\\",
+  "WorkspaceRootPath": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|Solution Items{8EC462FD-D22E-90A8-E5CE-7E832BA40C5D}|C:\\Users\\User\\Downloads\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\domain\\contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\model\\contractmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\contractmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\viewmodel\\contractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:viewmodel\\contractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\viewmodel\\icontractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:viewmodel\\icontractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\database\\entities\\pdf.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\entities\\pdf.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\domain\\pdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\pdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\domain\\purchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\purchase.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\database\\entities\\contract.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\entities\\contract.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -16,19 +53,123 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MainWindow.xaml.cs",
+              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\MainWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainWindow.xaml.cs",
+              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\MainWindow.xaml.cs",
+              "RelativeToolTip": "MainWindow.xaml.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAACQAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T17:24:14.186Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\Users\\User\\Downloads\\.gitignore",
-              "ToolTip": "C:\\Users\\User\\Downloads\\.gitignore",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-03-18T21:49:35.246Z",
+              "Title": "Contract.cs",
+              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Contract.cs",
+              "RelativeDocumentMoniker": "Domain\\Contract.cs",
+              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Contract.cs",
+              "RelativeToolTip": "Domain\\Contract.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAADwvy0AAABsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T16:59:49.79Z",
               "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "IContractViewModel.cs",
+              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\IContractViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\IContractViewModel.cs",
+              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\IContractViewModel.cs",
+              "RelativeToolTip": "ViewModel\\IContractViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T16:57:24.044Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ContractModel.cs",
+              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\ContractModel.cs",
+              "RelativeDocumentMoniker": "Model\\ContractModel.cs",
+              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\ContractModel.cs",
+              "RelativeToolTip": "Model\\ContractModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T16:51:57.64Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ContractViewModel.cs",
+              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\ContractViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\ContractViewModel.cs",
+              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\ContractViewModel.cs",
+              "RelativeToolTip": "ViewModel\\ContractViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T16:52:07.829Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "PDF.cs",
+              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PDF.cs",
+              "RelativeDocumentMoniker": "Domain\\PDF.cs",
+              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PDF.cs",
+              "RelativeToolTip": "Domain\\PDF.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T16:59:09.023Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PDF.sql",
+              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Entities\\PDF.sql",
+              "RelativeDocumentMoniker": "Database\\Entities\\PDF.sql",
+              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Entities\\PDF.sql",
+              "RelativeToolTip": "Database\\Entities\\PDF.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-19T16:59:11.825Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\App.xaml.cs",
+              "RelativeDocumentMoniker": "App.xaml.cs",
+              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\App.xaml.cs",
+              "RelativeToolTip": "App.xaml.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAABBwCkAAAAzAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T17:24:18.175Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "Purchase.cs",
+              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Purchase.cs",
+              "RelativeDocumentMoniker": "Domain\\Purchase.cs",
+              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Purchase.cs",
+              "RelativeToolTip": "Domain\\Purchase.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T16:55:35.849Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "Contract.sql",
+              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Entities\\Contract.sql",
+              "RelativeDocumentMoniker": "Database\\Entities\\Contract.sql",
+              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Entities\\Contract.sql",
+              "RelativeToolTip": "Database\\Entities\\Contract.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-19T16:54:28.388Z"
             }
           ]
         },
@@ -38,15 +179,11 @@
           "Children": [
             {
               "$type": "Bookmark",
-              "Name": "ST:0:0:{a80febb4-e7e0-4147-b476-21aaf2453969}"
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             }
           ]
         }

@@ -1,12 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "b0Wj3uQ3niA=",
+  "dgSpecHash": "pNcbdOAnE6I=",
   "success": true,
   "projectFilePath": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ArtAttack.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.web.webview2\\1.0.2903.40\\microsoft.web.webview2.1.0.2903.40.nupkg.sha512",
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages\\microsoft.windows.sdk.buildtools\\10.0.26100.1742\\microsoft.windows.sdk.buildtools.10.0.26100.1742.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.windowsappsdk\\1.7.250310001\\microsoft.windowsappsdk.1.7.250310001.nupkg.sha512",
+    "C:\\Users\\kevin\\.nuget\\packages\\questpdf\\2025.1.6\\questpdf.2025.1.6.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.netcore.app.runtime.win-x86\\8.0.11\\microsoft.netcore.app.runtime.win-x86.8.0.11.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.windows.sdk.net.ref\\10.0.19041.54\\microsoft.windows.sdk.net.ref.10.0.19041.54.nupkg.sha512",
     "C:\\Users\\kevin\\.nuget\\packages\\microsoft.aspnetcore.app.runtime.win-x86\\8.0.11\\microsoft.aspnetcore.app.runtime.win-x86.8.0.11.nupkg.sha512",

@@ -1,8 +1,12 @@
 ﻿using System;
 
-public class Class1
+namespace ArtAttack.ViewModel
 {
-	public Class1()
+	public class ContractViewModel
 	{
+		public ContractViewModel()
+		{
+
+		}
 	}
 }
