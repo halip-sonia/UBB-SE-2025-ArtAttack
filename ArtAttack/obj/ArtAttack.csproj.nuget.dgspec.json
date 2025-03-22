@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ArtAttack.csproj": {}
+    "D:\\UBB-SE-2025-ArtAttack\\ArtAttack\\ArtAttack.csproj": {}
   },
   "projects": {
-    "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ArtAttack.csproj": {
+    "D:\\UBB-SE-2025-ArtAttack\\ArtAttack\\ArtAttack.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ArtAttack.csproj",
+        "projectUniqueName": "D:\\UBB-SE-2025-ArtAttack\\ArtAttack\\ArtAttack.csproj",
         "projectName": "ArtAttack",
-        "projectPath": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ArtAttack.csproj",
-        "packagesPath": "C:\\Users\\kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\obj\\",
+        "projectPath": "D:\\UBB-SE-2025-ArtAttack\\ArtAttack\\ArtAttack.csproj",
+        "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+        "outputPath": "D:\\UBB-SE-2025-ArtAttack\\ArtAttack\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
@@ -26,7 +26,6 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -45,12 +44,16 @@
           "auditLevel": "low",
           "auditMode": "direct"
         },
-        "SdkAnalysisLevel": "9.0.100"
+        "SdkAnalysisLevel": "9.0.200"
       },
       "frameworks": {
         "net8.0-windows10.0.19041": {
           "targetAlias": "net8.0-windows10.0.19041.0",
           "dependencies": {
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[3.8.3, )"
+            },
             "Microsoft.Windows.SDK.BuildTools": {
               "target": "Package",
               "version": "[10.0.26100.1742, )"
@@ -78,43 +81,43 @@
           "downloadDependencies": [
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-arm64",
-              "version": "[8.0.11, 8.0.11]"
+              "version": "[8.0.13, 8.0.13]"
             },
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x64",
-              "version": "[8.0.11, 8.0.11]"
+              "version": "[8.0.13, 8.0.13]"
             },
             {
               "name": "Microsoft.AspNetCore.App.Runtime.win-x86",
-              "version": "[8.0.11, 8.0.11]"
+              "version": "[8.0.13, 8.0.13]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-arm64",
-              "version": "[8.0.11, 8.0.11]"
+              "version": "[8.0.13, 8.0.13]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x64",
-              "version": "[8.0.11, 8.0.11]"
+              "version": "[8.0.13, 8.0.13]"
             },
             {
               "name": "Microsoft.NETCore.App.Runtime.win-x86",
-              "version": "[8.0.11, 8.0.11]"
+              "version": "[8.0.13, 8.0.13]"
             },
             {
               "name": "Microsoft.Windows.SDK.NET.Ref",
-              "version": "[10.0.19041.54, 10.0.19041.54]"
+              "version": "[10.0.19041.57, 10.0.19041.57]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-arm64",
-              "version": "[8.0.11, 8.0.11]"
+              "version": "[8.0.13, 8.0.13]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x64",
-              "version": "[8.0.11, 8.0.11]"
+              "version": "[8.0.13, 8.0.13]"
             },
             {
               "name": "Microsoft.WindowsDesktop.App.Runtime.win-x86",
-              "version": "[8.0.11, 8.0.11]"
+              "version": "[8.0.13, 8.0.13]"
             }
           ],
           "frameworkReferences": {
@@ -125,7 +128,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.101/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.200/PortableRuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {
