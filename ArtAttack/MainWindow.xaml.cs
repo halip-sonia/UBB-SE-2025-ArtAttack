@@ -34,7 +34,7 @@ namespace ArtAttack
         private void myButton_Click(object sender, RoutedEventArgs e)
         {
             myButton.Content = "Clicked";
-            contract.GeneratePDF();
+            
         }
     }
 }

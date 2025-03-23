@@ -4,8 +4,10 @@ create table [Order](
 	[OrderID] bigint identity primary key,
 	[ProductID] bigint not null foreign key references [DummyProduct]([ID]),
 	[BuyerID] bigint not null foreign key references [DummyBuyer]([ID]),
-	[OrderType] varchar(10) not null check (OrderType in ('new', 'used', 'borrowed')),
-    [PaymentMethod] varchar(10) not null check (PaymentMethod in ('card', 'cash', 'wallet')),
+    [OrderType] varchar(10) not null, 
+    constraint [OrderTypeConstraint] check (OrderType in ('new', 'used', 'borrowed')),
+ [PaymentMethod] varchar(10) not null,
+    constraint [PaymentMethodConstraint] check (PaymentMethod in ('card', 'cash', 'wallet')),>>>>>>> main
 	[OrderSummaryID] integer foreign key references [OrderSummary]([ID]),
 	[OrderDate] timestamp default current_timestamp,
 	[OrderHistoryID] bigint foreign key references [OrderHistory]([ID])
@@ -14,6 +16,7 @@ create table [Order](
 
 create table [OrderSummary](
     [ID] int  identity primary key,
+
     [Subtotal] float ,
     [WarrantyTax] float,
     [DeliveryFee] float,
@@ -25,6 +28,7 @@ create table [OrderSummary](
     [PostalCode] varchar(255),
     [AdditionalInfo] varchar(255),
 	[ContractDetails] text null
+
 );
 
 create table [OrderHistory](
