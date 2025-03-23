@@ -44,9 +44,9 @@ namespace ArtAttack
             m_window = new MainWindow();
             //var bp = new BillingInfo();
             //var ci = new CardInfo();
-            //var fp = new FinalisePurchase();
+            var fp = new FinalisePurchase();
 
-            //m_window.Content = fp; // For testing the gui
+            m_window.Content = fp; // For testing the gui
             m_window.Activate();
         }
 
