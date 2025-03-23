@@ -11,40 +11,35 @@ using QuestPDF.Infrastructure;
 
 namespace ArtAttack.Domain
 {
-    internal class Contract
+    public class Contract
     {
+        // Unique identifier for the contract (Identity field in the database)
+        public long ID { get; set; }
 
-        public Contract() { }
-        public void GeneratePDF() {
+        // Foreign key linking to the Order table (assumed to be of type integer)
+        public int OrderID { get; set; }
 
-            QuestPDF.Settings.License = LicenseType.Community; // Free to use
+        // Start and end dates of the contract
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
 
-            var document = Document.Create(container =>
-            {
-                container.Page(page =>
-                {
-                    page.Size(PageSizes.A4);
-                    page.Margin(30);
-                    page.DefaultTextStyle(x => x.FontSize(16));
+        // The status of the contract.
+        // Valid values: "ACTIVE", "RENEWED", "EXPIRED"
+        public string ContractStatus { get; set; }
 
-                    page.Header()
-                        .Text("My PDF Document")
-                        .SemiBold()
-                        .FontSize(20)
-                        .FontColor(Colors.Blue.Medium);
+        // The full content/text of the contract
+        public string ContractContent { get; set; }
 
-                    page.Content()
-                        .Text("Hello, this is a generated PDF by Darius, Cailor")
-                        .FontSize(14);
+        // The count of how many times this contract has been renewed
+        public int RenewalCount { get; set; }
 
-                    page.Footer()
-                        .AlignCenter()
-                        .Text("Page Footer - " + DateTime.Now.ToString("yyyy-MM-dd"));
-                });
-            });
+        // Optional foreign key to the PredefinedContract table
+        public int? PredefinedContractID { get; set; }
 
-            document.GeneratePdf("C:\\Users\\User\\Downloads\\contract.pdf"); // Saves the PDF file
-        }
-        
+        // Foreign key to the PDF table (holds the contract's PDF reference)
+        public int PDFID { get; set; }
+
+        // Holds the ID of the original contract if this is a renewal; null otherwise
+        public long? RenewedFromContractID { get; set; }
     }
 }
