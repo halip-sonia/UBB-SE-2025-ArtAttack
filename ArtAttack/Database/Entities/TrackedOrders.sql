@@ -6,5 +6,5 @@ create table TrackedOrders
 	[EstimatedDeliveryDate] Date not null,
 	[DeliveryAddress] varchar(255) not null,
 	[OrderStatus] varchar(100) not null,
-	[OrderID] bigint foreign key references Order([OrderID]) unique not null
+	[OrderID] bigint foreign key references [Order]([OrderID]) unique not null
 )

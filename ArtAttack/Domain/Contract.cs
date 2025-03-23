@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Drawing;
-using Windows.Data.Pdf;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
@@ -41,5 +40,6 @@ namespace ArtAttack.Domain
 
         // Holds the ID of the original contract if this is a renewal; null otherwise
         public long? RenewedFromContractID { get; set; }
+
     }
 }
