@@ -9,7 +9,7 @@ GO
   This procedure inserts a renewed contract into the [Contract] table.
   Note: This procedure is used exclusively for contract renewals.
         The [contractStatus] is set to 'RENEWED' by default.
-        The [renewedFromContractID] must reference the original contract being renewed.
+        The [renewedFromContractID] stores the original contract's ID,.
 */
 CREATE PROCEDURE [AddRenewedContract]
     @orderID INT,

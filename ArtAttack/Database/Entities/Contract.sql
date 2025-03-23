@@ -19,16 +19,10 @@ create table [Contract](
 	[pdfID] integer not null foreign key references [PDF]([ID]),
 
 	/* Added field to support contract renewals.
-	Stores a reference to the original contract being renewed 
-	(can be NULL if it's a new/original contract). */
+    Holds the ID of the original contract being renewed.
+    Can be NULL if the contract is not a renewal. */
 	[renewedFromContractID] bigint null 
 );
 
 go
 
-/*
- Added foreign key constraint to enforce self-reference for renewals.
-*/
-alter table [Contract]
-add constraint [FK_Contract_RenewedFrom]
-foreign key ([renewedFromContractID]) REFERENCES [Contract]([ID]);
