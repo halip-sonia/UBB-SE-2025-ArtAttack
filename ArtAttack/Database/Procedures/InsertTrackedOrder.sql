@@ -1,0 +1,15 @@
+go
+create procedure uspInsertTrackedOrder (@estimatedDeliveryDate date, @deliveryAddress varchar(255), @orderStatus varchar(100), @orderID bigint) as
+begin
+	begin try
+		insert into TrackedOrders values (@estimatedDeliveryDate, @deliveryAddress, @orderStatus, @orderID)
+	end try
+	begin catch
+		declare @err_message varchar(2000)
+		declare @err_number int
+		select @err_message = error_message(), @err_number = error_number()
+		raiserror(N'uspInsertTrackedOrder: Error %i: %s', 16, 1, @err_number, @err_message)
+	end catch
+end
+go
+
