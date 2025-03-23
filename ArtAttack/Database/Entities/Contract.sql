@@ -24,5 +24,3 @@ create table [Contract](
 	[renewedFromContractID] bigint null 
 );
 
-go
-

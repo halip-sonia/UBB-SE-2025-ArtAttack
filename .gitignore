@@ -2,6 +2,16 @@
 # This .gitignore file was automatically created by Microsoft(R) Visual Studio.
 ################################################################################
 
+/ArtAttack/obj/x64/Debug/net8.0-windows10.0.19041.0/win-x64/ArtAttack.AssemblyInfo.cs
+/ArtAttack/obj/x64/Debug/net8.0-windows10.0.19041.0/win-x64/ArtAttack.AssemblyInfoInputs.cache
+/ArtAttack/obj/x64/Debug/net8.0-windows10.0.19041.0/win-x64/ArtAttack.assets.cache
+/ArtAttack/obj/x64/Debug/net8.0-windows10.0.19041.0/win-x64/ArtAttack.csproj.AssemblyReference.cache
+/ArtAttack/obj/x64/Debug/net8.0-windows10.0.19041.0/win-x64/ArtAttack.GeneratedMSBuildEditorConfig.editorconfig
+/ArtAttack/obj/project.assets.json
+/ArtAttack/obj/project.nuget.cache
+/ArtAttack/obj/ArtAttack.csproj.nuget.dgspec.json
+/ArtAttack/obj/ArtAttack.csproj.nuget.g.props
+/ArtAttack/obj/x64/Debug/net8.0-windows10.0.19041.0/win-x64/XamlSaveStateFile.xml
 /ArtAttack/.vs/ArtAttack/DesignTimeBuild/.dtbcache.v2
 /ArtAttack/.vs/ArtAttack/v17/DocumentLayout.backup.json
 /ArtAttack/obj/project.nuget.cache
