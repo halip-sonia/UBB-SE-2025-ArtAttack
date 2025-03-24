@@ -1,4 +1,4 @@
 create table [PDF](
 	[ID] integer identity primary key,
-	[file] FILESTREAM not null
+	[file] VarBinary(MAX) not null
 );
