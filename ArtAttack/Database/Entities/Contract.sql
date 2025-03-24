@@ -3,7 +3,7 @@
 /*Before creating the contract table please create the :
 Order, PDF and PredefinedContract Tables*/
 create table [Contract](
-	[ID] bigint identity primary key,
+	[ID] int identity primary key,
 
 	[orderID] integer foreign key references [Order]([ID]),
 
@@ -21,6 +21,6 @@ create table [Contract](
 	/* Added field to support contract renewals.
     Holds the ID of the original contract being renewed.
     Can be NULL if the contract is not a renewal. */
-	[renewedFromContractID] bigint null 
+	[renewedFromContractID] int null 
 );
 
