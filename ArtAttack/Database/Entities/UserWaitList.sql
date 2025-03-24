@@ -1,8 +1,8 @@
 create table [UserWaitList]
 (
-	[UserWaitListID] bigint identity primary key,
+	[UserWaitListID] int identity primary key,
 
-	[productWaitListID] bigint not null foreign key references [WaitListProduct]([WaitListProductID]),
+	[productWaitListID] int not null foreign key references [WaitListProduct]([WaitListProductID]),
 
 	[userID] integer not null foreign key references [DummyBuyer]([ID]),
 
