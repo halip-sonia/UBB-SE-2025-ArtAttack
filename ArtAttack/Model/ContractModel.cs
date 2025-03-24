@@ -37,8 +37,6 @@ namespace ArtAttack.Model
                             {
                                 ID = reader.GetInt64("ID"),
                                 OrderID = reader.GetInt32("orderID"),
-                                StartDate = reader.GetDateTime("startDate"),
-                                EndDate = reader.GetDateTime("endDate"),
                                 ContractStatus = reader.GetString("contractStatus"),
                                 ContractContent = reader["contractContent"] as string,
                                 RenewalCount = reader.GetInt32("renewalCount"),
@@ -78,8 +76,6 @@ namespace ArtAttack.Model
                             {
                                 ID = reader.GetInt64(reader.GetOrdinal("ID")),
                                 OrderID = reader.GetInt32(reader.GetOrdinal("orderID")),
-                                StartDate = reader.GetDateTime(reader.GetOrdinal("startDate")),
-                                EndDate = reader.GetDateTime(reader.GetOrdinal("endDate")),
                                 ContractStatus = reader.GetString(reader.GetOrdinal("contractStatus")),
                                 ContractContent = reader["contractContent"] as string,
                                 RenewalCount = reader.GetInt32(reader.GetOrdinal("renewalCount")),
@@ -117,8 +113,6 @@ namespace ArtAttack.Model
                             {
                                 ID = reader.GetInt64(reader.GetOrdinal("ID")),
                                 OrderID = reader.GetInt32(reader.GetOrdinal("orderID")),
-                                StartDate = reader.GetDateTime(reader.GetOrdinal("startDate")),
-                                EndDate = reader.GetDateTime(reader.GetOrdinal("endDate")),
                                 ContractStatus = reader.GetString(reader.GetOrdinal("contractStatus")),
                                 ContractContent = reader["contractContent"] as string,
                                 RenewalCount = reader.GetInt32(reader.GetOrdinal("renewalCount")),
@@ -270,6 +264,33 @@ namespace ArtAttack.Model
                 }
             }
             return orderSummary;
+        }
+
+        /// <summary>
+        /// Retrieves the startDate and endDate for a contract from the DummyProduct table.
+        /// </summary>
+        public (DateTime StartDate, DateTime EndDate)? GetProductDatesByContractId(long contractId)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetProductDatesByContractID", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@ContractID", contractId);
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        if (reader.Read())
+                        {
+                            var startDate = reader.GetDateTime(reader.GetOrdinal("startDate"));
+                            var endDate = reader.GetDateTime(reader.GetOrdinal("endDate"));
+                            return (startDate, endDate);
+                        }
+                    }
+                }
+            }
+            return null;
         }
     }
 }

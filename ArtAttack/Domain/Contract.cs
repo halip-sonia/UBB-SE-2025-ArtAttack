@@ -18,10 +18,6 @@ namespace ArtAttack.Domain
         // Foreign key linking to the Order table (assumed to be of type integer)
         public int OrderID { get; set; }
 
-        // Start and end dates of the contract
-        public DateTime StartDate { get; set; }
-        public DateTime EndDate { get; set; }
-
         // The status of the contract.
         // Valid values: "ACTIVE", "RENEWED", "EXPIRED"
         public string ContractStatus { get; set; }

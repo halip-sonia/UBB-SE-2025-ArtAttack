@@ -57,8 +57,6 @@ GO
 
 CREATE PROCEDURE AddContract
     @OrderID INT,
-    @StartDate DATETIME,
-    @EndDate DATETIME,
     @ContractStatus VARCHAR(255),
     @ContractContent TEXT,
     @RenewalCount INT,
@@ -80,9 +78,9 @@ BEGIN
         
         -- Insert the new contract record.
         INSERT INTO Contract
-            (orderID, startDate, endDate, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
+            (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
         VALUES
-            (@OrderID, @StartDate, @EndDate, @ContractStatus, @ContractContent, @RenewalCount, @PredefinedContractID, @PDFID, @RenewedFromContractID);
+            (@OrderID, @ContractStatus, @ContractContent, @RenewalCount, @PredefinedContractID, @PDFID, @RenewedFromContractID);
         
         COMMIT TRANSACTION;
     END TRY
@@ -140,6 +138,21 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE GetProductDatesByContractID
+    @ContractID BIGINT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT dp.startDate, dp.endDate
+    FROM Contract c
+    INNER JOIN [Order] o ON c.orderID = o.OrderID
+    INNER JOIN DummyProduct dp ON o.ProductId = dp.ID
+    WHERE c.ID = @ContractID;
+END
+GO
+
+
 
 -- Get a specific contract by ID
 EXEC GetContractByID @ContractID = 2;
@@ -159,8 +172,6 @@ DECLARE @SamplePDF VARBINARY(MAX) = 0x255044462D312E350D0A; -- Represents "%PDF-
 
 EXEC AddContract 
     @OrderID = 1,
-    @StartDate = '2025-03-24 00:00:00',
-    @EndDate = '2025-04-23 00:00:00',
     @ContractStatus = 'ACTIVE',
     @ContractContent = 'This is a sample contract content.',
     @RenewalCount = 0,
