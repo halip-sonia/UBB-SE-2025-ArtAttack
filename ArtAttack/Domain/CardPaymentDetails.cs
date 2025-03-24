@@ -6,7 +6,14 @@ using System.Threading.Tasks;
 
 namespace ArtAttack.Domain
 {
-    class CardPaymentDetails
+    public class CardPaymentDetails
     {
+        required public string cardholderName { get; set; }
+        required public string cardNumber { get; set; }
+        required public string month { get; set; }
+        required public string year { get; set; }
+        required public string cvc { get; set; }
+        required public string country { get; set; }
+
     }
 }

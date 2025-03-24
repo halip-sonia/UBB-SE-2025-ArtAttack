@@ -1,4 +1,9 @@
--- procedure to add a new user to a waitList
+
+--procedure to add a new user to the waitlist of a product
+--procedure to delete a user from a waitlist of a product
+-- Select all users in the waitlist for the given product
+-- Select all waitlists the user has joined
+
 create procedure AddUserToWaitlist
     @UserID int,
     @ProductWaitListID int
@@ -38,6 +43,7 @@ begin
 end;
 
 -- Select all users in the waitlist for the given product
+
 CREATE PROCEDURE GetUsersInWaitlist
     @WaitListProductID BIGINT
 AS
@@ -53,6 +59,7 @@ END;
 
 
  -- Select all waitlists the user has joined
+
 CREATE PROCEDURE GetUserWaitlists
     @UserID INT
 AS
@@ -68,3 +75,4 @@ BEGIN
     WHERE UserWaitList.userID = @UserID
     ORDER BY UserWaitList.joinedTime ASC;
 END;
+
