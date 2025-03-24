@@ -6,7 +6,7 @@ using ArtAttack.Domain;
 
 namespace ArtAttack.Model
 {
-    public class ContractViewModel
+    public class ContractModel
     {
         private readonly string _connectionString;
 
