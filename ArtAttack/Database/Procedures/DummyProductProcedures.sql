@@ -14,7 +14,7 @@ BEGIN
         BEGIN TRANSACTION;
 
         UPDATE DummyProduct
-        SET Name = @Name,
+        SET [Name] = @Name,
             Price = @Price,
             SellerID = @SellerID,
             ProductType = @ProductType,
@@ -68,7 +68,7 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        INSERT INTO DummyProduct (Name, Price, SellerID, ProductType, StartDate, EndDate)
+        INSERT INTO DummyProduct ([Name], Price, SellerID, ProductType, StartDate, EndDate)
         VALUES (@Name, @Price, @SellerID, @ProductType, @StartDate, @EndDate);
 
         COMMIT TRANSACTION;
