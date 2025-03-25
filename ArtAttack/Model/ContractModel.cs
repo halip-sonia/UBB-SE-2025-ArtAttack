@@ -140,8 +140,6 @@ namespace ArtAttack.Model
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@OrderID", contract.OrderID);
-                    cmd.Parameters.AddWithValue("@StartDate", contract.StartDate);
-                    cmd.Parameters.AddWithValue("@EndDate", contract.EndDate);
                     cmd.Parameters.AddWithValue("@ContractStatus", contract.ContractStatus);
                     cmd.Parameters.AddWithValue("@ContractContent", contract.ContractContent);
                     cmd.Parameters.AddWithValue("@RenewalCount", contract.RenewalCount);
