@@ -14,8 +14,8 @@ namespace ArtAttack.Domain
 
     public enum PredefinedContractType
     {
-        PURCHASE,
-        SALE,
-        LOAN
+        Buying = 1,
+        Selling = 2,
+        Borrowing = 3
     }
 }
