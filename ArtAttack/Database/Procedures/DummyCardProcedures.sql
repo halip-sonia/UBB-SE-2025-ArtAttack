@@ -1,4 +1,4 @@
-create or alter proc [add_card] 
+create or alter proc [AddCard] 
 @cname varchar(50),
 @cnumber varchar(20),
 @cvc varchar(3),
@@ -7,15 +7,13 @@ create or alter proc [add_card]
 @country varchar(30),
 @balance float as
 begin 
-
 insert into [DummyCard] 
 values (@cname,@cnumber,@cvc,@mon,@yr,@country)
-
 end
 go
 
 
-create or alter proc [delete_card] @cardnumber varchar(20) as
+create or alter proc [DeleteCard] @cardnumber varchar(20) as
 begin
 
  delete from [DummyCard] where [cardNumber]=@cardnumber
@@ -23,7 +21,7 @@ begin
 end
 go
 
-create or alter proc [update_card_balance]
+create or alter proc [UpdateCardBalance]
 @cnumber varchar(20),
 @balance float
 as
@@ -34,7 +32,7 @@ where [cardNumber]=@cnumber
 end
 go
 
-create or alter proc [get_balance]
+create or alter proc [GetBalance]
 @cnumber varchar(20)
 as
 begin
