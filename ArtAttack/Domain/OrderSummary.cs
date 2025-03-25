@@ -22,6 +22,6 @@ namespace ArtAttack.Domain
         public string AdditionalInfo { get; set; }
         public string ContractDetails { get; set; }  
 
-        public virtual ICollection<Order> Orders { get; set; }
+        //public virtual ICollection<Order> Orders { get; set; } //not sure this should end up in the model 
     }
 }
