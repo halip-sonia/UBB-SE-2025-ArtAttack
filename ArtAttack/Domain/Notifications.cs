@@ -51,16 +51,14 @@ namespace ArtAttack.Domain{
     public class ContractRenewalAnswerNotification : Notification
     {
         private int contractID;
-        private string filename = null;
         private bool isAccepted;
-        public ContractRenewalAnswerNotification(int notificationId, int recipientID, DateTime timestamp, int contractID, string filename, bool isAccepted) 
+        public ContractRenewalAnswerNotification(int notificationId, int recipientID, DateTime timestamp, int contractID, bool isAccepted) 
         {
             this.notificationID = notificationId;
             this.recipientID = recipientID;
             this.timestamp = timestamp;
             this.isRead = false;
             this.contractID = contractID;    
-            this.filename = filename;
             category = NotificationCategory.CONTRACT_RENEWAL_ANS;
             this.isAccepted = isAccepted;
         }
