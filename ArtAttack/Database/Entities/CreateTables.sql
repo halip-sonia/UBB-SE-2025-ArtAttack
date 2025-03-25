@@ -1,27 +1,24 @@
+drop table if exists [OrderCheckpoints]
 drop table if exists [TrackedOrders]
+drop table if exists [Notification]
 drop table if exists [Contract]
 
 
 drop table if exists [Order]
 
-drop table if exists [Notification]
 
 
 drop table if exists [OrderHistory]
-
-drop table if exists [OrderCheckpoints]
-
-
-drop table if exists [WaitListProduct]
-
-
 drop table if exists [UserWaitList]
+drop table if exists [WaitListProduct]
 
 drop table if exists [DummyProduct]
 
 drop table if exists [DummyBuyer] 
 
 drop table if exists [DummyCard]
+
+drop table if exists [DummyWallet]
 
 drop table if exists [DummySeller]
 
@@ -50,6 +47,10 @@ create table [DummyCard](
 
 );
 
+create table [DummyWallet](
+	[ID] integer identity primary key,
+	[balance] float
+);
 
 
 create table [DummySeller](
@@ -153,7 +154,7 @@ create table [Notification](
 );
 
 
-create table TrackedOrders
+create table [TrackedOrders]
 (
 	[TrackedOrderID] int primary key identity(1,1),
 	[EstimatedDeliveryDate] Date not null,
@@ -166,7 +167,7 @@ create table TrackedOrders
 
 
 
-create table OrderCheckpoints
+create table [OrderCheckpoints]
 (
 	[CheckpointID] int primary key identity(1,1),
 	[Timestamp] datetime not null,
@@ -175,12 +176,20 @@ create table OrderCheckpoints
 	[CheckpointStatus] varchar(100) not null,
 	constraint [OrderChekpointConstraint] 
 		check ([CheckpointStatus] in ('PROCESSING','SHIPPED','IN_WAREHOUSE','IN_TRANSIT','OUT_FOR_DELIVERY','DELIVERED')),
-	[TrackedOrderID] int foreign key references TrackedOrders([TrackedOrderID]) on delete cascade not null
+	[TrackedOrderID] int foreign key references [TrackedOrders]([TrackedOrderID]) on delete cascade not null
 )
 
 
 
+create table [WaitListProduct]
+(
+	[waitListProductID] int identity primary key,
 
+	[productID] int not null foreign key references [DummyProduct]([ID]),
+
+	[availableAgain] int not null foreign key references [DummyProduct]([ID])
+
+);
 
 
 create table [UserWaitList]
@@ -197,14 +206,6 @@ create table [UserWaitList]
 );
 
 
-create table [WaitListProduct]
-(
-	[waitListProductID] int identity primary key,
 
-	[productID] int not null foreign key references [DummyProduct]([ID]),
-
-	[availableAgain] DateTime not null foreign key references [DummyProduct]([endDate])
-
-);
 
 

@@ -34,4 +34,10 @@ where [cardNumber]=@cnumber
 end
 go
 
-
+create or alter proc [get_balance]
+@cnumber varchar(20)
+as
+begin
+select [balance] from [DummyCard] where [cardNumber]=@cnumber
+end
+go
