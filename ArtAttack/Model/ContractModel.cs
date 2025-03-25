@@ -140,7 +140,7 @@ namespace ArtAttack.Model
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@OrderID", contract.OrderID);
-                    cmd.Parameters.AddWithValue("@StartDate", contract.StartDate);
+                    cmd.Parameters.AddWithValue("@StartDate", contract.StartDate);//error here !!Contract doesn't have the startDate and EndDate attributes anymor, they are setted to Product instead!!
                     cmd.Parameters.AddWithValue("@EndDate", contract.EndDate);
                     cmd.Parameters.AddWithValue("@ContractStatus", contract.ContractStatus);
                     cmd.Parameters.AddWithValue("@ContractContent", contract.ContractContent);
