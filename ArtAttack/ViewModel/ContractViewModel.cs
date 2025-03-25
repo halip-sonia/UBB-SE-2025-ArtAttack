@@ -2,7 +2,7 @@
 
 namespace ArtAttack.ViewModel
 {
-	public class ContractViewModel
+	public class ContractViewModel: IContractViewModel
 	{
 		public ContractViewModel()
 		{

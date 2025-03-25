@@ -11,4 +11,11 @@ namespace ArtAttack.Domain
         public int ID { get; set; }
         public required string Content { get; set; }
     }
+
+    public enum PredefinedContractType
+    {
+        PURCHASE,
+        SALE,
+        LOAN
+    }
 }
