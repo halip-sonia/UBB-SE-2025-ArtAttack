@@ -4,11 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArtAttack.Domain
+namespace ArtAttack.Model
 {
-    public class PDF
+    class DummyCardModel
     {
-        public int ID { get; set; }
-        public byte[] File { get; set; }
     }
 }

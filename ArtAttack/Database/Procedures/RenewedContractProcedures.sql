@@ -13,19 +13,15 @@ GO
 */
 CREATE PROCEDURE [AddRenewedContract]
     @orderID INT,
-    @startDate DATETIME,
-    @endDate DATETIME,
     @contractContent TEXT,
     @renewalCount INT,
     @predefinedContractID INT,
     @pdfID INT,
-    @renewedFromContractID BIGINT
+    @renewedFromContractID INT
 AS
 BEGIN
     INSERT INTO [Contract] (
         [orderID],
-        [startDate],
-        [endDate],
         [contractStatus],
         [contractContent],
         [renewalCount],
@@ -35,8 +31,6 @@ BEGIN
     )
     VALUES (
         @orderID,
-        @startDate,
-        @endDate,
         'RENEWED',
         @contractContent,
         @renewalCount,
@@ -57,9 +51,7 @@ GO
         predefined contract reference, and associated PDF file.
 */
 CREATE PROCEDURE [UpdateRenewedContract]
-    @contractID BIGINT,
-    @startDate DATETIME,
-    @endDate DATETIME,
+    @contractID INT,
     @contractContent TEXT,
     @renewalCount INT,
     @predefinedContractID INT,
@@ -70,8 +62,6 @@ BEGIN
     -- This should be used only for contracts with status 'RENEWED'.
     UPDATE [Contract]
     SET 
-        [startDate] = @startDate,
-        [endDate] = @endDate,
         [contractContent] = @contractContent,
         [renewalCount] = @renewalCount,
         [predefinedContractID] = @predefinedContractID,
@@ -93,8 +83,6 @@ BEGIN
     SELECT 
         [ID],
         [orderID],
-        [startDate],
-        [endDate],
         [contractStatus],
         [contractContent],
         [renewalCount],

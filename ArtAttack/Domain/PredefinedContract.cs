@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace ArtAttack.Domain
 {
-    public class PDF
+    public class PredefinedContract
     {
         public int ID { get; set; }
-        public byte[] File { get; set; }
+        public required string Content { get; set; }
     }
 }
