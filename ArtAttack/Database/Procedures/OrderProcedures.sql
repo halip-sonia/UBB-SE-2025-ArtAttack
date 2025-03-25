@@ -95,11 +95,8 @@ go
 
 CREATE PROCEDURE UpdateOrder
     @OrderID INT,
-    @ProductID INT,
-    @BuyerID INT,
     @ProductType varchar(20),
     @PaymentMethod VARCHAR(20),
-    @OrderSummaryID INT,
     @OrderDate timestamp
    
 AS
