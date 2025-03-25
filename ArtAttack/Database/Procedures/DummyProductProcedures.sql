@@ -1,7 +1,9 @@
 CREATE PROCEDURE UpdateDummyProduct
     @ID INT,
+    @Name VARCHAR(64),
     @Price FLOAT,
     @SellerID INT,
+    @ProductType VARCHAR(20),
     @StartDate DATETIME,
     @EndDate DATETIME
 AS
@@ -12,8 +14,10 @@ BEGIN
         BEGIN TRANSACTION;
 
         UPDATE DummyProduct
-        SET Price = @Price,
+        SET Name = @Name,
+            Price = @Price,
             SellerID = @SellerID,
+            ProductType = @ProductType,
             StartDate = @StartDate,
             EndDate = @EndDate
         WHERE ID = @ID;
@@ -51,8 +55,10 @@ END
 GO
 
 CREATE PROCEDURE AddDummyProduct
+    @Name VARCHAR(64),
     @Price FLOAT,
     @SellerID INT,
+    @ProductType VARCHAR(20),
     @StartDate DATETIME,
     @EndDate DATETIME
 AS
@@ -62,8 +68,8 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        INSERT INTO DummyProduct (Price, SellerID, StartDate, EndDate)
-        VALUES (@Price, @SellerID, @StartDate, @EndDate);
+        INSERT INTO DummyProduct (Name, Price, SellerID, ProductType, StartDate, EndDate)
+        VALUES (@Name, @Price, @SellerID, @ProductType, @StartDate, @EndDate);
 
         COMMIT TRANSACTION;
     END TRY
