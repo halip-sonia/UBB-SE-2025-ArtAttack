@@ -4,7 +4,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using iss.Domain;
+using ArtAttack.Domain;
 
 namespace ArtAttack.Model
 {
