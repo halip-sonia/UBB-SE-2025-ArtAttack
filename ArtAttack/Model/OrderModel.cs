@@ -71,7 +71,7 @@ namespace ArtAttack.Model
 
         public List<Order> GetBorrowedOrderHistory(int buyerId)
         {
-            List<Order> orders = new List<DummyProduct>();
+            List<Order> orders = new List<Order>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("get_borrowed_order_history", conn))
