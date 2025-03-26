@@ -24,52 +24,43 @@ namespace ArtAttack.Model
                 case "CONTRACT_RENEWAL_ANS":
                     int contractId = reader.GetInt32(reader.GetOrdinal("contractID"));
                     bool isAccepted = reader.GetBoolean(reader.GetOrdinal("isAccepted"));
-                    return new ContractRenewalAnswerNotification(
-                        notificationId, recipientId, timestamp, isRead, contractId, isAccepted);
+                    return new ContractRenewalAnswerNotification(recipientId, timestamp, isRead, contractId, isAccepted, notificationId);
 
                 case "CONTRACT_RENEWAL_WAITLIST":
                     int productIdWaitlist = reader.GetInt32(reader.GetOrdinal("productID"));
-                    return new ContractRenewalWaitlistNotification(
-                        notificationId, recipientId, timestamp, isRead, productIdWaitlist);
+                    return new ContractRenewalWaitlistNotification(recipientId, timestamp, isRead, productIdWaitlist, notificationId);
 
                 case "OUTBIDDED":
                     int productIdOutbidded = reader.GetInt32(reader.GetOrdinal("productID"));
-                    return new OutbiddedNotification(
-                        notificationId, recipientId, timestamp, isRead, productIdOutbidded);
+                    return new OutbiddedNotification(recipientId, timestamp, isRead, productIdOutbidded, notificationId);
 
                 case "ORDER_SHIPPING_PROGRESS":
                     int orderId = reader.GetInt32(reader.GetOrdinal("orderID"));
                     string shippingState = reader.GetString(reader.GetOrdinal("shippingState"));
                     DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
-                    return new OrderShippingProgressNotification(
-                        notificationId, recipientId, timestamp, isRead, orderId, shippingState, deliveryDate);
+                    return new OrderShippingProgressNotification(recipientId, timestamp, isRead, orderId, shippingState, deliveryDate, notificationId);
 
                 case "PAYMENT_CONFIRMATION":
                     int productIdPayment = reader.GetInt32(reader.GetOrdinal("productID"));
                     int orderIdPayment = reader.GetInt32(reader.GetOrdinal("orderID"));
-                    return new PaymentConfirmationNotification(
-                        notificationId, recipientId, timestamp, isRead, productIdPayment, orderIdPayment);
+                    return new PaymentConfirmationNotification(recipientId, timestamp, isRead, productIdPayment, orderIdPayment, notificationId);
 
                 case "PRODUCT_REMOVED":
                     int productIdRemoved = reader.GetInt32(reader.GetOrdinal("productID"));
-                    return new ProductRemovedNotification(
-                        notificationId, recipientId, timestamp, isRead, productIdRemoved);
+                    return new ProductRemovedNotification(recipientId, timestamp, isRead, productIdRemoved, notificationId);
 
                 case "PRODUCT_AVAILABLE":
                     int productIdAvailable = reader.GetInt32(reader.GetOrdinal("productID"));
-                    return new ProductAvailableNotification(
-                        notificationId, recipientId, timestamp, isRead, productIdAvailable);
+                    return new ProductAvailableNotification(recipientId, timestamp, isRead, productIdAvailable, notificationId);
 
                 case "CONTRACT_RENEWAL_REQ":
                     int contractIdReq = reader.GetInt32(reader.GetOrdinal("contractID"));
-                    return new ContractRenewalRequestNotification(
-                        notificationId, recipientId, timestamp, isRead, contractIdReq);
+                    return new ContractRenewalRequestNotification(recipientId, timestamp, isRead, contractIdReq, notificationId);
 
                 case "CONTRACT_EXPIRATION":
                     int contractIdExp = reader.GetInt32(reader.GetOrdinal("contractID"));
                     DateTime expirationDate = reader.GetDateTime(reader.GetOrdinal("expirationDate"));
-                    return new ContractExpirationNotification(
-                        notificationId, recipientId, timestamp, isRead, contractIdExp, expirationDate);
+                    return new ContractExpirationNotification(recipientId, timestamp, isRead, contractIdExp, expirationDate, notificationId);
 
                 default:
                     throw new ArgumentException($"Unknown notification category: {category}");
