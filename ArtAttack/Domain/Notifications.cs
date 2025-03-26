@@ -4,7 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ArtAttack.Domain{  
+namespace ArtAttack.Domain
+{
     abstract public class Notification
     {
         protected int notificationID;
@@ -46,19 +47,17 @@ namespace ArtAttack.Domain{
         public abstract string getSubtitle();
 
     }
-
-    //TODO
     public class ContractRenewalAnswerNotification : Notification
     {
         private int contractID;
         private bool isAccepted;
-        public ContractRenewalAnswerNotification(int notificationId, int recipientID, DateTime timestamp, int contractID, bool isAccepted) 
+        public ContractRenewalAnswerNotification(int notificationId, int recipientID, DateTime timestamp, bool isRead, int contractID, bool isAccepted)
         {
-            this.notificationID = notificationId;
+            notificationID = notificationId;
             this.recipientID = recipientID;
             this.timestamp = timestamp;
-            this.isRead = false;
-            this.contractID = contractID;    
+            this.isRead = isRead;
+            this.contractID = contractID;
             category = NotificationCategory.CONTRACT_RENEWAL_ANS;
             this.isAccepted = isAccepted;
         }
@@ -69,8 +68,9 @@ namespace ArtAttack.Domain{
 
         public override string getContent()
         {
-            if (isAccepted ) {
-                return "Contract:" + this.contractID + " has been renewed!\r\n You can download it from below!";
+            if (isAccepted)
+            {
+                return "Contract:" + contractID + " has been renewed!\r\n You can download it from below!";
             }
             return "\"Unfortunately contract:\" + this.contractId + \" has not been renewed!\\r\\n The owner refused the renewal request :( \"";
         }
@@ -82,7 +82,7 @@ namespace ArtAttack.Domain{
 
         public override string getSubtitle()
         {
-            return "You have recieved an answer on the renewal request for cotract: " + this.contractID + ".";
+            return "You have recieved an answer on the renewal request for cotract: " + contractID + ".";
         }
     }
 
@@ -90,19 +90,19 @@ namespace ArtAttack.Domain{
     public class ContractRenewalWaitlistNotification : Notification
     {
         private int productID;
-        public ContractRenewalWaitlistNotification(int notificationId, int recipientID, DateTime timestamp, int productID)
+        public ContractRenewalWaitlistNotification(int notificationId, int recipientID, DateTime timestamp, bool isRead, int productID)
         {
-            this.notificationID = notificationId;
+            notificationID = notificationId;
             this.recipientID = recipientID;
             this.timestamp = timestamp;
-            this.isRead = false;
+            this.isRead = isRead;
             this.productID = productID;
             category = NotificationCategory.CONTRACT_RENEWAL_WAITLIST;
         }
 
         public override string getContent()
         {
-            return "The user that borrowed product:"+this.productID+ " that you are part of the waitlist for, has renewed it's contract. The time in which the product will be available will be extended, if this change doesn't fit your schedule you can update your participation in the waitlist.";
+            return "The user that borrowed product:" + productID + " that you are part of the waitlist for, has renewed it's contract. The time in which the product will be available will be extended, if this change doesn't fit your schedule you can update your participation in the waitlist.";
         }
 
         public override string getTitle()
@@ -117,16 +117,16 @@ namespace ArtAttack.Domain{
     }
 
 
-    public class OutbiddedNotification: Notification
+    public class OutbiddedNotification : Notification
     {
         private int productID;
-        public OutbiddedNotification(int notificationId, int recipientId, DateTime timestamp, int productId)
+        public OutbiddedNotification(int notificationId, int recipientId, DateTime timestamp, bool isRead, int productId)
         {
-            this.notificationID = notificationId;
-            this.recipientID = recipientId;
+            notificationID = notificationId;
+            recipientID = recipientId;
             this.timestamp = timestamp;
-            this.isRead = false;
-            this.productID = productId;
+            this.isRead = isRead;
+            productID = productId;
             category = NotificationCategory.OUTBIDDED;
         }
         public int getProductID()
@@ -135,7 +135,7 @@ namespace ArtAttack.Domain{
         }
         public override string getContent()
         {
-            return "You've been outbidded!\nAnother buyer has placed a higher bid than you on product: " + this.productID + ", surpassing your offer. If you’re still interested, you can increase your bid before the auction ends. Don’t miss out on this opportunity!\r\n Place a new bid now!";
+            return "You've been outbidded!\nAnother buyer has placed a higher bid than you on product: " + productID + ", surpassing your offer. If you’re still interested, you can increase your bid before the auction ends. Don’t miss out on this opportunity!\r\n Place a new bid now!";
         }
 
         public override string getTitle()
@@ -145,22 +145,22 @@ namespace ArtAttack.Domain{
 
         public override string getSubtitle()
         {
-            return "You've been outbidded on product: " + this.productID + ".";
+            return "You've been outbidded on product: " + productID + ".";
         }
     }
 
-    public class OrderShippingProgressNotification: Notification
+    public class OrderShippingProgressNotification : Notification
     {
         private int orderID;
         private string shippingState;
         private DateTime deliveryDate;
 
-        public OrderShippingProgressNotification(int notificationId, int recipientId, DateTime timestamp, int id, string state, DateTime deliveryDate)
+        public OrderShippingProgressNotification(int notificationId, int recipientId, DateTime timestamp, bool isRead, int id, string state, DateTime deliveryDate)
         {
-            this.notificationID = notificationId;
-            this.recipientID = recipientId;
+            notificationID = notificationId;
+            recipientID = recipientId;
             this.timestamp = timestamp;
-            this.isRead = false;
+            this.isRead = isRead;
             orderID = id;
             shippingState = state;
             category = NotificationCategory.ORDER_SHIPPING_PROGRESS;
@@ -179,7 +179,7 @@ namespace ArtAttack.Domain{
 
         public override string getContent()
         {
-            return "Great news! Your order:" + this.orderID + " has reached the " + this.shippingState + " stage. Estimated delivery is on" + this.deliveryDate + "Further updates will be provided along the procces.";
+            return "Great news! Your order:" + orderID + " has reached the " + shippingState + " stage. Estimated delivery is on" + deliveryDate + "Further updates will be provided along the procces.";
         }
 
         public override string getTitle()
@@ -189,24 +189,24 @@ namespace ArtAttack.Domain{
 
         public override string getSubtitle()
         {
-            return "New info on order: " + this.orderID + " is available.";
+            return "New info on order: " + orderID + " is available.";
         }
 
     }
 
-    public class PaymentConfirmationNotification: Notification
+    public class PaymentConfirmationNotification : Notification
     {
         private int productID;
         private int orderID;
 
-        public PaymentConfirmationNotification(int notificationId, int recipientId, DateTime timestamp, int productId, int orderId)
+        public PaymentConfirmationNotification(int notificationId, int recipientId, DateTime timestamp, bool isRead, int productId, int orderId)
         {
-            this.notificationID = notificationId;
-            this.recipientID = recipientId;
+            notificationID = notificationId;
+            recipientID = recipientId;
             this.timestamp = timestamp;
-            this.isRead = false;
-            this.productID = productId;
-            this.orderID = orderId;
+            this.isRead = isRead;
+            productID = productId;
+            orderID = orderId;
             category = NotificationCategory.PAYMENT_CONFIRMATION;
         }
 
@@ -222,7 +222,7 @@ namespace ArtAttack.Domain{
 
         public override string getContent()
         {
-            return "Thank You for Your Purchase!\r\nYour order:" + this.orderID + " for product:" + this.productID + " has been successfully processed. You can view your order details in your account. If you have any questions, feel free to reach out to our support team.";
+            return "Thank You for Your Purchase!\r\nYour order:" + orderID + " for product:" + productID + " has been successfully processed. You can view your order details in your account. If you have any questions, feel free to reach out to our support team.";
         }
 
         public override string getTitle()
@@ -232,33 +232,33 @@ namespace ArtAttack.Domain{
 
         public override string getSubtitle()
         {
-            return "Order:" + this.orderID + "has been processed successfuly!";
+            return "Order:" + orderID + "has been processed successfuly!";
         }
 
     }
 
-    public class ProductRemovedNotification: Notification
+    public class ProductRemovedNotification : Notification
     {
         private int productID;
-        
-        public ProductRemovedNotification(int notificationId, int recipientId, DateTime timestamp, int productId)
+
+        public ProductRemovedNotification(int notificationId, int recipientId, DateTime timestamp, bool isRead, int productId)
         {
-            this.notificationID = notificationId;
-            this.recipientID = recipientId;
+            notificationID = notificationId;
+            recipientID = recipientId;
             this.timestamp = timestamp;
-            this.productID = productId;
-            this.isRead=false;
+            productID = productId;
+            this.isRead = isRead;
             category = NotificationCategory.PRODUCT_REMOVED;
         }
 
         public int getProductID()
         {
-            return this.productID;
+            return productID;
         }
 
         public override string getContent()
         {
-            return "Unfortunatelly the Product: " + this.productID + " that you were waiting for was removed form the martketplace by the seller. We encourage you to search for similar items on the app, we are sure you will find something that fits your needs!";
+            return "Unfortunatelly the Product: " + productID + " that you were waiting for was removed form the martketplace by the seller. We encourage you to search for similar items on the app, we are sure you will find something that fits your needs!";
         }
 
         public override string getTitle()
@@ -268,7 +268,7 @@ namespace ArtAttack.Domain{
 
         public override string getSubtitle()
         {
-            return "Product: " + this.productID + " was removed  from the marketplace!";
+            return "Product: " + productID + " was removed  from the marketplace!";
         }
 
     }
@@ -277,24 +277,24 @@ namespace ArtAttack.Domain{
     {
         private int productID;
 
-        public ProductAvailableNotification(int notificationId, int recipientId, DateTime timestamp, int productId)
+        public ProductAvailableNotification(int notificationId, int recipientId, DateTime timestamp, bool isRead, int productId)
         {
-            this.notificationID = notificationId;
-            this.recipientID = recipientId;
+            notificationID = notificationId;
+            recipientID = recipientId;
             this.timestamp = timestamp;
-            this.productID = productId;
-            this.isRead = false;
+            productID = productId;
+            this.isRead = isRead;
             category = NotificationCategory.PRODUCT_AVAILABLE;
         }
 
         public int getProductID()
         {
-            return this.productID;
+            return productID;
         }
 
         public override string getContent()
         {
-            return "Good news!The Product: " + this.productID + " that you were waiting for is now back in stock. Don’t miss your chance to grab it before it sells out again!\nOrder now before it’s gone";
+            return "Good news!The Product: " + productID + " that you were waiting for is now back in stock. Don’t miss your chance to grab it before it sells out again!\nOrder now before it’s gone";
         }
 
         public override string getTitle()
@@ -304,7 +304,7 @@ namespace ArtAttack.Domain{
 
         public override string getSubtitle()
         {
-            return "Product: " + this.productID + " is available now!";
+            return "Product: " + productID + " is available now!";
         }
 
     }
@@ -313,24 +313,24 @@ namespace ArtAttack.Domain{
     {
         private int contractID;
 
-        public ContractRenewalRequestNotification(int notificationId, int recipientId, DateTime timestamp, int contractId)
+        public ContractRenewalRequestNotification(int notificationId, int recipientId, DateTime timestamp, bool isRead, int contractId)
         {
-            this.notificationID = notificationId;
-            this.recipientID = recipientId;
+            notificationID = notificationId;
+            recipientID = recipientId;
             this.timestamp = timestamp;
-            this.contractID = contractId;
-            this.isRead = false;
+            contractID = contractId;
+            this.isRead = isRead;
             category = NotificationCategory.CONTRACT_RENEWAL_REQ;
         }
 
         public int getContractID()
         {
-            return this.contractID;
+            return contractID;
         }
 
         public override string getContent()
         {
-            return "User: " + this.recipientID + " would like to renew contract: " + this.contractID + " !\n Please accept or deny this proposal as soon as posible, such that the waitlist will be updated corespondingly.";
+            return "User: " + recipientID + " would like to renew contract: " + contractID + " !\n Please accept or deny this proposal as soon as posible, such that the waitlist will be updated corespondingly.";
         }
 
         public override string getTitle()
@@ -340,7 +340,7 @@ namespace ArtAttack.Domain{
 
         public override string getSubtitle()
         {
-            return "User: " + this.recipientID + " wants to renew contract: "+ this.contractID +" !";
+            return "User: " + recipientID + " wants to renew contract: " + contractID + " !";
         }
 
     }
@@ -350,25 +350,25 @@ namespace ArtAttack.Domain{
         private int contractID;
         private DateTime expirationDate;
 
-        public ContractExpirationNotification(int notificationId, int recipientId, DateTime timestamp, int contractId, DateTime expirationDate)
+        public ContractExpirationNotification(int notificationId, int recipientId, DateTime timestamp, bool isRead, int contractId, DateTime expirationDate)
         {
-            this.notificationID = notificationId;
-            this.recipientID = recipientId;
+            notificationID = notificationId;
+            recipientID = recipientId;
             this.timestamp = timestamp;
-            this.contractID = contractId;
-            this.isRead = false;
+            contractID = contractId;
+            this.isRead = isRead;
             category = NotificationCategory.CONTRACT_EXPIRATION;
             this.expirationDate = expirationDate;
         }
 
         public int getContractID()
         {
-            return this.contractID;
+            return contractID;
         }
 
         public override string getContent()
         {
-            return "Contract: " + this.contractID + " is set to expire on " + this.expirationDate + "!\n Please check out the sellers contract renewal policies for more information.";
+            return "Contract: " + contractID + " is set to expire on " + expirationDate + "!\n Please check out the sellers contract renewal policies for more information.";
         }
 
         public override string getTitle()
@@ -378,7 +378,7 @@ namespace ArtAttack.Domain{
 
         public override string getSubtitle()
         {
-            return "Contract: " + this.contractID + " is about to expire!";
+            return "Contract: " + contractID + " is about to expire!";
 
         }
 
