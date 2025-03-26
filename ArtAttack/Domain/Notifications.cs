@@ -53,7 +53,7 @@ namespace ArtAttack.Domain
     {
         private int contractID;
         private bool isAccepted;
-        public ContractRenewalAnswerNotification(int recipientID, DateTime timestamp, bool isRead, int contractID, bool isAccepted, int notificationId = 0)
+        public ContractRenewalAnswerNotification(int recipientID, DateTime timestamp, int contractID, bool isAccepted, bool isRead = false, int notificationId = 0)
         {
             notificationID = notificationId;
             this.recipientID = recipientID;
@@ -97,7 +97,7 @@ namespace ArtAttack.Domain
     public class ContractRenewalWaitlistNotification : Notification
     {
         private int productID;
-        public ContractRenewalWaitlistNotification(int recipientID, DateTime timestamp, bool isRead, int productID, int notificationId = 0)
+        public ContractRenewalWaitlistNotification(int recipientID, DateTime timestamp, int productID, bool isRead = false, int notificationId = 0)
         {
             notificationID = notificationId;
             this.recipientID = recipientID;
@@ -132,7 +132,7 @@ namespace ArtAttack.Domain
     public class OutbiddedNotification : Notification
     {
         private int productID;
-        public OutbiddedNotification(int recipientId, DateTime timestamp, bool isRead, int productId, int notificationId = 0)
+        public OutbiddedNotification(int recipientId, DateTime timestamp, int productId, bool isRead = false, int notificationId = 0)
         {
             notificationID = notificationId;
             recipientID = recipientId;
@@ -167,7 +167,7 @@ namespace ArtAttack.Domain
         private string shippingState;
         private DateTime deliveryDate;
 
-        public OrderShippingProgressNotification(int recipientId, DateTime timestamp, bool isRead, int id, string state, DateTime deliveryDate, int notificationId = 0)
+        public OrderShippingProgressNotification(int recipientId, DateTime timestamp, int id, string state, DateTime deliveryDate, bool isRead = false, int notificationId = 0)
         {
             notificationID = notificationId;
             recipientID = recipientId;
@@ -216,7 +216,7 @@ namespace ArtAttack.Domain
         private int productID;
         private int orderID;
 
-        public PaymentConfirmationNotification(int recipientId, DateTime timestamp, bool isRead, int productId, int orderId, int notificationId = 0)
+        public PaymentConfirmationNotification(int recipientId, DateTime timestamp, int productId, int orderId, bool isRead = false, int notificationId = 0)
         {
             notificationID = notificationId;
             recipientID = recipientId;
@@ -258,7 +258,7 @@ namespace ArtAttack.Domain
     {
         private int productID;
 
-        public ProductRemovedNotification(int recipientId, DateTime timestamp, bool isRead, int productId, int notificationId = 0)
+        public ProductRemovedNotification(int recipientId, DateTime timestamp, int productId, bool isRead = false, int notificationId = 0)
         {
             notificationID = notificationId;
             recipientID = recipientId;
@@ -294,7 +294,7 @@ namespace ArtAttack.Domain
     {
         private int productID;
 
-        public ProductAvailableNotification(int recipientId, DateTime timestamp, bool isRead, int productId, int notificationId = 0)
+        public ProductAvailableNotification(int recipientId, DateTime timestamp, int productId, bool isRead = false, int notificationId = 0)
         {
             notificationID = notificationId;
             recipientID = recipientId;
@@ -330,7 +330,7 @@ namespace ArtAttack.Domain
     {
         private int contractID;
 
-        public ContractRenewalRequestNotification(int recipientId, DateTime timestamp, bool isRead, int contractId, int notificationId = 0)
+        public ContractRenewalRequestNotification(int recipientId, DateTime timestamp, int contractId, bool isRead = false, int notificationId = 0)
         {
             notificationID = notificationId;
             recipientID = recipientId;
@@ -367,7 +367,7 @@ namespace ArtAttack.Domain
         private int contractID;
         private DateTime expirationDate;
 
-        public ContractExpirationNotification(int recipientId, DateTime timestamp, bool isRead, int contractId, DateTime expirationDate, int notificationId = 0)
+        public ContractExpirationNotification(int recipientId, DateTime timestamp, int contractId, DateTime expirationDate, bool isRead = false, int notificationId = 0)
         {
             notificationID = notificationId;
             recipientID = recipientId;

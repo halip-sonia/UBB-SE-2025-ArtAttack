@@ -65,7 +65,6 @@ namespace ArtAttack.Model
                 // Common parameters
                 command.Parameters.AddWithValue("@recipientID", notification.getRecipientID());
                 command.Parameters.AddWithValue("@category", notification.getCategory().ToString());
-                command.Parameters.AddWithValue("@isRead", notification.getIsRead());
 
                 switch (notification)
                 {
