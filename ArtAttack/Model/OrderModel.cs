@@ -1,4 +1,4 @@
-using System.Data;
+
 using Microsoft.Data.SqlClient;
 using ArtAttack.Domain;
 using System;
@@ -90,17 +90,13 @@ namespace ArtAttack.Model
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
+                                BuyerID = reader.GetInt32("BuyerID"),
+                                OrderSummaryID = reader.GetInt32("OrderSummaryID"),
+                                OrderHistoryID = reader.GetInt32("OrderHistoryID"),
                                 ProductType = reader.GetString("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
-                                OrderDate = reader.GetDateTime("OrderDate"),
-                                Subtotal = reader.GetDecimal("Subtotal"),
-                                WarrantyTax = reader.GetDecimal("WarrantyTax"),
-                                DeliveryFee = reader.GetDecimal("DeliveryFee"),
-                                FinalTotal = reader.GetDecimal("finalTotal"),
-                                Address = reader.GetString("address"),
-                                AdditionalInfo = reader["AdditionalInfo"] as string,
-                                ContractDetails = reader["ContractDetails"] as string,
-                                ProductName = reader.GetString("ProductName")
+                                OrderDate = reader.GetDateTime("OrderDate")
+
                             };
                             orders.Add(order);
                         }
@@ -129,15 +125,12 @@ namespace ArtAttack.Model
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
+                                BuyerID = reader.GetInt32("BuyerID"),
+                                OrderSummaryID = reader.GetInt32("OrderSummaryID"),
+                                OrderHistoryID = reader.GetInt32("OrderHistoryID"),
                                 ProductType = reader.GetString("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
-                                OrderDate = reader.GetDateTime("OrderDate"),
-                                Subtotal = reader.GetDecimal("Subtotal"),
-                                DeliveryFee = reader.GetDecimal("DeliveryFee"),
-                                FinalTotal = reader.GetDecimal("finalTotal"),
-                                Address = reader.GetString("address"),
-                                AdditionalInfo = reader["AdditionalInfo"] as string,
-                                ProductName = reader.GetString("ProductName")
+                                OrderDate = reader.GetDateTime("OrderDate")
                             };
                             orders.Add(order);
                         }
@@ -167,17 +160,12 @@ namespace ArtAttack.Model
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
+                                BuyerID = reader.GetInt32("BuyerID"),
+                                OrderSummaryID = reader.GetInt32("OrderSummaryID"),
+                                OrderHistoryID = reader.GetInt32("OrderHistoryID"),
                                 ProductType = reader.GetString("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
-                                OrderDate = reader.GetDateTime("OrderDate"),
-                                Subtotal = reader.GetDecimal("Subtotal"),
-                                WarrantyTax = reader.GetDecimal("WarrantyTax"),
-                                DeliveryFee = reader.GetDecimal("DeliveryFee"),
-                                FinalTotal = reader.GetDecimal("finalTotal"),
-                                Address = reader.GetString("address"),
-                                AdditionalInfo = reader["AdditionalInfo"] as string,
-                                ContractDetails = reader["ContractDetails"] as string,
-                                ProductName = reader.GetString("ProductName")
+                                OrderDate = reader.GetDateTime("OrderDate")
                             };
                             orders.Add(order);
                         }
@@ -206,17 +194,12 @@ namespace ArtAttack.Model
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
+                                BuyerID = reader.GetInt32("BuyerID"),
+                                OrderSummaryID = reader.GetInt32("OrderSummaryID"),
+                                OrderHistoryID = reader.GetInt32("OrderHistoryID"),
                                 ProductType = reader.GetString("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
-                                OrderDate = reader.GetDateTime("OrderDate"),
-                                Subtotal = reader.GetDecimal("Subtotal"),
-                                WarrantyTax = reader.GetDecimal("WarrantyTax"),
-                                DeliveryFee = reader.GetDecimal("DeliveryFee"),
-                                FinalTotal = reader.GetDecimal("finalTotal"),
-                                Address = reader.GetString("address"),
-                                AdditionalInfo = reader["AdditionalInfo"] as string,
-                                ContractDetails = reader["ContractDetails"] as string,
-                                ProductName = reader.GetString("ProductName")
+                                OrderDate = reader.GetDateTime("OrderDate")
                             };
                             orders.Add(order);
                         }
@@ -245,17 +228,12 @@ namespace ArtAttack.Model
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
+                                BuyerID = reader.GetInt32("BuyerID"),
+                                OrderSummaryID = reader.GetInt32("OrderSummaryID"),
+                                OrderHistoryID = reader.GetInt32("OrderHistoryID"),
                                 ProductType = reader.GetString("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
-                                OrderDate = reader.GetDateTime("OrderDate"),
-                                Subtotal = reader.GetDecimal("Subtotal"),
-                                WarrantyTax = reader.GetDecimal("WarrantyTax"),
-                                DeliveryFee = reader.GetDecimal("DeliveryFee"),
-                                FinalTotal = reader.GetDecimal("finalTotal"),
-                                Address = reader.GetString("address"),
-                                AdditionalInfo = reader["AdditionalInfo"] as string,
-                                ContractDetails = reader["ContractDetails"] as string,
-                                ProductName = reader.GetString("ProductName")
+                                OrderDate = reader.GetDateTime("OrderDate")
                             };
                             orders.Add(order);
                         }
@@ -284,17 +262,12 @@ namespace ArtAttack.Model
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
+                                BuyerID = reader.GetInt32("BuyerID"),
+                                OrderSummaryID = reader.GetInt32("OrderSummaryID"),
+                                OrderHistoryID = reader.GetInt32("OrderHistoryID"),
                                 ProductType = reader.GetString("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
-                                OrderDate = reader.GetDateTime("OrderDate"),
-                                Subtotal = reader.GetDecimal("Subtotal"),
-                                WarrantyTax = reader.GetDecimal("WarrantyTax"),
-                                DeliveryFee = reader.GetDecimal("DeliveryFee"),
-                                FinalTotal = reader.GetDecimal("finalTotal"),
-                                Address = reader.GetString("address"),
-                                AdditionalInfo = reader["AdditionalInfo"] as string,
-                                ContractDetails = reader["ContractDetails"] as string,
-                                ProductName = reader.GetString("ProductName")
+                                OrderDate = reader.GetDateTime("OrderDate")
                             };
                             orders.Add(order);
                         }
@@ -323,17 +296,12 @@ namespace ArtAttack.Model
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
+                                BuyerID = reader.GetInt32("BuyerID"),
+                                OrderSummaryID = reader.GetInt32("OrderSummaryID"),
+                                OrderHistoryID = reader.GetInt32("OrderHistoryID"),
                                 ProductType = reader.GetString("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
-                                OrderDate = reader.GetDateTime("OrderDate"),
-                                Subtotal = reader.GetDecimal("Subtotal"),
-                                WarrantyTax = reader.GetDecimal("WarrantyTax"),
-                                DeliveryFee = reader.GetDecimal("DeliveryFee"),
-                                FinalTotal = reader.GetDecimal("finalTotal"),
-                                Address = reader.GetString("address"),
-                                AdditionalInfo = reader["AdditionalInfo"] as string,
-                                ContractDetails = reader["ContractDetails"] as string,
-                                ProductName = reader.GetString("ProductName")
+                                OrderDate = reader.GetDateTime("OrderDate")
                             };
                             orders.Add(order);
                         }
@@ -361,12 +329,14 @@ namespace ArtAttack.Model
                         {
                             Order order = new Order()
                             {
-                                OrderID = reader.GetInt32(reader.GetOrdinal("OrderID")),
-                                OrderHistoryID = reader.GetInt32(reader.GetOrdinal("OrderHistoryID")),
-                                ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
-                                ProductName = reader.GetString(reader.GetOrdinal("ProductName")),
-                                Price = reader.GetDecimal(reader.GetOrdinal("Price")),
-                                Quantity = reader.GetInt32(reader.GetOrdinal("Quantity"))
+                                OrderID = reader.GetInt32("OrderID"),
+                                ProductID = reader.GetInt32("ProductID"),
+                                BuyerID = reader.GetInt32("BuyerID"),
+                                OrderSummaryID = reader.GetInt32("OrderSummaryID"),
+                                OrderHistoryID = reader.GetInt32("OrderHistoryID"),
+                                ProductType = reader.GetString("ProductType"),
+                                PaymentMethod = reader.GetString("PaymentMethod"),
+                                OrderDate = reader.GetDateTime("OrderDate")
                             };
                             orders.Add(order);
                         }
