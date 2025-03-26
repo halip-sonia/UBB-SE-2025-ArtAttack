@@ -19,6 +19,7 @@ begin
     insert into UserWaitList (productWaitListID, userID, joinedTime, positionInQueue)
     values (@ProductWaitListID, @UserID, getdate(), @NextPosition);
 end;
+go
 
 --procedure to delete a user from a given waitList
 create procedure RemoveUserFromWaitlist
@@ -43,7 +44,7 @@ begin
 end;
 
 -- Select all users in the waitlist for the given product
-
+go
 CREATE PROCEDURE GetUsersInWaitlist
     @WaitListProductID BIGINT
 AS
@@ -59,6 +60,7 @@ END;
 
 
  -- Select all waitlists the user has joined
+ go
 
 CREATE PROCEDURE GetUserWaitlists
     @UserID INT
@@ -76,7 +78,7 @@ BEGIN
     ORDER BY UserWaitList.joinedTime ASC;
 END;
 
-
+go
 --procedure to check if a user is or not in a waitlist
 CREATE PROCEDURE CheckUserInWaitlist
     @UserID INT,
@@ -91,7 +93,7 @@ BEGIN
         SET @IsInWaitlist = 1;
     END
 END;
-
+go
 --count the users in a waitList
 CREATE PROCEDURE GetWaitlistSize
     @ProductWaitListID INT,
