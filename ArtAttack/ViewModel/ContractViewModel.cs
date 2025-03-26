@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Windows.Input;
 using ArtAttack.Domain;
 using ArtAttack.Model;
 using QuestPDF.Fluent;
@@ -57,6 +59,11 @@ namespace ArtAttack.ViewModel
             return _model.GetProductDatesByContractId(contractId);
         }
 
+        public List<Contract> GetContractsByBuyer(int buyerId)
+        {
+            return _model.GetContractsByBuyer(buyerId);
+        }
+
         public byte[] GenerateContractPdf(Contract contract, PredefinedContract predefinedContract, Dictionary<string, string> fieldReplacements)
         {
             string content = predefinedContract.Content;
@@ -96,6 +103,32 @@ namespace ArtAttack.ViewModel
 
             return document.GeneratePdf();
         }
+
+        public void GenerateAndSaveContract(Contract contract)
+        {
+            // For this example, assume a predefined contract of type Buying.
+            var predefinedContract = new PredefinedContract
+            {
+                ID = (int)PredefinedContractType.Buying,
+                Content = "Contract for {ContractID} with Order {OrderID}.\nStart: {StartDate}, End: {EndDate}.\nStatus: {ContractStatus}"
+            };
+
+            // You can add extra field replacements if needed.
+            var fieldReplacements = new Dictionary<string, string>();
+
+            // Generate the PDF.
+            var pdfBytes = GenerateContractPdf(contract, predefinedContract, fieldReplacements);
+
+            // Determine the Downloads folder path.
+            string downloadsPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
+            string fileName = $"Contract_{contract.ID}.pdf";
+            string filePath = Path.Combine(downloadsPath, fileName);
+
+            // Save the PDF to the file.
+            File.WriteAllBytes(filePath, pdfBytes);
+        }
+
+     
     }
 }
 

@@ -192,3 +192,16 @@ GO
 --Get the order summary information for a contract
 EXEC GetOrderSummaryInformation @ContractID = 2;
 GO
+
+CREATE PROCEDURE GetContractsByBuyer
+    @BuyerID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT c.*
+    FROM Contract c
+    INNER JOIN [Order] o ON c.orderID = o.OrderID
+    WHERE o.BuyerID = @BuyerID;
+END
+GO

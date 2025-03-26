@@ -17,7 +17,9 @@ namespace ArtAttack.ViewModel
         (int BuyerID, string BuyerName) GetContractBuyer(long contractId);
         Dictionary<string, object> GetOrderSummaryInformation(long contractId);
         (DateTime StartDate, DateTime EndDate)? GetProductDatesByContractId(long contractId);
-
+        List<Contract> GetContractsByBuyer(int buyerId);
         byte[] GenerateContractPdf(Contract contract, PredefinedContract predefinedContract, Dictionary<string, string> fieldReplacements);
+
+        public void GenerateAndSaveContract(Contract contract);
     }
 }
