@@ -290,5 +290,40 @@ namespace ArtAttack.Model
             }
             return null;
         }
+
+        public List<Contract> GetContractsByBuyer(int buyerId)
+        {
+            var contracts = new List<Contract>();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetContractsByBuyer", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@BuyerID", SqlDbType.Int).Value = buyerId;
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var contract = new Contract
+                            {
+                                ID = reader.GetInt64(reader.GetOrdinal("ID")),
+                                OrderID = reader.GetInt32(reader.GetOrdinal("orderID")),
+                                ContractStatus = reader.GetString(reader.GetOrdinal("contractStatus")),
+                                ContractContent = reader["contractContent"] as string,
+                                RenewalCount = reader.GetInt32(reader.GetOrdinal("renewalCount")),
+                                PredefinedContractID = reader["predefinedContractID"] != DBNull.Value ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID")) : null,
+                                PDFID = reader.GetInt32(reader.GetOrdinal("pdfID")),
+                                RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID")) : null
+                            };
+                            contracts.Add(contract);
+                        }
+                    }
+                }
+            }
+            return contracts;
+        }
+
     }
 }
