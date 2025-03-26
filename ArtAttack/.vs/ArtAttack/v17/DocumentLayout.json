@@ -3,29 +3,28 @@
   "WorkspaceRootPath": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\",
   "Documents": [
     {
-
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\procedures\\orderprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\orderprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\entities\\createtables.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\entities\\createtables.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\entities\\createtables.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\entities\\createtables.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\ordersummarymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\ordersummarymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\procedures\\orderprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\orderprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\ordersummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -100,14 +99,6 @@
       "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\dummyproductprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\procedures\\orderprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\orderprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\entities\\createtables.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
       "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\entities\\createtables.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
     }
@@ -119,75 +110,71 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "WaitListProcedures.sql ",
+              "DocumentIndex": 5,
+              "Title": "WaitListProcedures.sql",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\WaitListProcedures.sql",
               "RelativeDocumentMoniker": "Database\\Procedures\\WaitListProcedures.sql",
               "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\WaitListProcedures.sql",
               "RelativeToolTip": "Database\\Procedures\\WaitListProcedures.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-26T13:44:11.338Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-26T13:44:11.338Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "OrderProcedures.sql ",
+              "DocumentIndex": 4,
+              "Title": "OrderProcedures.sql",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\OrderProcedures.sql",
               "RelativeDocumentMoniker": "Database\\Procedures\\OrderProcedures.sql",
               "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\OrderProcedures.sql",
               "RelativeToolTip": "Database\\Procedures\\OrderProcedures.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-25T18:43:57.687Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T18:43:57.687Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "Order.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Order.cs",
               "RelativeDocumentMoniker": "Domain\\Order.cs",
               "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Order.cs",
               "RelativeToolTip": "Domain\\Order.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA+AAAAAAAAAA==",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBEAAAAvAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-25T19:23:48.756Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "OrderSummaryModel.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderSummaryModel.cs",
               "RelativeDocumentMoniker": "Model\\OrderSummaryModel.cs",
               "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderSummaryModel.cs",
               "RelativeToolTip": "Model\\OrderSummaryModel.cs",
-              "ViewState": "AgIAAEcAAAAAAAAAAAAgwEoAAAAxAAAAAAAAAA==",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T20:29:30.976Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T20:29:30.976Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "OrderModel.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderModel.cs",
               "RelativeDocumentMoniker": "Model\\OrderModel.cs",
               "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderModel.cs",
               "RelativeToolTip": "Model\\OrderModel.cs",
-              "ViewState": "AgIAAHMBAAAAAAAAAAAQwIABAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAowFkAAAAdAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-25T20:49:13.304Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "CreateTables.sql ",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Entities\\CreateTables.sql",
               "RelativeDocumentMoniker": "Database\\Entities\\CreateTables.sql",
@@ -231,8 +218,7 @@
               "RelativeToolTip": "Domain\\OrderSummary.cs",
               "ViewState": "AgIAAAsAAAAAAAAAAAAcwBsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T20:19:51.203Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-25T20:19:51.203Z"
             },
             {
               "$type": "Document",
