@@ -82,7 +82,7 @@ namespace ArtAttack.Model
             float cardBalance = 0;
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("UpdateCardBalance", conn))
+                using (SqlCommand cmd = new SqlCommand("GetBalance", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
 
