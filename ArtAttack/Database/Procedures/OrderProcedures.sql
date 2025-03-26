@@ -90,3 +90,187 @@ begin
     where o.[BuyerID]=@BuyerID and p.[ProductName] like '%@'+@text+'%' order by o.[OrderDate] desc;
 
 end
+go
+
+
+CREATE PROCEDURE UpdateOrder
+    @OrderID INT,
+    @ProductType varchar(20),
+    @PaymentMethod VARCHAR(20),
+    @OrderDate timestamp
+   
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        UPDATE Orders
+        SET [ProductType] = @ProductType,
+            [PaymentMethod] = @PaymentMethod,
+            [OrderDate]=@OrderDate
+           
+        WHERE OrderID = @OrderID;
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END
+GO
+
+CREATE PROCEDURE DeleteOrder
+    @OrderID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        DELETE FROM Orders
+        WHERE OrderID = @OrderID;
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END
+GO
+
+CREATE PROCEDURE AddOrder
+   @ProductID INT,
+    @BuyerID INT,
+    @ProductType varchar(20),
+    @PaymentMethod VARCHAR(20),
+    @OrderSummaryID INT,
+    @OrderDate timestamp
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        INSERT INTO Orders ([ProductID],[BuyerID], [ProductType], [PaymentMethod], [OrderSummaryID], [OrderDate])
+        VALUES (@ProductID, @BuyerID, @ProductType, @PaymentMethod, @OrderSummaryID, @OrderDate);
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END
+GO
+
+
+
+CREATE PROCEDURE UpdateOrderSummary
+    @ID INT,
+    @Subtotal float,
+    @WarrantyTax float,
+    @DeliveryFee float,
+    @FinalTotal float,
+    @FullName varchar(255),
+    @Email varchar(255),
+    @PhoneNumber varchar(10),
+    @Address varchar(255),
+    @PostalCode varchar(255),
+    @AdditionalInfo varchar(255),
+	@ContractDetails text null
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        UPDATE OrderSummary
+        SET [ProductType] = @ProductType,
+             [Subtotal]=@Subtotal,
+             [WarrantyTax]=@WarrantyTax,
+             [DeliveryFee]=@DeliveryFee,
+             [FinalTotal]=@FinalTotal,
+             [FullName]=@FullName,
+             [Email]=@Email,
+             [PhoneNumber]=@PhoneNumber,
+             [Address]=@Address,
+             [PostalCode]=@PostalCode,
+             [AdditionalInfo]=@AdditionalInfo,
+	         [ContractDetails]=@ContractDetails
+           
+        WHERE ID = @ID;
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END
+GO
+
+CREATE PROCEDURE DeleteOrderSummary
+    @ID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        DELETE FROM OrderSummary
+        WHERE ID = @ID;
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END
+GO
+
+CREATE PROCEDURE AddOrderSummary
+   @Subtotal float,
+    @WarrantyTax float,
+    @DeliveryFee float,
+    @FinalTotal float,
+    @FullName varchar(255),
+    @Email varchar(255),
+    @PhoneNumber varchar(10),
+    @Address varchar(255),
+    @PostalCode varchar(255),
+    @AdditionalInfo varchar(255),
+	@ContractDetails text null
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    BEGIN TRY
+        BEGIN TRANSACTION;
+
+        INSERT INTO OrderSummary ([Subtotal],[WarrantyTax], [DeliveryFee], [FinalTotal], [FullName], [Email], [PhoneNumber], [Address], [PostalCode], [AdditionalInfo]
+, [ContractDetails])    VALUES (@Subtotal,@WarrantyTax, @DeliveryFee, @FinalTotal, @FullName, @Email, @PhoneNumber, @Address, @PostalCode, @AdditionalInfo
+, @ContractDetails);
+
+        COMMIT TRANSACTION;
+    END TRY
+    BEGIN CATCH
+        IF @@TRANCOUNT > 0
+            ROLLBACK TRANSACTION;
+        THROW;
+    END CATCH
+END
+GO
