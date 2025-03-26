@@ -145,7 +145,7 @@ create table [Notification](
 	[isRead] bit,
 	--optional fields
 	[contractID] int foreign key references [Contract]([ID]),
-	[isAccepted] smallint ,
+	[isAccepted] bit,
 	[productID] int foreign key references [DummyProduct]([ID]),
 	[orderID] int foreign key references [Order]([OrderID]),
 	[shippingState] varchar(25),
