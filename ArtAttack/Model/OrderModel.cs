@@ -71,9 +71,9 @@ namespace ArtAttack.Model
             }
         }
 
-        public List<DummyProduct> GetBorrowedOrderHistory(int buyerId)
+        public List<Order> GetBorrowedOrderHistory(int buyerId)
         {
-            List<BorrowedOrderHistory> orders = new List<BorrowedOrderHistory>();
+            List<Order> orders = new List<Order>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("get_borrowed_order_history", conn))
@@ -86,7 +86,7 @@ namespace ArtAttack.Model
                     {
                         while (reader.Read())
                         {
-                            BorrowedOrderHistory order = new BorrowedOrderHistory
+                            Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
@@ -110,9 +110,9 @@ namespace ArtAttack.Model
             return orders;
         }
 
-        public List<DummyProduct> GetNewOrUsedOrderHistory(int buyerId)
+        public List<Order> GetNewOrUsedOrderHistory(int buyerId)
         {
-            List<NewOrUsedOrderHistory> orders = new List<NewOrUsedOrderHistory>();
+            List<Order> orders = new List<Order>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("get_new_or_used_order_history", conn))
@@ -125,7 +125,7 @@ namespace ArtAttack.Model
                     {
                         while (reader.Read())
                         {
-                            NewOrUsedOrderHistory order = new NewOrUsedOrderHistory
+                            Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
@@ -148,9 +148,9 @@ namespace ArtAttack.Model
         }
 
 
-        public List<DummyProduct> GetOrdersFromLastThreeMonths(int buyerId)
+        public List<Order> GetOrdersFromLastThreeMonths(int buyerId)
         {
-            List<OrderHistory> orders = new List<OrderHistory>();
+            List<Order> orders = new List<Order>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("get_orders_from_last_3_months", conn))
@@ -163,7 +163,7 @@ namespace ArtAttack.Model
                     {
                         while (reader.Read())
                         {
-                            OrderHistory order = new OrderHistory
+                            Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
@@ -187,9 +187,9 @@ namespace ArtAttack.Model
             return orders;
         }
 
-        public List<DummyProduct> GetOrdersFromLastSixMonths(int buyerId)
+        public List<Order> GetOrdersFromLastSixMonths(int buyerId)
         {
-            List<OrderHistory> orders = new List<OrderHistory>();
+            List<Order> orders = new List<Order>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("get_orders_from_last_6_months", conn))
@@ -202,7 +202,7 @@ namespace ArtAttack.Model
                     {
                         while (reader.Read())
                         {
-                            OrderHistory order = new OrderHistory
+                            Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
@@ -226,9 +226,9 @@ namespace ArtAttack.Model
             return orders;
         }
 
-        public List<DummyProduct> GetOrdersFrom2025(int buyerId)
+        public List<Order> GetOrdersFrom2025(int buyerId)
         {
-            List<OrderHistory> orders = new List<OrderHistory>();
+            List<Order> orders = new List<Order>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("get_orders_from_2025", conn))
@@ -241,7 +241,7 @@ namespace ArtAttack.Model
                     {
                         while (reader.Read())
                         {
-                            OrderHistory order = new OrderHistory
+                            Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
@@ -265,9 +265,9 @@ namespace ArtAttack.Model
             return orders;
         }
 
-        public List<DummyProduct> GetOrdersFrom2024(int buyerId)
+        public List<Order> GetOrdersFrom2024(int buyerId)
         {
-            List<OrderHistory> orders = new List<OrderHistory>();
+            List<Order> orders = new List<Order>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("get_orders_from_2024", conn))
@@ -280,7 +280,7 @@ namespace ArtAttack.Model
                     {
                         while (reader.Read())
                         {
-                            OrderHistory order = new OrderHistory
+                            Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
@@ -303,10 +303,9 @@ namespace ArtAttack.Model
             }
             return orders;
         }
-
-        public List<DummyProduct> GetOrdersByName(int buyerId, string text)
+        public List<Order> GetOrdersByName(int buyerId, string text)
         {
-            List<OrderHistory> orders = new List<OrderHistory>();
+            List<Order> orders = new List<Order>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("get_orders_by_name", conn))
@@ -320,7 +319,7 @@ namespace ArtAttack.Model
                     {
                         while (reader.Read())
                         {
-                            OrderHistory order = new OrderHistory
+                            Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
@@ -344,13 +343,13 @@ namespace ArtAttack.Model
             return orders;
         }
 
-        public List<DummyProduct> GetProductsFromOrderHistory(int orderHistoryId)
+        public List<Order> GetOrdersFromOrderHistory(int orderHistoryId)
         {
-            List<DummyProduct> products = new List<DummyProduct>();
+            List<Order> orders = new List<Order>();
 
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("get_products_from_order_history", conn))
+                using (SqlCommand cmd = new SqlCommand("get_orders_from_order_history", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@OrderHistoryID", SqlDbType.Int).Value = orderHistoryId;
@@ -360,25 +359,22 @@ namespace ArtAttack.Model
                     {
                         while (reader.Read())
                         {
-                            OrderProduct product = new OrderProduct
+                            Order order = new Order()
                             {
                                 OrderID = reader.GetInt32(reader.GetOrdinal("OrderID")),
-                                OrderHistoryID = reader.GetInt32(reader.GetOrdinal("BuyerID")),
+                                OrderHistoryID = reader.GetInt32(reader.GetOrdinal("OrderHistoryID")),
                                 ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
-                                ProductType = reader.GetString(reader.GetOrdinal("ProductType")),
-                                PaymentMethod = reader.GetString(reader.GetOrdinal("PaymentMethod")),
-                                OrderSummaryID = reader.GetInt32(reader.GetOrdinal("OrderSummaryID")),
-                                OrderDate=reader.GetDateTime(reader.GetOrdinal("Orderdate")),
-                                orderHistoryId = reader.GetInt32(reader.GetOrdinal("OrderHistoryID"))
-
+                                ProductName = reader.GetString(reader.GetOrdinal("ProductName")),
+                                Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+                                Quantity = reader.GetInt32(reader.GetOrdinal("Quantity"))
                             };
-                            products.Add(product);
+                            orders.Add(order);
                         }
                     }
                 }
             }
 
-            return products;
+            return orders;
         }
 
 

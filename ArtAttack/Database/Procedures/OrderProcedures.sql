@@ -284,3 +284,12 @@ BEGIN
     END CATCH
 END
 GO
+
+create procedure get_orders_from_order_history @OrderHistoryID int
+as
+begin
+    select * from [Order] o
+    where o.[OrderHistoryID]=@ProductID;
+
+end
+go

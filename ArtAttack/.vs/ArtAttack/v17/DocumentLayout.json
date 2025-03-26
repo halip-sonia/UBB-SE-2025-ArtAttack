@@ -3,6 +3,7 @@
   "WorkspaceRootPath": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\",
   "Documents": [
     {
+
       "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
@@ -118,6 +119,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
+
           "SelectedChildIndex": 0,
           "Children": [
             {
@@ -205,8 +207,7 @@
               "RelativeToolTip": "ViewModel\\ContractViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T16:52:07.829Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T16:52:07.829Z"
             },
             {
               "$type": "Document",
@@ -218,8 +219,7 @@
               "RelativeToolTip": "ViewModel\\IContractViewModel.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T16:57:24.044Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-19T16:57:24.044Z"
             },
             {
               "$type": "Document",
