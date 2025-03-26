@@ -342,5 +342,40 @@ namespace ArtAttack.Model
             return orders;
         }
 
+        public List<Order> GetOrdersFromOrderHistory(int orderHistoryId)
+        {
+            List<Order> orders = new List<Order>();
+
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("get_orders_from_order_history", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@OrderHistoryID", SqlDbType.Int).Value = orderHistoryId;
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Order order = new Order()
+                            {
+                                OrderID = reader.GetInt32(reader.GetOrdinal("OrderID")),
+                                OrderHistoryID = reader.GetInt32(reader.GetOrdinal("OrderHistoryID")),
+                                ProductID = reader.GetInt32(reader.GetOrdinal("ProductID")),
+                                ProductName = reader.GetString(reader.GetOrdinal("ProductName")),
+                                Price = reader.GetDecimal(reader.GetOrdinal("Price")),
+                                Quantity = reader.GetInt32(reader.GetOrdinal("Quantity"))
+                            };
+                            orders.Add(order);
+                        }
+                    }
+                }
+            }
+
+            return products;
+        }
+
+
     }
 }
