@@ -25,51 +25,51 @@ namespace ArtAttack.Model
                     int contractId = reader.GetInt32(reader.GetOrdinal("contractID"));
                     bool isAccepted = reader.GetBoolean(reader.GetOrdinal("isAccepted"));
                     return new ContractRenewalAnswerNotification(
-                        notificationId, recipientId, timestamp, contractId, isAccepted);
+                        notificationId, recipientId, timestamp, isRead, contractId, isAccepted);
 
                 case "CONTRACT_RENEWAL_WAITLIST":
                     int productIdWaitlist = reader.GetInt32(reader.GetOrdinal("productID"));
                     return new ContractRenewalWaitlistNotification(
-                        notificationId, recipientId, timestamp, productIdWaitlist);
+                        notificationId, recipientId, timestamp, isRead, productIdWaitlist);
 
                 case "OUTBIDDED":
                     int productIdOutbidded = reader.GetInt32(reader.GetOrdinal("productID"));
                     return new OutbiddedNotification(
-                        notificationId, recipientId, timestamp, productIdOutbidded);
+                        notificationId, recipientId, timestamp, isRead, productIdOutbidded);
 
                 case "ORDER_SHIPPING_PROGRESS":
                     int orderId = reader.GetInt32(reader.GetOrdinal("orderID"));
                     string shippingState = reader.GetString(reader.GetOrdinal("shippingState"));
                     DateTime deliveryDate = reader.GetDateTime(reader.GetOrdinal("deliveryDate"));
                     return new OrderShippingProgressNotification(
-                        notificationId, recipientId, timestamp, orderId, shippingState, deliveryDate);
+                        notificationId, recipientId, timestamp, isRead, orderId, shippingState, deliveryDate);
 
                 case "PAYMENT_CONFIRMATION":
                     int productIdPayment = reader.GetInt32(reader.GetOrdinal("productID"));
                     int orderIdPayment = reader.GetInt32(reader.GetOrdinal("orderID"));
                     return new PaymentConfirmationNotification(
-                        notificationId, recipientId, timestamp, productIdPayment, orderIdPayment);
+                        notificationId, recipientId, timestamp, isRead, productIdPayment, orderIdPayment);
 
                 case "PRODUCT_REMOVED":
                     int productIdRemoved = reader.GetInt32(reader.GetOrdinal("productID"));
                     return new ProductRemovedNotification(
-                        notificationId, recipientId, timestamp, productIdRemoved);
+                        notificationId, recipientId, timestamp, isRead, productIdRemoved);
 
                 case "PRODUCT_AVAILABLE":
                     int productIdAvailable = reader.GetInt32(reader.GetOrdinal("productID"));
                     return new ProductAvailableNotification(
-                        notificationId, recipientId, timestamp, productIdAvailable);
+                        notificationId, recipientId, timestamp, isRead, productIdAvailable);
 
                 case "CONTRACT_RENEWAL_REQ":
                     int contractIdReq = reader.GetInt32(reader.GetOrdinal("contractID"));
                     return new ContractRenewalRequestNotification(
-                        notificationId, recipientId, timestamp, contractIdReq);
+                        notificationId, recipientId, timestamp, isRead, contractIdReq);
 
                 case "CONTRACT_EXPIRATION":
                     int contractIdExp = reader.GetInt32(reader.GetOrdinal("contractID"));
                     DateTime expirationDate = reader.GetDateTime(reader.GetOrdinal("expirationDate"));
                     return new ContractExpirationNotification(
-                        notificationId, recipientId, timestamp, contractIdExp, expirationDate);
+                        notificationId, recipientId, timestamp, isRead, contractIdExp, expirationDate);
 
                 default:
                     throw new ArgumentException($"Unknown notification category: {category}");
