@@ -6,12 +6,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ArtAttack.Domain;
+using System.Runtime.Intrinsics.Arm;
+using Windows.UI.Notifications;
+using Notification = ArtAttack.Domain.Notification;
+using ArtAttack.Model;
 
 namespace ArtAttack.Model
 {
     public class NotificationDataAdapter : IDisposable
     {
-        private readonly SqlConnection _connection;
+        private SqlConnection _connection;
 
         public NotificationDataAdapter(string connectionString)
         {
@@ -22,21 +26,16 @@ namespace ArtAttack.Model
         public List<Notification> GetNotificationsForUser(int recipientId)
         {
             var notifications = new List<Notification>();
-            const string query = @"
-            SELECT * FROM Notification 
-            WHERE recipientID = @RecipientId
-            ORDER BY timestamp DESC";
 
-            using (var command = new SqlCommand(query, _connection))
+            SqlCommand command = new SqlCommand("GetNotificationsByRecipient", _connection);
+            command.CommandType = CommandType.StoredProcedure;
+
+            command.Parameters.AddWithValue("@RecipientId", recipientId);
+            using (var reader = command.ExecuteReader())
             {
-                command.Parameters.AddWithValue("@RecipientId", recipientId);
-
-                using (var reader = command.ExecuteReader())
+                while (reader.Read())
                 {
-                    while (reader.Read())
-                    {
-                        notifications.Add(NotificationFactory.CreateFromDataReader(reader));
-                    }
+                    notifications.Add(NotificationFactory.CreateFromDataReader(reader));
                 }
             }
             return notifications;
@@ -44,15 +43,12 @@ namespace ArtAttack.Model
 
         public void MarkAsRead(int notificationId)
         {
-            const string query = @"
-            UPDATE Notification 
-            SET isRead = 1 
-            WHERE notificationID = @NotificationId";
-
-            using (var command = new SqlCommand(query, _connection))
+            using (var command = new SqlCommand("MarkNotificationAsRead", _connection))
             {
-                command.Parameters.AddWithValue("@NotificationId", notificationId);
-                command.ExecuteNonQuery();
+                command.CommandType = CommandType.StoredProcedure;
+                command.Parameters.AddWithValue("@notificationID", notificationId);
+
+                int rowsAffected = command.ExecuteNonQuery();
             }
         }
 
