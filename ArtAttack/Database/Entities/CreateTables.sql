@@ -146,8 +146,8 @@ create table [Notification](
 	--optional fields
 	[contractID] int foreign key references [Contract]([ID]),
 	[isAccepted] smallint ,
-	[productID] int,
-	[orderID] int,
+	[productID] int foreign key references [DummyProduct]([ID]),
+	[orderID] int foreign key references [Order]([OrderID]),
 	[shippingState] varchar(25),
 	[deliveryDate] Datetime,
 	[expirationDate] Datetime,
