@@ -25,6 +25,16 @@ begin
 end
 go
 
+create procedure get_products_from_order_history @OrderHistoryID int
+as
+begin
+    select * from [Order] o
+    where o.[OrderHistoryID]=@OrderHistoryID;
+
+end
+go
+
+
 
 create procedure get_orders_from_last_3_months @BuyerID int
 as

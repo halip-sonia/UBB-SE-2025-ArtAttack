@@ -1,4 +1,6 @@
-﻿using ArtAttack.Domain;
+using System.Data;
+using Microsoft.Data.SqlClient;
+using ArtAttack.Domain;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -301,7 +303,6 @@ namespace ArtAttack.Model
             }
             return orders;
         }
-
         public List<Order> GetOrdersByName(int buyerId, string text)
         {
             List<Order> orders = new List<Order>();
