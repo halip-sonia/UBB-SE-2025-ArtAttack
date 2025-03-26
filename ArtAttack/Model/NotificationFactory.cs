@@ -24,7 +24,7 @@ namespace ArtAttack.Model
                 case "CONTRACT_RENEWAL_ANS":
                     int contractId = reader.GetInt32(reader.GetOrdinal("contractID"));
                     bool isAccepted = reader.GetBoolean(reader.GetOrdinal("isAccepted"));
-                    return new ContractRenewalAnswerNotification(recipientId, timestamp, contractId, isRead, isAccepted, notificationId);
+                    return new ContractRenewalAnswerNotification(recipientId, timestamp, contractId, isAccepted, isRead, notificationId);
 
                 case "CONTRACT_RENEWAL_WAITLIST":
                     int productIdWaitlist = reader.GetInt32(reader.GetOrdinal("productID"));
