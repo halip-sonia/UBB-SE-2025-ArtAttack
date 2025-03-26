@@ -1,82 +1,102 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\",
+  "WorkspaceRootPath": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\domain\\predefinedcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\predefinedcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\database\\procedures\\predefinedcontractpopulation.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\predefinedcontractpopulation.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\procedures\\orderprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\orderprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\model\\contractmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\contractmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\viewmodel\\icontractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:viewmodel\\icontractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\ordersummarymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\ordersummarymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\viewmodel\\contractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\entities\\createtables.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\entities\\createtables.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\ordersummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\ordersummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\viewmodel\\contractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:viewmodel\\contractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\domain\\dummyproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\dummyproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\viewmodel\\icontractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:viewmodel\\icontractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\model\\dummyproductmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\contractmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\contractmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\dummyproductmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\dummyproductmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\database\\procedures\\dummyproductprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\dummyproductprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\dummycardmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\dummycardmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\database\\procedures\\contractprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\contractprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\dummywalletmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\dummywalletmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\domain\\contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\notificationfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\notificationfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\domain\\pdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\purchasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\purchasemodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\cardpaymentdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\cardpaymentdetails.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\pdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\pdf.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\database\\procedures\\updateordercheckpoint.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\updateordercheckpoint.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\paymentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\paymentstatus.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\database\\procedures\\renewedcontractprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\renewedcontractprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\dummyproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\dummyproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\database\\entities\\sqldatabasesetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\entities\\sqldatabasesetup.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\contract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:.gitignore||{3B902123-F8A7-4915-9F01-361F908088D0}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\dummywallet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\dummywallet.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\viewmodel\\purchaseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:viewmodel\\purchaseviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\notifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\notifications.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\database\\procedures\\contractprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\contractprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\predefinedcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\predefinedcontract.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\database\\procedures\\dummyproductprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\dummyproductprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\mystuff\\college\\college_projects\\ubb-se-2025-artattack\\artattack\\database\\procedures\\predefinedcontractpopulation.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\predefinedcontractpopulation.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}|CodeFrame"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\procedures\\dummyproductprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\dummyproductprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
     }
   ],
   "DocumentGroupContainers": [
@@ -85,230 +105,293 @@
       "VerticalTabListWidth": 256,
       "DocumentGroups": [
         {
-          "DockedWidth": 269,
-          "SelectedChildIndex": 1,
+          "DockedWidth": 200,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PredefinedContractPopulation.sql ",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\PredefinedContractPopulation.sql",
-              "RelativeDocumentMoniker": "Database\\Procedures\\PredefinedContractPopulation.sql",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\PredefinedContractPopulation.sql",
-              "RelativeToolTip": "Database\\Procedures\\PredefinedContractPopulation.sql",
+              "DocumentIndex": 4,
+              "Title": "WaitListProcedures.sql",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\WaitListProcedures.sql",
+              "RelativeDocumentMoniker": "Database\\Procedures\\WaitListProcedures.sql",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\WaitListProcedures.sql",
+              "RelativeToolTip": "Database\\Procedures\\WaitListProcedures.sql",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-25T12:02:58.102Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-03-26T13:44:11.338Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrderProcedures.sql",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\OrderProcedures.sql",
+              "RelativeDocumentMoniker": "Database\\Procedures\\OrderProcedures.sql",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\OrderProcedures.sql",
+              "RelativeToolTip": "Database\\Procedures\\OrderProcedures.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-25T18:43:57.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Order.cs",
+              "RelativeDocumentMoniker": "Domain\\Order.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Order.cs",
+              "RelativeToolTip": "Domain\\Order.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T19:23:48.756Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "OrderSummaryModel.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderSummaryModel.cs",
+              "RelativeDocumentMoniker": "Model\\OrderSummaryModel.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderSummaryModel.cs",
+              "RelativeToolTip": "Model\\OrderSummaryModel.cs",
+              "ViewState": "AgIAAD4AAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:29:30.976Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "PredefinedContract.cs",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PredefinedContract.cs",
-              "RelativeDocumentMoniker": "Domain\\PredefinedContract.cs",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PredefinedContract.cs",
-              "RelativeToolTip": "Domain\\PredefinedContract.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAMAAAAAAAAAA==",
+              "Title": "OrderModel.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderModel.cs",
+              "RelativeDocumentMoniker": "Model\\OrderModel.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderModel.cs",
+              "RelativeToolTip": "Model\\OrderModel.cs",
+              "ViewState": "AgIAAD0BAAAAAAAAAAAowGMBAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T12:02:24.801Z",
+              "WhenOpened": "2025-03-25T20:49:13.304Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "DummyProduct.cs",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\DummyProduct.cs",
-              "RelativeDocumentMoniker": "Domain\\DummyProduct.cs",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\DummyProduct.cs",
-              "RelativeToolTip": "Domain\\DummyProduct.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T11:37:51.961Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:129:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "ContractViewModel.cs",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\ContractViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModel\\ContractViewModel.cs",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\ContractViewModel.cs",
-              "RelativeToolTip": "ViewModel\\ContractViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T16:52:07.829Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "IContractViewModel.cs",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\IContractViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModel\\IContractViewModel.cs",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\IContractViewModel.cs",
-              "RelativeToolTip": "ViewModel\\IContractViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T16:57:24.044Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ContractModel.cs",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\ContractModel.cs",
-              "RelativeDocumentMoniker": "Model\\ContractModel.cs",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\ContractModel.cs",
-              "RelativeToolTip": "Model\\ContractModel.cs",
-              "ViewState": "AgIAADQAAAAAAAAAAAAswB4BAAA3AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-19T16:51:57.64Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "DummyProductModel.cs",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\DummyProductModel.cs",
-              "RelativeDocumentMoniker": "Model\\DummyProductModel.cs",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\DummyProductModel.cs",
-              "RelativeToolTip": "Model\\DummyProductModel.cs",
-              "ViewState": "AgIAACMAAAAAAAAAAAAswEsAAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T11:42:15.163Z",
-              "EditorCaption": ""
+              "Title": "CreateTables.sql",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Entities\\CreateTables.sql",
+              "RelativeDocumentMoniker": "Database\\Entities\\CreateTables.sql",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Entities\\CreateTables.sql",
+              "RelativeToolTip": "Database\\Entities\\CreateTables.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-25T18:43:19.34Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "DummyProductProcedures.sql ",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\DummyProductProcedures.sql",
-              "RelativeDocumentMoniker": "Database\\Procedures\\DummyProductProcedures.sql",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\DummyProductProcedures.sql",
-              "RelativeToolTip": "Database\\Procedures\\DummyProductProcedures.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-25T11:41:28.058Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
+              "Title": "ContractViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\ContractViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\ContractViewModel.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\ContractViewModel.cs",
+              "RelativeToolTip": "ViewModel\\ContractViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAGQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T16:52:07.829Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 8,
-              "Title": "ContractProcedures.sql ",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\ContractProcedures.sql",
-              "RelativeDocumentMoniker": "Database\\Procedures\\ContractProcedures.sql",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\ContractProcedures.sql",
-              "RelativeToolTip": "Database\\Procedures\\ContractProcedures.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-23T11:17:09.71Z",
-              "EditorCaption": ""
+              "Title": "IContractViewModel.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\IContractViewModel.cs",
+              "RelativeDocumentMoniker": "ViewModel\\IContractViewModel.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\IContractViewModel.cs",
+              "RelativeToolTip": "ViewModel\\IContractViewModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T16:57:24.044Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "OrderSummary.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\OrderSummary.cs",
+              "RelativeDocumentMoniker": "Domain\\OrderSummary.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\OrderSummary.cs",
+              "RelativeToolTip": "Domain\\OrderSummary.cs",
+              "ViewState": "AgIAAAsAAAAAAAAAAAAcwBsAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:19:51.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ContractModel.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\ContractModel.cs",
+              "RelativeDocumentMoniker": "Model\\ContractModel.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\ContractModel.cs",
+              "RelativeToolTip": "Model\\ContractModel.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAYwBgAAAANAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-19T16:51:57.64Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
+              "Title": "DummyProductModel.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\DummyProductModel.cs",
+              "RelativeDocumentMoniker": "Model\\DummyProductModel.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\DummyProductModel.cs",
+              "RelativeToolTip": "Model\\DummyProductModel.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwE8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T18:32:51.157Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DummyCardModel.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\DummyCardModel.cs",
+              "RelativeDocumentMoniker": "Model\\DummyCardModel.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\DummyCardModel.cs",
+              "RelativeToolTip": "Model\\DummyCardModel.cs",
+              "ViewState": "AgIAADgAAAAAAAAAAAAgwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:54:28.459Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "DummyWalletModel.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\DummyWalletModel.cs",
+              "RelativeDocumentMoniker": "Model\\DummyWalletModel.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\DummyWalletModel.cs",
+              "RelativeToolTip": "Model\\DummyWalletModel.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAuwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:57:04.013Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "NotificationFactory.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\NotificationFactory.cs",
+              "RelativeDocumentMoniker": "Model\\NotificationFactory.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\NotificationFactory.cs",
+              "RelativeToolTip": "Model\\NotificationFactory.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAAQwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:53:52.652Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "PurchaseModel.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\PurchaseModel.cs",
+              "RelativeDocumentMoniker": "Model\\PurchaseModel.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\PurchaseModel.cs",
+              "RelativeToolTip": "Model\\PurchaseModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:53:47.936Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "CardPaymentDetails.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\CardPaymentDetails.cs",
+              "RelativeDocumentMoniker": "Domain\\CardPaymentDetails.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\CardPaymentDetails.cs",
+              "RelativeToolTip": "Domain\\CardPaymentDetails.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:13:35.444Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
               "Title": "PDF.cs",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PDF.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PDF.cs",
               "RelativeDocumentMoniker": "Domain\\PDF.cs",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PDF.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PDF.cs",
               "RelativeToolTip": "Domain\\PDF.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAFAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-19T16:59:09.023Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 17,
+              "Title": "PaymentStatus.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PaymentStatus.cs",
+              "RelativeDocumentMoniker": "Domain\\PaymentStatus.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PaymentStatus.cs",
+              "RelativeToolTip": "Domain\\PaymentStatus.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:22:28.383Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "DummyWallet.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\DummyWallet.cs",
+              "RelativeDocumentMoniker": "Domain\\DummyWallet.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\DummyWallet.cs",
+              "RelativeToolTip": "Domain\\DummyWallet.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:16:40.959Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "DummyProduct.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\DummyProduct.cs",
+              "RelativeDocumentMoniker": "Domain\\DummyProduct.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\DummyProduct.cs",
+              "RelativeToolTip": "Domain\\DummyProduct.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T19:23:33.81Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Notifications.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Notifications.cs",
+              "RelativeDocumentMoniker": "Domain\\Notifications.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Notifications.cs",
+              "RelativeToolTip": "Domain\\Notifications.cs",
+              "ViewState": "AgIAAOoAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:16:06.72Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
               "Title": "Contract.cs",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Contract.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Contract.cs",
               "RelativeDocumentMoniker": "Domain\\Contract.cs",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Contract.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Contract.cs",
               "RelativeToolTip": "Domain\\Contract.cs",
-              "ViewState": "AgIAAAQAAAAAAAAAAAAswBMAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACcAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-19T16:59:49.79Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "UpdateOrderCheckpoint.sql",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\UpdateOrderCheckpoint.sql",
-              "RelativeDocumentMoniker": "Database\\Procedures\\UpdateOrderCheckpoint.sql",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\UpdateOrderCheckpoint.sql",
-              "RelativeToolTip": "Database\\Procedures\\UpdateOrderCheckpoint.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-24T18:12:59.734Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "RenewedContractProcedures.sql",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\RenewedContractProcedures.sql",
-              "RelativeDocumentMoniker": "Database\\Procedures\\RenewedContractProcedures.sql",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\RenewedContractProcedures.sql",
-              "RelativeToolTip": "Database\\Procedures\\RenewedContractProcedures.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-24T10:34:14.985Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "SqlDatabaseSetup.cs",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Entities\\SqlDatabaseSetup.cs",
-              "RelativeDocumentMoniker": "Database\\Entities\\SqlDatabaseSetup.cs",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Entities\\SqlDatabaseSetup.cs",
-              "RelativeToolTip": "Database\\Entities\\SqlDatabaseSetup.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 22,
+              "Title": "PredefinedContract.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PredefinedContract.cs",
+              "RelativeDocumentMoniker": "Domain\\PredefinedContract.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PredefinedContract.cs",
+              "RelativeToolTip": "Domain\\PredefinedContract.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAAhAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-22T13:08:22.552Z"
+              "WhenOpened": "2025-03-25T20:13:44.061Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": ".gitignore",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\.gitignore",
-              "RelativeDocumentMoniker": ".gitignore",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\.gitignore",
-              "RelativeToolTip": ".gitignore",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAABsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2025-03-22T12:48:41.154Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "PurchaseViewModel.cs",
-              "DocumentMoniker": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\PurchaseViewModel.cs",
-              "RelativeDocumentMoniker": "ViewModel\\PurchaseViewModel.cs",
-              "ToolTip": "C:\\MyStuff\\COLLEGE\\College_Projects\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\PurchaseViewModel.cs",
-              "RelativeToolTip": "ViewModel\\PurchaseViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-22T10:23:33.871Z"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 920,
-          "SelectedChildIndex": -1,
-          "Children": [
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
-            },
-            {
-              "$type": "Bookmark",
-              "Name": "ST:128:0:{75188d03-9892-4ae2-abf1-207126247ce5}"
+              "DocumentIndex": 23,
+              "Title": "DummyProductProcedures.sql",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\DummyProductProcedures.sql",
+              "RelativeDocumentMoniker": "Database\\Procedures\\DummyProductProcedures.sql",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\DummyProductProcedures.sql",
+              "RelativeToolTip": "Database\\Procedures\\DummyProductProcedures.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-25T18:44:30.053Z"
             }
           ]
         }
