@@ -7,8 +7,8 @@ namespace ArtAttack.Domain
         protected int notificationID;
         protected int recipientID;
         protected NotificationCategory category;
-        protected DateTime timestamp;
         protected bool isRead;
+
         public int getNotificationID()
         {
             return notificationID;
@@ -24,14 +24,14 @@ namespace ArtAttack.Domain
             return category;
         }
 
-        public DateTime getTimestamp()
-        {
-            return timestamp;
-        }
-
         public bool getIsRead()
         {
             return isRead;
+        }
+
+        public void setIsRead(bool value)
+        {
+            isRead = value;
         }
         public void markAsRead()
         {
@@ -40,6 +40,8 @@ namespace ArtAttack.Domain
         public abstract string Title { get; }
         public abstract string Subtitle { get; }
         public abstract string Content { get; }
+        public DateTime timestamp { get; set; }
+        public bool IsNotRead => !isRead;
 
     }
 
