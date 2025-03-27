@@ -10,7 +10,7 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
-    <Page Update="BillingInfoWindow.xaml">
+    <Page Update="BorrowProductWindow.xaml">
       <SubType>Designer</SubType>
     </Page>
     <None Update="MainWindow.xaml">

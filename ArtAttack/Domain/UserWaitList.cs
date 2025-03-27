@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ArtAttack.Domain
 {
-    internal class UserWaitList
+    public class UserWaitList
     {
         public int userWaitListID { get; set; }
         public int productWaitListID { get; set; }

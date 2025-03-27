@@ -22,7 +22,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
   <ItemGroup>
-    <None Remove="BillingInfoWindow.xaml" />
+    <None Remove="BorrowProductWindow.xaml" />
+
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\SplashScreen.scale-200.png" />
@@ -66,7 +67,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Page Update="BillingInfoWindow.xaml">
+    <Page Update="BorrowProductWindow.xaml">
+
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
