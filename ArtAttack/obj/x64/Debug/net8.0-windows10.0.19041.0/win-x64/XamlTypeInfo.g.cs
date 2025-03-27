@@ -226,7 +226,7 @@ namespace ArtAttack.ArtAttack_XamlTypeInfo
         
         private void InitTypeTables()
         {
-            _typeNameTable = new string[19];
+            _typeNameTable = new string[26];
             _typeNameTable[0] = "Microsoft.UI.Xaml.Controls.XamlControlsResources";
             _typeNameTable[1] = "Microsoft.UI.Xaml.ResourceDictionary";
             _typeNameTable[2] = "Object";
@@ -234,20 +234,27 @@ namespace ArtAttack.ArtAttack_XamlTypeInfo
             _typeNameTable[4] = "ArtAttack.BillingInfo";
             _typeNameTable[5] = "Microsoft.UI.Xaml.Controls.Page";
             _typeNameTable[6] = "Microsoft.UI.Xaml.Controls.UserControl";
-            _typeNameTable[7] = "ArtAttack.BorrowProductWindow";
+            _typeNameTable[7] = "ArtAttack.BillingInfoWindow";
             _typeNameTable[8] = "Microsoft.UI.Xaml.Window";
-            _typeNameTable[9] = "Microsoft.UI.Xaml.Controls.DropDownButton";
-            _typeNameTable[10] = "Microsoft.UI.Xaml.Controls.Button";
-            _typeNameTable[11] = "Microsoft.UI.Xaml.Controls.ContentControl";
-            _typeNameTable[12] = "ArtAttack.CardInfo";
-            _typeNameTable[13] = "ArtAttack.FinalisePurchase";
-            _typeNameTable[14] = "ArtAttack.MainWindow";
-            _typeNameTable[15] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
-            _typeNameTable[16] = "Microsoft.UI.Xaml.DependencyObject";
-            _typeNameTable[17] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
-            _typeNameTable[18] = "Int32";
+            _typeNameTable[9] = "ArtAttack.BorrowProductWindow";
+            _typeNameTable[10] = "Microsoft.UI.Xaml.Controls.DropDownButton";
+            _typeNameTable[11] = "Microsoft.UI.Xaml.Controls.Button";
+            _typeNameTable[12] = "Microsoft.UI.Xaml.Controls.ContentControl";
+            _typeNameTable[13] = "ArtAttack.CardInfo";
+            _typeNameTable[14] = "ArtAttack.FinalisePurchase";
+            _typeNameTable[15] = "ArtAttack.MainNotificationWindow";
+            _typeNameTable[16] = "System.Collections.ObjectModel.ObservableCollection`1<ArtAttack.Domain.Notification>";
+            _typeNameTable[17] = "System.Collections.ObjectModel.Collection`1<ArtAttack.Domain.Notification>";
+            _typeNameTable[18] = "ArtAttack.Domain.Notification";
+            _typeNameTable[19] = "String";
+            _typeNameTable[20] = "ArtAttack.MainWindow";
+            _typeNameTable[21] = "ArtAttack.SecondaryNotificationWindow";
+            _typeNameTable[22] = "Microsoft.UI.Xaml.Controls.TreeViewNode";
+            _typeNameTable[23] = "Microsoft.UI.Xaml.DependencyObject";
+            _typeNameTable[24] = "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>";
+            _typeNameTable[25] = "Int32";
 
-            _typeTable = new global::System.Type[19];
+            _typeTable = new global::System.Type[26];
             _typeTable[0] = typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources);
             _typeTable[1] = typeof(global::Microsoft.UI.Xaml.ResourceDictionary);
             _typeTable[2] = typeof(global::System.Object);
@@ -255,18 +262,25 @@ namespace ArtAttack.ArtAttack_XamlTypeInfo
             _typeTable[4] = typeof(global::ArtAttack.BillingInfo);
             _typeTable[5] = typeof(global::Microsoft.UI.Xaml.Controls.Page);
             _typeTable[6] = typeof(global::Microsoft.UI.Xaml.Controls.UserControl);
-            _typeTable[7] = typeof(global::ArtAttack.BorrowProductWindow);
+            _typeTable[7] = typeof(global::ArtAttack.BillingInfoWindow);
             _typeTable[8] = typeof(global::Microsoft.UI.Xaml.Window);
-            _typeTable[9] = typeof(global::Microsoft.UI.Xaml.Controls.DropDownButton);
-            _typeTable[10] = typeof(global::Microsoft.UI.Xaml.Controls.Button);
-            _typeTable[11] = typeof(global::Microsoft.UI.Xaml.Controls.ContentControl);
-            _typeTable[12] = typeof(global::ArtAttack.CardInfo);
-            _typeTable[13] = typeof(global::ArtAttack.FinalisePurchase);
-            _typeTable[14] = typeof(global::ArtAttack.MainWindow);
-            _typeTable[15] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
-            _typeTable[16] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
-            _typeTable[17] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
-            _typeTable[18] = typeof(global::System.Int32);
+            _typeTable[9] = typeof(global::ArtAttack.BorrowProductWindow);
+            _typeTable[10] = typeof(global::Microsoft.UI.Xaml.Controls.DropDownButton);
+            _typeTable[11] = typeof(global::Microsoft.UI.Xaml.Controls.Button);
+            _typeTable[12] = typeof(global::Microsoft.UI.Xaml.Controls.ContentControl);
+            _typeTable[13] = typeof(global::ArtAttack.CardInfo);
+            _typeTable[14] = typeof(global::ArtAttack.FinalisePurchase);
+            _typeTable[15] = typeof(global::ArtAttack.MainNotificationWindow);
+            _typeTable[16] = typeof(global::System.Collections.ObjectModel.ObservableCollection<global::ArtAttack.Domain.Notification>);
+            _typeTable[17] = typeof(global::System.Collections.ObjectModel.Collection<global::ArtAttack.Domain.Notification>);
+            _typeTable[18] = typeof(global::ArtAttack.Domain.Notification);
+            _typeTable[19] = typeof(global::System.String);
+            _typeTable[20] = typeof(global::ArtAttack.MainWindow);
+            _typeTable[21] = typeof(global::ArtAttack.SecondaryNotificationWindow);
+            _typeTable[22] = typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode);
+            _typeTable[23] = typeof(global::Microsoft.UI.Xaml.DependencyObject);
+            _typeTable[24] = typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>);
+            _typeTable[25] = typeof(global::System.Int32);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -303,20 +317,30 @@ namespace ArtAttack.ArtAttack_XamlTypeInfo
 
         private object Activate_0_XamlControlsResources() { return new global::Microsoft.UI.Xaml.Controls.XamlControlsResources(); }
         private object Activate_4_BillingInfo() { return new global::ArtAttack.BillingInfo(); }
-        private object Activate_9_DropDownButton() { return new global::Microsoft.UI.Xaml.Controls.DropDownButton(); }
-        private object Activate_12_CardInfo() { return new global::ArtAttack.CardInfo(); }
-        private object Activate_13_FinalisePurchase() { return new global::ArtAttack.FinalisePurchase(); }
-        private object Activate_14_MainWindow() { return new global::ArtAttack.MainWindow(); }
-        private object Activate_15_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
+        private object Activate_7_BillingInfoWindow() { return new global::ArtAttack.BillingInfoWindow(); }
+        private object Activate_10_DropDownButton() { return new global::Microsoft.UI.Xaml.Controls.DropDownButton(); }
+        private object Activate_13_CardInfo() { return new global::ArtAttack.CardInfo(); }
+        private object Activate_14_FinalisePurchase() { return new global::ArtAttack.FinalisePurchase(); }
+        private object Activate_15_MainNotificationWindow() { return new global::ArtAttack.MainNotificationWindow(); }
+        private object Activate_16_ObservableCollection() { return new global::System.Collections.ObjectModel.ObservableCollection<global::ArtAttack.Domain.Notification>(); }
+        private object Activate_17_Collection() { return new global::System.Collections.ObjectModel.Collection<global::ArtAttack.Domain.Notification>(); }
+        private object Activate_20_MainWindow() { return new global::ArtAttack.MainWindow(); }
+        private object Activate_22_TreeViewNode() { return new global::Microsoft.UI.Xaml.Controls.TreeViewNode(); }
         private void StaticInitializer_0_XamlControlsResources() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.XamlControlsResources).TypeHandle);
         private void StaticInitializer_4_BillingInfo() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.BillingInfo).TypeHandle);
-        private void StaticInitializer_7_BorrowProductWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.BorrowProductWindow).TypeHandle);
-        private void StaticInitializer_9_DropDownButton() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.DropDownButton).TypeHandle);
-        private void StaticInitializer_12_CardInfo() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.CardInfo).TypeHandle);
-        private void StaticInitializer_13_FinalisePurchase() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.FinalisePurchase).TypeHandle);
-        private void StaticInitializer_14_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.MainWindow).TypeHandle);
-        private void StaticInitializer_15_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
-        private void StaticInitializer_17_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
+        private void StaticInitializer_7_BillingInfoWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.BillingInfoWindow).TypeHandle);
+        private void StaticInitializer_9_BorrowProductWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.BorrowProductWindow).TypeHandle);
+        private void StaticInitializer_10_DropDownButton() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.DropDownButton).TypeHandle);
+        private void StaticInitializer_13_CardInfo() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.CardInfo).TypeHandle);
+        private void StaticInitializer_14_FinalisePurchase() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.FinalisePurchase).TypeHandle);
+        private void StaticInitializer_15_MainNotificationWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.MainNotificationWindow).TypeHandle);
+        private void StaticInitializer_16_ObservableCollection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.ObservableCollection<global::ArtAttack.Domain.Notification>).TypeHandle);
+        private void StaticInitializer_17_Collection() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.ObjectModel.Collection<global::ArtAttack.Domain.Notification>).TypeHandle);
+        private void StaticInitializer_18_Notification() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.Domain.Notification).TypeHandle);
+        private void StaticInitializer_20_MainWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.MainWindow).TypeHandle);
+        private void StaticInitializer_21_SecondaryNotificationWindow() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::ArtAttack.SecondaryNotificationWindow).TypeHandle);
+        private void StaticInitializer_22_TreeViewNode() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::Microsoft.UI.Xaml.Controls.TreeViewNode).TypeHandle);
+        private void StaticInitializer_24_IList() => global::System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(typeof(global::System.Collections.Generic.IList<global::Microsoft.UI.Xaml.Controls.TreeViewNode>).TypeHandle);
         private void MapAdd_0_XamlControlsResources(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.Object, global::System.Object>)instance;
@@ -324,7 +348,19 @@ namespace ArtAttack.ArtAttack_XamlTypeInfo
             var newItem = (global::System.Object)item;
             collection.Add(newKey, newItem);
         }
-        private void VectorAdd_17_IList(object instance, object item)
+        private void VectorAdd_16_ObservableCollection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::ArtAttack.Domain.Notification>)instance;
+            var newItem = (global::ArtAttack.Domain.Notification)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_17_Collection(object instance, object item)
+        {
+            var collection = (global::System.Collections.Generic.ICollection<global::ArtAttack.Domain.Notification>)instance;
+            var newItem = (global::ArtAttack.Domain.Notification)item;
+            collection.Add(newItem);
+        }
+        private void VectorAdd_24_IList(object instance, object item)
         {
             var collection = (global::System.Collections.Generic.ICollection<global::Microsoft.UI.Xaml.Controls.TreeViewNode>)instance;
             var newItem = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)item;
@@ -378,9 +414,10 @@ namespace ArtAttack.ArtAttack_XamlTypeInfo
                 xamlType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 7:   //  ArtAttack.BorrowProductWindow
+            case 7:   //  ArtAttack.BillingInfoWindow
                 userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.StaticInitializer = StaticInitializer_7_BorrowProductWindow;
+                userType.Activator = Activate_7_BillingInfoWindow;
+                userType.StaticInitializer = StaticInitializer_7_BillingInfoWindow;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
@@ -389,49 +426,103 @@ namespace ArtAttack.ArtAttack_XamlTypeInfo
                 xamlType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 9:   //  Microsoft.UI.Xaml.Controls.DropDownButton
-                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Button"));
-                userType.Activator = Activate_9_DropDownButton;
-                userType.StaticInitializer = StaticInitializer_9_DropDownButton;
-                xamlType = userType;
-                break;
-
-            case 10:   //  Microsoft.UI.Xaml.Controls.Button
-                xamlType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 11:   //  Microsoft.UI.Xaml.Controls.ContentControl
-                xamlType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 12:   //  ArtAttack.CardInfo
-                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_12_CardInfo;
-                userType.StaticInitializer = StaticInitializer_12_CardInfo;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 13:   //  ArtAttack.FinalisePurchase
-                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_13_FinalisePurchase;
-                userType.StaticInitializer = StaticInitializer_13_FinalisePurchase;
-                userType.SetIsLocalType();
-                xamlType = userType;
-                break;
-
-            case 14:   //  ArtAttack.MainWindow
+            case 9:   //  ArtAttack.BorrowProductWindow
                 userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
-                userType.Activator = Activate_14_MainWindow;
-                userType.StaticInitializer = StaticInitializer_14_MainWindow;
+                userType.StaticInitializer = StaticInitializer_9_BorrowProductWindow;
                 userType.SetIsLocalType();
                 xamlType = userType;
                 break;
 
-            case 15:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
+            case 10:   //  Microsoft.UI.Xaml.Controls.DropDownButton
+                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Button"));
+                userType.Activator = Activate_10_DropDownButton;
+                userType.StaticInitializer = StaticInitializer_10_DropDownButton;
+                xamlType = userType;
+                break;
+
+            case 11:   //  Microsoft.UI.Xaml.Controls.Button
+                xamlType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 12:   //  Microsoft.UI.Xaml.Controls.ContentControl
+                xamlType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 13:   //  ArtAttack.CardInfo
+                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_13_CardInfo;
+                userType.StaticInitializer = StaticInitializer_13_CardInfo;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 14:   //  ArtAttack.FinalisePurchase
+                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_14_FinalisePurchase;
+                userType.StaticInitializer = StaticInitializer_14_FinalisePurchase;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 15:   //  ArtAttack.MainNotificationWindow
+                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
+                userType.Activator = Activate_15_MainNotificationWindow;
+                userType.StaticInitializer = StaticInitializer_15_MainNotificationWindow;
+                userType.AddMemberName("Itemsource");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 16:   //  System.Collections.ObjectModel.ObservableCollection`1<ArtAttack.Domain.Notification>
+                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("System.Collections.ObjectModel.Collection`1<ArtAttack.Domain.Notification>"));
+                userType.StaticInitializer = StaticInitializer_16_ObservableCollection;
+                userType.CollectionAdd = VectorAdd_16_ObservableCollection;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 17:   //  System.Collections.ObjectModel.Collection`1<ArtAttack.Domain.Notification>
+                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.Activator = Activate_17_Collection;
+                userType.StaticInitializer = StaticInitializer_17_Collection;
+                userType.CollectionAdd = VectorAdd_17_Collection;
+                xamlType = userType;
+                break;
+
+            case 18:   //  ArtAttack.Domain.Notification
+                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.StaticInitializer = StaticInitializer_18_Notification;
+                userType.AddMemberName("Title");
+                userType.AddMemberName("Subtitle");
+                userType.AddMemberName("Content");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 19:   //  String
+                xamlType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 20:   //  ArtAttack.MainWindow
+                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
+                userType.Activator = Activate_20_MainWindow;
+                userType.StaticInitializer = StaticInitializer_20_MainWindow;
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 21:   //  ArtAttack.SecondaryNotificationWindow
+                userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.Window"));
+                userType.StaticInitializer = StaticInitializer_21_SecondaryNotificationWindow;
+                userType.AddMemberName("SelectedNotification");
+                userType.SetIsLocalType();
+                xamlType = userType;
+                break;
+
+            case 22:   //  Microsoft.UI.Xaml.Controls.TreeViewNode
                 userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Microsoft.UI.Xaml.DependencyObject"));
-                userType.Activator = Activate_15_TreeViewNode;
-                userType.StaticInitializer = StaticInitializer_15_TreeViewNode;
+                userType.Activator = Activate_22_TreeViewNode;
+                userType.StaticInitializer = StaticInitializer_22_TreeViewNode;
                 userType.AddMemberName("Children");
                 userType.AddMemberName("Content");
                 userType.AddMemberName("Depth");
@@ -443,19 +534,19 @@ namespace ArtAttack.ArtAttack_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 16:   //  Microsoft.UI.Xaml.DependencyObject
+            case 23:   //  Microsoft.UI.Xaml.DependencyObject
                 xamlType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 17:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
+            case 24:   //  System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>
                 userType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType(this, typeName, type, null);
-                userType.StaticInitializer = StaticInitializer_17_IList;
-                userType.CollectionAdd = VectorAdd_17_IList;
+                userType.StaticInitializer = StaticInitializer_24_IList;
+                userType.CollectionAdd = VectorAdd_24_IList;
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 18:   //  Int32
+            case 25:   //  Int32
                 xamlType = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
             }
@@ -527,52 +618,77 @@ namespace ArtAttack.ArtAttack_XamlTypeInfo
             var that = (global::Microsoft.UI.Xaml.Controls.XamlControlsResources)instance;
             that.UseCompactResources = (global::System.Boolean)Value;
         }
-        private object get_1_TreeViewNode_Children(object instance)
+        private object get_1_MainNotificationWindow_Itemsource(object instance)
+        {
+            var that = (global::ArtAttack.MainNotificationWindow)instance;
+            return that.Itemsource;
+        }
+        private object get_2_Notification_Title(object instance)
+        {
+            var that = (global::ArtAttack.Domain.Notification)instance;
+            return that.Title;
+        }
+        private object get_3_Notification_Subtitle(object instance)
+        {
+            var that = (global::ArtAttack.Domain.Notification)instance;
+            return that.Subtitle;
+        }
+        private object get_4_Notification_Content(object instance)
+        {
+            var that = (global::ArtAttack.Domain.Notification)instance;
+            return that.Content;
+        }
+        private object get_5_SecondaryNotificationWindow_SelectedNotification(object instance)
+        {
+            var that = (global::ArtAttack.SecondaryNotificationWindow)instance;
+            return that.SelectedNotification;
+        }
+        private object get_6_TreeViewNode_Children(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Children;
         }
-        private object get_2_TreeViewNode_Content(object instance)
+        private object get_7_TreeViewNode_Content(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Content;
         }
-        private void set_2_TreeViewNode_Content(object instance, object Value)
+        private void set_7_TreeViewNode_Content(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.Content = (global::System.Object)Value;
         }
-        private object get_3_TreeViewNode_Depth(object instance)
+        private object get_8_TreeViewNode_Depth(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Depth;
         }
-        private object get_4_TreeViewNode_HasChildren(object instance)
+        private object get_9_TreeViewNode_HasChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasChildren;
         }
-        private object get_5_TreeViewNode_HasUnrealizedChildren(object instance)
+        private object get_10_TreeViewNode_HasUnrealizedChildren(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.HasUnrealizedChildren;
         }
-        private void set_5_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
+        private void set_10_TreeViewNode_HasUnrealizedChildren(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.HasUnrealizedChildren = (global::System.Boolean)Value;
         }
-        private object get_6_TreeViewNode_IsExpanded(object instance)
+        private object get_11_TreeViewNode_IsExpanded(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.IsExpanded;
         }
-        private void set_6_TreeViewNode_IsExpanded(object instance, object Value)
+        private void set_11_TreeViewNode_IsExpanded(object instance, object Value)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             that.IsExpanded = (global::System.Boolean)Value;
         }
-        private object get_7_TreeViewNode_Parent(object instance)
+        private object get_12_TreeViewNode_Parent(object instance)
         {
             var that = (global::Microsoft.UI.Xaml.Controls.TreeViewNode)instance;
             return that.Parent;
@@ -592,50 +708,80 @@ namespace ArtAttack.ArtAttack_XamlTypeInfo
                 xamlMember.Getter = get_0_XamlControlsResources_UseCompactResources;
                 xamlMember.Setter = set_0_XamlControlsResources_UseCompactResources;
                 break;
+            case "ArtAttack.MainNotificationWindow.Itemsource":
+                userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("ArtAttack.MainNotificationWindow");
+                xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "Itemsource", "System.Collections.ObjectModel.ObservableCollection`1<ArtAttack.Domain.Notification>");
+                xamlMember.Getter = get_1_MainNotificationWindow_Itemsource;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "ArtAttack.Domain.Notification.Title":
+                userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("ArtAttack.Domain.Notification");
+                xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "Title", "String");
+                xamlMember.Getter = get_2_Notification_Title;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "ArtAttack.Domain.Notification.Subtitle":
+                userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("ArtAttack.Domain.Notification");
+                xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "Subtitle", "String");
+                xamlMember.Getter = get_3_Notification_Subtitle;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "ArtAttack.Domain.Notification.Content":
+                userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("ArtAttack.Domain.Notification");
+                xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "Content", "String");
+                xamlMember.Getter = get_4_Notification_Content;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "ArtAttack.SecondaryNotificationWindow.SelectedNotification":
+                userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("ArtAttack.SecondaryNotificationWindow");
+                xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "SelectedNotification", "ArtAttack.Domain.Notification");
+                xamlMember.Getter = get_5_SecondaryNotificationWindow_SelectedNotification;
+                xamlMember.SetIsReadOnly();
+                break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Children":
                 userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "Children", "System.Collections.Generic.IList`1<Microsoft.UI.Xaml.Controls.TreeViewNode>");
-                xamlMember.Getter = get_1_TreeViewNode_Children;
+                xamlMember.Getter = get_6_TreeViewNode_Children;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Content":
                 userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "Content", "Object");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_2_TreeViewNode_Content;
-                xamlMember.Setter = set_2_TreeViewNode_Content;
+                xamlMember.Getter = get_7_TreeViewNode_Content;
+                xamlMember.Setter = set_7_TreeViewNode_Content;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Depth":
                 userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "Depth", "Int32");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_3_TreeViewNode_Depth;
+                xamlMember.Getter = get_8_TreeViewNode_Depth;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasChildren":
                 userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "HasChildren", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_4_TreeViewNode_HasChildren;
+                xamlMember.Getter = get_9_TreeViewNode_HasChildren;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.HasUnrealizedChildren":
                 userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "HasUnrealizedChildren", "Boolean");
-                xamlMember.Getter = get_5_TreeViewNode_HasUnrealizedChildren;
-                xamlMember.Setter = set_5_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Getter = get_10_TreeViewNode_HasUnrealizedChildren;
+                xamlMember.Setter = set_10_TreeViewNode_HasUnrealizedChildren;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.IsExpanded":
                 userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "IsExpanded", "Boolean");
                 xamlMember.SetIsDependencyProperty();
-                xamlMember.Getter = get_6_TreeViewNode_IsExpanded;
-                xamlMember.Setter = set_6_TreeViewNode_IsExpanded;
+                xamlMember.Getter = get_11_TreeViewNode_IsExpanded;
+                xamlMember.Setter = set_11_TreeViewNode_IsExpanded;
                 break;
             case "Microsoft.UI.Xaml.Controls.TreeViewNode.Parent":
                 userType = (global::ArtAttack.ArtAttack_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Microsoft.UI.Xaml.Controls.TreeViewNode");
                 xamlMember = new global::ArtAttack.ArtAttack_XamlTypeInfo.XamlMember(this, "Parent", "Microsoft.UI.Xaml.Controls.TreeViewNode");
-                xamlMember.Getter = get_7_TreeViewNode_Parent;
+                xamlMember.Getter = get_12_TreeViewNode_Parent;
                 xamlMember.SetIsReadOnly();
                 break;
             }

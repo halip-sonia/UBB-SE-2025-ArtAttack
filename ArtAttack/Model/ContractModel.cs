@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using ArtAttack.Domain;
 
@@ -16,9 +17,9 @@ namespace ArtAttack.Model
         }
 
         /// <summary>
-        /// Retrieves a single contract using the GetContractByID stored procedure.
+        /// Asynchronously retrieves a single contract using the GetContractByID stored procedure.
         /// </summary>
-        public Contract GetContractById(long contractId)
+        public async Task<Contract> GetContractByIdAsync(long contractId)
         {
             Contract contract = null;
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -26,12 +27,12 @@ namespace ArtAttack.Model
                 using (SqlCommand cmd = new SqlCommand("GetContractByID", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.Add("@ContractID", SqlDbType.BigInt).Value = contractId; // Explicit SQL type
-                    conn.Open();
+                    cmd.Parameters.Add("@ContractID", SqlDbType.BigInt).Value = contractId;
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        if (reader.HasRows && reader.Read()) // Added HasRows check
+                        if (reader.HasRows && await reader.ReadAsync())
                         {
                             contract = new Contract
                             {
@@ -56,9 +57,9 @@ namespace ArtAttack.Model
         }
 
         /// <summary>
-        /// Retrieves all contracts using GetAllContracts stored procedure.
+        /// Asynchronously retrieves all contracts using the GetAllContracts stored procedure.
         /// </summary>
-        public List<Contract> GetAllContracts()
+        public async Task<List<Contract>> GetAllContractsAsync()
         {
             var contracts = new List<Contract>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -66,11 +67,11 @@ namespace ArtAttack.Model
                 using (SqlCommand cmd = new SqlCommand("GetAllContracts", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        while (reader.Read())
+                        while (await reader.ReadAsync())
                         {
                             var contract = new Contract
                             {
@@ -79,9 +80,13 @@ namespace ArtAttack.Model
                                 ContractStatus = reader.GetString(reader.GetOrdinal("contractStatus")),
                                 ContractContent = reader["contractContent"] as string,
                                 RenewalCount = reader.GetInt32(reader.GetOrdinal("renewalCount")),
-                                PredefinedContractID = reader["predefinedContractID"] != DBNull.Value ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID")) : null,
+                                PredefinedContractID = reader["predefinedContractID"] != DBNull.Value
+                                    ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID"))
+                                    : null,
                                 PDFID = reader.GetInt32(reader.GetOrdinal("pdfID")),
-                                RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID")) : null
+                                RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value
+                                    ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID"))
+                                    : null
                             };
                             contracts.Add(contract);
                         }
@@ -92,9 +97,9 @@ namespace ArtAttack.Model
         }
 
         /// <summary>
-        /// Retrieves the renewal history for a contract using GetContractHistory stored procedure.
+        /// Asynchronously retrieves the renewal history for a contract using the GetContractHistory stored procedure.
         /// </summary>
-        public List<Contract> GetContractHistory(long contractId)
+        public async Task<List<Contract>> GetContractHistoryAsync(long contractId)
         {
             var history = new List<Contract>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -103,11 +108,11 @@ namespace ArtAttack.Model
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ContractID", contractId);
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        while (reader.Read())
+                        while (await reader.ReadAsync())
                         {
                             var contract = new Contract
                             {
@@ -116,9 +121,13 @@ namespace ArtAttack.Model
                                 ContractStatus = reader.GetString(reader.GetOrdinal("contractStatus")),
                                 ContractContent = reader["contractContent"] as string,
                                 RenewalCount = reader.GetInt32(reader.GetOrdinal("renewalCount")),
-                                PredefinedContractID = reader["predefinedContractID"] != DBNull.Value ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID")) : null,
+                                PredefinedContractID = reader["predefinedContractID"] != DBNull.Value
+                                    ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID"))
+                                    : null,
                                 PDFID = reader.GetInt32(reader.GetOrdinal("pdfID")),
-                                RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID")) : null
+                                RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value
+                                    ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID"))
+                                    : null
                             };
                             history.Add(contract);
                         }
@@ -129,9 +138,9 @@ namespace ArtAttack.Model
         }
 
         /// <summary>
-        /// Inserts a new contract and updates the PDF file using AddContract stored procedure.
+        /// Asynchronously inserts a new contract and updates the PDF file using the AddContract stored procedure.
         /// </summary>
-        public void AddContract(Contract contract, byte[] pdfFile)
+        public async Task AddContractAsync(Contract contract, byte[] pdfFile)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -144,7 +153,6 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@ContractContent", contract.ContractContent);
                     cmd.Parameters.AddWithValue("@RenewalCount", contract.RenewalCount);
 
-                    // Handle nullable PredefinedContractID
                     if (contract.PredefinedContractID.HasValue)
                         cmd.Parameters.AddWithValue("@PredefinedContractID", contract.PredefinedContractID.Value);
                     else
@@ -153,23 +161,21 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@PDFID", contract.PDFID);
                     cmd.Parameters.AddWithValue("@PDFFile", pdfFile);
 
-                    // Handle nullable RenewedFromContractID
                     if (contract.RenewedFromContractID.HasValue)
                         cmd.Parameters.AddWithValue("@RenewedFromContractID", contract.RenewedFromContractID.Value);
                     else
                         cmd.Parameters.AddWithValue("@RenewedFromContractID", DBNull.Value);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
         /// <summary>
-        /// Retrieves seller information for a given contract using GetContractSeller stored procedure.
-        /// Returns a tuple of (SellerID, SellerName).
+        /// Asynchronously retrieves seller information for a given contract using the GetContractSeller stored procedure.
         /// </summary>
-        public (int SellerID, string SellerName) GetContractSeller(long contractId)
+        public async Task<(int SellerID, string SellerName)> GetContractSellerAsync(long contractId)
         {
             (int SellerID, string SellerName) sellerInfo = (0, string.Empty);
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -178,11 +184,11 @@ namespace ArtAttack.Model
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ContractID", contractId);
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        if (reader.Read())
+                        if (await reader.ReadAsync())
                         {
                             sellerInfo = (
                                 SellerID: reader.GetInt32(reader.GetOrdinal("SellerID")),
@@ -196,10 +202,9 @@ namespace ArtAttack.Model
         }
 
         /// <summary>
-        /// Retrieves buyer information for a given contract using GetContractBuyer stored procedure.
-        /// Returns a tuple of (BuyerID, BuyerName).
+        /// Asynchronously retrieves buyer information for a given contract using the GetContractBuyer stored procedure.
         /// </summary>
-        public (int BuyerID, string BuyerName) GetContractBuyer(long contractId)
+        public async Task<(int BuyerID, string BuyerName)> GetContractBuyerAsync(long contractId)
         {
             (int BuyerID, string BuyerName) buyerInfo = (0, string.Empty);
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -208,11 +213,11 @@ namespace ArtAttack.Model
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ContractID", contractId);
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        if (reader.Read())
+                        if (await reader.ReadAsync())
                         {
                             buyerInfo = (
                                 BuyerID: reader.GetInt32(reader.GetOrdinal("BuyerID")),
@@ -226,10 +231,9 @@ namespace ArtAttack.Model
         }
 
         /// <summary>
-        /// Retrieves order summary information for a contract using GetOrderSummaryInformation stored procedure.
-        /// Returns the data as a dictionary.
+        /// Asynchronously retrieves order summary information for a contract using the GetOrderSummaryInformation stored procedure.
         /// </summary>
-        public Dictionary<string, object> GetOrderSummaryInformation(long contractId)
+        public async Task<Dictionary<string, object>> GetOrderSummaryInformationAsync(long contractId)
         {
             var orderSummary = new Dictionary<string, object>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -238,13 +242,12 @@ namespace ArtAttack.Model
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ContractID", contractId);
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        if (reader.Read())
+                        if (await reader.ReadAsync())
                         {
-                            // Assuming the OrderSummary table has these columns.
                             orderSummary["ID"] = reader["ID"];
                             orderSummary["subtotal"] = reader["subtotal"];
                             orderSummary["warrantyTax"] = reader["warrantyTax"];
@@ -265,9 +268,9 @@ namespace ArtAttack.Model
         }
 
         /// <summary>
-        /// Retrieves the startDate and endDate for a contract from the DummyProduct table.
+        /// Asynchronously retrieves the startDate and endDate for a contract from the DummyProduct table.
         /// </summary>
-        public (DateTime StartDate, DateTime EndDate)? GetProductDatesByContractId(long contractId)
+        public async Task<(DateTime StartDate, DateTime EndDate)?> GetProductDatesByContractIdAsync(long contractId)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -275,11 +278,11 @@ namespace ArtAttack.Model
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ContractID", contractId);
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        if (reader.Read())
+                        if (await reader.ReadAsync())
                         {
                             var startDate = reader.GetDateTime(reader.GetOrdinal("startDate"));
                             var endDate = reader.GetDateTime(reader.GetOrdinal("endDate"));
@@ -291,7 +294,10 @@ namespace ArtAttack.Model
             return null;
         }
 
-        public List<Contract> GetContractsByBuyer(int buyerId)
+        /// <summary>
+        /// Asynchronously retrieves all contracts for a given buyer using the GetContractsByBuyer stored procedure.
+        /// </summary>
+        public async Task<List<Contract>> GetContractsByBuyerAsync(int buyerId)
         {
             var contracts = new List<Contract>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -300,11 +306,11 @@ namespace ArtAttack.Model
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@BuyerID", SqlDbType.Int).Value = buyerId;
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        while (reader.Read())
+                        while (await reader.ReadAsync())
                         {
                             var contract = new Contract
                             {
@@ -324,6 +330,5 @@ namespace ArtAttack.Model
             }
             return contracts;
         }
-
     }
 }

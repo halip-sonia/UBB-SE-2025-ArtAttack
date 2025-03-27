@@ -8,10 +8,12 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     Title="ArtAttack">
-
-    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-        <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
-        <Button x:Name="purchaseButton" Click="purchaseButton_Click">Purchase</Button>
-        <Button x:Name="generateContractButton" Click="generateContractButton_Click">Generate Contract</Button>
-    </StackPanel>
+    
+    <Grid x:Name="RootGrid" Loaded="RootGrid_Loaded">
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Button x:Name="myButton" Click="myButton_Click">Click Me</Button>
+            <Button x:Name="purchaseButton" Click="purchaseButton_Click">Purchase</Button>
+            <Button x:Name="generateContractButton" Click="generateContractButton_Click">Generate Contract</Button>
+        </StackPanel>
+    </Grid>
 </Window>
