@@ -10,7 +10,6 @@ namespace ArtAttack.Domain
     {
         SUCCESS=0,
         FAILED_INSUFFICIENT_FUNDS=1,
-        FAILED_INVALID_CARD=2,
-        FAILED_GATEWAY_ERROR=3
+        FAILED_INVALID_CARD=2
     }
 }

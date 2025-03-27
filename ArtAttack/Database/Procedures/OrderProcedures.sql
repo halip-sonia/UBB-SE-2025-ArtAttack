@@ -3,9 +3,9 @@ as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType], o.[PaymentMethod], 
     o.[OrderDate], os.[Subtotal], os.[WarrantyTax], os.[DeliveryFee], 
-    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails] , p.[ProductName]
+    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails] , p.[name]
     from [Order] o inner join [OrderSummary] os on o.[OrderSummaryID]=os.[ID]
-    inner join [DummyProduct] p on o.[ProductID]=p.[ProductID]
+    inner join [DummyProduct] p on o.[ProductID]=p.[ID]
     where o.[ProductType]='borrowed' and o.[BuyerID]=@BuyerID order by o.[OrderDate] desc;
 
 end
@@ -17,9 +17,9 @@ as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType], o.[PaymentMethod], 
     o.[OrderDate], os.[Subtotal], os.[DeliveryFee], 
-    os.[finalTotal], os.[address], os.[AdditionalInfo], p.[ProductName]
+    os.[finalTotal], os.[address], os.[AdditionalInfo], p.[name]
     from [Order] o inner join [OrderSummary] os on o.[OrderSummaryID]=os.[ID]
-    inner join [DummyProduct] p on o.[ProductID]=p.[ProductID]
+    inner join [DummyProduct] p on o.[ProductID]=p.[ID]
     where o.[ProductType]='new' or o.[ProductType]='used' and o.[BuyerID]=@BuyerID order by o.[OrderDate] desc;
 
 end
@@ -41,9 +41,9 @@ as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType], o.[PaymentMethod], 
     o.[OrderDate], os.[Subtotal], os.[WarrantyTax], os.[DeliveryFee], 
-    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails] , p.[ProductName]
+    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails] , p.[name]
     from [Order] o inner join [OrderSummary] os on o.[OrderSummaryID]=os.[ID]
-    inner join [DummyProduct] p on o.[ProductID]=p.[ProductID]
+    inner join [DummyProduct] p on o.[ProductID]=p.[ID]
     where o.[BuyerID]=@BuyerID and o.[OrderDate]>=dateadd(month, -3, getdate()) order by o.[OrderDate] desc;
 
 end
@@ -54,9 +54,9 @@ as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType], o.[PaymentMethod], 
     o.[OrderDate], os.[Subtotal], os.[WarrantyTax], os.[DeliveryFee], 
-    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails] , p.[ProductName]
+    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails] , p.[name]
     from [Order] o inner join [OrderSummary] os on o.[OrderSummaryID]=os.[ID]
-    inner join [DummyProduct] p on o.[ProductID]=p.[ProductID]
+    inner join [DummyProduct] p on o.[ProductID]=p.[ID]
     where o.[BuyerID]=@BuyerID and o.[OrderDate]>=dateadd(month, -6, getdate()) order by o.[OrderDate] desc;
 
 end
@@ -67,9 +67,9 @@ as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType], o.[PaymentMethod], 
     o.[OrderDate], os.[Subtotal], os.[WarrantyTax], os.[DeliveryFee], 
-    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails] , p.[ProductName]
+    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails] , p.[name]
     from [Order] o inner join [OrderSummary] os on o.[OrderSummaryID]=os.[ID]
-    inner join [DummyProduct] p on o.[ProductID]=p.[ProductID]
+    inner join [DummyProduct] p on o.[ProductID]=p.[ID]
     where o.[BuyerID]=@BuyerID and year(o.[OrderDate])=2025 order by o.[OrderDate] desc;
 
 end
@@ -81,9 +81,9 @@ as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType],  o.[PaymentMethod], 
     o.[OrderDate], os.[Subtotal], os.[WarrantyTax], os.[DeliveryFee], 
-    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails], p.[ProductName]
+    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails], p.[name]
     from [Order] o inner join [OrderSummary] os on o.[OrderSummaryID]=os.[ID]
-    inner join [DummyProduct] p on o.[ProductID]=p.[ProductID]
+    inner join [DummyProduct] p on o.[ProductID]=p.[ID]
     where o.[BuyerID]=@BuyerID and year(o.[OrderDate])=2024 order by o.[OrderDate] desc;
 
 end
@@ -94,10 +94,10 @@ as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType], o.[PaymentMethod], 
     o.[OrderDate], os.[Subtotal], os.[WarrantyTax], os.[DeliveryFee], 
-    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails] , p.[ProductName]
+    os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails] , p.[name]
     from [Order] o inner join [OrderSummary] os on o.[OrderSummaryID]=os.[ID]
-    inner join [DummyProduct] p on o.[ProductID]=p.[ProductID]
-    where o.[BuyerID]=@BuyerID and p.[ProductName] like '%@'+@text+'%' order by o.[OrderDate] desc;
+    inner join [DummyProduct] p on o.[ProductID]=p.[ID]
+    where o.[BuyerID]=@BuyerID and p.[name] like '%@'+@text+'%' order by o.[OrderDate] desc;
 
 end
 go
@@ -289,7 +289,7 @@ create procedure get_orders_from_order_history @OrderHistoryID int
 as
 begin
     select * from [Order] o
-    where o.[OrderHistoryID]=@ProductID;
+    where o.[OrderHistoryID]=@OrderHistoryID;
 
 end
 go

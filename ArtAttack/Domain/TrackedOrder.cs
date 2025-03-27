@@ -13,6 +13,5 @@ namespace ArtAttack.Domain
         public OrderStatus CurrentStatus { get; set; }
         public DateTime EstimatedDeliveryDate { get; set; }
         public string DeliveryAddress { get; set; }
-
     }
 }
