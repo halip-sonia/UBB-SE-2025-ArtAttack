@@ -1,4 +1,6 @@
 ﻿using ArtAttack.Domain;
+using ArtAttack.Model;
+using ArtAttack.Shared;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,13 +20,12 @@ namespace ArtAttack.ViewModel
         private int _unreadCount;
         private bool _isLoading;
         private int currentUserId;
-        private string connectionString = "Server=IUSTINS_LAPTOP\\SQLEXPRESS;Database=Notifications;Integrated Security=True;Encrypt=False;";
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public NotificationViewModel(int currentUserId)
         {
-            _dataAdapter = new NotificationDataAdapter(connectionString);
+            _dataAdapter = new NotificationDataAdapter(Configuration._CONNECTION_STRING_);
             Notifications = new ObservableCollection<Notification>();
             this.currentUserId = currentUserId;
             MarkAsReadCommand = new NotificationRelayCommand<int>(async (id) => await MarkAsReadAsync(id));
