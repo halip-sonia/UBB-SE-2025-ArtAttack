@@ -1,8 +1,4 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArtAttack.Domain
 {
@@ -42,9 +38,9 @@ namespace ArtAttack.Domain
         {
             isRead = true;
         }
-        public abstract string getContent();
-        public abstract string getTitle();
-        public abstract string getSubtitle();
+        public abstract string Title { get; }
+        public abstract string Subtitle { get; }
+        public abstract string Content { get; }
 
     }
 
@@ -73,24 +69,10 @@ namespace ArtAttack.Domain
             return isAccepted;
         }
 
-        public override string getContent()
-        {
-            if (isAccepted)
-            {
-                return "Contract:" + contractID + " has been renewed!\r\n You can download it from below!";
-            }
-            return "\"Unfortunately contract:\" + this.contractId + \" has not been renewed!\\r\\n The owner refused the renewal request :( \"";
-        }
+        public override string Content => isAccepted ? $"Contract: {contractID} has been renewed!\r\n You can download it from below!" : $"Unfortunately, contract: {contractID} has not been renewed!\r\n The owner refused the renewal request :(";
+        public override string Title => "Contract Renewal Answer";
+        public override string Subtitle => $"You have received an answer on the renewal request for contract: {contractID}.";
 
-        public override string getTitle()
-        {
-            return "Contract Renewal Answer";
-        }
-
-        public override string getSubtitle()
-        {
-            return "You have recieved an answer on the renewal request for cotract: " + contractID + ".";
-        }
     }
 
 
@@ -112,20 +94,10 @@ namespace ArtAttack.Domain
             return productID;
         }
 
-        public override string getContent()
-        {
-            return "The user that borrowed product:" + productID + " that you are part of the waitlist for, has renewed it's contract. The time in which the product will be available will be extended, if this change doesn't fit your schedule you can update your participation in the waitlist.";
-        }
+        public override string Content => $"The user that borrowed product: {productID} that you are part of the waitlist for, has renewed its contract.";
+        public override string Title => "Contract Renewal in Waitlist";
+        public override string Subtitle => "A user has extended their contract.";
 
-        public override string getTitle()
-        {
-            return "Contract Renewal in Waitlist";
-        }
-
-        public override string getSubtitle()
-        {
-            return "A user has extended it's contract.";
-        }
     }
 
 
@@ -145,20 +117,10 @@ namespace ArtAttack.Domain
         {
             return productID;
         }
-        public override string getContent()
-        {
-            return "You've been outbidded!\nAnother buyer has placed a higher bid than you on product: " + productID + ", surpassing your offer. If you’re still interested, you can increase your bid before the auction ends. Don’t miss out on this opportunity!\r\n Place a new bid now!";
-        }
+        public override string Content => $"You've been outbid! Another buyer has placed a higher bid on product: {productID}. Place a new bid now!";
+        public override string Title => "Outbidded";
+        public override string Subtitle => $"You've been outbidded on product: {productID}.";
 
-        public override string getTitle()
-        {
-            return "Outbidded";
-        }
-
-        public override string getSubtitle()
-        {
-            return "You've been outbidded on product: " + productID + ".";
-        }
     }
 
     public class OrderShippingProgressNotification : Notification
@@ -194,21 +156,9 @@ namespace ArtAttack.Domain
             return shippingState;
         }
 
-        public override string getContent()
-        {
-            return "Great news! Your order:" + orderID + " has reached the " + shippingState + " stage. Estimated delivery is on" + deliveryDate + "Further updates will be provided along the procces.";
-        }
-
-        public override string getTitle()
-        {
-            return "Order Shipping Update";
-        }
-
-        public override string getSubtitle()
-        {
-            return "New info on order: " + orderID + " is available.";
-        }
-
+        public override string Content => $"Your order: {orderID} has reached the {shippingState} stage. Estimated delivery is on {deliveryDate}.";
+        public override string Title => "Order Shipping Update";
+        public override string Subtitle => $"New info on order: {orderID} is available.";
     }
 
     public class PaymentConfirmationNotification : Notification
@@ -237,20 +187,10 @@ namespace ArtAttack.Domain
             return orderID;
         }
 
-        public override string getContent()
-        {
-            return "Thank You for Your Purchase!\r\nYour order:" + orderID + " for product:" + productID + " has been successfully processed. You can view your order details in your account. If you have any questions, feel free to reach out to our support team.";
-        }
+        public override string Content => $"Thank you for your purchase! Your order: {orderID} for product: {productID} has been successfully processed.";
+        public override string Title => "Payment Confirmation";
+        public override string Subtitle => $"Order: {orderID} has been processed successfully!";
 
-        public override string getTitle()
-        {
-            return "Payment Confirmation";
-        }
-
-        public override string getSubtitle()
-        {
-            return "Order:" + orderID + "has been processed successfuly!";
-        }
 
     }
 
@@ -273,20 +213,10 @@ namespace ArtAttack.Domain
             return productID;
         }
 
-        public override string getContent()
-        {
-            return "Unfortunatelly the Product: " + productID + " that you were waiting for was removed form the martketplace by the seller. We encourage you to search for similar items on the app, we are sure you will find something that fits your needs!";
-        }
+        public override string Content => $"Unfortunately, the product: {productID} that you were waiting for was removed from the marketplace.";
+        public override string Title => "Product Removed";
+        public override string Subtitle => $"Product: {productID} was removed from the marketplace!";
 
-        public override string getTitle()
-        {
-            return "Product removed";
-        }
-
-        public override string getSubtitle()
-        {
-            return "Product: " + productID + " was removed  from the marketplace!";
-        }
 
     }
 
@@ -309,20 +239,9 @@ namespace ArtAttack.Domain
             return productID;
         }
 
-        public override string getContent()
-        {
-            return "Good news!The Product: " + productID + " that you were waiting for is now back in stock. Don’t miss your chance to grab it before it sells out again!\nOrder now before it’s gone";
-        }
-
-        public override string getTitle()
-        {
-            return "Product available";
-        }
-
-        public override string getSubtitle()
-        {
-            return "Product: " + productID + " is available now!";
-        }
+        public override string Content => $"Good news! The product: {productID} that you were waiting for is now back in stock.";
+        public override string Title => "Product Available";
+        public override string Subtitle => $"Product: {productID} is available now!";
 
     }
 
@@ -345,20 +264,10 @@ namespace ArtAttack.Domain
             return contractID;
         }
 
-        public override string getContent()
-        {
-            return "User: " + recipientID + " would like to renew contract: " + contractID + " !\n Please accept or deny this proposal as soon as posible, such that the waitlist will be updated corespondingly.";
-        }
+        public override string Content => $"User {recipientID} would like to renew contract: {contractID}. Please respond promptly.";
+        public override string Title => "Contract Renewal Request";
+        public override string Subtitle => $"User {recipientID} wants to renew contract: {contractID}.";
 
-        public override string getTitle()
-        {
-            return "Contract Renewal Request";
-        }
-
-        public override string getSubtitle()
-        {
-            return "User: " + recipientID + " wants to renew contract: " + contractID + " !";
-        }
 
     }
 
@@ -383,21 +292,9 @@ namespace ArtAttack.Domain
             return contractID;
         }
 
-        public override string getContent()
-        {
-            return "Contract: " + contractID + " is set to expire on " + expirationDate + "!\n Please check out the sellers contract renewal policies for more information.";
-        }
-
-        public override string getTitle()
-        {
-            return "Contract Expiration";
-        }
-
-        public override string getSubtitle()
-        {
-            return "Contract: " + contractID + " is about to expire!";
-
-        }
+        public override string Content => $"Contract: {contractID} is set to expire on {expirationDate}.";
+        public override string Title => "Contract Expiration";
+        public override string Subtitle => $"Contract: {contractID} is about to expire!";
 
     }
 
