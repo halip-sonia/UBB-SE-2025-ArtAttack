@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using ArtAttack.Domain;
+using ArtAttack.Services;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -43,6 +44,11 @@ namespace ArtAttack
             var bp = new BillingInfo();
             billingInfoWindow.Content = bp;
             billingInfoWindow.Activate();
+        }
+
+        private void borrowButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Example user ID and product ID - replace with actual values
         }
     }
 }

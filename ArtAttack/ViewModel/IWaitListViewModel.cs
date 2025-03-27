@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ArtAttack.Services
 {
-    public interface IWaitListService
+    public interface IWaitListViewModel
     {
         void AddUserToWaitlist(int userId, int productWaitListId);
         void RemoveUserFromWaitlist(int userId, int productWaitListId);
