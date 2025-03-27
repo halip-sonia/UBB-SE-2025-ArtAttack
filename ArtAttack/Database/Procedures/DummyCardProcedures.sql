@@ -8,7 +8,7 @@ create or alter proc [AddCard]
 @balance float as
 begin 
 insert into [DummyCard] 
-values (@cname,@cnumber,@cvc,@mon,@yr,@country)
+values (@cname,@cnumber,@cvc,@mon,@yr,@country,@balance)
 end
 go
 

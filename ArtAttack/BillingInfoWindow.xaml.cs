@@ -12,37 +12,20 @@ using Microsoft.UI.Xaml.Data;
 using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
-using ArtAttack.Domain;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
 
 namespace ArtAttack
-{ 
+{
     /// <summary>
     /// An empty window that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class MainWindow : Window
+    public sealed partial class BillingInfoWindow : Window
     {
-        Contract contract;
-        public MainWindow()
+        public BillingInfoWindow()
         {
             this.InitializeComponent();
-            contract = new Contract();
-        }
-
-        private void myButton_Click(object sender, RoutedEventArgs e)
-        {
-            myButton.Content = "Clicked";
-            
-        }
-
-        private void purchaseButton_Click(object sender, RoutedEventArgs e)
-        {
-            BillingInfoWindow billingInfoWindow = new BillingInfoWindow();
-            var bp = new BillingInfo();
-            billingInfoWindow.Content = bp;
-            billingInfoWindow.Activate();
         }
     }
 }

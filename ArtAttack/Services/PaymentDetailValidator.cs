@@ -50,9 +50,25 @@ namespace ArtAttack.Services
             return (year.All(char.IsAsciiDigit) && year.Length == 2);
         }
 
-        //public bool ValidateCardDetails()
-        //{
-        //   
-        //}
+        public bool ValidateExpiryDate(string month, string year)
+        {
+            if (!ValidateMonth(month) || !ValidateYear(year))
+                return false;
+
+            int currentYear = DateTime.Now.Year % 100;
+            int currentMonth = DateTime.Now.Month;
+
+            int cardYear = int.Parse(year);
+            int cardMonth = int.Parse(month);
+
+            return (cardYear > currentYear) || (cardYear == currentYear && cardMonth >= currentMonth);
+        }
+
+        public bool ValidateCardDetails(string cardNumber, string cvc, string month, string year)
+        {
+            return ValidateCardNumber(cardNumber) &&
+                ValidateCVC(cvc) &&
+                ValidateExpiryDate(month, year);
+        }
     }
 }
