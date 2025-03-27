@@ -12,7 +12,7 @@ namespace ArtAttack.Model
     {
         public static Notification CreateFromDataReader(SqlDataReader reader)
         {
-            //Common fields 
+            //Common fields
             int notificationId = reader.GetInt32(reader.GetOrdinal("notificationID"));
             int recipientId = reader.GetInt32(reader.GetOrdinal("recipientID"));
             DateTime timestamp = reader.GetDateTime(reader.GetOrdinal("timestamp"));

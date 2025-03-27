@@ -16,4 +16,5 @@
         <Button x:Name="walletrefillButton" Click="walletrefillButton_Clicked">Refill Wallet</Button>
         <Button x:Name="generateContractButton" Click="generateContractButton_Click">Generate Contract</Button>
     </StackPanel>
+   
 </Window>
