@@ -9,7 +9,6 @@ namespace ArtAttack.Domain
         protected NotificationCategory category;
         protected DateTime timestamp;
         protected bool isRead;
-
         public int getNotificationID()
         {
             return notificationID;

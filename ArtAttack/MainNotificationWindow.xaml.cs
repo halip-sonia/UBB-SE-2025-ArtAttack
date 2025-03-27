@@ -15,7 +15,6 @@ namespace ArtAttack
     /// </summary>
     public sealed partial class MainNotificationWindow : Window
     {
-
         public ObservableCollection<Domain.Notification> Itemsource { get; } = new ObservableCollection<Notification>();
 
         public MainNotificationWindow()

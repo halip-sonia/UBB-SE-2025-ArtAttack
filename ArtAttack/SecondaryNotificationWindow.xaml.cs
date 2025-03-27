@@ -8,7 +8,6 @@ namespace ArtAttack
     public sealed partial class SecondaryNotificationWindow : Window
     {
         public Notification SelectedNotification { get; }
-
         public SecondaryNotificationWindow(Notification notification)
         {
             this.InitializeComponent();

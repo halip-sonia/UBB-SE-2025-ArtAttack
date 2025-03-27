@@ -31,7 +31,6 @@
                            FontWeight="SemiBold"/>
             </StackPanel>
         </Border>
-
         <Border Grid.Row="1" Padding="20">
             <Border Background="White" 
                     BorderBrush="DarkGray" 
