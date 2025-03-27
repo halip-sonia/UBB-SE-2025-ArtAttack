@@ -10,7 +10,6 @@ namespace ArtAttack.Model
     public class NotificationDataAdapter : IDisposable
 {
         private SqlConnection _connection;
-
         public NotificationDataAdapter(string connectionString)
         {
             _connection = new SqlConnection(connectionString);
