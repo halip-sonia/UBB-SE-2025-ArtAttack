@@ -5,10 +5,10 @@ using System.Collections.Generic;
 using System.Data;
 using System;
 
-public class NotificationDataAdapter : IDisposable
+namespace ArtAttack.Model
 {
     public class NotificationDataAdapter : IDisposable
-    {
+{
         private SqlConnection _connection;
 
         public NotificationDataAdapter(string connectionString)
