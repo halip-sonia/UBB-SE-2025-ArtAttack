@@ -205,7 +205,7 @@ BEGIN
         BEGIN TRANSACTION;
 
         UPDATE OrderSummary
-        SET [ProductType] = @ProductType,
+        SET 
              [Subtotal]=@Subtotal,
              [WarrantyTax]=@WarrantyTax,
              [DeliveryFee]=@DeliveryFee,
@@ -293,3 +293,5 @@ begin
 
 end
 go
+
+

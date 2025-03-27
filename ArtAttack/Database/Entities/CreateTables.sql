@@ -117,6 +117,10 @@ create table [Order](
 
 );
 
+alter table [Order] drop constraint [PaymentMethodConstraint]
+alter table [Order] add constraint [PaymentMethodConstraint] check ([PaymentMethod] in ('card', 'cash', 'wallet') or [PaymentMethod] is NULL) 
+
+
 create table [Contract](
 	[ID] int identity primary key,
 

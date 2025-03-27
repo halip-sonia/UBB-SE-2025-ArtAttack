@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using ArtAttack.ViewModel;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,13 @@ namespace ArtAttack
 {
     public sealed partial class BillingInfo : Page
     {
-        public BillingInfo()
+        private BillingInfoModelView viewModel;
+
+        public BillingInfo(int orderHistoryID)
         {
             this.InitializeComponent();
+            viewModel = new BillingInfoModelView(orderHistoryID);
+            DataContext = viewModel;
         }
     }
 }

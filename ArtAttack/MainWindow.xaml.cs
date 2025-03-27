@@ -47,7 +47,23 @@ namespace ArtAttack
         private void purchaseButton_Click(object sender, RoutedEventArgs e)
         {
             BillingInfoWindow billingInfoWindow = new BillingInfoWindow();
-            var bp = new BillingInfo();
+            var bp = new BillingInfo(1);
+            billingInfoWindow.Content = bp;
+            billingInfoWindow.Activate();
+        }
+
+        private void bidProductButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            BillingInfoWindow billingInfoWindow = new BillingInfoWindow();
+            var bp = new BillingInfo(2);
+            billingInfoWindow.Content = bp;
+            billingInfoWindow.Activate();
+        }
+
+        private void walletrefillButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            BillingInfoWindow billingInfoWindow = new BillingInfoWindow();
+            var bp = new BillingInfo(3);
             billingInfoWindow.Content = bp;
             billingInfoWindow.Activate();
         }
