@@ -41,13 +41,17 @@ namespace ArtAttack
         /// <param name="args">Details about the launch request and process.</param>
         protected override void OnLaunched(Microsoft.UI.Xaml.LaunchActivatedEventArgs args)
         {
-            m_window = new MainWindow();
+            string connectionString = "Data Source=BOGDY;Initial Catalog=ISS;Integrated Security=True;Connect Timeout=30;Encrypt=True;Trust Server Certificate=True;Application Intent=ReadWrite;Multi Subnet Failover=False";
+            int userID = 1;
+            var OrderHistoryUI = new OrderHistoryUI(connectionString, userID);
+            OrderHistoryUI.Activate();
+            //-m_window = new MainWindow();
             //var bp = new BillingInfo();
             //var ci = new CardInfo();
             //var fp = new FinalisePurchase();
 
             //m_window.Content = fp; // For testing the gui
-            m_window.Activate();
+            //-m_window.Activate();
         }
 
         private Window? m_window;

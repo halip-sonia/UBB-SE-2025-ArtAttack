@@ -1,2 +1,9 @@
 App.xbf
+BillingInfo.xbf
+BillingInfoWindow.xbf
+CardInfo.xbf
+FinalisePurchase.xbf
+MainNotificationWindow.xbf
 MainWindow.xbf
+OrderHistoryUI.xbf
+SecondaryNotificationWindow.xbf

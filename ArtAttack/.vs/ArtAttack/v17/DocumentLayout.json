@@ -3,8 +3,12 @@
   "WorkspaceRootPath": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\orderhistoryui.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:orderhistoryui.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\orderhistoryui.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:orderhistoryui.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\order.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -13,6 +17,49 @@
     {
       "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\entities\\createtables.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\entities\\createtables.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:model\\ordermodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\win-x64\\MainWindow.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\win-x64\\MainWindow.g.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\mainnotificationwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:mainnotificationwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\mainnotificationwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:mainnotificationwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\lazab\\.nuget\\packages\\microsoft.windowsappsdk\\1.7.250310001\\buildTransitive\\Microsoft.UI.Xaml.Markup.Compiler.interop.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:app.manifest||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:properties\\launchsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\ordersummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\ordersummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\model\\ordersummarymodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,10 +72,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}",
       "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:database\\procedures\\waitlistprocedures.sql||{CC5D8DF0-88F4-4BB2-9DBB-B48CEE65C30A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\domain\\ordersummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|solutionrelative:domain\\ordersummary.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F3D4A7CE-EABA-4500-AC57-5E86B5C762F3}|ArtAttack.csproj|c:\\users\\lazab\\onedrive\\documents\\github\\ubb-se-2025-artattack\\artattack\\viewmodel\\contractviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -110,71 +153,50 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 5,
-              "Title": "WaitListProcedures.sql",
-              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\WaitListProcedures.sql",
-              "RelativeDocumentMoniker": "Database\\Procedures\\WaitListProcedures.sql",
-              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\WaitListProcedures.sql",
-              "RelativeToolTip": "Database\\Procedures\\WaitListProcedures.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-26T13:44:11.338Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "OrderProcedures.sql",
-              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\OrderProcedures.sql",
-              "RelativeDocumentMoniker": "Database\\Procedures\\OrderProcedures.sql",
-              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\OrderProcedures.sql",
-              "RelativeToolTip": "Database\\Procedures\\OrderProcedures.sql",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-03-25T18:43:57.687Z"
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\App.xaml.cs",
+              "RelativeDocumentMoniker": "App.xaml.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\App.xaml.cs",
+              "RelativeToolTip": "App.xaml.cs",
+              "ViewState": "AgIAACIAAAAAAAAAAAAQwCsAAADcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T01:00:48.904Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "Order.cs",
-              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Order.cs",
-              "RelativeDocumentMoniker": "Domain\\Order.cs",
-              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Order.cs",
-              "RelativeToolTip": "Domain\\Order.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBEAAAAvAAAAAAAAAA==",
+              "Title": "OrderHistoryUI.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\OrderHistoryUI.xaml.cs",
+              "RelativeDocumentMoniker": "OrderHistoryUI.xaml.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\OrderHistoryUI.xaml.cs",
+              "RelativeToolTip": "OrderHistoryUI.xaml.cs",
+              "ViewState": "AgIAADQAAAAAAAAAAAAwwEEAAABGAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T19:23:48.756Z",
+              "WhenOpened": "2025-03-27T02:40:04.723Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrderHistoryUI.xaml",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\OrderHistoryUI.xaml",
+              "RelativeDocumentMoniker": "OrderHistoryUI.xaml",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\OrderHistoryUI.xaml",
+              "RelativeToolTip": "OrderHistoryUI.xaml",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-27T02:38:36.804Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "OrderSummaryModel.cs",
-              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderSummaryModel.cs",
-              "RelativeDocumentMoniker": "Model\\OrderSummaryModel.cs",
-              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderSummaryModel.cs",
-              "RelativeToolTip": "Model\\OrderSummaryModel.cs",
-              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAkAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T20:29:30.976Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "OrderModel.cs",
-              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderModel.cs",
-              "RelativeDocumentMoniker": "Model\\OrderModel.cs",
-              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderModel.cs",
-              "RelativeToolTip": "Model\\OrderModel.cs",
-              "ViewState": "AgIAAEsAAAAAAAAAAAAowFkAAAAdAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T20:49:13.304Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
               "Title": "CreateTables.sql ",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Entities\\CreateTables.sql",
               "RelativeDocumentMoniker": "Database\\Entities\\CreateTables.sql",
@@ -186,7 +208,181 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "OrderModel.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderModel.cs",
+              "RelativeDocumentMoniker": "Model\\OrderModel.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderModel.cs",
+              "RelativeToolTip": "Model\\OrderModel.cs",
+              "ViewState": "AgIAAEUBAAAAAAAAAAAwwFgBAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:49:13.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\App.xaml",
+              "RelativeDocumentMoniker": "App.xaml",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\App.xaml",
+              "RelativeToolTip": "App.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-27T02:17:34.558Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Order.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Order.cs",
+              "RelativeDocumentMoniker": "Domain\\Order.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Order.cs",
+              "RelativeToolTip": "Domain\\Order.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAAzwBYAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T19:23:48.756Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 7,
+              "Title": "MainWindow.g.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\win-x64\\MainWindow.g.cs",
+              "RelativeDocumentMoniker": "obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\win-x64\\MainWindow.g.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\win-x64\\MainWindow.g.cs",
+              "RelativeToolTip": "obj\\x64\\Debug\\net8.0-windows10.0.19041.0\\win-x64\\MainWindow.g.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T02:12:47.969Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "MainNotificationWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\MainNotificationWindow.xaml.cs",
+              "RelativeDocumentMoniker": "MainNotificationWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\MainNotificationWindow.xaml.cs",
+              "RelativeToolTip": "MainNotificationWindow.xaml.cs",
+              "ViewState": "AgIAACsAAAAAAAAAAAAkwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-27T02:40:49.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "MainNotificationWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\MainNotificationWindow.xaml",
+              "RelativeDocumentMoniker": "MainNotificationWindow.xaml",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\MainNotificationWindow.xaml",
+              "RelativeToolTip": "MainNotificationWindow.xaml",
+              "ViewState": "AgIAAC8AAAAAAAAAAAAuwEAAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-27T02:33:49.626Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Microsoft.UI.Xaml.Markup.Compiler.interop.targets",
+              "DocumentMoniker": "C:\\Users\\lazab\\.nuget\\packages\\microsoft.windowsappsdk\\1.7.250310001\\buildTransitive\\Microsoft.UI.Xaml.Markup.Compiler.interop.targets",
+              "RelativeDocumentMoniker": "..\\..\\..\\..\\..\\.nuget\\packages\\microsoft.windowsappsdk\\1.7.250310001\\buildTransitive\\Microsoft.UI.Xaml.Markup.Compiler.interop.targets",
+              "ToolTip": "C:\\Users\\lazab\\.nuget\\packages\\microsoft.windowsappsdk\\1.7.250310001\\buildTransitive\\Microsoft.UI.Xaml.Markup.Compiler.interop.targets",
+              "RelativeToolTip": "..\\..\\..\\..\\..\\.nuget\\packages\\microsoft.windowsappsdk\\1.7.250310001\\buildTransitive\\Microsoft.UI.Xaml.Markup.Compiler.interop.targets",
+              "ViewState": "AgIAAAECAAAAAAAAAAAUwPwBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
+              "WhenOpened": "2025-03-27T01:55:01.082Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "MainWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\MainWindow.xaml",
+              "RelativeDocumentMoniker": "MainWindow.xaml",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\MainWindow.xaml",
+              "RelativeToolTip": "MainWindow.xaml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-03-27T01:24:47.781Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "Properties\\launchSettings.json",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Properties\\launchSettings.json",
+              "RelativeToolTip": "Properties\\launchSettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-03-27T00:21:21.379Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "app.manifest",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\app.manifest",
+              "RelativeDocumentMoniker": "app.manifest",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\app.manifest",
+              "RelativeToolTip": "app.manifest",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001203|",
+              "WhenOpened": "2025-03-27T00:53:07.341Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "OrderSummaryModel.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderSummaryModel.cs",
+              "RelativeDocumentMoniker": "Model\\OrderSummaryModel.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\OrderSummaryModel.cs",
+              "RelativeToolTip": "Model\\OrderSummaryModel.cs",
+              "ViewState": "AgIAAD0AAAAAAAAAAAAAAE4AAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:29:30.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "OrderSummary.cs",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\OrderSummary.cs",
+              "RelativeDocumentMoniker": "Domain\\OrderSummary.cs",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\OrderSummary.cs",
+              "RelativeToolTip": "Domain\\OrderSummary.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-25T20:19:51.203Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "OrderProcedures.sql",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\OrderProcedures.sql",
+              "RelativeDocumentMoniker": "Database\\Procedures\\OrderProcedures.sql",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\OrderProcedures.sql",
+              "RelativeToolTip": "Database\\Procedures\\OrderProcedures.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-25T18:43:57.687Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "WaitListProcedures.sql",
+              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\WaitListProcedures.sql",
+              "RelativeDocumentMoniker": "Database\\Procedures\\WaitListProcedures.sql",
+              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\WaitListProcedures.sql",
+              "RelativeToolTip": "Database\\Procedures\\WaitListProcedures.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-03-26T13:44:11.338Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
               "Title": "ContractViewModel.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\ContractViewModel.cs",
               "RelativeDocumentMoniker": "ViewModel\\ContractViewModel.cs",
@@ -198,7 +394,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 19,
               "Title": "IContractViewModel.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\ViewModel\\IContractViewModel.cs",
               "RelativeDocumentMoniker": "ViewModel\\IContractViewModel.cs",
@@ -210,19 +406,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "OrderSummary.cs",
-              "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\OrderSummary.cs",
-              "RelativeDocumentMoniker": "Domain\\OrderSummary.cs",
-              "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\OrderSummary.cs",
-              "RelativeToolTip": "Domain\\OrderSummary.cs",
-              "ViewState": "AgIAAAsAAAAAAAAAAAAcwBsAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-25T20:19:51.203Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 20,
               "Title": "ContractModel.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\ContractModel.cs",
               "RelativeDocumentMoniker": "Model\\ContractModel.cs",
@@ -234,7 +418,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 21,
               "Title": "DummyProductModel.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\DummyProductModel.cs",
               "RelativeDocumentMoniker": "Model\\DummyProductModel.cs",
@@ -246,7 +430,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 22,
               "Title": "DummyCardModel.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\DummyCardModel.cs",
               "RelativeDocumentMoniker": "Model\\DummyCardModel.cs",
@@ -258,7 +442,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 23,
               "Title": "DummyWalletModel.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\DummyWalletModel.cs",
               "RelativeDocumentMoniker": "Model\\DummyWalletModel.cs",
@@ -270,7 +454,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 24,
               "Title": "NotificationFactory.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\NotificationFactory.cs",
               "RelativeDocumentMoniker": "Model\\NotificationFactory.cs",
@@ -282,7 +466,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 25,
               "Title": "PurchaseModel.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Model\\PurchaseModel.cs",
               "RelativeDocumentMoniker": "Model\\PurchaseModel.cs",
@@ -294,19 +478,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 26,
               "Title": "CardPaymentDetails.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\CardPaymentDetails.cs",
               "RelativeDocumentMoniker": "Domain\\CardPaymentDetails.cs",
               "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\CardPaymentDetails.cs",
               "RelativeToolTip": "Domain\\CardPaymentDetails.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-25T20:13:35.444Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 27,
               "Title": "PDF.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PDF.cs",
               "RelativeDocumentMoniker": "Domain\\PDF.cs",
@@ -318,7 +502,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 28,
               "Title": "PaymentStatus.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PaymentStatus.cs",
               "RelativeDocumentMoniker": "Domain\\PaymentStatus.cs",
@@ -330,7 +514,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 31,
               "Title": "DummyWallet.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\DummyWallet.cs",
               "RelativeDocumentMoniker": "Domain\\DummyWallet.cs",
@@ -342,7 +526,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 29,
               "Title": "DummyProduct.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\DummyProduct.cs",
               "RelativeDocumentMoniker": "Domain\\DummyProduct.cs",
@@ -354,19 +538,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 32,
               "Title": "Notifications.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Notifications.cs",
               "RelativeDocumentMoniker": "Domain\\Notifications.cs",
               "ToolTip": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Notifications.cs",
               "RelativeToolTip": "Domain\\Notifications.cs",
-              "ViewState": "AgIAAOoAAAAAAAAAAAAIwAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAOoAAAAAAAAAAAAywAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-03-25T20:16:06.72Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 30,
               "Title": "Contract.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\Contract.cs",
               "RelativeDocumentMoniker": "Domain\\Contract.cs",
@@ -378,7 +562,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 33,
               "Title": "PredefinedContract.cs",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Domain\\PredefinedContract.cs",
               "RelativeDocumentMoniker": "Domain\\PredefinedContract.cs",
@@ -390,7 +574,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 34,
               "Title": "DummyProductProcedures.sql",
               "DocumentMoniker": "C:\\Users\\lazab\\OneDrive\\Documents\\GitHub\\UBB-SE-2025-ArtAttack\\ArtAttack\\Database\\Procedures\\DummyProductProcedures.sql",
               "RelativeDocumentMoniker": "Database\\Procedures\\DummyProductProcedures.sql",
