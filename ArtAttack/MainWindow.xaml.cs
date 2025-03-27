@@ -117,10 +117,36 @@ namespace ArtAttack
 
             await contentDialog.ShowAsync();
         }
-        
-        private void borrowButton_Click(object sender, RoutedEventArgs e)
+
+        private async void borrowButton_Click(object sender, RoutedEventArgs e)
         {
-            // Example user ID and product ID - replace with actual values
-         }
+            try
+            {
+                // Example product ID - replace with actual value from your system
+                int productId = 6; // Watercolor Paint Set (available product)
+
+                var borrowWindow = new BorrowProductWindow(Configuration._CONNECTION_STRING_, productId);
+                borrowWindow.Activate();
+            }
+            catch (Exception ex)
+            {
+                await ShowErrorDialogAsync("Failed to open Borrow Product", ex.Message);
+            }
+        }
+
+        private async Task ShowErrorDialogAsync(string title, string message)
+        {
+            // Create a temporary ContentDialog without relying on RootGrid
+            var dialog = new ContentDialog
+            {
+                Title = title,
+                Content = message,
+                CloseButtonText = "OK"
+            };
+
+            // Apply default WinUI styling
+            dialog.XamlRoot = this.Content.XamlRoot;
+            await dialog.ShowAsync();
+        }
     }
 }
