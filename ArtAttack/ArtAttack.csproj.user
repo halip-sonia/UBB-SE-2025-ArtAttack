@@ -10,6 +10,9 @@
     <None Update="App.xaml">
       <SubType>Designer</SubType>
     </None>
+    <Page Update="OrderHistoryUI.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="BorrowProductWindow.xaml">
       <SubType>Designer</SubType>
     </Page>

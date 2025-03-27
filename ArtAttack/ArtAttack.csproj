@@ -23,6 +23,7 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="BorrowProductWindow.xaml" />
+    <None Remove="OrderHistoryUI.xaml" />
 
   </ItemGroup>
   <ItemGroup>
@@ -65,6 +66,11 @@
       <HintPath>$(SSDTUnitTestPath)\Microsoft.Data.Tools.Schema.Sql.UnitTestingAdapter.dll</HintPath>
       <Private>True</Private>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Page Update="OrderHistoryUI.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Page Update="BorrowProductWindow.xaml">
