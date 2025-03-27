@@ -5,8 +5,6 @@ using System.Collections.Generic;
 using System.Data;
 using System;
 
-public class NotificationDataAdapter : IDisposable
-{
     public class NotificationDataAdapter : IDisposable
     {
         private SqlConnection _connection;
@@ -133,4 +131,3 @@ public class NotificationDataAdapter : IDisposable
             _connection?.Dispose();
         }
     }
-}
