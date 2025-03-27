@@ -35,11 +35,11 @@
         </Grid.ColumnDefinitions>
         <TextBlock x:Name="bInfoTitle"   FontSize="20" Grid.Row="0">Billing Information</TextBlock>
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="1">
-            <TextBox x:Name="fullName" PlaceholderText="Full Name*" />
-            <TextBox x:Name="email" PlaceholderText="Email Address*" ></TextBox>
-            <TextBox x:Name="phoneNumber" PlaceholderText="Phone Number*" ></TextBox>
-            <TextBox x:Name="address" PlaceholderText="Address*" ></TextBox>
-            <TextBox x:Name="zipcode" PlaceholderText="Zipcode*" ></TextBox>
+            <TextBox Text="{Binding FullName, Mode=TwoWay}" PlaceholderText="Full Name*" />
+            <TextBox Text="{Binding Email, Mode=TwoWay}" PlaceholderText="Email Address*" ></TextBox>
+            <TextBox Text="{Binding PhoneNumber, Mode=TwoWay}" PlaceholderText="Phone Number*" ></TextBox>
+            <TextBox Text="{Binding Address, Mode=TwoWay}" PlaceholderText="Address*" ></TextBox>
+            <TextBox Text="{Binding ZipCode, Mode=TwoWay}" PlaceholderText="Zipcode*" ></TextBox>
         </StackPanel>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="2">
@@ -50,36 +50,51 @@
         </StackPanel>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="3">
-            <TextBlock x:Name="addInfo"  FontSize="20">Additional Delivery Information</TextBlock>
+            <TextBlock Text="{Binding AdditionalInfo, Mode=TwoWay}"  FontSize="20">Additional Delivery Information</TextBlock>
             <TextBox Height="80" Background="#cccaca" PlaceholderText="Observations for your order (optional)..." ></TextBox>
         </StackPanel>
 
         <TextBlock x:Name="orderSummary" FontSize="20" Grid.Row="0" Grid.Column="1">Order Summary:</TextBlock>
 
-        <ListView x:Name="blabla" Background="#cccaca" HorizontalAlignment="Stretch"   Grid.Row="1" Grid.Column="1">
-
+        <ListView ItemsSource="{Binding ProductList}" Grid.Row="1" Grid.Column="1" Background="#cccaca" Foreground="Black">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                            <TextBlock  FontSize="16" Foreground="Black" >
+                            <Run Text="Product name: " FontWeight="Bold"/>
+                             <Run Text="{Binding Name}"/>
+                            </TextBlock>
+                            <TextBlock  FontSize="16" Foreground="Black" >
+                            <Run Text="Price: " FontWeight="Bold"/>
+                             <Run Text="{Binding Price}"/>
+                            </TextBlock>
+                            <TextBlock  FontSize="16" Foreground="Black" >
+                              <Run Text="Seller ID: " FontWeight="Bold"/>
+                               <Run Text="{Binding SellerID}"/>
+                            </TextBlock>
+                        </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
         </ListView>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Subtotal: "/>
-                <TextBlock x:Name="subtotal"/>
+                <TextBlock Text="{Binding Subtotal}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Delivery fee: "/>
-                <TextBlock x:Name="delivery"/>
+                <TextBlock Text="{Binding DeliveryFee}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Total: "/>
-                <TextBlock x:Name="total"/>
+                <TextBlock Text="{Binding Total}" />
             </StackPanel>
 
         </StackPanel>
 
 
-        <Button x:Name="finalButton"  Grid.Row="4" Grid.Column="1" Background="#cccaca" Foreground="Black" Width="200px" HorizontalAlignment="Center"> 
-             Finalise Purchase
-        </Button>
+        <Button Content="Finalize Purchase" Command="{Binding FinalizePurchaseCommand}"  Grid.Row="4" Grid.Column="1" Background="#cccaca" Foreground="Black" Width="200px" HorizontalAlignment="Center"/>
 
     </Grid>
 
