@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ArtAttack.Model
 {
-    internal class WaitListModel
+    public class WaitListModel
     {
         private readonly string _connectionString;
 
