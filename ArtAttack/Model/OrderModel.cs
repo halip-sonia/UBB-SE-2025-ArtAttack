@@ -95,7 +95,7 @@ namespace ArtAttack.Model
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
                                 OrderHistoryID = reader.GetInt32("OrderHistoryID"),
-                                ProductType = reader.GetString("ProductType"),
+                                ProductType = reader.GetInt32("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
                                 OrderDate = reader.GetDateTime("OrderDate")
 
@@ -130,7 +130,7 @@ namespace ArtAttack.Model
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
                                 OrderHistoryID = reader.GetInt32("OrderHistoryID"),
-                                ProductType = reader.GetString("ProductType"),
+                                ProductType = reader.GetInt32("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
                                 OrderDate = reader.GetDateTime("OrderDate")
                             };
@@ -165,7 +165,7 @@ namespace ArtAttack.Model
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
                                 OrderHistoryID = reader.GetInt32("OrderHistoryID"),
-                                ProductType = reader.GetString("ProductType"),
+                                ProductType = reader.GetInt32("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
                                 OrderDate = reader.GetDateTime("OrderDate")
                             };
@@ -199,7 +199,7 @@ namespace ArtAttack.Model
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
                                 OrderHistoryID = reader.GetInt32("OrderHistoryID"),
-                                ProductType = reader.GetString("ProductType"),
+                                ProductType = reader.GetInt32("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
                                 OrderDate = reader.GetDateTime("OrderDate")
                             };
@@ -233,7 +233,7 @@ namespace ArtAttack.Model
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
                                 OrderHistoryID = reader.GetInt32("OrderHistoryID"),
-                                ProductType = reader.GetString("ProductType"),
+                                ProductType = reader.GetInt32("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
                                 OrderDate = reader.GetDateTime("OrderDate")
                             };
@@ -267,7 +267,7 @@ namespace ArtAttack.Model
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
                                 OrderHistoryID = reader.GetInt32("OrderHistoryID"),
-                                ProductType = reader.GetString("ProductType"),
+                                ProductType = reader.GetInt32("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
                                 OrderDate = reader.GetDateTime("OrderDate")
                             };
@@ -301,7 +301,7 @@ namespace ArtAttack.Model
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
                                 OrderHistoryID = reader.GetInt32("OrderHistoryID"),
-                                ProductType = reader.GetString("ProductType"),
+                                ProductType = reader.GetInt32("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
                                 OrderDate = reader.GetDateTime("OrderDate")
                             };
@@ -336,7 +336,7 @@ namespace ArtAttack.Model
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
                                 OrderHistoryID = reader.GetInt32("OrderHistoryID"),
-                                ProductType = reader.GetString("ProductType"),
+                                ProductType = reader.GetInt32("ProductType"),
                                 PaymentMethod = reader.GetString("PaymentMethod"),
                                 OrderDate = reader.GetDateTime("OrderDate")
                             };
