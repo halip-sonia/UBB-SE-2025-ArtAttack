@@ -1,25 +1,22 @@
 ﻿using ArtAttack.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ArtAttack.ViewModel
 {
-    internal interface IContractViewModel
+    public interface IContractViewModel
     {
-        Contract GetContractById(long contractId);
-        List<Contract> GetAllContracts();
-        List<Contract> GetContractHistory(long contractId);
-        void AddContract(Contract contract, byte[] pdfFile);
-        (int SellerID, string SellerName) GetContractSeller(long contractId);
-        (int BuyerID, string BuyerName) GetContractBuyer(long contractId);
-        Dictionary<string, object> GetOrderSummaryInformation(long contractId);
-        (DateTime StartDate, DateTime EndDate)? GetProductDatesByContractId(long contractId);
-        List<Contract> GetContractsByBuyer(int buyerId);
+        Task<Contract> GetContractByIdAsync(long contractId);
+        Task<List<Contract>> GetAllContractsAsync();
+        Task<List<Contract>> GetContractHistoryAsync(long contractId);
+        Task AddContractAsync(Contract contract, byte[] pdfFile);
+        Task<(int SellerID, string SellerName)> GetContractSellerAsync(long contractId);
+        Task<(int BuyerID, string BuyerName)> GetContractBuyerAsync(long contractId);
+        Task<Dictionary<string, object>> GetOrderSummaryInformationAsync(long contractId);
+        Task<(DateTime StartDate, DateTime EndDate)?> GetProductDatesByContractIdAsync(long contractId);
+        Task<List<Contract>> GetContractsByBuyerAsync(int buyerId);
         byte[] GenerateContractPdf(Contract contract, PredefinedContract predefinedContract, Dictionary<string, string> fieldReplacements);
-
-        public void GenerateAndSaveContract(Contract contract);
+        Task GenerateAndSaveContractAsync(Contract contract);
     }
 }
