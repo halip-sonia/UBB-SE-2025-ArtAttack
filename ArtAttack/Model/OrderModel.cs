@@ -11,9 +11,10 @@ using Microsoft.Data.SqlClient;
 
 namespace ArtAttack.Model
 {
-    internal class OrderModel
+    public class OrderModel
     {
         private readonly string _connectionString;
+        public string ConnectionString => _connectionString;
 
         public OrderModel(string connectionString)
         {

@@ -10,7 +10,7 @@ using Microsoft.Data.SqlClient;
 
 namespace ArtAttack.Model
 {
-    internal class OrderSummaryModel
+    public class OrderSummaryModel
     {
         private readonly string _connectionString;
 
