@@ -7,9 +7,10 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:Domain="using:ArtAttack.Domain"
+    xmlns:viewmodel="using:ArtAttack.ViewModel"
     mc:Ignorable="d">
 
-    <StackPanel Background="WhiteSmoke" >
+    <StackPanel x:Name="RootPanel" Background="WhiteSmoke">
         <Border Background="LightGray" Padding="10" Width="Auto">
             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
                 <Button x:Name="BackButton" 
@@ -21,7 +22,8 @@
                     Foreground="Black"
                     Click="BackButton_Click"
                     ToolTipService.ToolTip="Back to notifications"/>
-                <TextBlock x:Name="notificationCountText"
+
+                <TextBlock Text="{Binding unReadNotificationsCountText}"
                        Foreground="White"
                        FontSize="24"
                        FontWeight="Bold"
@@ -31,14 +33,16 @@
 
         <Viewbox HorizontalAlignment="Center" Margin="15">
             <StackPanel Orientation="Horizontal" 
-                HorizontalAlignment="Center" 
-                VerticalAlignment="Top"
-                Background="WhiteSmoke"
-                Width="Auto"
-                >
+                      HorizontalAlignment="Center" 
+                      VerticalAlignment="Top"
+                      Background="WhiteSmoke"
+                      Width="Auto"
+                      Margin="80,0,0,0">
                 <ListView x:Name="notificationList" 
-                  ItemsSource="{x:Bind Itemsource, Mode=OneWay}"
-                          SelectionChanged="notificationList_SelectionChanged">
+                          SelectionChanged="notificationList_SelectionChanged"
+                         ItemsSource="{Binding Notifications}"
+                         SelectionMode="Single"
+                         Margin="0,0,140,0">
                     <ListView.ItemContainerStyle>
                         <Style TargetType="ListViewItem">
                             <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -51,18 +55,34 @@
                     </ListView.ItemContainerStyle>
 
                     <ListView.ItemTemplate>
-                        <DataTemplate x:DataType="Domain:Notification">
-                            <StackPanel>
-                                <TextBlock Text="{x:Bind Title}" 
-                                   Foreground="Black"
-                                   FontWeight="SemiBold"
-                                   FontSize="20"/>
-                                <TextBlock Text="{x:Bind Subtitle}" 
-                                   Foreground="Black"
-                                   FontSize="18"
-                                   Margin="0,5,0,0"
-                                   Opacity="0.8"/>
-                            </StackPanel>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="Auto" />
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0">
+                                    <TextBlock Text="{Binding Title}" 
+                                             Foreground="Black"
+                                             FontWeight="SemiBold"
+                                             FontSize="20"/>
+                                    <TextBlock Text="{Binding Subtitle}" 
+                                             Foreground="Black"
+                                             FontSize="18"
+                                             Margin="0,5,0,0"
+                                             Opacity="0.8"/>
+                                </StackPanel>
+
+                                <StackPanel Grid.Column="1" HorizontalAlignment="Right">
+                                    <TextBlock Text="{Binding timestamp}"
+                                             Foreground="Gray"
+                                             FontSize="16"/>
+                                    <CheckBox IsChecked="{Binding IsNotRead, Mode=OneWay}"
+                                            VerticalAlignment="Top"
+                                            Margin="135,0,0,0"
+                                            IsEnabled="{Binding IsNotRead, Mode=OneWay}"/>
+                                </StackPanel>
+                            </Grid>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
