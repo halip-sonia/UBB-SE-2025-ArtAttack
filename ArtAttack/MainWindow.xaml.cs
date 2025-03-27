@@ -13,6 +13,7 @@ using Microsoft.UI.Xaml.Input;
 using Microsoft.UI.Xaml.Media;
 using Microsoft.UI.Xaml.Navigation;
 using ArtAttack.Domain;
+using ArtAttack.Services;
 using ArtAttack.ViewModel;
 using ArtAttack.Shared;
 using Windows.UI.Popups;
@@ -73,6 +74,7 @@ namespace ArtAttack
             billingInfoWindow.Activate();
         }
 
+        
         private void walletrefillButton_Clicked(object sender, RoutedEventArgs e)
         {
             BillingInfoWindow billingInfoWindow = new BillingInfoWindow();
@@ -115,5 +117,10 @@ namespace ArtAttack
 
             await contentDialog.ShowAsync();
         }
+        
+        private void borrowButton_Click(object sender, RoutedEventArgs e)
+        {
+            // Example user ID and product ID - replace with actual values
+         }
     }
 }

@@ -4,11 +4,11 @@ using System.Collections.Generic;
 
 namespace ArtAttack.Services
 {
-    public class WaitListService : IWaitListService
+    public class WaitListViewModel : IWaitListViewModel
     {
         private readonly WaitListModel _waitListModel;
 
-        public WaitListService(string connectionString)
+        public WaitListViewModel(string connectionString)
         {
             _waitListModel = new WaitListModel(connectionString);
         }

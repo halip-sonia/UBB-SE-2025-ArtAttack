@@ -1,3 +1,4 @@
+
 // Updated by XamlIntelliSenseFileGenerator 3/27/2025 4:51:00 AM
 #pragma checksum "C:\MyStuff\COLLEGE\College_Projects\UBB-SE-2025-ArtAttack\ArtAttack\MainWindow.xaml" "{8829d00f-11b8-4213-878b-770e8597ac16}" "61D4C1CB0D445634A0E73A839DFC69C456A26717BC12EED0504682581C74B174"
 //------------------------------------------------------------------------------
@@ -13,6 +14,7 @@ namespace ArtAttack
 {
     partial class MainWindow : global::Microsoft.UI.Xaml.Window
     {
+
 #pragma warning restore 0649
 #pragma warning restore 0169
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.UI.Xaml.Markup.Compiler", " 3.0.0.2503")]
