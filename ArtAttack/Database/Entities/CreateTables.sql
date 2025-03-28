@@ -133,6 +133,7 @@ create table [Contract](
 
 	[predefinedContractID] integer foreign key references [PredefinedContract]([ID]),
 	[pdfID] integer not null foreign key references [PDF]([ID]),
+	[AdditionalTerms] TEXT,
 
 	/* Added field to support contract renewals.
     Holds the ID of the original contract being renewed.

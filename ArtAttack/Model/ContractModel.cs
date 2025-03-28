@@ -299,11 +299,11 @@ namespace ArtAttack.Model
         /// <summary>
         /// Asynchronously retrieves the startDate and endDate for a contract from the DummyProduct table.
         /// </summary>
-        public async Task<(DateTime StartDate, DateTime EndDate)?> GetProductDatesByContractIdAsync(long contractId)
+        public async Task<(DateTime StartDate, DateTime EndDate, float price, string name)?> GetProductDetailsByContractIdAsync(long contractId)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("GetProductDatesByContractID", conn))
+                using (SqlCommand cmd = new SqlCommand("GetProductDetailsByContractID", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ContractID", contractId);
@@ -315,7 +315,9 @@ namespace ArtAttack.Model
                         {
                             var startDate = reader.GetDateTime(reader.GetOrdinal("startDate"));
                             var endDate = reader.GetDateTime(reader.GetOrdinal("endDate"));
-                            return (startDate, endDate);
+                            var price = reader.GetFloat(reader.GetOrdinal("price"));
+                            var name = reader.GetString(reader.GetOrdinal("name"));
+                            return (startDate, endDate, price, name);
                         }
                     }
                 }
@@ -350,6 +352,7 @@ namespace ArtAttack.Model
                                 RenewalCount = reader.GetInt32(reader.GetOrdinal("renewalCount")),
                                 PredefinedContractID = reader["predefinedContractID"] != DBNull.Value ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID")) : null,
                                 PDFID = reader.GetInt32(reader.GetOrdinal("pdfID")),
+                                AdditionalTerms = reader.GetString(reader.GetOrdinal("AdditionalTerms")),
                                 RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID")) : null
                             };
                             contracts.Add(contract);
@@ -358,6 +361,32 @@ namespace ArtAttack.Model
                 }
             }
             return contracts;
+        }
+
+        public async Task<(string PaymentMethod, DateTime OrderDate)> GetOrderDetailsAsync(long contractId)
+        {
+            (string PaymentMethod, DateTime OrderDate) details = (null, default);
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetOrderDetails", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ContractID", SqlDbType.Int).Value = contractId;
+                    await conn.OpenAsync();
+
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            // Assuming PaymentMethod is a string and OrderDate is a DateTime.
+                            string paymentMethod = reader["PaymentMethod"] as string;
+                            DateTime orderDate = reader.GetDateTime(reader.GetOrdinal("OrderDate"));
+                            details = (paymentMethod, orderDate);
+                        }
+                    }
+                }
+            }
+            return details;
         }
     }
 }

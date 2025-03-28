@@ -56,9 +56,9 @@ namespace ArtAttack.ViewModel
             return await _model.GetOrderSummaryInformationAsync(contractId);
         }
 
-        public async Task<(DateTime StartDate, DateTime EndDate)?> GetProductDatesByContractIdAsync(long contractId)
+        public async Task<(DateTime StartDate, DateTime EndDate, float price, string name)?> GetProductDetailsByContractIdAsync(long contractId)
         {
-            return await _model.GetProductDatesByContractIdAsync(contractId);
+            return await _model.GetProductDetailsByContractIdAsync(contractId);
         }
 
         public async Task<List<Contract>> GetContractsByBuyerAsync(int buyerId)
@@ -70,6 +70,12 @@ namespace ArtAttack.ViewModel
         {
             return await _model.GetPredefinedContractByPredefineContractTypeAsync(predefinedContractType);
         }
+
+        public async Task<(string PaymentMethod, DateTime OrderDate)> GetOrderDetailsAsync(long contractId)
+        {
+            return await _model.GetOrderDetailsAsync(contractId);
+        }
+
 
         public byte[] GenerateContractPdf(
     Contract contract,
@@ -96,6 +102,7 @@ namespace ArtAttack.ViewModel
             content = content.Replace("{ContractID}", contract.ID.ToString());
             content = content.Replace("{OrderID}", contract.OrderID.ToString());
             content = content.Replace("{ContractStatus}", contract.ContractStatus);
+            content = content.Replace("{AdditionalTerms}", contract.AdditionalTerms);
 
             // Set the QuestPDF license.
             QuestPDF.Settings.License = LicenseType.Community;
@@ -194,16 +201,39 @@ namespace ArtAttack.ViewModel
             var fieldReplacements = new Dictionary<string, string>();
 
             // Retrieve the product dates asynchronously.
-            var productDates = await GetProductDatesByContractIdAsync(contract.ID);
-            if (productDates.HasValue)
+            var productDetails = await GetProductDetailsByContractIdAsync(contract.ID);
+            var buyerDetails = await GetContractBuyerAsync(contract.ID);
+            var sellerDetails = await GetContractSellerAsync(contract.ID);
+            DateTime StartDate = productDetails.Value.StartDate;
+            DateTime EndDate = productDetails.Value.EndDate;
+            var LoanPeriod = (EndDate - StartDate).TotalDays;
+            var orderDetails = await GetOrderDetailsAsync(contract.ID);
+            string PaymentMethod = orderDetails.PaymentMethod;
+            DateTime OrderDate = orderDetails.OrderDate;
+
+            if (productDetails.HasValue)
             {
-                fieldReplacements["StartDate"] = productDates.Value.StartDate.ToShortDateString();
-                fieldReplacements["EndDate"] = productDates.Value.EndDate.ToShortDateString();
+                fieldReplacements["StartDate"] = StartDate.ToShortDateString();
+                fieldReplacements["EndDate"] = EndDate.ToShortDateString();
+                fieldReplacements["LoanPeriod"] = LoanPeriod.ToString();
+                fieldReplacements["ProductDescription"] = productDetails.Value.name;
+                fieldReplacements["Price"] = productDetails.Value.price.ToString();
+                fieldReplacements["BuyerName"] = buyerDetails.BuyerName;
+                fieldReplacements["SellerName"] = sellerDetails.SellerName;
+                fieldReplacements["PaymentMethod"] = orderDetails.PaymentMethod;
+                fieldReplacements["AgreementDate"] = orderDetails.OrderDate.ToShortDateString();
             }
             else
             {
                 fieldReplacements["StartDate"] = "N/A";
                 fieldReplacements["EndDate"] = "N/A";
+                fieldReplacements["LoanPeriod"] = "N/A";
+                fieldReplacements["ProductDescription"] = "N/A";
+                fieldReplacements["Price"] = "N/A";
+                fieldReplacements["BuyerName"] = "N/A";
+                fieldReplacements["SellerName"] = "N/A";
+                fieldReplacements["PaymentMethod"] = "N/A";
+                fieldReplacements["AgreementDate"] = "N/A";
             }
 
             // Generate the PDF (synchronously) using the generated replacements.

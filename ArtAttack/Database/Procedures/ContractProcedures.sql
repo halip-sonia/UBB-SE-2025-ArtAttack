@@ -6,8 +6,9 @@ Drop procedure if exists GetContractSeller
 Drop procedure if exists AddContract
 Drop procedure if exists GetOrderSummaryInformation
 Drop procedure if exists GetPredefinedContractByID
-Drop procedure if exists GetProductDatesByContractID
+Drop procedure if exists GetProductDetailsByContractID
 Drop procedure if exists GetContractsByBuyer
+Drop procedure if exists GetOrderDetails
 Go
 
 CREATE PROCEDURE GetContractByID
@@ -78,6 +79,7 @@ CREATE PROCEDURE AddContract
     @PredefinedContractID INT = NULL,
     @PDFID INT,
     @PDFFile VARBINARY(MAX),
+    @AdditionalTerms TEXT = NULL,
     @RenewedFromContractID INT = NULL
 AS
 BEGIN
@@ -93,9 +95,9 @@ BEGIN
         
         -- Insert the new contract record.
         INSERT INTO Contract
-            (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
+            (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, AdditionalTerms, renewedFromContractID)
         VALUES
-            (@OrderID, @ContractStatus, @ContractContent, @RenewalCount, @PredefinedContractID, @PDFID, @RenewedFromContractID);
+            (@OrderID, @ContractStatus, @ContractContent, @RenewalCount, @PredefinedContractID, @PDFID, @AdditionalTerms,@RenewedFromContractID);
         
         COMMIT TRANSACTION;
     END TRY
@@ -153,13 +155,24 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE GetProductDatesByContractID
+CREATE PROCEDURE GetOrderDetails @ContractID INT
+AS
+BEGIN
+    SET NOCOUNT ON
+    SELECT o.PaymentMethod, o.OrderDate
+    FROM [Contract] c
+    INNER JOIN [Order] o on c.orderID = o.OrderID
+    WHERE c.ID = @ContractID
+END
+GO
+
+CREATE PROCEDURE GetProductDetailsByContractID
     @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    SELECT dp.startDate, dp.endDate
+    SELECT dp.startDate, dp.endDate, dp.price, dp.name
     FROM Contract c
     INNER JOIN [Order] o ON c.orderID = o.OrderID
     INNER JOIN DummyProduct dp ON o.ProductId = dp.ID
@@ -200,13 +213,14 @@ GO
 DECLARE @SamplePDF VARBINARY(MAX) = 0x255044462D312E350D0A; -- Represents "%PDF-1.5" in hex
 
 EXEC AddContract 
-    @OrderID = 1,
+    @OrderID = 0,
     @ContractStatus = 'ACTIVE',
     @ContractContent = 'This is a sample contract content.',
     @RenewalCount = 0,
     @PredefinedContractID = NULL,    -- Optional parameter (set to NULL if not used)
     @PDFID = 1,
     @PDFFile = @SamplePDF,
+    @AdditionalTerms = NULL,
     @RenewedFromContractID = NULL;     -- Set to a valid contract ID if this is a renewal, otherwise NULL
 GO
 
