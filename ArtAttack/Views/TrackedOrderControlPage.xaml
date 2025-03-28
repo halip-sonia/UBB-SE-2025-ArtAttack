@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Page
+    x:Class="ArtAttack.Views.TrackedOrderControlPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:ArtAttack.Views"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid ColumnSpacing="10" Padding="20">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Left Panel -->
+        <local:TrackedOrderDetailsControl Grid.Column="0"/>
+
+        <!-- Right Panel (Sudo Controls) -->
+        <StackPanel Grid.Column="1" Padding="20" Spacing="20">
+            <Button Content="Revert to Last Checkpoint" Click="RevertLastCheckpointButton_Clicked"/>
+
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Change Estimated Delivery Date" Click="ChangeEstimatedDeliveryDateButton_Clicked"/>
+                <CalendarDatePicker x:Name="deliveryCalendarDatePicker" Visibility="Collapsed" />
+                <Button x:Name="confirmChangeEstimatedDeliveryDateButton" Content="Confirm" Visibility="Collapsed" Click="ConfirmChangeEstimatedDeliveryDateButton_Clicked"/>
+            </StackPanel>
+            <Button Content="Edit Current Checkpoint"/>
+        </StackPanel>
+    </Grid>
+
+</Page>

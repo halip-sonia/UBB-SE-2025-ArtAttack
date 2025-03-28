@@ -18,6 +18,7 @@ using ArtAttack.ViewModel;
 using ArtAttack.Shared;
 using Windows.UI.Popups;
 using System.Threading.Tasks;
+using ArtAttack.Views;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -148,5 +149,25 @@ namespace ArtAttack
             dialog.XamlRoot = this.Content.XamlRoot;
             await dialog.ShowAsync();
         }
+
+        private void trackOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            int trackedOrderID = 2;
+            bool hasControlAccess = true;
+            TrackedOrderWindow trackedOrderWindow = new TrackedOrderWindow();
+            if (hasControlAccess)
+            {
+                var controlp = new TrackedOrderControlPage(trackedOrderID);
+                trackedOrderWindow.Content = controlp;
+            }
+            else
+            {
+                var buyerp = new TrackedOrderBuyerPage(trackedOrderID);
+                trackedOrderWindow.Content = buyerp;
+            }
+            
+            trackedOrderWindow.Activate();
+        }
+
     }
 }
