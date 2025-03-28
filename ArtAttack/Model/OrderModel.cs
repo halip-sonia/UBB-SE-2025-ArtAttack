@@ -11,16 +11,17 @@ using Microsoft.Data.SqlClient;
 
 namespace ArtAttack.Model
 {
-    internal class OrderModel
+    public class OrderModel
     {
         private readonly string _connectionString;
+        public string ConnectionString => _connectionString;
 
         public OrderModel(string connectionString)
         {
             _connectionString = connectionString;
         }
 
-        public void AddOrder(int productId, int buyerId, string productType, string paymentMethod, int orderSummaryId, DateTime orderDate)
+        public void AddOrder(int productId, int buyerId, int productType, string paymentMethod, int orderSummaryId, DateTime orderDate)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -40,7 +41,7 @@ namespace ArtAttack.Model
             }
         }
 
-        public void UpdateOrder(int orderId, string productType, string paymentMethod, DateTime orderDate)
+        public void UpdateOrder(int orderId, int productType, string paymentMethod, DateTime orderDate)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {

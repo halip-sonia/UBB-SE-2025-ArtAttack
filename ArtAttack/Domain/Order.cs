@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArtAttack.Domain
 {
-    internal class Order
+    public class Order
     {
         public int OrderID { get; set; }
 
