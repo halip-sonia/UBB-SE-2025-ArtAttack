@@ -42,6 +42,11 @@ namespace ArtAttack.Services
             return _waitListModel.GetWaitlistSize(productWaitListId);
         }
 
+        public int GetUserWaitlistPosition(int userId, int productId)
+        {
+            return _waitListModel.GetUserWaitlistPosition(userId, productId);
+        }
+
         public bool IsUserInWaitlist(int userId, int productWaitListId)
         {
             return _waitListModel.IsUserInWaitlist(userId, productWaitListId);

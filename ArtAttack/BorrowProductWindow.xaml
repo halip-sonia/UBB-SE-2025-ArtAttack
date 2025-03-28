@@ -9,7 +9,6 @@
     Title="Product Details">
 
     <Grid Margin="20">
-        <!-- ✅ Move resources here instead of <Window.Resources> -->
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="Foreground" Value="#cccaca"/>
@@ -25,23 +24,26 @@
             </Style>
         </Grid.Resources>
 
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="200"/>
-        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
 
         <!-- Product Details Section -->
-        <StackPanel Grid.Column="0" Margin="0,0,10,0">
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2">
             <TextBlock x:Name="txtProductName" FontSize="20" FontWeight="Bold"/>
             <TextBlock x:Name="txtPrice" FontSize="16"/>
             <TextBlock x:Name="txtSeller" FontSize="16"/>
             <TextBlock x:Name="txtType" FontSize="16"/>
             <TextBlock x:Name="txtDates" FontSize="14" Foreground="#666666"/>
-            <TextBlock x:Name="txtWaitListInfo" FontSize="14" Foreground="#0066CC" TextWrapping="Wrap"/>
         </StackPanel>
 
+        <!-- Spacer -->
+        <Grid Grid.Row="1"/>
+
         <!-- Action Buttons -->
-        <StackPanel Grid.Column="1" Margin="20,0,0,0">
+        <StackPanel Grid.Row="2" Grid.Column="0" Margin="0,20,0,0">
             <Button x:Name="btnBorrow" 
                     Content="Borrow" 
                     Visibility="Collapsed"/>
@@ -52,17 +54,30 @@
                     Click="btnJoinWaitList_Click"/>
         </StackPanel>
 
-        <StackPanel x:Name="waitlistActionsPanel" 
-            Orientation="Horizontal"
-            Visibility="Collapsed"
-            Margin="10">
-            <Button x:Name="btnLeaveWaitList" 
-            Content="Leave Waitlist" 
-            Click="btnLeaveWaitList_Click"
-            Margin="0,0,10,0"/>
-            <Button x:Name="btnViewPosition" 
-            Content="View Position in Queue" 
-            Click="btnViewPosition_Click"/>
+        <!-- Waitlist Actions - Now properly aligned -->
+        <StackPanel Grid.Row="2" Grid.Column="1" Margin="20,20,0,0">
+            <StackPanel x:Name="waitlistActionsPanel" 
+                Orientation="Horizontal"
+                Visibility="Collapsed"
+                HorizontalAlignment="Right">
+                <Button x:Name="btnLeaveWaitList" 
+                    Content="Leave Waitlist" 
+                    Click="btnLeaveWaitList_Click"
+                    Margin="0,0,10,0"
+                    Width="120"/>
+                <Button x:Name="btnViewPosition" 
+                    Content="Position" 
+                    Click="btnViewPosition_Click"
+                    Width="120"/>
+            </StackPanel>
+
+            <!-- Position text now appears below the buttons -->
+            <TextBlock x:Name="txtPositionInQueue" 
+               Visibility="Collapsed"
+               Margin="0,5,0,0"
+               FontSize="16"
+               FontWeight="SemiBold"
+               HorizontalAlignment="Right"/>
         </StackPanel>
     </Grid>
 </Window>

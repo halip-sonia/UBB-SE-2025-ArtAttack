@@ -27,6 +27,24 @@ begin
 end;
 go*/
 
+CREATE OR ALTER PROCEDURE GetUserWaitlistPosition
+    @UserID INT,
+    @ProductID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    -- Get the user's position in the waitlist for the specified product
+    SELECT uw.positionInQueue
+    FROM UserWaitList uw
+    JOIN WaitListProduct wp ON uw.productWaitListID = wp.waitListProductID
+    WHERE uw.userID = @UserID AND wp.productID = @ProductID;
+    
+    -- If no rows returned, the user isn't on this waitlist
+    -- The C# code will handle this as position -1
+END
+GO
+
 --procedure to delete a user from a given waitList
 ALTER PROCEDURE RemoveUserFromWaitlist
     @UserID INT,
@@ -34,46 +52,44 @@ ALTER PROCEDURE RemoveUserFromWaitlist
 AS
 BEGIN
     SET NOCOUNT ON;
-    
-    DECLARE @WaitListProductID INT, @UserPosition INT;
-    
-    -- Find the waitlist product ID for the given product
-    SELECT @WaitListProductID = WaitListProductID 
+
+    DECLARE @WaitListProductID INT;
+    DECLARE @UserPosition INT;
+
+    -- Get the WaitListProductID
+    SELECT @WaitListProductID = waitListProductID 
     FROM WaitListProduct 
-    WHERE ProductID = @ProductID;
-    
-    -- If no corresponding waitlist product, exit procedure
+    WHERE productID = @ProductID;
+
+    -- Ensure that we found a valid waitlist entry
     IF @WaitListProductID IS NULL
     BEGIN
-        PRINT 'No waitlist entry found for the given product.';
+        PRINT 'No matching product found in the waitlist.';
         RETURN;
-    END;
+    END
 
-    -- Get the user's position in the queue before deleting
+    -- Get the User's Position BEFORE deleting them
     SELECT @UserPosition = positionInQueue
     FROM UserWaitList
-    WHERE UserID = @UserID AND ProductWaitListID = @WaitListProductID;
+    WHERE userID = @UserID AND productWaitListID = @WaitListProductID;
 
-    -- If the user is not in the waitlist, exit procedure
+    -- Ensure user exists in the waitlist before proceeding
     IF @UserPosition IS NULL
     BEGIN
-        PRINT 'User is not on the waitlist for this product.';
+        PRINT 'User not found in the waitlist.';
         RETURN;
-    END;
+    END
 
-    BEGIN TRANSACTION;
-    
     -- Delete the user from the waitlist
     DELETE FROM UserWaitList
-    WHERE UserID = @UserID AND ProductWaitListID = @WaitListProductID;
+    WHERE userID = @UserID AND productWaitListID = @WaitListProductID;
 
-    -- Update the positions of users who were behind in the queue
+    -- Update positions of remaining users
     UPDATE UserWaitList
     SET positionInQueue = positionInQueue - 1
-    WHERE ProductWaitListID = @WaitListProductID 
-          AND positionInQueue > @UserPosition;
+    WHERE productWaitListID = @WaitListProductID AND positionInQueue > @UserPosition;
 
-    COMMIT TRANSACTION;
+    PRINT 'User removed and positions updated successfully.';
 END;
 
         

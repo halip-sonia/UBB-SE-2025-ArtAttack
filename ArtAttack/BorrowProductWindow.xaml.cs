@@ -15,6 +15,8 @@ namespace ArtAttack
         private readonly int _currentProductId;
         private readonly WaitListViewModel _waitListViewModel;
 
+        private bool _isOnWaitList;
+
         public BorrowProductWindow(string connectionString, int productId)
         {
             InitializeComponent();
@@ -62,6 +64,7 @@ namespace ArtAttack
             btnJoinWaitList.Visibility = isOnWaitlist ? Visibility.Collapsed : Visibility.Visible;
             waitlistActionsPanel.Visibility = isOnWaitlist ? Visibility.Visible : Visibility.Collapsed;
 
+            txtPositionInQueue.Visibility = Visibility.Collapsed;
         }
 
         private void DisplayProduct(DummyProduct product, string sellerName)
@@ -151,13 +154,32 @@ namespace ArtAttack
             {
                 await ShowMessageAsync("Error", $"Failed to leave waitlist: {ex.Message}");
             }
+        } 
 
-        }
-
-        private void btnViewPosition_Click(object sender, RoutedEventArgs e)
+        private async void btnViewPosition_Click(object sender, RoutedEventArgs e)
         {
-            // Placeholder for future implementation
-            // Will show queue position when implemented
+            try
+            {
+                int currentUserId = GetCurrentUserId();
+
+                // Get the user's position in the waitlist
+                int position = _waitListViewModel.GetUserWaitlistPosition(currentUserId, _currentProductId);
+
+                if (position > 0)
+                {
+                    // Show the position in the UI
+                    txtPositionInQueue.Text = $"Your position: #{position}";
+                    txtPositionInQueue.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    await ShowMessageAsync("Position", "You are not currently on the waitlist");
+                }
+            }
+            catch (Exception ex)
+            {
+                await ShowMessageAsync("Error", $"Failed to get waitlist position: {ex.Message}");
+            }
         }
 
     }

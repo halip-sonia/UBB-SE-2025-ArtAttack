@@ -161,5 +161,23 @@ namespace ArtAttack.Model
             }
         }
 
+        public int GetUserWaitlistPosition(int userId, int productId)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetUserWaitlistPosition", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userId;
+                    cmd.Parameters.Add("@ProductID", SqlDbType.Int).Value = productId;
+
+                    conn.Open();
+                    object result = cmd.ExecuteScalar();
+
+                    return result != null ? Convert.ToInt32(result) : -1;
+                }
+            }
+        }
+
     }
 }
