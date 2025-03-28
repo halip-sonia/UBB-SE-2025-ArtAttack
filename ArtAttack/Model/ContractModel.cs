@@ -36,7 +36,7 @@ namespace ArtAttack.Model
                         {
                             contract = new Contract
                             {
-                                ID = reader.GetInt64("ID"),
+                                ID = reader.GetInt32("ID"),
                                 OrderID = reader.GetInt32("orderID"),
                                 ContractStatus = reader.GetString("contractStatus"),
                                 ContractContent = reader["contractContent"] as string,
@@ -46,7 +46,7 @@ namespace ArtAttack.Model
                                     : null,
                                 PDFID = reader.GetInt32("pdfID"),
                                 RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value
-                                    ? (long?)reader.GetInt64("renewedFromContractID")
+                                    ? (int?)reader.GetInt32("renewedFromContractID")
                                     : null
                             };
                         }
@@ -75,7 +75,7 @@ namespace ArtAttack.Model
                         {
                             var contract = new Contract
                             {
-                                ID = reader.GetInt64(reader.GetOrdinal("ID")),
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
                                 OrderID = reader.GetInt32(reader.GetOrdinal("orderID")),
                                 ContractStatus = reader.GetString(reader.GetOrdinal("contractStatus")),
                                 ContractContent = reader["contractContent"] as string,
@@ -85,7 +85,7 @@ namespace ArtAttack.Model
                                     : null,
                                 PDFID = reader.GetInt32(reader.GetOrdinal("pdfID")),
                                 RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value
-                                    ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID"))
+                                    ? (int?)reader.GetInt32(reader.GetOrdinal("renewedFromContractID"))
                                     : null
                             };
                             contracts.Add(contract);
@@ -116,7 +116,7 @@ namespace ArtAttack.Model
                         {
                             var contract = new Contract
                             {
-                                ID = reader.GetInt64(reader.GetOrdinal("ID")),
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
                                 OrderID = reader.GetInt32(reader.GetOrdinal("orderID")),
                                 ContractStatus = reader.GetString(reader.GetOrdinal("contractStatus")),
                                 ContractContent = reader["contractContent"] as string,
@@ -126,7 +126,7 @@ namespace ArtAttack.Model
                                     : null,
                                 PDFID = reader.GetInt32(reader.GetOrdinal("pdfID")),
                                 RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value
-                                    ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID"))
+                                    ? (int?)reader.GetInt32(reader.GetOrdinal("renewedFromContractID"))
                                     : null
                             };
                             history.Add(contract);
@@ -314,14 +314,14 @@ namespace ArtAttack.Model
                         {
                             var contract = new Contract
                             {
-                                ID = reader.GetInt64(reader.GetOrdinal("ID")),
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
                                 OrderID = reader.GetInt32(reader.GetOrdinal("orderID")),
                                 ContractStatus = reader.GetString(reader.GetOrdinal("contractStatus")),
                                 ContractContent = reader["contractContent"] as string,
                                 RenewalCount = reader.GetInt32(reader.GetOrdinal("renewalCount")),
                                 PredefinedContractID = reader["predefinedContractID"] != DBNull.Value ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID")) : null,
                                 PDFID = reader.GetInt32(reader.GetOrdinal("pdfID")),
-                                RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID")) : null
+                                RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value ? (int?)reader.GetInt32(reader.GetOrdinal("renewedFromContractID")) : null
                             };
                             contracts.Add(contract);
                         }
@@ -329,6 +329,7 @@ namespace ArtAttack.Model
                 }
             }
             return contracts;
+
         }
     }
 }
