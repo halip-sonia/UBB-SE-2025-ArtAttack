@@ -110,10 +110,10 @@ namespace ArtAttack.ViewModel
                             return new OrderSummary()
                             {
                                 ID = reader.GetInt32("ID"),
-                                Subtotal = (float)reader.GetDecimal("Subtotal"),
-                                WarrantyTax = (float)reader.GetDecimal("WarrantyTax"),
-                                DeliveryFee = (float)reader.GetDecimal("DeliveryFee"),
-                                FinalTotal = (float)reader.GetDecimal("FinalTotal"),
+                                Subtotal = (float)reader.GetDouble("Subtotal"),
+                                WarrantyTax = (float)reader.GetDouble("WarrantyTax"),
+                                DeliveryFee = (float)reader.GetDouble("DeliveryFee"),
+                                FinalTotal = (float)reader.GetDouble("FinalTotal"),
                                 FullName = reader.GetString("FullName"),
                                 Email = reader.GetString("Email"),
                                 PhoneNumber = reader.GetString("PhoneNumber"),

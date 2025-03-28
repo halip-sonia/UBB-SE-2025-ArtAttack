@@ -16,6 +16,12 @@
 
         <!-- Filter Controls -->
         <StackPanel Orientation="Horizontal" Padding="10" Spacing="10">
+            
+            <TextBox x:Name="SearchTextBox" 
+             PlaceholderText="Search products..."
+             Width="200"
+             Margin="0,0,10,0"
+             TextChanged="SearchTextBox_TextChanged"/>
             <ComboBox x:Name="TimePeriodComboBox" Width="200" SelectedIndex="0">
                 <ComboBoxItem Content="Last 3 Months"/>
                 <ComboBoxItem Content="Last 6 Months"/>
@@ -36,11 +42,12 @@
                 <DataTemplate>
                     <StackPanel Orientation="Horizontal" Spacing="20" Padding="10">
                         <TextBlock Text="{Binding OrderID}" Width="80" FontWeight="SemiBold"/>
-                        <TextBlock Text="{Binding ProductType}" Width="200"/>
+                        <TextBlock Text="{Binding ProductName}" Width="200"/>
 
                         <TextBlock Text="{Binding FormattedDate}" Width="120"/>
 
                         <TextBlock Text="{Binding PaymentMethod}" Width="150"/>
+                        <Button Content="See Details" Click="OrderDetails_Click" Tag="{Binding OrderSummaryID}" Margin="5" Padding="10,5"/>
                     </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
@@ -54,5 +61,29 @@
                 </StackPanel>
             </ListView.Header>
         </ListView>
+        <TextBlock x:Name="NoResultsText" 
+                  Grid.Row="1"
+                  Text="No orders found matching your criteria"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  FontSize="16"
+                  Foreground="Gray"
+                  Visibility="Collapsed"/>
+        <ContentDialog x:Name="OrderDetailsDialog"
+               Title="Order Details"
+               CloseButtonText="Close"
+               PrimaryButtonText="OK"
+               DefaultButton="Close"
+               xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+               xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+            <ScrollViewer VerticalScrollMode="Auto"
+                  VerticalScrollBarVisibility="Auto"
+                  MaxHeight="400">
+                <StackPanel x:Name="OrderDetailsContent"
+                   Spacing="8"
+                   Padding="12">
+                </StackPanel>
+            </ScrollViewer>
+        </ContentDialog>
     </Grid>
 </Window>

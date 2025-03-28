@@ -112,7 +112,7 @@ create table [Order](
     [PaymentMethod] varchar(20),
     constraint [PaymentMethodConstraint] check ([PaymentMethod] in ('card', 'cash', 'wallet')),
 	[OrderSummaryID] integer foreign key references [OrderSummary]([ID]),
-	[OrderDate] timestamp,
+	[OrderDate] datetime,
 	[OrderHistoryID] int foreign key references [OrderHistory]([ID])
 
 );
