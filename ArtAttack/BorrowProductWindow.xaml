@@ -48,7 +48,21 @@
 
             <Button x:Name="btnJoinWaitList" 
                     Content="Join WaitList" 
-                    Visibility="Collapsed"/>
+                    Visibility="Collapsed"
+                    Click="btnJoinWaitList_Click"/>
+        </StackPanel>
+
+        <StackPanel x:Name="waitlistActionsPanel" 
+            Orientation="Horizontal"
+            Visibility="Collapsed"
+            Margin="10">
+            <Button x:Name="btnLeaveWaitList" 
+            Content="Leave Waitlist" 
+            Click="btnLeaveWaitList_Click"
+            Margin="0,0,10,0"/>
+            <Button x:Name="btnViewPosition" 
+            Content="View Position in Queue" 
+            Click="btnViewPosition_Click"/>
         </StackPanel>
     </Grid>
 </Window>

@@ -20,7 +20,7 @@ namespace ArtAttack.Model
 
         // <summary>
         /// Adds a user to the waitlist for a specific product.
-        public void AddUserToWaitlist(int userId, int productWaitListId)
+        public void AddUserToWaitlist(int userId, int productId)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -28,7 +28,7 @@ namespace ArtAttack.Model
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userId;
-                    cmd.Parameters.Add("@ProductWaitListID", SqlDbType.Int).Value = productWaitListId;
+                    cmd.Parameters.Add("@ProductID", SqlDbType.Int).Value = productId;
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -37,7 +37,7 @@ namespace ArtAttack.Model
         }
 
         /// Removes a user from the waitlist and adjusts the queue positions.
-        public void RemoveUserFromWaitlist(int userId, int productWaitListId)
+        public void RemoveUserFromWaitlist(int userId, int productId)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -45,7 +45,7 @@ namespace ArtAttack.Model
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userId;
-                    cmd.Parameters.Add("@ProductWaitListID", SqlDbType.Int).Value = productWaitListId;
+                    cmd.Parameters.Add("@ProductID", SqlDbType.Int).Value = productId;
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
@@ -142,27 +142,21 @@ namespace ArtAttack.Model
             }
         }
 
-        public bool IsUserInWaitlist(int userId, int productWaitListId)
+        public bool IsUserInWaitlist(int userId, int productId)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("CheckUserInWaitlist", conn))
+                using (SqlCommand cmd = new SqlCommand(@"
+            SELECT 1 
+            FROM UserWaitList uw
+            JOIN WaitListProduct wp ON uw.productWaitListID = wp.waitListProductID
+            WHERE uw.userID = @UserID AND wp.productID = @ProductID", conn))
                 {
-                    cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userId;
-                    cmd.Parameters.Add("@ProductWaitListID", SqlDbType.Int).Value = productWaitListId;
-
-                    SqlParameter outputParam = new SqlParameter("@IsInWaitlist", SqlDbType.Bit)
-                    {
-                        Direction = ParameterDirection.Output
-                    };
-                    cmd.Parameters.Add(outputParam);
+                    cmd.Parameters.Add("@ProductID", SqlDbType.Int).Value = productId;
 
                     conn.Open();
-                    cmd.ExecuteNonQuery();
-
-                    return (bool)outputParam.Value;
+                    return cmd.ExecuteScalar() != null;
                 }
             }
         }

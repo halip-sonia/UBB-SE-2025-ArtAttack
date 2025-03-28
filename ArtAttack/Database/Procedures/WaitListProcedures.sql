@@ -4,45 +4,80 @@
 -- Select all users in the waitlist for the given product
 -- Select all waitlists the user has joined
 
-create procedure AddUserToWaitlist
+/*alter procedure AddUserToWaitlist
     @UserID int,
-    @ProductWaitListID int
+    @ProductID int
 as
 begin
     set nocount on;
+
+     DECLARE @WaitListProductID INT;
+        
+     SELECT @WaitListProductID = waitListProductID 
+     FROM WaitListProduct 
+     WHERE productID = @ProductID;
 
     declare @NextPosition int;
     select @NextPosition = isnull(max(positionInQueue), 0) + 1
     from UserWaitList
-    where productWaitListID = @ProductWaitListID;
+    where productWaitListID = @WaitListProductID;
 
     insert into UserWaitList (productWaitListID, userID, joinedTime, positionInQueue)
-    values (@ProductWaitListID, @UserID, getdate(), @NextPosition);
+    values (@WaitListProductID, @UserID, getdate(), @NextPosition);
 end;
-go
+go*/
 
 --procedure to delete a user from a given waitList
-create procedure RemoveUserFromWaitlist
-    @UserID int,
-    @ProductWaitListID int
-as
-begin
-    set nocount on;
+ALTER PROCEDURE RemoveUserFromWaitlist
+    @UserID INT,
+    @ProductID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    DECLARE @WaitListProductID INT, @UserPosition INT;
+    
+    -- Find the waitlist product ID for the given product
+    SELECT @WaitListProductID = WaitListProductID 
+    FROM WaitListProduct 
+    WHERE ProductID = @ProductID;
+    
+    -- If no corresponding waitlist product, exit procedure
+    IF @WaitListProductID IS NULL
+    BEGIN
+        PRINT 'No waitlist entry found for the given product.';
+        RETURN;
+    END;
 
-    declare @UserPosition int;
+    -- Get the user's position in the queue before deleting
+    SELECT @UserPosition = positionInQueue
+    FROM UserWaitList
+    WHERE UserID = @UserID AND ProductWaitListID = @WaitListProductID;
 
-    select @UserPosition = positionInQueue
-    from UserWaitList
-    where userID = @UserID and productWaitListID = @ProductWaitListID;
+    -- If the user is not in the waitlist, exit procedure
+    IF @UserPosition IS NULL
+    BEGIN
+        PRINT 'User is not on the waitlist for this product.';
+        RETURN;
+    END;
 
-    delete from UserWaitList
-    where userID = @UserID and productWaitListID = @ProductWaitListID;--'where' was written as 'wehere'
+    BEGIN TRANSACTION;
+    
+    -- Delete the user from the waitlist
+    DELETE FROM UserWaitList
+    WHERE UserID = @UserID AND ProductWaitListID = @WaitListProductID;
 
-    update UserWaitList
-    set positionInQueue = positionInQueue - 1
-    where productWaitListID = @ProductWaitListID and positionInQueue > @UserPosition;
-end;
+    -- Update the positions of users who were behind in the queue
+    UPDATE UserWaitList
+    SET positionInQueue = positionInQueue - 1
+    WHERE ProductWaitListID = @WaitListProductID 
+          AND positionInQueue > @UserPosition;
 
+    COMMIT TRANSACTION;
+END;
+
+        
+/*
 -- Select all users in the waitlist for the given product
 go
 CREATE PROCEDURE GetUsersInWaitlist
@@ -104,6 +139,6 @@ BEGIN
     FROM UserWaitList
     WHERE productWaitListID = @ProductWaitListID;
 END;
-
+*/
 
 

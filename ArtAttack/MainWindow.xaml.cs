@@ -123,7 +123,7 @@ namespace ArtAttack
             try
             {
                 // Example product ID - replace with actual value from your system
-                int productId = 6; // Watercolor Paint Set (available product)
+                int productId = 9; // Watercolor Paint Set (available product)
 
                 var borrowWindow = new BorrowProductWindow(Configuration._CONNECTION_STRING_, productId);
                 borrowWindow.Activate();
