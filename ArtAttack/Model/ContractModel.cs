@@ -36,7 +36,7 @@ namespace ArtAttack.Model
                         {
                             contract = new Contract
                             {
-                                ID = reader.GetInt64("ID"),
+                                ID = reader.GetInt32("ID"),
                                 OrderID = reader.GetInt32("orderID"),
                                 ContractStatus = reader.GetString("contractStatus"),
                                 ContractContent = reader["contractContent"] as string,

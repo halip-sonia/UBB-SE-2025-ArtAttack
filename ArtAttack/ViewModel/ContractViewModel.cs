@@ -79,9 +79,10 @@ namespace ArtAttack.ViewModel
             content = content.Replace("{ContractID}", contract.ID.ToString());
             content = content.Replace("{OrderID}", contract.OrderID.ToString());
             content = content.Replace("{ContractStatus}", contract.ContractStatus);
-
+            QuestPDF.Settings.License = LicenseType.Community;
             var document = Document.Create(container =>
             {
+                
                 container.Page(page =>
                 {
                     page.Margin(50);
