@@ -16,6 +16,35 @@ namespace ArtAttack.Model
             _connectionString = connectionString;
         }
 
+        public async Task<PredefinedContract> GetPredefinedContractByPredefineContractTypeAsync(PredefinedContractType predefinedContractType)
+        {
+            PredefinedContract predefinedContract = null;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetPredefinedContractByID", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // Pass the ID from the predefinedContract to the stored procedure parameter.
+                    cmd.Parameters.Add("@PContractID", SqlDbType.BigInt).Value = predefinedContractType;
+                    await conn.OpenAsync();
+
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (reader.HasRows && await reader.ReadAsync())
+                        {
+                            predefinedContract = new PredefinedContract
+                            {
+
+                                ID = reader.GetInt32("ID"),
+                                Content = reader["content"] as string
+                            };
+                        }
+                    }
+                }
+            }
+            return predefinedContract;
+        }
+
         /// <summary>
         /// Asynchronously retrieves a single contract using the GetContractByID stored procedure.
         /// </summary>

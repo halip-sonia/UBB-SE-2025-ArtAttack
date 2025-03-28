@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.IO;
 using System.Threading.Tasks;
 using ArtAttack.Domain;
 using ArtAttack.Model;
+using Microsoft.UI.Xaml;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
@@ -64,46 +66,130 @@ namespace ArtAttack.ViewModel
             return await _model.GetContractsByBuyerAsync(buyerId);
         }
 
-        public byte[] GenerateContractPdf(Contract contract, PredefinedContract predefinedContract, Dictionary<string, string> fieldReplacements)
+        public async Task<PredefinedContract> GetPredefinedContractByPredefineContractTypeAsync(PredefinedContractType predefinedContractType)
         {
-            // This part remains synchronous as QuestPDF's GeneratePdf() method is synchronous.
+            return await _model.GetPredefinedContractByPredefineContractTypeAsync(predefinedContractType);
+        }
+
+        public byte[] GenerateContractPdf(
+    Contract contract,
+    PredefinedContract predefinedContract,
+    Dictionary<string, string> fieldReplacements)
+        {
+            // Validate inputs.
+            if (contract == null)
+                throw new ArgumentNullException(nameof(contract));
+            if (predefinedContract == null)
+                throw new ArgumentNullException(nameof(predefinedContract));
+
+            // Ensure fieldReplacements is not null.
+            fieldReplacements ??= new Dictionary<string, string>();
+
+            // Replace format variables in the content.
             string content = predefinedContract.Content;
             foreach (var pair in fieldReplacements)
             {
                 content = content.Replace("{" + pair.Key + "}", pair.Value);
             }
 
-            // Note: We use the asynchronous GetProductDatesByContractIdAsync in our calling method.
-            // The PDF generation itself is synchronous.
-            // Placeholders for product dates are assumed to be replaced externally.
+            // Replace specific placeholders.
             content = content.Replace("{ContractID}", contract.ID.ToString());
             content = content.Replace("{OrderID}", contract.OrderID.ToString());
             content = content.Replace("{ContractStatus}", contract.ContractStatus);
+
+            // Set the QuestPDF license.
             QuestPDF.Settings.License = LicenseType.Community;
+
             var document = Document.Create(container =>
             {
-                
                 container.Page(page =>
                 {
                     page.Margin(50);
                     page.Size(PageSizes.A4);
                     page.PageColor(Colors.White);
-                    page.DefaultTextStyle(x => x.FontSize(12));
-                    page.Content().Text(content);
+                    page.DefaultTextStyle(textStyle => textStyle.FontSize(12).FontFamily("Segoe UI"));
+
+                    // Header section with title.
+                    page.Header().Element(header =>
+                    {
+                        // Apply container-wide styling and combine multiple elements inside a Column
+                        header
+                            .PaddingBottom(10)
+                            .BorderBottom(1)
+                            .BorderColor(Colors.Grey.Lighten2)
+                            .Column(column =>
+                            {
+                                // The Column itself is the single child of the header container.
+                                column.Item()
+                                      .Text("Contract Document")
+                                      .SemiBold()
+                                      .FontSize(20)
+                                      .AlignCenter();
+                            });
+                    });
+
+                    // Content section.
+                    page.Content().Element(contentContainer =>
+                    {
+                        // Apply padding and wrap the text in a Column container.
+                        contentContainer
+                            .PaddingVertical(10)
+                            .Column(column =>
+                            {
+                                column.Item()
+                                      .Text(content);
+                                      //.TextAlignment(TextAlignment.Justify);
+                            });
+                    });
+
+
+                    // Footer section with generation date and page numbers.
+                    page.Footer().Element(footer =>
+                    {
+                        footer
+                        .PaddingTop(10)
+                        .BorderTop(1)
+                        .BorderColor(Colors.Grey.Lighten2)
+                        .Column(column => 
+                            column.Item().Row(row =>
+                            {
+                                // Left part: Generation date.
+                                row.RelativeItem()
+                                   .Text($"Generated on: {DateTime.Now.ToShortDateString()}")
+                                   .FontSize(10)
+                                   .FontColor(Colors.Grey.Medium);
+
+                                // Right part: Page numbering.
+                                row.ConstantItem(100)
+                                   .AlignRight()
+                                   .Text(text =>
+                                   {
+                                       text.DefaultTextStyle(x => x.FontColor(Colors.Grey.Medium)
+                                                                    .FontSize(10));
+                                       text.Span("Page ");
+                                       text.CurrentPageNumber();
+                                       text.Span(" of ");
+                                       text.TotalPages();
+                                   });
+
+                            }));
+                        
+                    });
                 });
             });
 
+            // Generate and return the PDF as a byte array.
             return document.GeneratePdf();
         }
 
-        public async Task GenerateAndSaveContractAsync(Contract contract)
+
+
+
+        public async Task GenerateAndSaveContractAsync(Contract contract, PredefinedContractType contractType)
         {
-            // For this example, assume a predefined contract of type Buying.
-            var predefinedContract = new PredefinedContract
-            {
-                ID = (int)PredefinedContractType.Buying,
-                Content = "Contract for {ContractID} with Order {OrderID}.\nStart: {StartDate}, End: {EndDate}.\nStatus: {ContractStatus}"
-            };
+            
+            var predefinedContract = await GetPredefinedContractByPredefineContractTypeAsync(contractType);
+
 
             var fieldReplacements = new Dictionary<string, string>();
 

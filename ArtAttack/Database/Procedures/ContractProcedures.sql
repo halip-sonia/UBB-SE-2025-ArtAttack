@@ -5,10 +5,13 @@ Drop procedure if exists GetContractBuyer
 Drop procedure if exists GetContractSeller
 Drop procedure if exists AddContract
 Drop procedure if exists GetOrderSummaryInformation
+Drop procedure if exists GetPredefinedContractByID
+Drop procedure if exists GetProductDatesByContractID
+Drop procedure if exists GetContractsByBuyer
 Go
 
 CREATE PROCEDURE GetContractByID
-    @ContractID BIGINT
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -16,6 +19,18 @@ BEGIN
     SELECT *
     FROM Contract
     WHERE ID = @ContractID;
+END
+GO
+
+CREATE PROCEDURE GetPredefinedContractByID
+    @PContractID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT *
+    FROM PredefinedContract
+    WHERE ID = @PContractID;
 END
 GO
 
@@ -31,7 +46,7 @@ GO
 
 
 CREATE PROCEDURE GetContractHistory
-    @ContractID BIGINT
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -63,7 +78,7 @@ CREATE PROCEDURE AddContract
     @PredefinedContractID INT = NULL,
     @PDFID INT,
     @PDFFile VARBINARY(MAX),
-    @RenewedFromContractID BIGINT = NULL
+    @RenewedFromContractID INT = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -94,7 +109,7 @@ END
 GO
 
 CREATE PROCEDURE GetContractSeller
-    @ContractID BIGINT
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -110,7 +125,7 @@ END
 GO
 
 CREATE PROCEDURE GetContractBuyer
-    @ContractID BIGINT
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -125,7 +140,7 @@ END
 GO
 
 CREATE PROCEDURE GetOrderSummaryInformation
-    @ContractID BIGINT
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -139,7 +154,7 @@ END
 GO
 
 CREATE PROCEDURE GetProductDatesByContractID
-    @ContractID BIGINT
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -152,12 +167,26 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE GetContractsByBuyer
+    @BuyerID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
 
+    SELECT c.*
+    FROM Contract c
+    INNER JOIN [Order] o ON c.orderID = o.OrderID
+    WHERE o.BuyerID = @BuyerID;
+END
+GO
 
 -- Get a specific contract by ID
 EXEC GetContractByID @ContractID = 2;
 GO
 
+--Retrieve predefined contract
+exec GetPredefinedContractByID @PContractID = 3
+GO
 -- Retrieve all contracts
 EXEC GetAllContracts;
 GO
@@ -193,15 +222,4 @@ GO
 EXEC GetOrderSummaryInformation @ContractID = 2;
 GO
 
-CREATE PROCEDURE GetContractsByBuyer
-    @BuyerID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
 
-    SELECT c.*
-    FROM Contract c
-    INNER JOIN [Order] o ON c.orderID = o.OrderID
-    WHERE o.BuyerID = @BuyerID;
-END
-GO

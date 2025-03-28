@@ -87,7 +87,7 @@ namespace ArtAttack
         {
             if (contract != null)
             {
-                await _contractViewModel.GenerateAndSaveContractAsync(contract);
+                await _contractViewModel.GenerateAndSaveContractAsync(contract, PredefinedContractType.Borrowing);
 
                 // Optionally, show a success dialog after generating the contract.
                 var successDialog = new ContentDialog
