@@ -20,12 +20,13 @@ namespace ArtAttack.ViewModel
         private int _unreadCount;
         private bool _isLoading;
         private int currentUserId;
+        public event Action<string> ShowPopup;
 
         public event PropertyChangedEventHandler PropertyChanged;
 
         public NotificationViewModel(int currentUserId)
         {
-            _dataAdapter = new NotificationDataAdapter(Configuration._CONNECTION_STRING_);
+            _dataAdapter = new NotificationDataAdapter("Server=IUSTINS_LAPTOP\\SQLEXPRESS;Database=Notifications;Integrated Security=True;Encrypt=False;");
             Notifications = new ObservableCollection<Notification>();
             this.currentUserId = currentUserId;
             MarkAsReadCommand = new NotificationRelayCommand<int>(async (id) => await MarkAsReadAsync(id));
@@ -109,6 +110,7 @@ namespace ArtAttack.ViewModel
                 {
                     Notifications.Insert(0, notification);
                     UnreadCount++;
+                    ShowPopup?.Invoke("Notification sent!");
                 }
             }
             catch (Exception ex)
