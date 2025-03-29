@@ -1,9 +1,5 @@
-﻿using ArtAttack.Domain;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArtAttack.Services
 {
@@ -14,11 +10,11 @@ namespace ArtAttack.Services
             // luhn algorithm implementation for card number validation
             int numberOfDigits = cardNumber.Length;
 
-            if (!cardNumber.All(char.IsAsciiDigit) || numberOfDigits!=16)
+            if (!cardNumber.All(char.IsAsciiDigit) || numberOfDigits != 16)
                 return false;
 
             int nSum = 0;
-            bool isSecond = false; 
+            bool isSecond = false;
             for (int i = numberOfDigits - 1; i >= 0; i--)
             {
                 int d = cardNumber[i] - '0';

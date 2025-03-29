@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ArtAttack.Domain;
-using ArtAttack.Model;
+﻿using ArtAttack.Model;
 
 namespace ArtAttack.Services
 {
@@ -32,7 +26,7 @@ namespace ArtAttack.Services
         //    }
 
         //    return PaymentStatus.SUCCESS;
-            
+
         //}
 
         // This should either be refactored or cut out entirely

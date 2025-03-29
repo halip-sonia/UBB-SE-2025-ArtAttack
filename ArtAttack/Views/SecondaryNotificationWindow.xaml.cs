@@ -1,7 +1,5 @@
-using ArtAttack;
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 using ArtAttack.Domain;
+using Microsoft.UI.Xaml;
 
 namespace ArtAttack
 {

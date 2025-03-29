@@ -1,10 +1,6 @@
 ﻿using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 
 namespace ArtAttack.Services
 {
@@ -23,9 +19,9 @@ namespace ArtAttack.Services
 
         public bool ValidatePhoneNumber(string phoneNumber)
         {
-            return (phoneNumber.All(char.IsAsciiDigit) 
-                && phoneNumber.Length == 10 
-                && phoneNumber[0]=='0' && phoneNumber[1] == '7'
+            return (phoneNumber.All(char.IsAsciiDigit)
+                && phoneNumber.Length == 10
+                && phoneNumber[0] == '0' && phoneNumber[1] == '7'
                 );
         }
 

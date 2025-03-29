@@ -1,15 +1,14 @@
-﻿using System;
+﻿using ArtAttack.Domain;
+using ArtAttack.Model;
+using Microsoft.Data.SqlClient;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using ArtAttack.Domain;
-using ArtAttack.Model;
-using Microsoft.Data.SqlClient;
-using QuestPDF.Fluent;
-using QuestPDF.Helpers;
-using QuestPDF.Infrastructure;
 
 namespace ArtAttack.ViewModel
 {
@@ -55,9 +54,9 @@ namespace ArtAttack.ViewModel
         /// <summary>
         /// Retrieves the start and end dates of the product associated with a given contract.
         /// </summary>
-        public async Task<(DateTime StartDate, DateTime EndDate, double price, string name)?> GetProductDetailsByContractIdAsync(long contractId)
+        public async Task<(DateTime StartDate, DateTime EndDate)?> GetProductDatesByContractIdAsync(long contractId)
         {
-            return await _contractModel.GetProductDetailsByContractIdAsync(contractId);
+            return await _contractModel.GetProductDatesByContractIdAsync(contractId);
         }
 
         /// <summary>
@@ -65,7 +64,7 @@ namespace ArtAttack.ViewModel
         /// </summary>
         public async Task<bool> IsRenewalPeriodValidAsync()
         {
-            var dates = await GetProductDetailsByContractIdAsync(SelectedContract.ID);
+            var dates = await GetProductDatesByContractIdAsync(SelectedContract.ID);
             if (dates == null) return false;
 
             DateTime oldEndDate = dates.Value.EndDate;
@@ -156,7 +155,7 @@ namespace ArtAttack.ViewModel
                     return (false, "Contract is not in a valid renewal period (between 2 and 7 days before end date).");
 
                 // Get the current contract's product dates
-                var oldDates = await GetProductDetailsByContractIdAsync(SelectedContract.ID);
+                var oldDates = await GetProductDatesByContractIdAsync(SelectedContract.ID);
                 if (!oldDates.HasValue)
                     return (false, "Could not retrieve current contract dates.");
 

@@ -1,14 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using QuestPDF.Fluent;
-using QuestPDF.Helpers;
-using QuestPDF.Infrastructure;
-
-namespace ArtAttack.Domain
+﻿namespace ArtAttack.Domain
 {
     public class Contract
     {
@@ -34,7 +24,7 @@ namespace ArtAttack.Domain
         // Foreign key to the PDF table (holds the contract's PDF reference)
         public int PDFID { get; set; }
 
-        public string AdditionalTerms {  get; set; }
+        public string AdditionalTerms { get; set; }
 
         // Holds the ID of the original contract if this is a renewal; null otherwise
         public long? RenewedFromContractID { get; set; }

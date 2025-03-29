@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArtAttack.Domain
 {
-    internal class TrackedOrder
+    class TrackedOrder
     {
         public int TrackedOrderID { get; set; }
         public int OrderID { get; set; }
