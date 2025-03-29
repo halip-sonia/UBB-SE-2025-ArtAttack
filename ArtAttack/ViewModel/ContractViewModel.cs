@@ -56,7 +56,7 @@ namespace ArtAttack.ViewModel
             return await _model.GetOrderSummaryInformationAsync(contractId);
         }
 
-        public async Task<(DateTime StartDate, DateTime EndDate, float price, string name)?> GetProductDetailsByContractIdAsync(long contractId)
+        public async Task<(DateTime StartDate, DateTime EndDate, double price, string name)?> GetProductDetailsByContractIdAsync(long contractId)
         {
             return await _model.GetProductDetailsByContractIdAsync(contractId);
         }
@@ -75,6 +75,12 @@ namespace ArtAttack.ViewModel
         {
             return await _model.GetOrderDetailsAsync(contractId);
         }
+
+        public async Task<DateTime?> GetDeliveryDateByContractIdAsync(long contractId)
+        {
+            return await _model.GetDeliveryDateByContractIdAsync(contractId);
+        }
+
 
 
         public byte[] GenerateContractPdf(
@@ -208,8 +214,9 @@ namespace ArtAttack.ViewModel
             DateTime EndDate = productDetails.Value.EndDate;
             var LoanPeriod = (EndDate - StartDate).TotalDays;
             var orderDetails = await GetOrderDetailsAsync(contract.ID);
-            string PaymentMethod = orderDetails.PaymentMethod;
-            DateTime OrderDate = orderDetails.OrderDate;
+            var orderSummaryData = await GetOrderSummaryInformationAsync(contract.ID);
+            var deliveryDate = await GetDeliveryDateByContractIdAsync(contract.ID);
+
 
             if (productDetails.HasValue)
             {
@@ -222,6 +229,8 @@ namespace ArtAttack.ViewModel
                 fieldReplacements["SellerName"] = sellerDetails.SellerName;
                 fieldReplacements["PaymentMethod"] = orderDetails.PaymentMethod;
                 fieldReplacements["AgreementDate"] = orderDetails.OrderDate.ToShortDateString();
+                fieldReplacements["LateFee"] = orderSummaryData["warrantyTax"].ToString();
+                fieldReplacements["DeliveryDate"] = deliveryDate.ToString();
             }
             else
             {
@@ -234,6 +243,8 @@ namespace ArtAttack.ViewModel
                 fieldReplacements["SellerName"] = "N/A";
                 fieldReplacements["PaymentMethod"] = "N/A";
                 fieldReplacements["AgreementDate"] = "N/A";
+                fieldReplacements["LateFee"] = "N/A";
+                fieldReplacements["DeliveryDate"] = "N/A";
             }
 
             // Generate the PDF (synchronously) using the generated replacements.

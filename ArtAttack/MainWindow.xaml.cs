@@ -44,7 +44,7 @@ namespace ArtAttack
         private async void RootGrid_Loaded(object sender, RoutedEventArgs e)
         {
             // Asynchronously fetch the contract after the UI is ready.
-            contract = await _contractViewModel.GetContractByIdAsync(1);
+            contract = await _contractViewModel.GetContractByIdAsync(2);
         }
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)

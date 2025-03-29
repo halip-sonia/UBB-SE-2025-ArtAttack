@@ -97,16 +97,16 @@ INSERT INTO DummyProduct (name, price, SellerID, productType, startDate, endDate
 *****************************/
 -- Note: ProductType is a foreign key to DummyProduct so we use a product ID.
 -- OrderSummaryID and OrderHistoryID are assumed to be 1 to 5.
-INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderHistoryID)
-  VALUES (1, 1, 1, 'card', 1, 1);
-INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderHistoryID)
-  VALUES (2, 2, 2, 'cash', 2, 2);
-INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderHistoryID)
-  VALUES (3, 3, 3, 'wallet', 3, 3);
-INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderHistoryID)
-  VALUES (4, 4, 4, 'card', 4, 4);
-INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderHistoryID)
-  VALUES (5, 5, 5, 'cash', 5, 5);
+INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderDate, OrderHistoryID)
+  VALUES (1, 1, 1, 'card', 1, '2025-03-28', 1);
+INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderDate, OrderHistoryID)
+  VALUES (2, 2, 2, 'cash', 2, '2025-03-28', 2);
+INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderDate, OrderHistoryID)
+  VALUES (3, 3, 3, 'wallet', 3, '2025-03-28', 3);
+INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderDate, OrderHistoryID)
+  VALUES (4, 4, 4, 'card', 4, '2025-03-28', 4);
+INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderDate, OrderHistoryID)
+  VALUES (5, 5, 5, 'cash', 5, '2025-03-28', 5);
 
 /****************************
 * 10. Contract
@@ -123,7 +123,8 @@ INSERT INTO Contract (orderID, contractStatus, contractContent, renewalCount, pr
   VALUES (4, 'ACTIVE', 'Contract for order 4', 0, NULL, 4, NULL);
 INSERT INTO Contract (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
   VALUES (5, 'ACTIVE', 'Contract for order 5', 0, NULL, 5, NULL);
-
+  Select * from Contract;
+  Select * from [Order];
 /****************************
 * 11. Notification
 *****************************/

@@ -299,7 +299,7 @@ namespace ArtAttack.Model
         /// <summary>
         /// Asynchronously retrieves the startDate and endDate for a contract from the DummyProduct table.
         /// </summary>
-        public async Task<(DateTime StartDate, DateTime EndDate, float price, string name)?> GetProductDetailsByContractIdAsync(long contractId)
+        public async Task<(DateTime StartDate, DateTime EndDate, double price, string name)?> GetProductDetailsByContractIdAsync(long contractId)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -315,7 +315,7 @@ namespace ArtAttack.Model
                         {
                             var startDate = reader.GetDateTime(reader.GetOrdinal("startDate"));
                             var endDate = reader.GetDateTime(reader.GetOrdinal("endDate"));
-                            var price = reader.GetFloat(reader.GetOrdinal("price"));
+                            var price = reader.GetDouble(reader.GetOrdinal("price"));
                             var name = reader.GetString(reader.GetOrdinal("name"));
                             return (startDate, endDate, price, name);
                         }
@@ -378,15 +378,41 @@ namespace ArtAttack.Model
                     {
                         if (await reader.ReadAsync())
                         {
-                            // Assuming PaymentMethod is a string and OrderDate is a DateTime.
                             string paymentMethod = reader["PaymentMethod"] as string;
-                            DateTime orderDate = reader.GetDateTime(reader.GetOrdinal("OrderDate"));
-                            details = (paymentMethod, orderDate);
+                            var orderDate = reader.GetDateTime(reader.GetOrdinal("OrderDate"));
                         }
                     }
                 }
             }
             return details;
         }
+
+        public async Task<DateTime?> GetDeliveryDateByContractIdAsync(long contractId)
+        {
+            DateTime? deliveryDate = null;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetDeliveryDateByContractID", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ContractID", SqlDbType.Int).Value = contractId;
+                    await conn.OpenAsync();
+
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            int ordinal = reader.GetOrdinal("EstimatedDeliveryDate");
+                            if (!reader.IsDBNull(ordinal))
+                            {
+                                deliveryDate = reader.GetDateTime(ordinal);
+                            }
+                        }
+                    }
+                }
+            }
+            return deliveryDate;
+        }
+
     }
 }

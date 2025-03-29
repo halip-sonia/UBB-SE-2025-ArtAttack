@@ -9,6 +9,7 @@ Drop procedure if exists GetPredefinedContractByID
 Drop procedure if exists GetProductDetailsByContractID
 Drop procedure if exists GetContractsByBuyer
 Drop procedure if exists GetOrderDetails
+Drop procedure if exists GetDeliveryDateByContractID
 Go
 
 CREATE PROCEDURE GetContractByID
@@ -193,8 +194,23 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE GetDeliveryDateByContractID
+    @ContractID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT t.EstimatedDeliveryDate
+    FROM [Contract] c
+    INNER JOIN TrackedOrders t ON c.OrderID = t.TrackedOrderID
+    WHERE c.ID = @ContractID;
+END;
+GO
+
+
+
 -- Get a specific contract by ID
-EXEC GetContractByID @ContractID = 2;
+EXEC GetContractByID @ContractID = 1;
 GO
 
 --Retrieve predefined contract
@@ -213,7 +229,7 @@ GO
 DECLARE @SamplePDF VARBINARY(MAX) = 0x255044462D312E350D0A; -- Represents "%PDF-1.5" in hex
 
 EXEC AddContract 
-    @OrderID = 0,
+    @OrderID = 1,
     @ContractStatus = 'ACTIVE',
     @ContractContent = 'This is a sample contract content.',
     @RenewalCount = 0,

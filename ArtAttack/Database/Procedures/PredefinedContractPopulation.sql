@@ -1,11 +1,3 @@
-drop table if exists [PredefinedContract]
-
-create table [PredefinedContract](
-	[ID] integer identity primary key,
-	[content] TEXT not null,
-	--contract type should be expunged from Class Diagram as it is held by the Order Summary Table
-);
-
 INSERT INTO PredefinedContract (content)
 VALUES (
 'Product Purchase Agreement
