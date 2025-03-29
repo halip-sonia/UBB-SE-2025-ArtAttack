@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 
@@ -25,25 +26,37 @@ namespace ArtAttack.Views
     /// </summary>
     public sealed partial class TrackedOrderBuyerPage : Page
     {
-        private readonly TrackedOrderViewModel viewModel;
+        internal ITrackedOrderViewModel ViewModel { get; set; }
         public int TrackedOrderID { get; set; }
         internal List<OrderCheckpoint> Checkpoints { get; set; }
 
-        public TrackedOrderBuyerPage(int trackedOrderID)
+        internal TrackedOrderBuyerPage(ITrackedOrderViewModel viewModel, int trackedOrderID)
         {
             this.InitializeComponent();
+            ViewModel = viewModel;
             TrackedOrderID = trackedOrderID;
-            viewModel = new TrackedOrderViewModel(Shared.Configuration._CONNECTION_STRING_);
             Checkpoints = new List<OrderCheckpoint>();
             LoadOrderData();
+        }
+        private async Task ShowErrorDialog(string errorMessage)
+        {
+            var dialog = new ContentDialog
+            {
+                Title = "Error",
+                Content = errorMessage,
+                CloseButtonText = "OK",
+                XamlRoot = this.XamlRoot
+            };
+
+            await dialog.ShowAsync();
         }
 
         private async void LoadOrderData()
         {
-            var order = await viewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
-            if (order != null)
+            try
             {
-                var checkpoints = await viewModel.GetAllOrderCheckpointsAsync(TrackedOrderID);
+                var order = await ViewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
+                var checkpoints = await ViewModel.GetAllOrderCheckpointsAsync(TrackedOrderID);
                 checkpoints.Reverse();
 
                 DataContext = new
@@ -54,6 +67,10 @@ namespace ArtAttack.Views
                     EstimatedDeliveryDate = order.EstimatedDeliveryDate,
                     Checkpoints = checkpoints
                 };
+            }
+            catch (Exception ex)
+            {
+                await ShowErrorDialog(ex.Message);
             }
         }
     }

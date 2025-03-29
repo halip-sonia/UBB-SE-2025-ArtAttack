@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
@@ -27,14 +28,14 @@ namespace ArtAttack.Views
     /// </summary>
     public sealed partial class TrackedOrderControlPage : Page
     {
-        private readonly ITrackedOrderViewModel viewModel;
+        internal ITrackedOrderViewModel ViewModel { get; set; }
         public int TrackedOrderID { get; set; }
         internal List<OrderCheckpoint> Checkpoints { get; set; }
 
-        public TrackedOrderControlPage(int trackedOrderID)
+        internal TrackedOrderControlPage(ITrackedOrderViewModel viewModel, int trackedOrderID)
         {
             this.InitializeComponent();
-            viewModel = new TrackedOrderViewModel(Shared.Configuration._CONNECTION_STRING_);
+            ViewModel = viewModel;
             TrackedOrderID = trackedOrderID;
             Checkpoints = new List<OrderCheckpoint>();
             LoadOrderData();
@@ -42,10 +43,10 @@ namespace ArtAttack.Views
 
         private async void LoadOrderData()
         {
-            var order = await viewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
+            var order = await ViewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
             if (order != null)
             {
-                var checkpoints = await viewModel.GetAllOrderCheckpointsAsync(TrackedOrderID);
+                var checkpoints = await ViewModel.GetAllOrderCheckpointsAsync(TrackedOrderID);
                 checkpoints.Reverse();
 
                 DataContext = new
@@ -72,14 +73,24 @@ namespace ArtAttack.Views
             await dialog.ShowAsync();
         }
 
+        private async Task ShowSuccessDialog(string message)
+        {
+            var dialog = new ContentDialog
+            {
+                Title = "Success",
+                Content = message,
+                CloseButtonText = "OK",
+                XamlRoot = this.XamlRoot
+            };
+            await dialog.ShowAsync();
+        }
+
         private async void RevertLastCheckpointButton_Clicked(object sender, RoutedEventArgs e)
         {
             try
             {
-                var order = await viewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
-                if (order == null)
-                    throw new Exception("No TrackedOrder corresponds to the id: " + TrackedOrderID.ToString());
-                await viewModel.RevertToPreviousCheckpoint((TrackedOrder)order);
+                TrackedOrder order = await ViewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
+                await ViewModel.RevertToPreviousCheckpoint(order);
                 LoadOrderData();
             }
             catch (Exception ex)
@@ -112,17 +123,189 @@ namespace ArtAttack.Views
                 {
                     DateTime pickedDateTime = pickedDate.Value.DateTime;
                     DateOnly newEstimatedDeliveryDate = DateOnly.FromDateTime(pickedDateTime);
-                    var order = await viewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
-                    if (order == null)
-                        throw new Exception("No TrackedOrder corresponds to the id: " + TrackedOrderID.ToString());
-                    await viewModel.UpdateTrackedOrderAsync(TrackedOrderID, newEstimatedDeliveryDate, order.CurrentStatus);
+                    var order = await ViewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
+                    await ViewModel.UpdateTrackedOrderAsync(TrackedOrderID, newEstimatedDeliveryDate, order.CurrentStatus);
                     LoadOrderData();
                 }
                 catch (Exception ex)
                 {
                     await ShowErrorDialog($"{ex.Message}");
                 }
+                finally
+                {
+                    deliveryCalendarDatePicker.Visibility=Visibility.Collapsed;
+                    confirmChangeEstimatedDeliveryDateButton.Visibility=Visibility.Collapsed;
+                    deliveryCalendarDatePicker.Date = null;
+                }
             }
         }
+
+        private void AddNewCheckpointButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            if(AddDetails.Visibility == Visibility.Collapsed)
+                AddDetails.Visibility = Visibility.Visible;
+            else
+                AddDetails.Visibility = Visibility.Collapsed;
+        }
+
+        private async void ConfirmAddNewCheckpointButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                string location = LocationTextBoxAdd.Text;
+                string description = DescriptionTextBoxAdd.Text;
+                string status = (StatusComboBoxAdd.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+                if (string.IsNullOrWhiteSpace(description) || string.IsNullOrWhiteSpace(status))
+                {
+                    await ShowErrorDialog("Please fill in all fields.");
+                    return;
+                }
+
+                await ViewModel.AddOrderCheckpointAsync(new OrderCheckpoint
+                {
+                    Timestamp = DateTime.Now,
+                    Location = location,
+                    Description = description,
+                    Status = Enum.Parse<OrderStatus>(status),
+                    TrackedOrderID = this.TrackedOrderID
+                });
+
+                await ShowSuccessDialog("Checkpoint added successfully.");
+                LoadOrderData();
+            }
+            catch (Exception ex)
+            {
+                await ShowErrorDialog("Failed to add checkpoint./n" + ex.ToString());
+            }
+            finally
+            {
+                AddDetails.Visibility = Visibility.Collapsed;
+
+                LocationTextBoxAdd.Text = "";
+                DescriptionTextBoxAdd.Text = "";
+                StatusComboBoxAdd.SelectedIndex = -1;
+            }
+        }
+
+        private async void UpdateCurrentCheckpointButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            TrackedOrder order;
+            try
+            {
+                order = await ViewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
+            }
+            catch (Exception ex)
+            {
+                await ShowErrorDialog(ex.ToString());
+                return;
+            }
+            var lastCheckpoint = (await ViewModel.GetLastCheckpoint(order));
+
+            if (lastCheckpoint == null)
+            {
+                await ShowErrorDialog("No checkpoint found.");
+                return;
+            }
+
+            // Set default values
+            TimestampDatePicker.Date = lastCheckpoint.Timestamp.Date;
+            TimestampTimePicker.Time = lastCheckpoint.Timestamp.TimeOfDay;
+            LocationTextBoxUpdate.Text = lastCheckpoint.Location;
+            DescriptionTextBoxUpdate.Text = lastCheckpoint.Description;
+
+            foreach (ComboBoxItem item in StatusComboBoxUpdate.Items)
+            {
+                if (item.Content.ToString() == lastCheckpoint.Status.ToString())
+                {
+                    StatusComboBoxUpdate.SelectedItem = item;
+                    break;
+                }
+            }
+
+            TimestampDatePicker.MaxDate = lastCheckpoint.Timestamp.Date;
+
+            if (UpdateDetails.Visibility == Visibility.Collapsed)
+                UpdateDetails.Visibility = Visibility.Visible;
+            else
+                UpdateDetails.Visibility = Visibility.Collapsed;
+        }
+
+        private void ManualTimestampRadio_Checked(object sender, RoutedEventArgs e)
+        {
+            if(DateTimePickers!=null)
+                DateTimePickers.Visibility = Visibility.Visible;
+        }
+
+        private void AutoTimestampRadio_Checked(object sender, RoutedEventArgs e)
+        {
+            DateTimePickers.Visibility = Visibility.Collapsed;
+        }
+
+        private async void ConfirmUpdateCurrentCheckpointButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(DescriptionTextBoxUpdate.Text) || StatusComboBoxUpdate.SelectedItem == null)
+            {
+                await ShowErrorDialog("Please fill in all the required fields.");
+                return;
+            }
+
+            DateTime timestamp;
+            if (ManualTimestampRadio.IsChecked == true)
+            {
+                var pickedDate = TimestampDatePicker.Date;
+                if(pickedDate == null)
+                {
+                    await ShowErrorDialog("Please fill in all fields.");
+                    return;
+                }
+                DateTime pickedDateTime = pickedDate.Value.DateTime;
+                timestamp = pickedDateTime + TimestampTimePicker.Time;
+            }
+            else
+            {
+                timestamp = DateTime.Now;
+            }
+
+            string location = LocationTextBoxUpdate.Text;
+            string description = DescriptionTextBoxUpdate.Text;
+            string status = (StatusComboBoxUpdate.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+            try {
+                TrackedOrder order = await ViewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
+
+                var lastCheckpoint = await ViewModel.GetLastCheckpoint(order);
+                if (lastCheckpoint == null)
+                {
+                    await ShowErrorDialog("No checkpoint found to update.");
+                    return;
+                }
+
+                await ViewModel.UpdateOrderCheckpointAsync(
+                    lastCheckpoint.CheckpointID,
+                    timestamp,
+                    location,
+                    description,
+                    Enum.Parse<OrderStatus>(status)
+                );
+
+                await ShowSuccessDialog("Checkpoint updated successfully.");
+                LoadOrderData();
+            }
+            catch (Exception ex)
+            {
+                await ShowErrorDialog("Failed to update checkpoint.\n" + ex.ToString());
+            }
+
+            // Hide and reset fields
+            UpdateDetails.Visibility = Visibility.Collapsed;
+
+            TimestampDatePicker.Date = null;
+            TimestampTimePicker.Time = DateTime.Now.TimeOfDay;
+            LocationTextBoxUpdate.Text = "";
+            DescriptionTextBoxUpdate.Text = "";
+            StatusComboBoxUpdate.SelectedIndex = -1;
+        }
+
     }
 }

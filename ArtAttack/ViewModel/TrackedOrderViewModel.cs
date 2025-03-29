@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace ArtAttack.ViewModel
 {
-    class TrackedOrderViewModel : ITrackedOrderViewModel
+    internal class TrackedOrderViewModel : ITrackedOrderViewModel
     {
         private readonly TrackedOrderModel model;
 
@@ -18,12 +18,12 @@ namespace ArtAttack.ViewModel
             model = new TrackedOrderModel(connectionString);
         }
 
-        public async Task<TrackedOrder?> GetTrackedOrderByIDAsync(int trackedOrderID)
+        public async Task<TrackedOrder> GetTrackedOrderByIDAsync(int trackedOrderID)
         {
             return await model.GetTrackedOrderByIdAsync(trackedOrderID);
         }
 
-        public async Task<OrderCheckpoint?> GetOrderCheckpointByIDAsync(int checkpointID)
+        public async Task<OrderCheckpoint> GetOrderCheckpointByIDAsync(int checkpointID)
         {
             return await model.GetOrderCheckpointByIdAsync(checkpointID);
         }
@@ -58,19 +58,20 @@ namespace ArtAttack.ViewModel
             return await model.AddOrderCheckpointAsync(checkpoint);
         }
 
-        public async Task<bool> UpdateOrderCheckpointAsync(int checkpointID, DateTime timestamp, string? location, string description, OrderStatus status)
+        public async Task UpdateOrderCheckpointAsync(int checkpointID, DateTime timestamp, string? location, string description, OrderStatus status)
         {
-            return await model.UpdateOrderCheckpointAsync(checkpointID, timestamp, location, description, status);
+            await model.UpdateOrderCheckpointAsync(checkpointID, timestamp, location, description, status);
         }
 
-        public async Task<bool> UpdateTrackedOrderAsync(int trackedOrderID, DateOnly estimatedDeliveryDate, OrderStatus currentStatus)
+        public async Task UpdateTrackedOrderAsync(int trackedOrderID, DateOnly estimatedDeliveryDate, OrderStatus currentStatus)
         {
-            return await model.UpdateTrackedOrderAsync(trackedOrderID, estimatedDeliveryDate, currentStatus);
+            await model.UpdateTrackedOrderAsync(trackedOrderID, estimatedDeliveryDate, currentStatus);
         }
 
         public async Task RevertToPreviousCheckpoint(TrackedOrder order)
         {
-            if (await GetNumberOfCheckpoints(order) <= 1)
+            int initialNrOfCheckpoints = await GetNumberOfCheckpoints(order);
+            if (initialNrOfCheckpoints == 0)
                 throw new Exception("Cannot revert further");
 
             var lastCheckpoint = await GetLastCheckpoint(order);
@@ -80,8 +81,16 @@ namespace ArtAttack.ViewModel
                 bool deleteSuccessful = await DeleteOrderCheckpointAsync(lastCheckpointCast.CheckpointID);
                 if (deleteSuccessful)
                 {
-                    OrderCheckpoint newLastCheckpoint = (OrderCheckpoint)await GetLastCheckpoint(order);
-                    await UpdateTrackedOrderAsync(order.TrackedOrderID, order.EstimatedDeliveryDate, newLastCheckpoint.Status);
+                    if(initialNrOfCheckpoints == 1)
+                    {
+                        await UpdateTrackedOrderAsync(order.TrackedOrderID, order.EstimatedDeliveryDate, OrderStatus.PROCESSING);
+                    }
+                    else 
+                    {
+                        OrderCheckpoint newLastCheckpoint = (OrderCheckpoint)await GetLastCheckpoint(order);
+                        await UpdateTrackedOrderAsync(order.TrackedOrderID, order.EstimatedDeliveryDate, newLastCheckpoint.Status);
+                    }
+                    
                 }
                 else
                     throw new Exception("Unexpected error when trying to delete the current checkpoint");

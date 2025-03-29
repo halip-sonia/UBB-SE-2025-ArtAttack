@@ -33,12 +33,14 @@ namespace ArtAttack
 
         private Contract contract;
         private IContractViewModel _contractViewModel;
+        private ITrackedOrderViewModel trackedOrderViewModel;
 
         public MainWindow()
         {
             this.InitializeComponent();
             contract = new Contract();
             _contractViewModel = new ContractViewModel(Configuration._CONNECTION_STRING_);
+            trackedOrderViewModel = new TrackedOrderViewModel(Configuration._CONNECTION_STRING_);
         }
 
         // This event handler is called when the Grid (root element) is loaded.
@@ -150,23 +152,79 @@ namespace ArtAttack
             await dialog.ShowAsync();
         }
 
-        private void trackOrderButton_Click(object sender, RoutedEventArgs e)
+        private async void trackOrderButton_Click(object sender, RoutedEventArgs e)
         {
-            int trackedOrderID = 2;
-            bool hasControlAccess = true;
-            TrackedOrderWindow trackedOrderWindow = new TrackedOrderWindow();
-            if (hasControlAccess)
-            {
-                var controlp = new TrackedOrderControlPage(trackedOrderID);
-                trackedOrderWindow.Content = controlp;
-            }
+            var inputID = await ShowTrackedOrderInputDialogAsync();
+            if (inputID == null)
+                return;
+            if (inputID == -1)
+                await ShowNoTrackedOrderDialogAsync("Please enter an integer!");
             else
             {
-                var buyerp = new TrackedOrderBuyerPage(trackedOrderID);
-                trackedOrderWindow.Content = buyerp;
+                int trackedOrderID = (int)inputID.Value;
+                try
+                {
+                    var order = await trackedOrderViewModel.GetTrackedOrderByIDAsync(trackedOrderID);
+                    bool hasControlAccess = true;
+                    TrackedOrderWindow trackedOrderWindow = new TrackedOrderWindow();
+                    if (hasControlAccess)
+                    {
+                        var controlp = new TrackedOrderControlPage(trackedOrderViewModel, trackedOrderID);
+                        trackedOrderWindow.Content = controlp;
+                    }
+                    else
+                    {
+                        var buyerp = new TrackedOrderBuyerPage(trackedOrderViewModel, trackedOrderID);
+                        trackedOrderWindow.Content = buyerp;
+                    }
+
+                    trackedOrderWindow.Activate();
+                }
+                catch (Exception)
+                {
+                    await ShowNoTrackedOrderDialogAsync("No TrackedOrder has been found with ID " + trackedOrderID.ToString());
+                }
             }
-            
-            trackedOrderWindow.Activate();
+        }
+
+        private async Task<int?> ShowTrackedOrderInputDialogAsync()
+        {
+            var contentDialog = new ContentDialog
+            {
+                Title = "Enter Tracked Order ID",
+                PrimaryButtonText = "Confirm",
+                CloseButtonText = "Cancel",
+                DefaultButton = ContentDialogButton.Primary,
+                XamlRoot = RootGrid.XamlRoot
+            };
+
+            TextBox inputTextBox = new TextBox { PlaceholderText = "Enter Tracked Order ID" };
+            contentDialog.Content = inputTextBox;
+
+            var result = await contentDialog.ShowAsync();
+            bool parseSuccessful = int.TryParse(inputTextBox.Text, out int trackedOrderID);
+
+            if (result == ContentDialogResult.Primary && parseSuccessful)
+                return trackedOrderID;
+
+            if (result == ContentDialogResult.Primary && !parseSuccessful)
+                return -1;
+
+            return null;
+        }
+
+
+        private async Task ShowNoTrackedOrderDialogAsync(string message)
+        {
+            var contentDialog = new ContentDialog
+            {
+                Title = "Error",
+                Content = message,
+                CloseButtonText = "OK",
+                XamlRoot = RootGrid.XamlRoot
+            };
+
+            await contentDialog.ShowAsync();
         }
 
     }

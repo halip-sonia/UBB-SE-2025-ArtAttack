@@ -33,8 +33,8 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@timestamp", checkpoint.Timestamp);
                     cmd.Parameters.AddWithValue("@location", checkpoint.Location ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@description", checkpoint.Description);
-                    cmd.Parameters.AddWithValue("@status", checkpoint.Status.ToString());
-                    cmd.Parameters.AddWithValue("@trackOrderID", checkpoint.TrackedOrderID);
+                    cmd.Parameters.AddWithValue("@checkpointStatus", checkpoint.Status.ToString());
+                    cmd.Parameters.AddWithValue("@trackedOrderID", checkpoint.TrackedOrderID);
 
                     SqlParameter outputParam = new SqlParameter("@newCheckpointID", SqlDbType.Int)
                     {
@@ -62,7 +62,7 @@ namespace ArtAttack.Model
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@estimatedDeliveryDate", order.EstimatedDeliveryDate);
                     cmd.Parameters.AddWithValue("@deliveryAddress", order.DeliveryAddress);
-                    cmd.Parameters.AddWithValue("@status", order.CurrentStatus.ToString());
+                    cmd.Parameters.AddWithValue("@orderStatus", order.CurrentStatus.ToString());
                     cmd.Parameters.AddWithValue("@orderID", order.OrderID);
 
                     SqlParameter outputParam = new SqlParameter("@newTrackedOrderID", SqlDbType.Int)
@@ -223,7 +223,7 @@ namespace ArtAttack.Model
             throw new Exception("No TrackedOrder with id: " + trackOrderID.ToString());
         }
 
-        public async Task<bool> UpdateOrderCheckpointAsync(int checkpointID, DateTime timestamp, string? location, string description, OrderStatus status)
+        public async Task UpdateOrderCheckpointAsync(int checkpointID, DateTime timestamp, string? location, string description, OrderStatus status)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -231,18 +231,18 @@ namespace ArtAttack.Model
                 using (SqlCommand cmd = new SqlCommand("uspUpdateOrderCheckpoint", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.Parameters.AddWithValue("@timestamp", timestamp.ToString());
+                    cmd.Parameters.AddWithValue("@timestamp", timestamp);
                     cmd.Parameters.AddWithValue("@location", location ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@description", description);
                     cmd.Parameters.AddWithValue("@checkpointStatus", status.ToString());
                     cmd.Parameters.AddWithValue("@checkpointID", checkpointID);
 
-                    return await cmd.ExecuteNonQueryAsync() > 0;
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public async Task<bool> UpdateTrackedOrderAsync(int trackedOrderID, DateOnly estimatedDeliveryDate, OrderStatus currentStatus)
+        public async Task UpdateTrackedOrderAsync(int trackedOrderID, DateOnly estimatedDeliveryDate, OrderStatus currentStatus)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
@@ -256,7 +256,7 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@orderStatus", currentStatus.ToString());
                     cmd.Parameters.AddWithValue("@trackedOrderID", trackedOrderID);
 
-                    return await cmd.ExecuteNonQueryAsync() > 0;
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }

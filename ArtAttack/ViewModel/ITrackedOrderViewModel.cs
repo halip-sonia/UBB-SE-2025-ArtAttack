@@ -15,10 +15,10 @@ namespace ArtAttack.ViewModel
         Task<List<TrackedOrder>> GetAllTrackedOrdersAsync();
         Task<OrderCheckpoint?> GetLastCheckpoint(TrackedOrder order);
         Task<int> GetNumberOfCheckpoints(TrackedOrder order);
-        Task<OrderCheckpoint?> GetOrderCheckpointByIDAsync(int checkpointID);
-        Task<TrackedOrder?> GetTrackedOrderByIDAsync(int trackedOrderID);
+        Task<OrderCheckpoint> GetOrderCheckpointByIDAsync(int checkpointID);
+        Task<TrackedOrder> GetTrackedOrderByIDAsync(int trackedOrderID);
         Task RevertToPreviousCheckpoint(TrackedOrder order);
-        Task<bool> UpdateOrderCheckpointAsync(int checkpointID, DateTime timestamp, string? location, string description, OrderStatus status);
-        Task<bool> UpdateTrackedOrderAsync(int trackedOrderID, DateOnly estimatedDeliveryDate, OrderStatus currentStatus);
+        Task UpdateOrderCheckpointAsync(int checkpointID, DateTime timestamp, string? location, string description, OrderStatus status);
+        Task UpdateTrackedOrderAsync(int trackedOrderID, DateOnly estimatedDeliveryDate, OrderStatus currentStatus);
     }
 }
