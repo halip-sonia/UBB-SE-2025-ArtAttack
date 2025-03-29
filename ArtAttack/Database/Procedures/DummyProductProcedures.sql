@@ -1,3 +1,17 @@
+CREATE OR ALTER TRIGGER tr_CreateWaitListForProduct
+ON DummyProduct
+AFTER INSERT, UPDATE
+AS
+BEGIN
+    INSERT INTO WaitListProduct (productID, availableAgain)
+    SELECT i.ID, i.endDate
+    FROM inserted i
+    LEFT JOIN WaitListProduct wp ON i.ID = wp.productID
+    WHERE i.endDate IS NOT NULL
+      AND wp.waitListProductID IS NULL;
+END
+GO
+
 CREATE PROCEDURE UpdateDummyProduct
     @ID INT,
     @Name VARCHAR(64),

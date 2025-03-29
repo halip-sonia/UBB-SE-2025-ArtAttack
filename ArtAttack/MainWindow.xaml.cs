@@ -26,9 +26,6 @@ using ArtAttack.Views;
 
 namespace ArtAttack
 {
-    /// <summary>
-    /// An empty window that can be used on its own or navigated to within a Frame.
-    /// </summary>
     public sealed partial class MainWindow : Window
     {
 
@@ -128,8 +125,7 @@ namespace ArtAttack
         {
             try
             {
-                // Example product ID - replace with actual value from your system
-                int productId = 6; // Watercolor Paint Set (available product)
+                int productId = 5; 
 
                 var borrowWindow = new BorrowProductWindow(Configuration._CONNECTION_STRING_, productId);
                 borrowWindow.Activate();
@@ -163,7 +159,6 @@ namespace ArtAttack
 
         private async Task ShowErrorDialogAsync(string title, string message)
         {
-            // Create a temporary ContentDialog without relying on RootGrid
             var dialog = new ContentDialog
             {
                 Title = title,
