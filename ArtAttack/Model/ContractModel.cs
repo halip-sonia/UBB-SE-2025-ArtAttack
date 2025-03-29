@@ -16,6 +16,35 @@ namespace ArtAttack.Model
             _connectionString = connectionString;
         }
 
+        public async Task<PredefinedContract> GetPredefinedContractByPredefineContractTypeAsync(PredefinedContractType predefinedContractType)
+        {
+            PredefinedContract predefinedContract = null;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetPredefinedContractByID", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    // Pass the ID from the predefinedContract to the stored procedure parameter.
+                    cmd.Parameters.Add("@PContractID", SqlDbType.BigInt).Value = predefinedContractType;
+                    await conn.OpenAsync();
+
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (reader.HasRows && await reader.ReadAsync())
+                        {
+                            predefinedContract = new PredefinedContract
+                            {
+
+                                ID = reader.GetInt32("ID"),
+                                Content = reader["content"] as string
+                            };
+                        }
+                    }
+                }
+            }
+            return predefinedContract;
+        }
+
         /// <summary>
         /// Asynchronously retrieves a single contract using the GetContractByID stored procedure.
         /// </summary>
@@ -36,7 +65,7 @@ namespace ArtAttack.Model
                         {
                             contract = new Contract
                             {
-                                ID = reader.GetInt64("ID"),
+                                ID = reader.GetInt32("ID"),
                                 OrderID = reader.GetInt32("orderID"),
                                 ContractStatus = reader.GetString("contractStatus"),
                                 ContractContent = reader["contractContent"] as string,
@@ -270,11 +299,11 @@ namespace ArtAttack.Model
         /// <summary>
         /// Asynchronously retrieves the startDate and endDate for a contract from the DummyProduct table.
         /// </summary>
-        public async Task<(DateTime StartDate, DateTime EndDate)?> GetProductDatesByContractIdAsync(long contractId)
+        public async Task<(DateTime StartDate, DateTime EndDate, double price, string name)?> GetProductDetailsByContractIdAsync(long contractId)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("GetProductDatesByContractID", conn))
+                using (SqlCommand cmd = new SqlCommand("GetProductDetailsByContractID", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ContractID", contractId);
@@ -286,7 +315,9 @@ namespace ArtAttack.Model
                         {
                             var startDate = reader.GetDateTime(reader.GetOrdinal("startDate"));
                             var endDate = reader.GetDateTime(reader.GetOrdinal("endDate"));
-                            return (startDate, endDate);
+                            var price = reader.GetDouble(reader.GetOrdinal("price"));
+                            var name = reader.GetString(reader.GetOrdinal("name"));
+                            return (startDate, endDate, price, name);
                         }
                     }
                 }
@@ -321,6 +352,7 @@ namespace ArtAttack.Model
                                 RenewalCount = reader.GetInt32(reader.GetOrdinal("renewalCount")),
                                 PredefinedContractID = reader["predefinedContractID"] != DBNull.Value ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID")) : null,
                                 PDFID = reader.GetInt32(reader.GetOrdinal("pdfID")),
+                                AdditionalTerms = reader.GetString(reader.GetOrdinal("AdditionalTerms")),
                                 RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID")) : null
                             };
                             contracts.Add(contract);
@@ -330,5 +362,57 @@ namespace ArtAttack.Model
             }
             return contracts;
         }
+
+        public async Task<(string PaymentMethod, DateTime OrderDate)> GetOrderDetailsAsync(long contractId)
+        {
+            (string PaymentMethod, DateTime OrderDate) details = (null, default);
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetOrderDetails", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ContractID", SqlDbType.Int).Value = contractId;
+                    await conn.OpenAsync();
+
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            string paymentMethod = reader["PaymentMethod"] as string;
+                            var orderDate = reader.GetDateTime(reader.GetOrdinal("OrderDate"));
+                        }
+                    }
+                }
+            }
+            return details;
+        }
+
+        public async Task<DateTime?> GetDeliveryDateByContractIdAsync(long contractId)
+        {
+            DateTime? deliveryDate = null;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetDeliveryDateByContractID", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ContractID", SqlDbType.Int).Value = contractId;
+                    await conn.OpenAsync();
+
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            int ordinal = reader.GetOrdinal("EstimatedDeliveryDate");
+                            if (!reader.IsDBNull(ordinal))
+                            {
+                                deliveryDate = reader.GetDateTime(ordinal);
+                            }
+                        }
+                    }
+                }
+            }
+            return deliveryDate;
+        }
+
     }
 }

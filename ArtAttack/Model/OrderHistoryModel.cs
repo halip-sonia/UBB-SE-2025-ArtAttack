@@ -20,7 +20,7 @@ namespace ArtAttack.Model
             _connectionString = connectionString;
         }
 
-        public List<DummyProduct> GetDummyProductsFromOrderHistory(int orderHistoryID)
+        public async Task<List<DummyProduct>> GetDummyProductsFromOrderHistoryAsync(int orderHistoryID)
         {
             List<DummyProduct> products = new List<DummyProduct>();
 
@@ -30,13 +30,13 @@ namespace ArtAttack.Model
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@OrderHistory", orderHistoryID);
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        while (reader.Read())
+                        while (await reader.ReadAsync())
                         {
-                            DummyProduct product = new DummyProduct()
+                            DummyProduct product = new DummyProduct
                             {
                                 
                                 ID = reader.GetInt32(reader.GetOrdinal("productID")),

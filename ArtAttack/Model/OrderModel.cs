@@ -21,7 +21,7 @@ namespace ArtAttack.Model
             _connectionString = connectionString;
         }
 
-        public void AddOrder(int productId, int buyerId, int productType, string paymentMethod, int orderSummaryId, DateTime orderDate)
+        public async Task AddOrderAsync(int productId, int buyerId, int productType, string paymentMethod, int orderSummaryId, DateTime orderDate)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -35,13 +35,13 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@OrderSummaryID", orderSummaryId);
                     cmd.Parameters.AddWithValue("@OrderDate", orderDate);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public void UpdateOrder(int orderId, int productType, string paymentMethod, DateTime orderDate)
+        public async Task UpdateOrderAsync(int orderId, int productType, string paymentMethod, DateTime orderDate)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -53,13 +53,13 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@PaymentMethod", paymentMethod);
                     cmd.Parameters.AddWithValue("@OrderDate", orderDate);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public void DeleteOrder(int orderId)
+        public async Task DeleteOrderAsync(int orderId)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -68,13 +68,13 @@ namespace ArtAttack.Model
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@OrderID", orderId);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public List<Order> GetBorrowedOrderHistory(int buyerId)
+        public async Task<List<Order>> GetBorrowedOrderHistoryAsync(int buyerId)
         {
             List<Order> orders = new List<Order>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -110,7 +110,7 @@ namespace ArtAttack.Model
             return orders;
         }
 
-        public List<Order> GetNewOrUsedOrderHistory(int buyerId)
+        public async Task<List<Order>> GetNewOrUsedOrderHistoryAsync(int buyerId)
         {
             List<Order> orders = new List<Order>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -119,11 +119,11 @@ namespace ArtAttack.Model
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@BuyerID", SqlDbType.Int).Value = buyerId;
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        while (reader.Read())
+                        while (await reader.ReadAsync())
                         {
                             Order order = new Order()
                             {
@@ -322,7 +322,7 @@ namespace ArtAttack.Model
             return orders;
         }
 
-        public List<Order> GetOrdersFromOrderHistory(int orderHistoryId)
+        public async Task<List<Order>> GetOrdersFromOrderHistoryAsync(int orderHistoryId)
         {
             List<Order> orders = new List<Order>();
 
@@ -332,11 +332,11 @@ namespace ArtAttack.Model
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.Add("@OrderHistoryID", SqlDbType.Int).Value = orderHistoryId;
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        while (reader.Read())
+                        while (await reader.ReadAsync())
                         {
                             Order order = new Order()
                             {
@@ -347,8 +347,8 @@ namespace ArtAttack.Model
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
                                 OrderHistoryID = reader.GetInt32("OrderHistoryID"),
                                 ProductType = reader.GetInt32("ProductType"),
-                                PaymentMethod = reader.GetString("PaymentMethod"),
-                                OrderDate = reader.GetDateTime("OrderDate")
+                                PaymentMethod = reader.IsDBNull(reader.GetOrdinal("PaymentMethod")) ? string.Empty : reader.GetString("PaymentMethod"),
+                                OrderDate = reader.IsDBNull(reader.GetOrdinal("OrderDate")) ? DateTime.MinValue : reader.GetDateTime(reader.GetOrdinal("OrderDate"))
                             };
                             orders.Add(order);
                         }

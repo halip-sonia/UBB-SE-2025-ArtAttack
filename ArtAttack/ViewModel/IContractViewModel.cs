@@ -14,9 +14,12 @@ namespace ArtAttack.ViewModel
         Task<(int SellerID, string SellerName)> GetContractSellerAsync(long contractId);
         Task<(int BuyerID, string BuyerName)> GetContractBuyerAsync(long contractId);
         Task<Dictionary<string, object>> GetOrderSummaryInformationAsync(long contractId);
-        Task<(DateTime StartDate, DateTime EndDate)?> GetProductDatesByContractIdAsync(long contractId);
+        Task<(DateTime StartDate, DateTime EndDate, double price, string name)?> GetProductDetailsByContractIdAsync(long contractId);
         Task<List<Contract>> GetContractsByBuyerAsync(int buyerId);
+        Task<PredefinedContract> GetPredefinedContractByPredefineContractTypeAsync(PredefinedContractType predefinedContractType);
+        Task<(string PaymentMethod, DateTime OrderDate)> GetOrderDetailsAsync(long contractId);
+        Task<DateTime?> GetDeliveryDateByContractIdAsync(long contractId);
         byte[] GenerateContractPdf(Contract contract, PredefinedContract predefinedContract, Dictionary<string, string> fieldReplacements);
-        Task GenerateAndSaveContractAsync(Contract contract);
+        Task GenerateAndSaveContractAsync(Contract contract, PredefinedContractType contractType);
     }
 }

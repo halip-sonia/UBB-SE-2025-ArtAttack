@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
 using ArtAttack.Domain;
 
@@ -16,9 +17,9 @@ namespace ArtAttack.Model
         }
 
         /// <summary>
-        /// Adds a renewed contract to the database (through stored procedure AddRenewedContract).
+        /// Asynchronously adds a renewed contract to the database using the AddRenewedContract stored procedure.
         /// </summary>
-        public void AddRenewedContract(Contract contract, byte[] pdfFile)
+        public async Task AddRenewedContractAsync(Contract contract, byte[] pdfFile)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -27,10 +28,8 @@ namespace ArtAttack.Model
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@OrderID", contract.OrderID);
-                    cmd.Parameters.AddWithValue("@ContractStatus", contract.ContractStatus);
                     cmd.Parameters.AddWithValue("@ContractContent", contract.ContractContent);
                     cmd.Parameters.AddWithValue("@RenewalCount", contract.RenewalCount);
-                    cmd.Parameters.AddWithValue("@PDFFile", pdfFile);
                     cmd.Parameters.AddWithValue("@PDFID", contract.PDFID);
 
                     if (contract.PredefinedContractID.HasValue)
@@ -43,16 +42,38 @@ namespace ArtAttack.Model
                     else
                         cmd.Parameters.AddWithValue("@RenewedFromContractID", DBNull.Value);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
+
         /// <summary>
-        /// Retrieves all contracts with status 'RENEWED' (used for history view).
+        /// Asynchronously checks whether a contract has already been renewed by verifying 
+        /// if there exists any contract in the database with the given contract ID 
+        /// as its RenewedFromContractID.
         /// </summary>
-        public List<Contract> GetRenewedContracts()
+        public async Task<bool> HasContractBeenRenewedAsync(long contractId)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                string query = "SELECT COUNT(*) FROM Contract WHERE RenewedFromContractID = @ContractID";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@ContractID", contractId);
+                    await conn.OpenAsync();
+                    int count = (int)await cmd.ExecuteScalarAsync();
+                    return count > 0;
+                }
+            }
+        }
+
+
+        /// <summary>
+        /// Asynchronously retrieves all contracts with status 'RENEWED' using the GetRenewedContracts stored procedure.
+        /// </summary>
+        public async Task<List<Contract>> GetRenewedContractsAsync()
         {
             var contracts = new List<Contract>();
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -60,22 +81,26 @@ namespace ArtAttack.Model
                 using (SqlCommand cmd = new SqlCommand("GetRenewedContracts", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-                    conn.Open();
+                    await conn.OpenAsync();
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        while (reader.Read())
+                        while (await reader.ReadAsync())
                         {
                             var contract = new Contract
                             {
-                                ID = reader.GetInt64(reader.GetOrdinal("ID")),
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
                                 OrderID = reader.GetInt32(reader.GetOrdinal("orderID")),
                                 ContractStatus = reader.GetString(reader.GetOrdinal("contractStatus")),
                                 ContractContent = reader["contractContent"] as string,
                                 RenewalCount = reader.GetInt32(reader.GetOrdinal("renewalCount")),
-                                PredefinedContractID = reader["predefinedContractID"] != DBNull.Value ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID")) : null,
+                                PredefinedContractID = reader["predefinedContractID"] != DBNull.Value
+                                    ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID"))
+                                    : null,
                                 PDFID = reader.GetInt32(reader.GetOrdinal("pdfID")),
-                                RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID")) : null
+                                RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value
+                                    ? (int?)reader.GetInt32(reader.GetOrdinal("renewedFromContractID"))
+                                    : null
                             };
                             contracts.Add(contract);
                         }

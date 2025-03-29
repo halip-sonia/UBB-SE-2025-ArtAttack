@@ -22,7 +22,7 @@ namespace ArtAttack.Model
             _connectionString = connstring;
         }
 
-        public void AddCard(CardPaymentDetails paymentDetails)
+        public async Task AddCardAsync(CardPaymentDetails paymentDetails)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -38,13 +38,13 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@country", paymentDetails.country);
                     cmd.Parameters.AddWithValue("@balance", paymentDetails.balance);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public void DeleteCard(string cardNumber)
+        public async Task DeleteCardAsync(string cardNumber)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -54,13 +54,13 @@ namespace ArtAttack.Model
 
                     cmd.Parameters.AddWithValue("@cardnumber", cardNumber);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public void UpdateCardBalance(string cardNumber, float balance)
+        public async Task UpdateCardBalanceAsync(string cardNumber, float balance)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -71,13 +71,13 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@cnumber", cardNumber);
                     cmd.Parameters.AddWithValue("@balance", balance);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public float GetCardBalance(string cardNumber)
+        public async Task<float> GetCardBalanceAsync(string cardNumber)
         {
             float cardBalance = -1;
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -87,15 +87,15 @@ namespace ArtAttack.Model
                     cmd.CommandType = CommandType.StoredProcedure;
 
                     cmd.Parameters.AddWithValue("@cnumber", cardNumber);
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                   
 
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        if (reader.Read())
+                        if (await reader.ReadAsync())
                         {
-                            cardBalance = reader.GetFloat(reader.GetOrdinal("balance"));
+                            cardBalance = (float)reader.GetDouble(reader.GetOrdinal("balance"));
                         }
                     }
 

@@ -37,27 +37,27 @@ namespace ArtAttack.ViewModel
 
         public async Task AddOrderAsync(int productId, int buyerId, int productType, string paymentMethod, int orderSummaryId, DateTime orderDate)
         {
-            await Task.Run(() => _model.AddOrder(productId, buyerId, productType, paymentMethod, orderSummaryId, orderDate));
+            await Task.Run(() => _model.AddOrderAsync(productId, buyerId, productType, paymentMethod, orderSummaryId, orderDate));
         }
 
         public async Task UpdateOrderAsync(int orderId, int productType, string paymentMethod, DateTime orderDate)
         {
-            await Task.Run(() => _model.UpdateOrder(orderId, productType, paymentMethod, orderDate));
+            await Task.Run(() => _model.UpdateOrderAsync(orderId, productType, paymentMethod, orderDate));
         }
 
         public async Task DeleteOrderAsync(int orderId)
         {
-            await Task.Run(() => _model.DeleteOrder(orderId));
+            await Task.Run(() => _model.DeleteOrderAsync(orderId));
         }
 
         public async Task<List<Order>> GetBorrowedOrderHistoryAsync(int buyerId)
         {
-            return await Task.Run(() => _model.GetBorrowedOrderHistory(buyerId));
+            return await Task.Run(() => _model.GetBorrowedOrderHistoryAsync(buyerId));
         }
 
         public async Task<List<Order>> GetNewOrUsedOrderHistoryAsync(int buyerId)
         {
-            return await Task.Run(() => _model.GetNewOrUsedOrderHistory(buyerId));
+            return await Task.Run(() => _model.GetNewOrUsedOrderHistoryAsync(buyerId));
         }
 
         public async Task<List<Order>> GetOrdersFromLastThreeMonthsAsync(int buyerId)
@@ -87,7 +87,7 @@ namespace ArtAttack.ViewModel
 
         public async Task<List<Order>> GetOrdersFromOrderHistoryAsync(int orderHistoryId)
         {
-            return await Task.Run(() => _model.GetOrdersFromOrderHistory(orderHistoryId));
+            return await Task.Run(() =>  _model.GetOrdersFromOrderHistoryAsync(orderHistoryId));
         }
 
         public async Task<OrderSummary> GetOrderSummaryAsync(int orderSummaryId)
@@ -131,22 +131,22 @@ namespace ArtAttack.ViewModel
 
         public async Task<Order> GetOrderByIdAsync(int orderId)
         {
-            return await Task.Run(() =>
+            return await Task.Run(async () =>
             {
 
-                var borrowedOrders = _model.GetBorrowedOrderHistory(0);
+                var borrowedOrders = await _model.GetBorrowedOrderHistoryAsync(0);
                 var order = borrowedOrders.FirstOrDefault(o => o.OrderID == orderId);
                 if (order != null) return order;
 
 
-                var newUsedOrders = _model.GetNewOrUsedOrderHistory(0);
+                var newUsedOrders = await _model.GetNewOrUsedOrderHistoryAsync(0);
                 return newUsedOrders.FirstOrDefault(o => o.OrderID == orderId);
             });
         }
 
         public async Task<List<Order>> GetCombinedOrderHistoryAsync(int buyerId, string timePeriodFilter = "all")
         {
-            return await Task.Run(() =>
+            return await Task.Run(async () =>
             {
                 List<Order> orders = new List<Order>();
 
@@ -166,8 +166,8 @@ namespace ArtAttack.ViewModel
                         break;
                     case "all":
                     default:
-                        var borrowedOrders = _model.GetBorrowedOrderHistory(buyerId);
-                        var newUsedOrders = _model.GetNewOrUsedOrderHistory(buyerId);
+                        var borrowedOrders = await _model.GetBorrowedOrderHistoryAsync(buyerId);
+                        var newUsedOrders = await _model.GetNewOrUsedOrderHistoryAsync(buyerId);
                         orders.AddRange(borrowedOrders);
                         orders.AddRange(newUsedOrders);
                         break;
