@@ -414,5 +414,29 @@ namespace ArtAttack.Model
             return deliveryDate;
         }
 
+        public async Task<byte[]> GetPdfByContractIdAsync(long contractId)
+        {
+            byte[] pdfFile = null;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetPdfByContractID", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@ContractID", SqlDbType.BigInt).Value = contractId;
+                    await conn.OpenAsync();
+
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            pdfFile = reader["PdfFile"] as byte[];
+                        }
+                    }
+                }
+            }
+            return pdfFile;
+        }
+
+
     }
 }
