@@ -13,9 +13,6 @@
     <Page Update="OrderHistoryUI.xaml">
       <SubType>Designer</SubType>
     </Page>
-    <Page Update="BorrowProductWindow.xaml">
-      <SubType>Designer</SubType>
-    </Page>
     <None Update="MainWindow.xaml">
       <SubType>Designer</SubType>
     </None>
