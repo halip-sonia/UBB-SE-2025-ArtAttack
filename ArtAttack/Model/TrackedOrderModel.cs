@@ -47,6 +47,7 @@ namespace ArtAttack.Model
                     int newID = (int)cmd.Parameters["@newCheckpointID"].Value;
                     if (newID < 0)
                         throw new Exception("Unexpected error when trying to add the OrderCheckpoint");
+                    checkpoint.CheckpointID = newID;
                     return newID;
                 }
             }
@@ -76,6 +77,7 @@ namespace ArtAttack.Model
                     int newID = (int)cmd.Parameters["@newTrackedOrderID"].Value;
                     if (newID < 0)
                         throw new Exception("Unexpected error when trying to add the TrackedOrder");
+                    order.TrackedOrderID = newID;
                     return newID;
                 }
             }

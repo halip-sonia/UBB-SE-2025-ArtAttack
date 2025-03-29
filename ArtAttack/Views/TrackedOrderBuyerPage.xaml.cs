@@ -65,6 +65,7 @@ namespace ArtAttack.Views
                     TrackedOrderID = order.TrackedOrderID,
                     DeliveryAddress = order.DeliveryAddress,
                     EstimatedDeliveryDate = order.EstimatedDeliveryDate,
+                    OrderID = order.OrderID,
                     Checkpoints = checkpoints
                 };
             }

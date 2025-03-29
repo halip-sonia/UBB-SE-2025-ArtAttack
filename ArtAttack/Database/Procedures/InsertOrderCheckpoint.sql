@@ -32,10 +32,6 @@ begin
         values (@timestamp, @location, @description, @checkpointStatus, @trackedOrderID)
 
         set @newCheckpointID = scope_identity()
-
-        update TrackedOrders
-        set OrderStatus = @checkpointStatus
-        where TrackedOrderID = @trackedOrderID
     end try
     begin catch
         declare @err_message varchar(2000)
