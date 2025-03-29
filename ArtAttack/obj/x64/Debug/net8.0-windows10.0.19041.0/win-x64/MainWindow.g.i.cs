@@ -30,6 +30,8 @@ namespace ArtAttack
         private global::Microsoft.UI.Xaml.Controls.Button generateContractButton; 
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.UI.Xaml.Markup.Compiler"," 3.0.0.2503")]
         private global::Microsoft.UI.Xaml.Controls.Button borrowButton; 
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.UI.Xaml.Markup.Compiler"," 3.0.0.2503")]
+        private global::Microsoft.UI.Xaml.Controls.Button trackOrderButton; 
 #pragma warning restore 0649
 #pragma warning restore 0169
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.UI.Xaml.Markup.Compiler"," 3.0.0.2503")]
