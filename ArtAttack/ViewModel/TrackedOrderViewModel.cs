@@ -6,6 +6,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.UI.WebUI;
 
 namespace ArtAttack.ViewModel
 {
@@ -48,30 +49,98 @@ namespace ArtAttack.ViewModel
             return await model.DeleteOrderCheckpointAsync(checkpointID);
         }
 
-        public async Task<int> AddTrackedOrderAsync(TrackedOrder order)
+        public async Task<int> AddTrackedOrderAsync(TrackedOrder trackedOrder)
         {
-            return await model.AddTrackedOrderAsync(order);
+            try
+            {
+                int returnedID = await model.AddTrackedOrderAsync(trackedOrder);
+                OrderViewModel orderViewModel = new OrderViewModel(Shared.Configuration._CONNECTION_STRING_);
+                Order order = await orderViewModel.GetOrderByIdAsync(trackedOrder.OrderID);
+                NotificationViewModel buyerNotificationViewModel = new NotificationViewModel(order.BuyerID);
+                Notification placedOrderNotification = new OrderShippingProgressNotification(order.BuyerID, DateTime.Now, trackedOrder.TrackedOrderID, trackedOrder.CurrentStatus.ToString(), trackedOrder.EstimatedDeliveryDate.ToDateTime(TimeOnly.FromDateTime(DateTime.Now)));
+                await buyerNotificationViewModel.AddNotificationAsync(placedOrderNotification);
+                return returnedID;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding TrackedOrder\n" + ex.ToString());
+            }
+
         }
 
         public async Task<int> AddOrderCheckpointAsync(OrderCheckpoint checkpoint)
         {
-            return await model.AddOrderCheckpointAsync(checkpoint);
+            try
+            {
+                int returnedID = await model.AddOrderCheckpointAsync(checkpoint);
+                TrackedOrder trackedOrder = await GetTrackedOrderByIDAsync(checkpoint.TrackedOrderID);
+                await UpdateTrackedOrderAsync(trackedOrder.TrackedOrderID, trackedOrder.EstimatedDeliveryDate, checkpoint.Status);
+                if(checkpoint.Status == OrderStatus.SHIPPED || checkpoint.Status == OrderStatus.OUT_FOR_DELIVERY)
+                {
+                    OrderViewModel orderViewModel = new OrderViewModel(Shared.Configuration._CONNECTION_STRING_);
+                    Order order = await orderViewModel.GetOrderByIdAsync(trackedOrder.OrderID);
+                    NotificationViewModel buyerNotificationViewModel = new NotificationViewModel(order.BuyerID);
+                    Notification placedOrderNotification = new OrderShippingProgressNotification(order.BuyerID, DateTime.Now, trackedOrder.TrackedOrderID, trackedOrder.CurrentStatus.ToString(), trackedOrder.EstimatedDeliveryDate.ToDateTime(TimeOnly.FromDateTime(DateTime.Now)));
+                    await buyerNotificationViewModel.AddNotificationAsync(placedOrderNotification);
+                }
+                return returnedID;
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error adding OrderCheckpoint\n" + ex.ToString());
+            }
         }
 
         public async Task UpdateOrderCheckpointAsync(int checkpointID, DateTime timestamp, string? location, string description, OrderStatus status)
         {
-            await model.UpdateOrderCheckpointAsync(checkpointID, timestamp, location, description, status);
+            try
+            {
+                await model.UpdateOrderCheckpointAsync(checkpointID, timestamp, location, description, status);
+
+                OrderCheckpoint checkpoint = await GetOrderCheckpointByIDAsync(checkpointID);
+                TrackedOrder trackedOrder = await GetTrackedOrderByIDAsync(checkpoint.TrackedOrderID);
+
+                await UpdateTrackedOrderAsync(trackedOrder.TrackedOrderID, trackedOrder.EstimatedDeliveryDate, checkpoint.Status);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating OrderCheckpoint\n" + ex.ToString());
+            }
+            
         }
 
         public async Task UpdateTrackedOrderAsync(int trackedOrderID, DateOnly estimatedDeliveryDate, OrderStatus currentStatus)
         {
-            await model.UpdateTrackedOrderAsync(trackedOrderID, estimatedDeliveryDate, currentStatus);
+            try
+            {
+                await model.UpdateTrackedOrderAsync(trackedOrderID, estimatedDeliveryDate, currentStatus);
+                TrackedOrder trackedOrder = await GetTrackedOrderByIDAsync(trackedOrderID);
+                if (trackedOrder.CurrentStatus == OrderStatus.SHIPPED || trackedOrder.CurrentStatus == OrderStatus.OUT_FOR_DELIVERY)
+                {
+                    OrderViewModel orderViewModel = new OrderViewModel(Shared.Configuration._CONNECTION_STRING_);
+                    Order order = await orderViewModel.GetOrderByIdAsync(trackedOrder.OrderID);
+                    NotificationViewModel buyerNotificationViewModel = new NotificationViewModel(order.BuyerID);
+                    Notification placedOrderNotification = new OrderShippingProgressNotification(order.BuyerID, DateTime.Now, trackedOrder.TrackedOrderID, trackedOrder.CurrentStatus.ToString(), trackedOrder.EstimatedDeliveryDate.ToDateTime(TimeOnly.FromDateTime(DateTime.Now)));
+                    try
+                    {
+                        await buyerNotificationViewModel.AddNotificationAsync(placedOrderNotification);
+                    }
+                    catch(Exception ex)
+                    {
+                        throw new Exception("Error adding notification\n" + ex.ToString());
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Error updating TrackedOrder\n" + ex.ToString());
+            }
         }
 
         public async Task RevertToPreviousCheckpoint(TrackedOrder order)
         {
             int initialNrOfCheckpoints = await GetNumberOfCheckpoints(order);
-            if (initialNrOfCheckpoints == 0)
+            if (initialNrOfCheckpoints <= 1)
                 throw new Exception("Cannot revert further");
 
             var lastCheckpoint = await GetLastCheckpoint(order);
@@ -81,15 +150,8 @@ namespace ArtAttack.ViewModel
                 bool deleteSuccessful = await DeleteOrderCheckpointAsync(lastCheckpointCast.CheckpointID);
                 if (deleteSuccessful)
                 {
-                    if(initialNrOfCheckpoints == 1)
-                    {
-                        await UpdateTrackedOrderAsync(order.TrackedOrderID, order.EstimatedDeliveryDate, OrderStatus.PROCESSING);
-                    }
-                    else 
-                    {
-                        OrderCheckpoint newLastCheckpoint = (OrderCheckpoint)await GetLastCheckpoint(order);
-                        await UpdateTrackedOrderAsync(order.TrackedOrderID, order.EstimatedDeliveryDate, newLastCheckpoint.Status);
-                    }
+                    OrderCheckpoint newLastCheckpoint = (OrderCheckpoint)await GetLastCheckpoint(order);
+                    await UpdateTrackedOrderAsync(order.TrackedOrderID, order.EstimatedDeliveryDate, newLastCheckpoint.Status);
                     
                 }
                 else

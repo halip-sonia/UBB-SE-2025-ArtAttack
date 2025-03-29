@@ -192,7 +192,10 @@ namespace ArtAttack
                 try
                 {
                     var order = await trackedOrderViewModel.GetTrackedOrderByIDAsync(trackedOrderID);
+
+                    //false=readonly, true=sudomode; Modify according to the current user privileges
                     bool hasControlAccess = true;
+
                     TrackedOrderWindow trackedOrderWindow = new TrackedOrderWindow();
                     if (hasControlAccess)
                     {
