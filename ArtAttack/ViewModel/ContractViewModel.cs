@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Data.Common;
+using ArtAttack.Domain;
 using System.IO;
 using System.Threading.Tasks;
 using ArtAttack.Domain;
@@ -195,15 +197,8 @@ namespace ArtAttack.ViewModel
             return document.GeneratePdf();
         }
 
-
-
-
-        public async Task GenerateAndSaveContractAsync(Contract contract, PredefinedContractType contractType)
+        private async Task<Dictionary<string, string>> GetFieldReplacements(Contract contract)
         {
-            
-            var predefinedContract = await GetPredefinedContractByPredefineContractTypeAsync(contractType);
-
-
             var fieldReplacements = new Dictionary<string, string>();
 
             // Retrieve the product dates asynchronously.
@@ -246,6 +241,18 @@ namespace ArtAttack.ViewModel
                 fieldReplacements["LateFee"] = "N/A";
                 fieldReplacements["DeliveryDate"] = "N/A";
             }
+
+            return fieldReplacements;
+        }
+
+
+        public async Task GenerateAndSaveContractAsync(Contract contract, PredefinedContractType contractType)
+        {
+            
+            var predefinedContract = await GetPredefinedContractByPredefineContractTypeAsync(contractType);
+
+
+            var fieldReplacements = await GetFieldReplacements(contract);
 
             // Generate the PDF (synchronously) using the generated replacements.
             var pdfBytes = GenerateContractPdf(contract, predefinedContract, fieldReplacements);
