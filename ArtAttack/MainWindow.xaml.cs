@@ -69,6 +69,14 @@ namespace ArtAttack
             billingInfoWindow.Activate();
         }
 
+        private void OrderHitoryButton_Click(object sender, RoutedEventArgs e)
+        {
+            int user_id = 1;
+            var orderhistorywindow = new OrderHistoryUI(Configuration._CONNECTION_STRING_, user_id);
+            orderhistorywindow.Activate();
+
+        }
+
         private void bidProductButton_Clicked(object sender, RoutedEventArgs e)
         {
             BillingInfoWindow billingInfoWindow = new BillingInfoWindow();
