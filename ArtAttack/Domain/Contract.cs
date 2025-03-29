@@ -37,5 +37,8 @@ namespace ArtAttack.Domain
         // Holds the ID of the original contract if this is a renewal; null otherwise
         public long? RenewedFromContractID { get; set; }
 
+        // Returns a user-friendly name for display purposes in the UI
+        public string DisplayName => $"Contract {ID}";
+
     }
 }
