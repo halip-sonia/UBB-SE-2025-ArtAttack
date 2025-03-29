@@ -31,36 +31,52 @@
         </Grid.ColumnDefinitions>
         <TextBlock Grid.Row="0" FontSize="20">Payment Details</TextBlock>
 
-        <ListView x:Name="productList" Background="#cccaca" 
-      HorizontalAlignment="Stretch" Grid.Row="1" Grid.Column="0" 
-      Height="Auto"/>
+        <ListView ItemsSource="{Binding ProductList}" Grid.Row="1" Grid.Column="0" Background="#cccaca" Foreground="Black">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock  FontSize="16" Foreground="Black" >
+                    <Run Text="Product name: " FontWeight="Bold"/>
+                     <Run Text="{Binding Name}"/>
+                        </TextBlock>
+                        <TextBlock  FontSize="16" Foreground="Black" >
+                    <Run Text="Price: " FontWeight="Bold"/>
+                     <Run Text="{Binding Price}"/>
+                        </TextBlock>
+                        <TextBlock  FontSize="16" Foreground="Black" >
+                      <Run Text="Seller ID: " FontWeight="Bold"/>
+                       <Run Text="{Binding SellerID}"/>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="2" Grid.Column="0">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Subtotal: "/>
-                <TextBlock x:Name="subtotal"/>
+                <TextBlock Text="{Binding Subtotal}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Delivery fee: "/>
-                <TextBlock x:Name="delivery"/>
+                <TextBlock Text="{Binding DeliveryFee}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Total: "/>
-                <TextBlock x:Name="total"/>
+                <TextBlock Text="{Binding Total}" />
             </StackPanel>
-
         </StackPanel>
 
 
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top"  Grid.Row="1" Grid.Column="1">
             <TextBlock >Email:</TextBlock>
-            <TextBox x:Name="emailUser" />
+            <TextBox Text="{Binding Email, Mode=TwoWay}" />
 
             <TextBlock >Cardholder's Name:</TextBlock>
-            <TextBox x:Name="holderName" />
+            <TextBox Text="{Binding CardHolderName, Mode=TwoWay}" />
 
             <TextBlock >Card Number:</TextBlock>
-            <TextBox x:Name="cardNr" />
+            <TextBox Text="{Binding CardNumber, Mode=TwoWay}" />
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -74,28 +90,19 @@
                 <StackPanel Grid.Column="0" >
                     <TextBlock>Expiry Date:</TextBlock>
                     <StackPanel Orientation="Horizontal">
-                        <TextBox x:Name="cardMonth" Width="50"/>
+                        <TextBox Width="50" Text="{Binding CardMonth, Mode=TwoWay}"/>
                         <TextBlock Text="/" VerticalAlignment="Center"/>
-                        <TextBox x:Name="cardYear" Width="50"/>
+                        <TextBox Width="50" Text="{Binding CardYear, Mode=TwoWay}"/>
                     </StackPanel>
                 </StackPanel>
 
                 <StackPanel Grid.Column="1" Margin="10,0,0,0">
                     <TextBlock>CVC:</TextBlock>
-                    <TextBox x:Name="cardCVC" Width="50"/>
-                </StackPanel>
-
-
-                <StackPanel Grid.Column="2" Margin="10,0,0,0" >
-                    <TextBlock>Country:</TextBlock>
-                    <DropDownButton Background="#cccaca" Width="100" Height="33" Foreground="Black"/>
+                    <TextBox Text="{Binding CardCVC, Mode=TwoWay}" Width="50"/>
                 </StackPanel>
             </Grid>
             
-
-            <Button Foreground="Black" Background="#cccaca" Margin="0, 30, 0, 0" HorizontalAlignment="Center" Width="90">Pay</Button>
-
-
+            <Button Foreground="Black" Background="#cccaca" Margin="0, 30, 0, 0" HorizontalAlignment="Center" Click="onPayButtonClickedAsync" Width="90">Pay</Button>
 
         </StackPanel>
     </Grid>

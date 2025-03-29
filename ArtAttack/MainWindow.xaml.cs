@@ -18,6 +18,7 @@ using ArtAttack.ViewModel;
 using ArtAttack.Shared;
 using Windows.UI.Popups;
 using System.Threading.Tasks;
+using QuestPDF.Infrastructure;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -35,6 +36,8 @@ namespace ArtAttack
 
         public MainWindow()
         {
+            QuestPDF.Settings.License = LicenseType.Community;
+
             this.InitializeComponent();
             contract = new Contract();
             _contractViewModel = new ContractViewModel(Configuration._CONNECTION_STRING_);
@@ -74,7 +77,7 @@ namespace ArtAttack
             billingInfoWindow.Activate();
         }
 
-        
+
         private void walletrefillButton_Clicked(object sender, RoutedEventArgs e)
         {
             BillingInfoWindow billingInfoWindow = new BillingInfoWindow();
@@ -133,6 +136,27 @@ namespace ArtAttack
                 await ShowErrorDialogAsync("Failed to open Borrow Product", ex.Message);
             }
         }
+
+
+        private async void renewContractButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Create a new instance of the RenewContractView window
+                var renewContractWindow = new RenewContractView();
+
+                // Show (activate) the window to the user
+                renewContractWindow.Activate();
+
+            }
+            catch (Exception ex)
+            {
+                // If an error occurs while opening the window, show an error dialog with the message
+                await ShowErrorDialogAsync("Error opening Renew Contract", ex.Message);
+            }
+        }
+
+
 
         private async Task ShowErrorDialogAsync(string title, string message)
         {

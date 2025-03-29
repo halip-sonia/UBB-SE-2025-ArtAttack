@@ -56,6 +56,9 @@
                                FontSize="16"
                                TextWrapping="Wrap"
                                LineHeight="24"/>
+                    <Button x:Name="contractFileButton" VerticalAlignment="Bottom" HorizontalAlignment="Center" Click="GoToContractFile" Foreground="Black" Background="LightGray">
+                        Get Contract
+                    </Button>
                 </StackPanel>
             </Border>
         </Border>

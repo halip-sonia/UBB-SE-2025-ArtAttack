@@ -11,7 +11,7 @@ namespace ArtAttack.Domain
         public int TrackedOrderID { get; set; }
         public int OrderID { get; set; }
         public OrderStatus CurrentStatus { get; set; }
-        public DateTime EstimatedDeliveryDate { get; set; }
-        public string DeliveryAddress { get; set; }
+        public DateOnly EstimatedDeliveryDate { get; set; }
+        public required string DeliveryAddress { get; set; }
     }
 }
