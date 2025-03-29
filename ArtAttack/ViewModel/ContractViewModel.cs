@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.IO;
 using System.Threading.Tasks;
 using ArtAttack.Domain;
 using ArtAttack.Model;
+using Microsoft.UI.Xaml;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
@@ -54,9 +56,9 @@ namespace ArtAttack.ViewModel
             return await _model.GetOrderSummaryInformationAsync(contractId);
         }
 
-        public async Task<(DateTime StartDate, DateTime EndDate)?> GetProductDatesByContractIdAsync(long contractId)
+        public async Task<(DateTime StartDate, DateTime EndDate, double price, string name)?> GetProductDetailsByContractIdAsync(long contractId)
         {
-            return await _model.GetProductDatesByContractIdAsync(contractId);
+            return await _model.GetProductDetailsByContractIdAsync(contractId);
         }
 
         public async Task<List<Contract>> GetContractsByBuyerAsync(int buyerId)
@@ -64,21 +66,52 @@ namespace ArtAttack.ViewModel
             return await _model.GetContractsByBuyerAsync(buyerId);
         }
 
-        public byte[] GenerateContractPdf(Contract contract, PredefinedContract predefinedContract, Dictionary<string, string> fieldReplacements)
+        public async Task<PredefinedContract> GetPredefinedContractByPredefineContractTypeAsync(PredefinedContractType predefinedContractType)
         {
-            // This part remains synchronous as QuestPDF's GeneratePdf() method is synchronous.
+            return await _model.GetPredefinedContractByPredefineContractTypeAsync(predefinedContractType);
+        }
+
+        public async Task<(string PaymentMethod, DateTime OrderDate)> GetOrderDetailsAsync(long contractId)
+        {
+            return await _model.GetOrderDetailsAsync(contractId);
+        }
+
+        public async Task<DateTime?> GetDeliveryDateByContractIdAsync(long contractId)
+        {
+            return await _model.GetDeliveryDateByContractIdAsync(contractId);
+        }
+
+
+
+        public byte[] GenerateContractPdf(
+    Contract contract,
+    PredefinedContract predefinedContract,
+    Dictionary<string, string> fieldReplacements)
+        {
+            // Validate inputs.
+            if (contract == null)
+                throw new ArgumentNullException(nameof(contract));
+            if (predefinedContract == null)
+                throw new ArgumentNullException(nameof(predefinedContract));
+
+            // Ensure fieldReplacements is not null.
+            fieldReplacements ??= new Dictionary<string, string>();
+
+            // Replace format variables in the content.
             string content = predefinedContract.Content;
             foreach (var pair in fieldReplacements)
             {
                 content = content.Replace("{" + pair.Key + "}", pair.Value);
             }
 
-            // Note: We use the asynchronous GetProductDatesByContractIdAsync in our calling method.
-            // The PDF generation itself is synchronous.
-            // Placeholders for product dates are assumed to be replaced externally.
+            // Replace specific placeholders.
             content = content.Replace("{ContractID}", contract.ID.ToString());
             content = content.Replace("{OrderID}", contract.OrderID.ToString());
             content = content.Replace("{ContractStatus}", contract.ContractStatus);
+            content = content.Replace("{AdditionalTerms}", contract.AdditionalTerms);
+
+            // Set the QuestPDF license.
+            QuestPDF.Settings.License = LicenseType.Community;
 
             var document = Document.Create(container =>
             {
@@ -87,36 +120,131 @@ namespace ArtAttack.ViewModel
                     page.Margin(50);
                     page.Size(PageSizes.A4);
                     page.PageColor(Colors.White);
-                    page.DefaultTextStyle(x => x.FontSize(12));
-                    page.Content().Text(content);
+                    page.DefaultTextStyle(textStyle => textStyle.FontSize(12).FontFamily("Segoe UI"));
+
+                    // Header section with title.
+                    page.Header().Element(header =>
+                    {
+                        // Apply container-wide styling and combine multiple elements inside a Column
+                        header
+                            .PaddingBottom(10)
+                            .BorderBottom(1)
+                            .BorderColor(Colors.Grey.Lighten2)
+                            .Column(column =>
+                            {
+                                // The Column itself is the single child of the header container.
+                                column.Item()
+                                      .Text("Contract Document")
+                                      .SemiBold()
+                                      .FontSize(20)
+                                      .AlignCenter();
+                            });
+                    });
+
+                    // Content section.
+                    page.Content().Element(contentContainer =>
+                    {
+                        // Apply padding and wrap the text in a Column container.
+                        contentContainer
+                            .PaddingVertical(10)
+                            .Column(column =>
+                            {
+                                column.Item()
+                                      .Text(content);
+                                      //.TextAlignment(TextAlignment.Justify);
+                            });
+                    });
+
+
+                    // Footer section with generation date and page numbers.
+                    page.Footer().Element(footer =>
+                    {
+                        footer
+                        .PaddingTop(10)
+                        .BorderTop(1)
+                        .BorderColor(Colors.Grey.Lighten2)
+                        .Column(column => 
+                            column.Item().Row(row =>
+                            {
+                                // Left part: Generation date.
+                                row.RelativeItem()
+                                   .Text($"Generated on: {DateTime.Now.ToShortDateString()}")
+                                   .FontSize(10)
+                                   .FontColor(Colors.Grey.Medium);
+
+                                // Right part: Page numbering.
+                                row.ConstantItem(100)
+                                   .AlignRight()
+                                   .Text(text =>
+                                   {
+                                       text.DefaultTextStyle(x => x.FontColor(Colors.Grey.Medium)
+                                                                    .FontSize(10));
+                                       text.Span("Page ");
+                                       text.CurrentPageNumber();
+                                       text.Span(" of ");
+                                       text.TotalPages();
+                                   });
+
+                            }));
+                        
+                    });
                 });
             });
 
+            // Generate and return the PDF as a byte array.
             return document.GeneratePdf();
         }
 
-        public async Task GenerateAndSaveContractAsync(Contract contract)
+
+
+
+        public async Task GenerateAndSaveContractAsync(Contract contract, PredefinedContractType contractType)
         {
-            // For this example, assume a predefined contract of type Buying.
-            var predefinedContract = new PredefinedContract
-            {
-                ID = (int)PredefinedContractType.Buying,
-                Content = "Contract for {ContractID} with Order {OrderID}.\nStart: {StartDate}, End: {EndDate}.\nStatus: {ContractStatus}"
-            };
+            
+            var predefinedContract = await GetPredefinedContractByPredefineContractTypeAsync(contractType);
+
 
             var fieldReplacements = new Dictionary<string, string>();
 
             // Retrieve the product dates asynchronously.
-            var productDates = await GetProductDatesByContractIdAsync(contract.ID);
-            if (productDates.HasValue)
+            var productDetails = await GetProductDetailsByContractIdAsync(contract.ID);
+            var buyerDetails = await GetContractBuyerAsync(contract.ID);
+            var sellerDetails = await GetContractSellerAsync(contract.ID);
+            DateTime StartDate = productDetails.Value.StartDate;
+            DateTime EndDate = productDetails.Value.EndDate;
+            var LoanPeriod = (EndDate - StartDate).TotalDays;
+            var orderDetails = await GetOrderDetailsAsync(contract.ID);
+            var orderSummaryData = await GetOrderSummaryInformationAsync(contract.ID);
+            var deliveryDate = await GetDeliveryDateByContractIdAsync(contract.ID);
+
+
+            if (productDetails.HasValue)
             {
-                fieldReplacements["StartDate"] = productDates.Value.StartDate.ToShortDateString();
-                fieldReplacements["EndDate"] = productDates.Value.EndDate.ToShortDateString();
+                fieldReplacements["StartDate"] = StartDate.ToShortDateString();
+                fieldReplacements["EndDate"] = EndDate.ToShortDateString();
+                fieldReplacements["LoanPeriod"] = LoanPeriod.ToString();
+                fieldReplacements["ProductDescription"] = productDetails.Value.name;
+                fieldReplacements["Price"] = productDetails.Value.price.ToString();
+                fieldReplacements["BuyerName"] = buyerDetails.BuyerName;
+                fieldReplacements["SellerName"] = sellerDetails.SellerName;
+                fieldReplacements["PaymentMethod"] = orderDetails.PaymentMethod;
+                fieldReplacements["AgreementDate"] = orderDetails.OrderDate.ToShortDateString();
+                fieldReplacements["LateFee"] = orderSummaryData["warrantyTax"].ToString();
+                fieldReplacements["DeliveryDate"] = deliveryDate.ToString();
             }
             else
             {
                 fieldReplacements["StartDate"] = "N/A";
                 fieldReplacements["EndDate"] = "N/A";
+                fieldReplacements["LoanPeriod"] = "N/A";
+                fieldReplacements["ProductDescription"] = "N/A";
+                fieldReplacements["Price"] = "N/A";
+                fieldReplacements["BuyerName"] = "N/A";
+                fieldReplacements["SellerName"] = "N/A";
+                fieldReplacements["PaymentMethod"] = "N/A";
+                fieldReplacements["AgreementDate"] = "N/A";
+                fieldReplacements["LateFee"] = "N/A";
+                fieldReplacements["DeliveryDate"] = "N/A";
             }
 
             // Generate the PDF (synchronously) using the generated replacements.

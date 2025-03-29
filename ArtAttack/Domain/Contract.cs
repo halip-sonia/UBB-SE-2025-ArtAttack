@@ -34,6 +34,8 @@ namespace ArtAttack.Domain
         // Foreign key to the PDF table (holds the contract's PDF reference)
         public int PDFID { get; set; }
 
+        public string AdditionalTerms {  get; set; }
+
         // Holds the ID of the original contract if this is a renewal; null otherwise
         public long? RenewedFromContractID { get; set; }
 

@@ -47,7 +47,7 @@ namespace ArtAttack
         private async void RootGrid_Loaded(object sender, RoutedEventArgs e)
         {
             // Asynchronously fetch the contract after the UI is ready.
-            contract = await _contractViewModel.GetContractByIdAsync(1);
+            contract = await _contractViewModel.GetContractByIdAsync(2);
         }
 
         private async void MainWindow_Loaded(object sender, RoutedEventArgs e)
@@ -90,7 +90,7 @@ namespace ArtAttack
         {
             if (contract != null)
             {
-                await _contractViewModel.GenerateAndSaveContractAsync(contract);
+                await _contractViewModel.GenerateAndSaveContractAsync(contract, PredefinedContractType.Borrowing);
 
                 // Optionally, show a success dialog after generating the contract.
                 var successDialog = new ContentDialog
