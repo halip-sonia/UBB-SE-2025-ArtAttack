@@ -189,7 +189,7 @@ create table [WaitListProduct]
 (
 	[waitListProductID] int identity primary key,
 
-	[productID] int not null foreign key references [DummyProduct]([ID]),
+	[productID] int not null foreign key references [DummyProduct]([ID]) on delete cascade,
 	
 	[availableAgain] DateTime
 );
@@ -201,13 +201,12 @@ create table [UserWaitList]
 
 	[productWaitListID] int not null foreign key references [WaitListProduct]([WaitListProductID]),
 
-	[userID] integer not null foreign key references [DummyBuyer]([ID]),
+	[userID] integer not null foreign key references [DummyBuyer]([ID]) on delete cascade,
 
 	[joinedTime] DateTime not null,
 
 	[positionInQueue] int not null
 );
-
 
 
 

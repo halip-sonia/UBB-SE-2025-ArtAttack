@@ -119,7 +119,7 @@ namespace ArtAttack
         {
             try
             {
-                int productId = 39; 
+                int productId = 5; 
 
                 var borrowWindow = new BorrowProductWindow(Configuration._CONNECTION_STRING_, productId);
                 borrowWindow.Activate();

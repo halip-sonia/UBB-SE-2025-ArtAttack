@@ -47,31 +47,36 @@
             <Button x:Name="btnBorrow" 
                     Content="Borrow" 
                     Visibility="Collapsed"/>
-
-            <Button x:Name="btnJoinWaitList" 
-                    Content="Join WaitList" 
-                    Visibility="Collapsed"
-                    Click="btnJoinWaitList_Click"/>
         </StackPanel>
 
         <!-- Waitlist Actions - Now properly aligned -->
         <StackPanel Grid.Row="2" Grid.Column="1" Margin="20,20,0,0">
+            <!-- Join Waitlist Button (shown when not on waitlist) -->
+            <Button x:Name="btnJoinWaitList" 
+            Content="Join Waitlist" 
+            Click="btnJoinWaitList_Click"
+            Margin="0,0,0,10"
+            HorizontalAlignment="Right"
+            Width="150"
+            Visibility="Visible"/>
+
+            <!-- Waitlist Actions (shown when on waitlist) -->
             <StackPanel x:Name="waitlistActionsPanel" 
                 Orientation="Horizontal"
-                Visibility="Collapsed"
-                HorizontalAlignment="Right">
+                HorizontalAlignment="Right"
+                Visibility="Collapsed">
                 <Button x:Name="btnLeaveWaitList" 
-                    Content="Leave Waitlist" 
-                    Click="btnLeaveWaitList_Click"
-                    Margin="0,0,10,0"
-                    Width="120"/>
+                Content="Leave Waitlist" 
+                Click="btnLeaveWaitList_Click"
+                Margin="0,0,10,0"
+                Width="120"/>
                 <Button x:Name="btnViewPosition" 
-                    Content="Position" 
-                    Click="btnViewPosition_Click"
-                    Width="120"/>
+                Content="Position" 
+                Click="btnViewPosition_Click"
+                Width="120"/>
             </StackPanel>
 
-            <!-- Position text now appears below the buttons -->
+            <!-- Position text -->
             <TextBlock x:Name="txtPositionInQueue" 
                Visibility="Collapsed"
                Margin="0,5,0,0"

@@ -15,8 +15,6 @@ namespace ArtAttack
         private readonly int _currentProductId;
         private readonly WaitListViewModel _waitListViewModel;
 
-        private bool _isOnWaitList;
-
         public BorrowProductWindow(string connectionString, int productId)
         {
             InitializeComponent();
@@ -45,7 +43,6 @@ namespace ArtAttack
                     int currentUserId = GetCurrentUserId();
                     bool isOnWaitlist = _waitListViewModel.IsUserInWaitlist(currentUserId, _currentProductId);
 
-                    // Update UI based on waitlist status
                     UpdateWaitlistUI(isOnWaitlist);
                 }
                 else
@@ -63,7 +60,6 @@ namespace ArtAttack
         {
             btnJoinWaitList.Visibility = isOnWaitlist ? Visibility.Collapsed : Visibility.Visible;
             waitlistActionsPanel.Visibility = isOnWaitlist ? Visibility.Visible : Visibility.Collapsed;
-
             txtPositionInQueue.Visibility = Visibility.Collapsed;
         }
 
@@ -111,18 +107,11 @@ namespace ArtAttack
             {
                 int currentUserId = GetCurrentUserId();
 
-                if (_waitListViewModel.IsUserInWaitlist(currentUserId, _currentProductId))
-                {
-                    await ShowMessageAsync("Waitlist", "You're already on the waitlist for this product");
-                    return;
-                }
-
                 _waitListViewModel.AddUserToWaitlist(currentUserId, _currentProductId);
 
-                btnJoinWaitList.IsEnabled = false;
-                btnJoinWaitList.Content = "On Waitlist";
+                UpdateWaitlistUI(true);
 
-                await ShowMessageAsync("Success", "You've been added to the waitlist!");
+                await ShowMessageAsync("Success", "You've joined the waitlist!");
             }
             catch (Exception ex)
             {
@@ -132,7 +121,7 @@ namespace ArtAttack
 
         private int GetCurrentUserId()
         {
-            return 1;
+            return 37; 
         }
 
         private async void btnLeaveWaitList_Click(object sender, RoutedEventArgs e)
@@ -141,33 +130,27 @@ namespace ArtAttack
             {
                 int currentUserId = GetCurrentUserId();
 
-                // Remove user from waitlist
                 _waitListViewModel.RemoveUserFromWaitlist(currentUserId, _currentProductId);
 
-                // Update UI to show join button and hide leave/position buttons
                 UpdateWaitlistUI(false);
 
-                // Hide position text
                 await ShowMessageAsync("Success", "You've left the waitlist");
             }
             catch (Exception ex)
             {
                 await ShowMessageAsync("Error", $"Failed to leave waitlist: {ex.Message}");
             }
-        } 
+        }
 
         private async void btnViewPosition_Click(object sender, RoutedEventArgs e)
         {
             try
             {
                 int currentUserId = GetCurrentUserId();
-
-                // Get the user's position in the waitlist
                 int position = _waitListViewModel.GetUserWaitlistPosition(currentUserId, _currentProductId);
 
                 if (position > 0)
                 {
-                    // Show the position in the UI
                     txtPositionInQueue.Text = $"Your position: #{position}";
                     txtPositionInQueue.Visibility = Visibility.Visible;
                 }
@@ -181,6 +164,5 @@ namespace ArtAttack
                 await ShowMessageAsync("Error", $"Failed to get waitlist position: {ex.Message}");
             }
         }
-
     }
 }
