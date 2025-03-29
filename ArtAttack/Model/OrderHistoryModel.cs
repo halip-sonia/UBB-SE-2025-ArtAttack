@@ -3,11 +3,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Store;
 
 namespace ArtAttack.Model
 {
@@ -38,7 +34,7 @@ namespace ArtAttack.Model
                         {
                             DummyProduct product = new DummyProduct
                             {
-                                
+
                                 ID = reader.GetInt32(reader.GetOrdinal("productID")),
                                 Name = reader.GetString(reader.GetOrdinal("name")),
                                 Price = (float)reader.GetDouble(reader.GetOrdinal("price")),
