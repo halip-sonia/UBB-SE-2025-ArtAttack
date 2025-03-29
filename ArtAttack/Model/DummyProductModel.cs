@@ -17,7 +17,7 @@ namespace ArtAttack.Model
             _connectionString = connectionString;
         }
 
-        public void AddDummyProduct(string name, float price, int sellerId, string productType, DateTime startDate, DateTime endDate)
+        public async Task AddDummyProductAsync(string name, float price, int sellerId, string productType, DateTime startDate, DateTime endDate)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -31,8 +31,8 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@StartDate", startDate);
                     cmd.Parameters.AddWithValue("@EndDate", endDate);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
@@ -40,7 +40,7 @@ namespace ArtAttack.Model
         /// <summary>
         /// Updates an existing DummyProduct record.
         /// </summary>
-        public void UpdateDummyProduct(int id, string name, float price, int sellerId, string productType, DateTime startDate, DateTime endDate)
+        public async Task UpdateDummyProductAsync(int id, string name, float price, int sellerId, string productType, DateTime startDate, DateTime endDate)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -55,8 +55,8 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@StartDate", startDate);
                     cmd.Parameters.AddWithValue("@EndDate", endDate);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
@@ -64,7 +64,7 @@ namespace ArtAttack.Model
         /// <summary>
         /// Deletes a DummyProduct record by ID.
         /// </summary>
-        public void DeleteDummyProduct(int id)
+        public async Task DeleteDummyProduct(int id)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -73,8 +73,8 @@ namespace ArtAttack.Model
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ID", id);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }

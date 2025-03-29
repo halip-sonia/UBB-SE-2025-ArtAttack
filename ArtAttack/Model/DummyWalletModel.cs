@@ -18,7 +18,7 @@ namespace ArtAttack.Model
             _connectionString = connstring;
         }
 
-        public void AddWallet(DummyWallet dummyWallet)
+        public async Task AddWallet(DummyWallet dummyWallet)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -28,13 +28,13 @@ namespace ArtAttack.Model
 
                     cmd.Parameters.AddWithValue("@balance", dummyWallet.balance);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public void DeleteWallet(int walletID)
+        public async Task DeleteWallet(int walletID)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -44,13 +44,13 @@ namespace ArtAttack.Model
 
                     cmd.Parameters.AddWithValue("@id", walletID);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public void UpdateWalletBalance(int walletID, float balance)
+        public async Task UpdateWalletBalance(int walletID, float balance)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -61,12 +61,39 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@id", walletID);
                     cmd.Parameters.AddWithValue("@balance", balance);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
+        public async Task<float> GetWalletBalanceAsync(int walletID)
+        {
+            float walletBalance = -1;
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetWalletBalance", conn))
+                {
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    cmd.Parameters.AddWithValue("@id", walletID);
+                    await conn.OpenAsync();
+
+
+
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            walletBalance = reader.GetFloat(reader.GetOrdinal("balance"));
+                        }
+                    }
+
+                }
+
+            }
+            return walletBalance;
+        }
 
     }
 }

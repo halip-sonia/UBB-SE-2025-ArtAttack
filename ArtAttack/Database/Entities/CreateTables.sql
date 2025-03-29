@@ -112,10 +112,11 @@ create table [Order](
     [PaymentMethod] varchar(20),
     constraint [PaymentMethodConstraint] check ([PaymentMethod] in ('card', 'cash', 'wallet')),
 	[OrderSummaryID] integer foreign key references [OrderSummary]([ID]),
-	[OrderDate] datetime,
+	[OrderDate] DateTime,
 	[OrderHistoryID] int foreign key references [OrderHistory]([ID])
 
 );
+
 
 alter table [Order] drop constraint [PaymentMethodConstraint]
 alter table [Order] add constraint [PaymentMethodConstraint] check ([PaymentMethod] in ('card', 'cash', 'wallet') or [PaymentMethod] is NULL) 
@@ -133,6 +134,7 @@ create table [Contract](
 
 	[predefinedContractID] integer foreign key references [PredefinedContract]([ID]),
 	[pdfID] integer not null foreign key references [PDF]([ID]),
+	[AdditionalTerms] TEXT,
 
 	/* Added field to support contract renewals.
     Holds the ID of the original contract being renewed.

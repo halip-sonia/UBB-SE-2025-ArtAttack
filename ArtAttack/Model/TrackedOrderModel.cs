@@ -8,10 +8,12 @@ using Microsoft.Data.SqlClient;
 using Microsoft.UI.Xaml.Controls;
 using System.ComponentModel;
 using System.Reflection.PortableExecutable;
+using System.Data;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ArtAttack.Model
 {
-    class TrackedOrderModel : ITrackedOrderModel
+    class TrackedOrderModel
     {
         private readonly string connectionString;
 
@@ -20,94 +22,106 @@ namespace ArtAttack.Model
             this.connectionString = connectionString ?? throw new ArgumentNullException(nameof(connectionString));
         }
 
-        public int AddOrderCheckpoint(OrderCheckpoint checkpoint)
+        public async Task<int> AddOrderCheckpointAsync(OrderCheckpoint checkpoint)
         {
-            int insertedID = -1;
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(
-                    @"INSERT INTO OrderCheckpoints (Timestamp, Location, Description, Status, TrackedOrderID) 
-                    OUTPUT inserted.CheckpointID 
-                    VALUES (@timestamp, @location, @description, @status, @trackOrderID)", conn))
+                await conn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand("uspInsertOrderCheckpoint", conn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@timestamp", checkpoint.Timestamp);
                     cmd.Parameters.AddWithValue("@location", checkpoint.Location ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@description", checkpoint.Description);
-                    cmd.Parameters.AddWithValue("@status", checkpoint.Status.ToString());
-                    cmd.Parameters.AddWithValue("@trackOrderID", checkpoint.TrackedOrderID);
+                    cmd.Parameters.AddWithValue("@checkpointStatus", checkpoint.Status.ToString());
+                    cmd.Parameters.AddWithValue("@trackedOrderID", checkpoint.TrackedOrderID);
 
-                    insertedID = (int)cmd.ExecuteScalar();
+                    SqlParameter outputParam = new SqlParameter("@newCheckpointID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(outputParam);
+
+                    await cmd.ExecuteNonQueryAsync();
+
+                    int newID = (int)cmd.Parameters["@newCheckpointID"].Value;
+                    if (newID < 0)
+                        throw new Exception("Unexpected error when trying to add the OrderCheckpoint");
+                    return newID;
                 }
             }
-
-            return insertedID;
         }
 
-        public int AddTrackedOrder(TrackedOrder order)
+        public async Task<int> AddTrackedOrderAsync(TrackedOrder order)
         {
-            int insertedID = -1;
-
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(
-                    @"INSERT INTO TrackedOrder (EstimatedDeliveryDate, DeliveryAddress, OrderStatus, OrderID) 
-                    OUTPUT inserted.TrackedOrderID 
-                    VALUES (@estimatedDeliveryDate, @deliveryAddress, @status, @orderID)", conn))
+                await conn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand("uspInsertTrackedOrder", conn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@estimatedDeliveryDate", order.EstimatedDeliveryDate);
                     cmd.Parameters.AddWithValue("@deliveryAddress", order.DeliveryAddress);
-                    cmd.Parameters.AddWithValue("@status", order.CurrentStatus.ToString());
+                    cmd.Parameters.AddWithValue("@orderStatus", order.CurrentStatus.ToString());
                     cmd.Parameters.AddWithValue("@orderID", order.OrderID);
 
-                    insertedID = (int)cmd.ExecuteScalar();
+                    SqlParameter outputParam = new SqlParameter("@newTrackedOrderID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(outputParam);
+
+                    await cmd.ExecuteNonQueryAsync();
+
+                    int newID = (int)cmd.Parameters["@newTrackedOrderID"].Value;
+                    if (newID < 0)
+                        throw new Exception("Unexpected error when trying to add the TrackedOrder");
+                    return newID;
                 }
             }
-
-            return insertedID;
         }
 
-        public bool DeleteOrderCheckpoint(int checkpointID)
+        public async Task<bool> DeleteOrderCheckpointAsync(int checkpointID)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM OrderCheckpoints WHERE CheckpointID = @checkpointID", conn))
+                await conn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand("uspDeleteOrderCheckpoint", conn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@checkpointID", checkpointID);
-                    return cmd.ExecuteNonQuery() > 0;
+                    return await cmd.ExecuteNonQueryAsync() > 0;
                 }
             }
         }
 
-        public bool DeleteTrackedOrder(int trackOrderID)
+        public async Task<bool> DeleteTrackedOrderAsync(int trackOrderID)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand("DELETE FROM TrackedOrders WHERE TrackedOrderID = @trackOrderID", conn))
+                await conn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand("uspDeleteTrackedOrder", conn))
                 {
+                    cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@trackOrderID", trackOrderID);
-                    return cmd.ExecuteNonQuery() > 0;
+                    return await cmd.ExecuteNonQueryAsync() > 0;
                 }
             }
         }
 
-        public List<OrderCheckpoint> GetAllOrderCheckpoints(int trackedOrderID)
+        public async Task<List<OrderCheckpoint>> GetAllOrderCheckpointsAsync(int trackedOrderID)
         {
             List<OrderCheckpoint> checkpoints = new List<OrderCheckpoint>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
                 using (SqlCommand cmd = new SqlCommand("SELECT * FROM OrderCheckpoints WHERE TrackedOrderID = @trackedOrderID", conn))
                 {
                     cmd.Parameters.AddWithValue("@trackedOrderID", trackedOrderID);
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        while (reader.Read())
+                        while (await reader.ReadAsync())
                         {
                             checkpoints.Add(new OrderCheckpoint
                             {
@@ -115,7 +129,7 @@ namespace ArtAttack.Model
                                 Timestamp = reader.GetDateTime(reader.GetOrdinal("Timestamp")),
                                 Location = reader.IsDBNull(reader.GetOrdinal("Location")) ? null : reader.GetString(reader.GetOrdinal("Location")),
                                 Description = reader.GetString(reader.GetOrdinal("Description")),
-                                Status = Enum.Parse<OrderStatus>(reader.GetString(reader.GetOrdinal("Status"))),
+                                Status = Enum.Parse<OrderStatus>(reader.GetString(reader.GetOrdinal("CheckpointStatus"))),
                                 TrackedOrderID = reader.GetInt32(reader.GetOrdinal("TrackedOrderID"))
                             });
                         }
@@ -125,24 +139,24 @@ namespace ArtAttack.Model
             return checkpoints;
         }
 
-        public List<TrackedOrder> GetAllTrackedOrders()
+        public async Task<List<TrackedOrder>> GetAllTrackedOrdersAsync()
         {
             List<TrackedOrder> orders = new List<TrackedOrder>();
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
                 using (SqlCommand cmd = new SqlCommand("SELECT * FROM TrackedOrders", conn))
                 {
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        while (reader.Read())
+                        while (await reader.ReadAsync())
                         {
                             orders.Add( new TrackedOrder
                             {
                                 TrackedOrderID = reader.GetInt32(reader.GetOrdinal("TrackedOrderID")),
                                 OrderID = reader.GetInt32(reader.GetOrdinal("OrderID")),
                                 CurrentStatus = Enum.Parse<OrderStatus>(reader.GetString(reader.GetOrdinal("OrderStatus"))),
-                                EstimatedDeliveryDate = reader.GetDateTime(reader.GetOrdinal("EstimatedDeliveryDate")),
+                                EstimatedDeliveryDate = reader.GetFieldValue<DateOnly>(reader.GetOrdinal("EstimatedDeliveryDate")),
                                 DeliveryAddress = reader.GetString(reader.GetOrdinal("DeliveryAddress"))
                             });
                         }
@@ -152,18 +166,18 @@ namespace ArtAttack.Model
             return orders;
         }
 
-        public OrderCheckpoint? GetOrderCheckpointById(int checkpointID)
+        public async Task<OrderCheckpoint> GetOrderCheckpointByIdAsync(int checkpointID)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
                 using (SqlCommand cmd = new SqlCommand("SELECT * FROM OrderCheckpoints WHERE CheckpointID = @checkpointID", conn))
                 {
                     cmd.Parameters.AddWithValue("@checkpointID", checkpointID);
 
-                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        if (reader.Read())
+                        if (await reader.ReadAsync())
                         {
                             return new OrderCheckpoint
                             {
@@ -178,83 +192,71 @@ namespace ArtAttack.Model
                     }
                 }
             }
-            return null;
+            throw new Exception("No OrderChekpoint with id: " + checkpointID.ToString());
         }
 
-        public TrackedOrder? GetTrackedOrderById(int trackOrderID)
+        public async Task<TrackedOrder> GetTrackedOrderByIdAsync(int trackOrderID)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
+                await conn.OpenAsync();
                 using(SqlCommand cmd = new SqlCommand("SELECT * FROM TrackedOrders WHERE TrackedOrderID = @trackedOrderID", conn))
                 {
                     cmd.Parameters.AddWithValue("@trackedOrderID", trackOrderID);
 
-                    using(SqlDataReader reader = cmd.ExecuteReader())
+                    using(SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
-                        if (reader.Read())
+                        if (await reader.ReadAsync())
                         {
                             return new TrackedOrder
                             {
                                 TrackedOrderID = reader.GetInt32(reader.GetOrdinal("TrackedOrderID")),
                                 OrderID = reader.GetInt32(reader.GetOrdinal("OrderID")),
                                 CurrentStatus = Enum.Parse<OrderStatus>(reader.GetString(reader.GetOrdinal("OrderStatus"))),
-                                EstimatedDeliveryDate = reader.GetDateTime(reader.GetOrdinal("EstimatedDeliveryDate")),
+                                EstimatedDeliveryDate = reader.GetFieldValue<DateOnly>(reader.GetOrdinal("EstimatedDeliveryDate")),
                                 DeliveryAddress = reader.GetString(reader.GetOrdinal("DeliveryAddress"))
                             };
                         }
                     }
                 }
             }
-            return null;
+            throw new Exception("No TrackedOrder with id: " + trackOrderID.ToString());
         }
 
-        public bool UpdateOrderCheckpoint(OrderCheckpoint checkpoint)
+        public async Task UpdateOrderCheckpointAsync(int checkpointID, DateTime timestamp, string? location, string description, OrderStatus status)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(
-                    @"UPDATE OrderCheckpoints 
-                    SET Timestamp = @timestamp,
-                        Location = @location,
-                        Description = @description,
-                        Status = @status,
-                        trackedOrderID = @trackedOrderID
-                    WHERE CheckpointID = @checkpointID", conn))
+                await conn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand("uspUpdateOrderCheckpoint", conn))
                 {
-                    cmd.Parameters.AddWithValue("@timestamp", checkpoint.Timestamp);
-                    cmd.Parameters.AddWithValue("@location", checkpoint.Location ?? (object)DBNull.Value);
-                    cmd.Parameters.AddWithValue("@description", checkpoint.Description);
-                    cmd.Parameters.AddWithValue("@status", checkpoint.Status.ToString());
-                    cmd.Parameters.AddWithValue("@trackedOrderID", checkpoint.TrackedOrderID);
-                    cmd.Parameters.AddWithValue("@checkpointID", checkpoint.CheckpointID);
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.AddWithValue("@timestamp", timestamp);
+                    cmd.Parameters.AddWithValue("@location", location ?? (object)DBNull.Value);
+                    cmd.Parameters.AddWithValue("@description", description);
+                    cmd.Parameters.AddWithValue("@checkpointStatus", status.ToString());
+                    cmd.Parameters.AddWithValue("@checkpointID", checkpointID);
 
-                    return cmd.ExecuteNonQuery() > 0;
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public bool UpdateTrackedOrder(TrackedOrder order)
+        public async Task UpdateTrackedOrderAsync(int trackedOrderID, DateOnly estimatedDeliveryDate, OrderStatus currentStatus)
         {
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(
-                    @"UPDATE TrackedOrder 
-                    SET EstimatedDeliveryDate = @estimatedDeliveryDate, 
-                        DeliveryAddress = @deliveryAddress,
-                        CurrentStatus= @status, 
-                        OrderID = @orderID
-                    WHERE TrackedOrderID = @trackOrderID", conn))
+                await conn.OpenAsync();
+                using (SqlCommand cmd = new SqlCommand("uspUpdateTrackedOrder", conn))
                 {
-                    cmd.Parameters.AddWithValue("@estimatedDeliveryDate", order.EstimatedDeliveryDate);
-                    cmd.Parameters.AddWithValue("@deliveryAddress", order.DeliveryAddress);
-                    cmd.Parameters.AddWithValue("@status", order.CurrentStatus.ToString());
-                    cmd.Parameters.AddWithValue("@orderID", order.OrderID);
-                    cmd.Parameters.AddWithValue("@trackOrderID", order.TrackedOrderID);
+                    DateTime estimatedDeliveryDateTime = estimatedDeliveryDate.ToDateTime(TimeOnly.MinValue);
 
-                    return cmd.ExecuteNonQuery() > 0;
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.Parameters.Add("@estimatedDeliveryDate", SqlDbType.Date).Value = estimatedDeliveryDateTime;
+                    cmd.Parameters.AddWithValue("@orderStatus", currentStatus.ToString());
+                    cmd.Parameters.AddWithValue("@trackedOrderID", trackedOrderID);
+
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }

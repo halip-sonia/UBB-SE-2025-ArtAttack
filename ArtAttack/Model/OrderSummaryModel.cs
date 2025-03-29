@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using Microsoft.Data.SqlClient;
+using ArtAttack.Domain;
 
 namespace ArtAttack.Model
 {
@@ -19,7 +20,7 @@ namespace ArtAttack.Model
             _connectionString = connectionString;
         }
 
-        public void AddOrderSummary(float subtotal, float warrantyTax, float deliveryFee, float finalTotal,
+        public async Task AddOrderSummaryAsync(float subtotal, float warrantyTax, float deliveryFee, float finalTotal,
                                     string fullName, string email, string phoneNumber, string address,
                                     string postalCode, string additionalInfo, string contractDetails)
         {
@@ -40,13 +41,13 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@AdditionalInfo", additionalInfo);
                     cmd.Parameters.AddWithValue("@ContractDetails", contractDetails ?? (object)DBNull.Value);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public void UpdateOrderSummary(int id, float subtotal, float warrantyTax, float deliveryFee, float finalTotal,
+        public async Task UpdateOrderSummaryAsync(int id, float subtotal, float warrantyTax, float deliveryFee, float finalTotal,
                                        string fullName, string email, string phoneNumber, string address,
                                        string postalCode, string additionalInfo, string contractDetails)
         {
@@ -68,13 +69,13 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@AdditionalInfo", additionalInfo);
                     cmd.Parameters.AddWithValue("@ContractDetails", contractDetails ?? (object)DBNull.Value);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
         }
 
-        public void DeleteOrderSummary(int id)
+        public async Task DeleteOrderSummaryAsync(int id)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -83,10 +84,45 @@ namespace ArtAttack.Model
                     cmd.CommandType = CommandType.StoredProcedure;
                     cmd.Parameters.AddWithValue("@ID", id);
 
-                    conn.Open();
-                    cmd.ExecuteNonQuery();
+                    await conn.OpenAsync();
+                    await cmd.ExecuteNonQueryAsync();
                 }
             }
+        }
+
+        public async Task<OrderSummary> GetOrderSummaryByIDAsync(int orderSummaryID)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("select * from [OrderSummary] where [ID] = @ID", conn))
+                {
+                    cmd.Parameters.AddWithValue("@ID", orderSummaryID);
+
+                    await conn.OpenAsync();
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            return new OrderSummary
+                            {
+                                ID = reader.GetInt32(reader.GetOrdinal("ID")),
+                                Subtotal = (float)reader.GetDouble(reader.GetOrdinal("Subtotal")),
+                                WarrantyTax = (float)reader.GetDouble(reader.GetOrdinal("WarrantyTax")),
+                                DeliveryFee = (float)reader.GetDouble(reader.GetOrdinal("DeliveryFee")),
+                                FinalTotal = (float)reader.GetDouble(reader.GetOrdinal("FinalTotal")),
+                                FullName = reader.GetString(reader.GetOrdinal("FullName")),
+                                Email = reader.GetString(reader.GetOrdinal("Email")),
+                                PhoneNumber = reader.GetString(reader.GetOrdinal("PhoneNumber")),
+                                Address = reader.GetString(reader.GetOrdinal("Address")),
+                                PostalCode = reader.GetString(reader.GetOrdinal("PostalCode")),
+                                AdditionalInfo = reader.IsDBNull(reader.GetOrdinal("AdditionalInfo")) ? null : reader.GetString(reader.GetOrdinal("AdditionalInfo")),
+                                ContractDetails = reader.IsDBNull(reader.GetOrdinal("ContractDetails")) ? null : reader.GetString(reader.GetOrdinal("ContractDetails"))
+                            };
+                        }
+                    }
+                }
+            }
+            return null; 
         }
     }
 }

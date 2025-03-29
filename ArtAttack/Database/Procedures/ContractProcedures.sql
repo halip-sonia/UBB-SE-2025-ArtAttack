@@ -5,10 +5,15 @@ Drop procedure if exists GetContractBuyer
 Drop procedure if exists GetContractSeller
 Drop procedure if exists AddContract
 Drop procedure if exists GetOrderSummaryInformation
+Drop procedure if exists GetPredefinedContractByID
+Drop procedure if exists GetProductDetailsByContractID
+Drop procedure if exists GetContractsByBuyer
+Drop procedure if exists GetOrderDetails
+Drop procedure if exists GetDeliveryDateByContractID
 Go
 
 CREATE PROCEDURE GetContractByID
-    @ContractID BIGINT
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -16,6 +21,18 @@ BEGIN
     SELECT *
     FROM Contract
     WHERE ID = @ContractID;
+END
+GO
+
+CREATE PROCEDURE GetPredefinedContractByID
+    @PContractID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT *
+    FROM PredefinedContract
+    WHERE ID = @PContractID;
 END
 GO
 
@@ -31,7 +48,7 @@ GO
 
 
 CREATE PROCEDURE GetContractHistory
-    @ContractID BIGINT
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -63,7 +80,8 @@ CREATE PROCEDURE AddContract
     @PredefinedContractID INT = NULL,
     @PDFID INT,
     @PDFFile VARBINARY(MAX),
-    @RenewedFromContractID BIGINT = NULL
+    @AdditionalTerms TEXT = NULL,
+    @RenewedFromContractID INT = NULL
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -78,9 +96,9 @@ BEGIN
         
         -- Insert the new contract record.
         INSERT INTO Contract
-            (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
+            (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, AdditionalTerms, renewedFromContractID)
         VALUES
-            (@OrderID, @ContractStatus, @ContractContent, @RenewalCount, @PredefinedContractID, @PDFID, @RenewedFromContractID);
+            (@OrderID, @ContractStatus, @ContractContent, @RenewalCount, @PredefinedContractID, @PDFID, @AdditionalTerms,@RenewedFromContractID);
         
         COMMIT TRANSACTION;
     END TRY
@@ -94,7 +112,7 @@ END
 GO
 
 CREATE PROCEDURE GetContractSeller
-    @ContractID BIGINT
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -110,7 +128,7 @@ END
 GO
 
 CREATE PROCEDURE GetContractBuyer
-    @ContractID BIGINT
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -125,7 +143,7 @@ END
 GO
 
 CREATE PROCEDURE GetOrderSummaryInformation
-    @ContractID BIGINT
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
@@ -138,13 +156,24 @@ BEGIN
 END
 GO
 
-CREATE PROCEDURE GetProductDatesByContractID
-    @ContractID BIGINT
+CREATE PROCEDURE GetOrderDetails @ContractID INT
+AS
+BEGIN
+    SET NOCOUNT ON
+    SELECT o.PaymentMethod, o.OrderDate
+    FROM [Contract] c
+    INNER JOIN [Order] o on c.orderID = o.OrderID
+    WHERE c.ID = @ContractID
+END
+GO
+
+CREATE PROCEDURE GetProductDetailsByContractID
+    @ContractID INT
 AS
 BEGIN
     SET NOCOUNT ON;
 
-    SELECT dp.startDate, dp.endDate
+    SELECT dp.startDate, dp.endDate, dp.price, dp.name
     FROM Contract c
     INNER JOIN [Order] o ON c.orderID = o.OrderID
     INNER JOIN DummyProduct dp ON o.ProductId = dp.ID
@@ -152,12 +181,41 @@ BEGIN
 END
 GO
 
+CREATE PROCEDURE GetContractsByBuyer
+    @BuyerID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT c.*
+    FROM Contract c
+    INNER JOIN [Order] o ON c.orderID = o.OrderID
+    WHERE o.BuyerID = @BuyerID;
+END
+GO
+
+CREATE PROCEDURE GetDeliveryDateByContractID
+    @ContractID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    SELECT t.EstimatedDeliveryDate
+    FROM [Contract] c
+    INNER JOIN TrackedOrders t ON c.OrderID = t.TrackedOrderID
+    WHERE c.ID = @ContractID;
+END;
+GO
+
 
 
 -- Get a specific contract by ID
-EXEC GetContractByID @ContractID = 2;
+EXEC GetContractByID @ContractID = 1;
 GO
 
+--Retrieve predefined contract
+exec GetPredefinedContractByID @PContractID = 3
+GO
 -- Retrieve all contracts
 EXEC GetAllContracts;
 GO
@@ -178,6 +236,7 @@ EXEC AddContract
     @PredefinedContractID = NULL,    -- Optional parameter (set to NULL if not used)
     @PDFID = 1,
     @PDFFile = @SamplePDF,
+    @AdditionalTerms = NULL,
     @RenewedFromContractID = NULL;     -- Set to a valid contract ID if this is a renewal, otherwise NULL
 GO
 
@@ -193,15 +252,4 @@ GO
 EXEC GetOrderSummaryInformation @ContractID = 2;
 GO
 
-CREATE PROCEDURE GetContractsByBuyer
-    @BuyerID INT
-AS
-BEGIN
-    SET NOCOUNT ON;
 
-    SELECT c.*
-    FROM Contract c
-    INNER JOIN [Order] o ON c.orderID = o.OrderID
-    WHERE o.BuyerID = @BuyerID;
-END
-GO
