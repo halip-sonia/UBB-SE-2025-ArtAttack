@@ -35,109 +35,116 @@ namespace ArtAttack
         }
 
         private async Task LoadOrders(string searchText = null)
+{
+    try
+    {
+        List<Order> orders = new List<Order>();
+        Dictionary<int, string> productNames = new Dictionary<int, string>();
+        Dictionary<int, string> productTypeNames = new Dictionary<int, string>();
+
+        var selectedPeriod = (TimePeriodComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+        using (var connection = new SqlConnection(_connectionString))
         {
-            try
+            await connection.OpenAsync();
+
+            string query = @"SELECT 
+                o.OrderID, 
+                p.name AS ProductName, 
+                o.ProductType,  
+                p.productType AS ProductTypeName,  
+                o.OrderDate, 
+                o.PaymentMethod, 
+                o.OrderSummaryID
+            FROM [Order] o
+            JOIN [DummyProduct] p ON o.ProductType = p.ID
+            WHERE o.BuyerID = @UserId";
+
+            if (!string.IsNullOrEmpty(searchText))
+                query += " AND p.name LIKE @SearchText";
+
+            if (selectedPeriod == "Last 3 Months")
+                query += " AND o.OrderDate >= DATEADD(month, -3, GETDATE())";
+            else if (selectedPeriod == "Last 6 Months")
+                query += " AND o.OrderDate >= DATEADD(month, -6, GETDATE())";
+            else if (selectedPeriod == "This Year")
+                query += " AND YEAR(o.OrderDate) = YEAR(GETDATE())";
+
+            using (var command = new SqlCommand(query, connection))
             {
-                List<Order> orders = new List<Order>();
-                var selectedPeriod = (TimePeriodComboBox.SelectedItem as ComboBoxItem)?.Content.ToString();
+                command.Parameters.AddWithValue("@UserId", _userId);
+                if (!string.IsNullOrEmpty(searchText))
+                    command.Parameters.AddWithValue("@SearchText", $"%{searchText}%");
 
-                using (var connection = new SqlConnection(_connectionString))
+                using (var reader = await command.ExecuteReaderAsync())
                 {
-                    await connection.OpenAsync();
-
-                    string query = @"SELECT o.OrderID, p.name AS ProductName, o.OrderDate, 
-                          o.PaymentMethod, o.OrderSummaryID
-                          FROM [Order] o
-                          JOIN [DummyProduct] p ON o.ProductType = p.ID
-                          WHERE o.BuyerID = @UserId";
-
-                    // Add search filter if text is provided
-                    if (!string.IsNullOrEmpty(searchText))
+                    while (await reader.ReadAsync())
                     {
-                        query += " AND p.name LIKE @SearchText";
-                    }
-
-                    // Add time filter
-                    if (selectedPeriod == "Last 3 Months")
-                        query += " AND o.OrderDate >= DATEADD(month, -3, GETDATE())";
-                    else if (selectedPeriod == "Last 6 Months")
-                        query += " AND o.OrderDate >= DATEADD(month, -6, GETDATE())";
-                    else if (selectedPeriod == "This Year")
-                        query += " AND YEAR(o.OrderDate) = YEAR(GETDATE())";
-
-                    using (var command = new SqlCommand(query, connection))
-                    {
-                        command.Parameters.AddWithValue("@UserId", _userId);
-
-                        if (!string.IsNullOrEmpty(searchText))
+                        var order = new Order
                         {
-                            command.Parameters.AddWithValue("@SearchText", $"%{searchText}%");
-                        }
+                            OrderID = reader.GetInt32(0),
+                            ProductType = reader.GetInt32(2),
+                           
+                            OrderDate = reader.GetDateTime(4),
+                            PaymentMethod = reader.GetString(5),
+                            OrderSummaryID = reader.GetInt32(6)
+                        };
 
-                        using (var reader = await command.ExecuteReaderAsync())
-                        {
-                            while (await reader.ReadAsync())
-                            {
-                                orders.Add(new Order
-                                {
-                                    OrderID = reader.GetInt32(0),
-                                    ProductName = reader.GetString(1),
-                                    OrderDate = reader.GetDateTime(2),
-                                    PaymentMethod = reader.GetString(3),
-                                    OrderSummaryID = reader.GetInt32(4)
-                                });
-                            }
-                        }
+                        orders.Add(order);
+                        productNames[order.OrderID] = reader.GetString(1); 
+                        productTypeNames[order.OrderID] = reader.GetString(3);
                     }
                 }
-
-                // Update UI based on results
-                if (orders.Count > 0)
-                {
-                    OrdersListView.ItemsSource = orders;
-                    OrdersListView.Visibility = Visibility.Visible;
-                    NoResultsText.Visibility = Visibility.Collapsed;
-                }
-                else
-                {
-                    OrdersListView.Visibility = Visibility.Collapsed;
-                    NoResultsText.Visibility = Visibility.Visible;
-
-                    // Customize message based on filters
-                    if (!string.IsNullOrEmpty(searchText))
-                    {
-                        NoResultsText.Text = $"No orders found containing '{searchText}'";
-                        if (selectedPeriod != "All Orders")
-                        {
-                            NoResultsText.Text += $" in {selectedPeriod}";
-                        }
-                    }
-                    else if (selectedPeriod != "All Orders")
-                    {
-                        NoResultsText.Text = $"No orders found in {selectedPeriod}";
-                    }
-                    else
-                    {
-                        NoResultsText.Text = "No orders found";
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                OrdersListView.Visibility = Visibility.Collapsed;
-                NoResultsText.Visibility = Visibility.Visible;
-                NoResultsText.Text = "Error loading orders";
-
-                var dialog = new ContentDialog
-                {
-                    Title = "Error",
-                    Content = $"Failed to load orders: {ex.Message}",
-                    CloseButtonText = "OK",
-                    XamlRoot = this.Content.XamlRoot
-                };
-                await dialog.ShowAsync();
             }
         }
+
+        // Update UI based on results
+        if (orders.Count > 0)
+        {
+            var displayOrders = orders.Select(o => new
+            {
+                o.OrderID,
+                ProductName = productNames.GetValueOrDefault(o.OrderID, "Unknown"), // Safe lookup
+                //o.ProductType,
+                ProductTypeName = productTypeNames.GetValueOrDefault(o.OrderID, "Unknown"),
+                OrderDate = o.OrderDate.ToString("yyyy-MM-dd"),
+                o.PaymentMethod,
+                o.OrderSummaryID
+            }).ToList();
+
+            OrdersListView.ItemsSource = displayOrders;
+
+            OrdersListView.Visibility = Visibility.Visible;
+            NoResultsText.Visibility = Visibility.Collapsed;
+        }
+        else
+        {
+            OrdersListView.Visibility = Visibility.Collapsed;
+            NoResultsText.Visibility = Visibility.Visible;
+
+            // Customize message based on filters
+            NoResultsText.Text = string.IsNullOrEmpty(searchText) ? "No orders found" : $"No orders found containing '{searchText}'";
+            if (selectedPeriod != "All Orders")
+                NoResultsText.Text += $" in {selectedPeriod}";
+        }
+    }
+    catch (Exception ex)
+    {
+        OrdersListView.Visibility = Visibility.Collapsed;
+        NoResultsText.Visibility = Visibility.Visible;
+        NoResultsText.Text = "Error loading orders";
+
+        var dialog = new ContentDialog
+        {
+            Title = "Error",
+            Content = $"Failed to load orders: {ex.Message}",
+            CloseButtonText = "OK",
+            XamlRoot = this.Content.XamlRoot
+        };
+        await dialog.ShowAsync();
+    }
+}
+
         private async void RefreshButton_Click(object sender, RoutedEventArgs e)
         {
             await LoadOrders(SearchTextBox.Text);
@@ -159,7 +166,7 @@ namespace ArtAttack
                     // Clear previous content
                     OrderDetailsContent.Children.Clear();
 
-                    // Add order details to the dialog
+                   
                     AddDetailRow("Order Summary ID:", orderSummary.ID.ToString());
                     AddDetailRow("Subtotal:", orderSummary.Subtotal.ToString("C"));
                     AddDetailRow("Warranty Tax:", orderSummary.WarrantyTax.ToString("C"));

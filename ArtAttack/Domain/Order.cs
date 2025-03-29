@@ -9,8 +9,10 @@ namespace ArtAttack.Domain
     public class Order
     {
         public int OrderID { get; set; }
+        public int ProductID {  get; set; }
 
-        public string ProductName{ get; set; }
+      
+       
         public int BuyerID { get; set; }
         public int ProductType { get; set; }
         public int OrderSummaryID { get; set; }
