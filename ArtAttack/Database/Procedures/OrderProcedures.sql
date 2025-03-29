@@ -107,7 +107,7 @@ CREATE PROCEDURE UpdateOrder
     @OrderID INT,
     @ProductType varchar(20),
     @PaymentMethod VARCHAR(20),
-    @OrderDate timestamp
+    @OrderDate datetime
    
 AS
 BEGIN
@@ -116,7 +116,7 @@ BEGIN
     BEGIN TRY
         BEGIN TRANSACTION;
 
-        UPDATE Orders
+        UPDATE [Order]
         SET [ProductType] = @ProductType,
             [PaymentMethod] = @PaymentMethod,
             [OrderDate]=@OrderDate

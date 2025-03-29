@@ -1,4 +1,5 @@
-﻿using Microsoft.UI.Xaml.Controls;
+﻿using ArtAttack.ViewModel;
+using Microsoft.UI.Xaml.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +10,12 @@ namespace ArtAttack
 {
     public sealed partial class FinalisePurchase : Page
     {
-        public FinalisePurchase()
+        private FinalizePurchaseViewModel viewModel;
+        public FinalisePurchase(int orderHistoryID)
         {
             this.InitializeComponent();
+            viewModel = new FinalizePurchaseViewModel(orderHistoryID);
+            DataContext = viewModel;
         }
     }
 }
