@@ -7,11 +7,8 @@ using System.Threading.Tasks;
 
 namespace ArtAttack.ViewModel
 {
-    public interface IBillingInfoModelView
+    interface IFinalizePurchaseViewModel
     {
         Task<List<DummyProduct>> GetDummyProductsFromOrderHistoryAsync(int orderHistoryID);
-        void CalculateOrderTotal(int orderHistoryID);
-        void ApplyBorrowedTax(DummyProduct dummyProduct);
-
     }
 }

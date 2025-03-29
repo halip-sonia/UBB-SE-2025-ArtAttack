@@ -1,11 +1,15 @@
 ﻿insert into [DummyWallet] 
 values (120.0);
 
+update [DummyWallet] set balance = 1200
+
 insert into [DummyCard]
 values 
 ('Alice Johnson', '5425233430109903', '123', '08', '26', 'Romania', 1500.50),
 ('Bob Smith', '2222420000001113	', '456', '12', '27', 'Canada', 12.00),
 ('Charlie Brown', '2223000048410010', '789', '01', '25', 'Spain', 500.00)
+update [DummyCard] set balance = 1500
+
 
 insert into [DummyBuyer]
 values
@@ -27,16 +31,13 @@ insert into [DummyProduct]
 values
 ('IPhone 4 Penguin Phone Case', 75.00, 3, 'used', NULL,NULL)
 
-select * from [DummyProduct]
+
 
 insert into [OrderHistory] default values
 insert into [OrderHistory] default values
 insert into [OrderHistory] default values
 
-select * from [OrderHistory]
-select * from [OrderSummary]
 
-select * from [Order]
 
 insert into [OrderSummary] (Subtotal, WarrantyTax, DeliveryFee, FinalTotal, FullName, Email, PhoneNumber, [Address], PostalCode, AdditionalInfo, ContractDetails)
 values (0, 0, 0, 0, 'Placeholder1', 'placeholder@email.com', '0000000000', 'TBD', '000000', 'N/A', NULL);
@@ -64,3 +65,9 @@ values (0, 0, 0, 0, 'Placeholder3', 'placeholder@email.com', '0000000000', 'TBD'
 insert into [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderHistoryID)
 values (4, 1, 4, NULL, 3, 3);
 
+select * from [DummyWallet]
+select * from [DummyCard]
+select * from [DummyProduct]
+select * from [OrderHistory]
+select * from [OrderSummary]
+select * from [Order]

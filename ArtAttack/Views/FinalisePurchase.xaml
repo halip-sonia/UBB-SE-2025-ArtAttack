@@ -32,21 +32,40 @@
         </Grid.ColumnDefinitions>
 
         <TextBlock Text="Thank you for your purchase!" Grid.Row="0" Grid.Column="0" FontSize="20"/>
-        
-        <ListView x:Name="productList" Background="#cccaca" Grid.Row="1" Grid.Column="1" ></ListView>
+
+        <ListView ItemsSource="{Binding ProductList}" Grid.Row="1" Grid.Column="1" Background="#cccaca" Foreground="Black">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Vertical">
+                        <TextBlock  FontSize="16" Foreground="Black" >
+                    <Run Text="Product name: " FontWeight="Bold"/>
+                     <Run Text="{Binding Name}"/>
+                        </TextBlock>
+                        <TextBlock  FontSize="16" Foreground="Black" >
+                    <Run Text="Price: " FontWeight="Bold"/>
+                     <Run Text="{Binding Price}"/>
+                        </TextBlock>
+                        <TextBlock  FontSize="16" Foreground="Black" >
+                      <Run Text="Seller ID: " FontWeight="Bold"/>
+                       <Run Text="{Binding SellerID}"/>
+                        </TextBlock>
+                    </StackPanel>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
         
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="2" Grid.Column="1">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Subtotal: "/>
-                <TextBlock x:Name="subtotal"/>
+                <TextBlock Text="{Binding Subtotal}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Delivery fee: "/>
-                <TextBlock x:Name="delivery"/>
+                <TextBlock Text="{Binding DeliveryFee}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Total: "/>
-                <TextBlock x:Name="total"/>
+                <TextBlock Text="{Binding Total}" />
             </StackPanel>
 
         </StackPanel>
@@ -54,23 +73,23 @@
         <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Top" Grid.Row="1">
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Full Name: "/>
-                <TextBlock x:Name="fullName"/>
+                <TextBlock Text="{Binding FullName}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Phone Number: "/>
-                <TextBlock x:Name="phoneNumber"/>
+                <TextBlock Text="{Binding PhoneNumber}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Email: "/>
-                <TextBlock x:Name="email"/>
+                <TextBlock Text="{Binding Email}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Payment Method: "/>
-                <TextBlock x:Name="payMethod"/>
+                <TextBlock Text="{Binding PaymentMethod}"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Order Status: "/>
-                <TextBlock x:Name="orderStatus"/>
+                <TextBlock Text="{Binding OrderStatus}"/>
             </StackPanel>
         </StackPanel>
         <Button x:Name="backButton"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="Black" Background="#cccaca">Back to shop</Button>
