@@ -1,11 +1,3 @@
-
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
-using System.Collections.Generic;
-using System.Linq;
-using Microsoft.Data.SqlClient;
-using System;
-using System.Threading.Tasks;
 using ArtAttack.Domain;
 using ArtAttack.ViewModel;
 using Microsoft.UI.Text;

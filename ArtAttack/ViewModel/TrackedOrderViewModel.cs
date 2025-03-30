@@ -2,15 +2,13 @@
 using ArtAttack.Model;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Windows.UI.WebUI;
 
 namespace ArtAttack.ViewModel
 {
-    internal class TrackedOrderViewModel : ITrackedOrderViewModel
+    class TrackedOrderViewModel : ITrackedOrderViewModel
     {
         private readonly TrackedOrderModel model;
 
@@ -19,12 +17,12 @@ namespace ArtAttack.ViewModel
             model = new TrackedOrderModel(connectionString);
         }
 
-        public async Task<TrackedOrder> GetTrackedOrderByIDAsync(int trackedOrderID)
+        public async Task<TrackedOrder?> GetTrackedOrderByIDAsync(int trackedOrderID)
         {
             return await model.GetTrackedOrderByIdAsync(trackedOrderID);
         }
 
-        public async Task<OrderCheckpoint> GetOrderCheckpointByIDAsync(int checkpointID)
+        public async Task<OrderCheckpoint?> GetOrderCheckpointByIDAsync(int checkpointID)
         {
             return await model.GetOrderCheckpointByIdAsync(checkpointID);
         }
@@ -105,7 +103,7 @@ namespace ArtAttack.ViewModel
             }
         }
 
-        public async Task UpdateOrderCheckpointAsync(int checkpointID, DateTime timestamp, string? location, string description, OrderStatus status)
+        public async Task<bool> UpdateOrderCheckpointAsync(int checkpointID, DateTime timestamp, string? location, string description, OrderStatus status, int trackedOrderID)
         {
             try
             {
@@ -121,9 +119,10 @@ namespace ArtAttack.ViewModel
                 throw new Exception("Error updating OrderCheckpoint\n" + ex.ToString());
             }
             
+
         }
 
-        public async Task UpdateTrackedOrderAsync(int trackedOrderID, DateOnly estimatedDeliveryDate, OrderStatus currentStatus)
+        public async Task<bool> UpdateTrackedOrderAsync(int trackedOrderID, DateOnly estimatedDeliveryDate, string deliveryAddress, OrderStatus currentStatus, int orderID)
         {
             try
             {
@@ -179,13 +178,9 @@ namespace ArtAttack.ViewModel
         {
             List<OrderCheckpoint> allCheckpoints = await GetAllOrderCheckpointsAsync(order.TrackedOrderID);
             OrderCheckpoint? lastCheckpoint = allCheckpoints.LastOrDefault();
-            return lastCheckpoint;
-        }
-
-        public async Task<int> GetNumberOfCheckpoints(TrackedOrder order)
-        {
-            List<OrderCheckpoint> allCheckpoints = await GetAllOrderCheckpointsAsync(order.TrackedOrderID);
-            return allCheckpoints.Count;
+            if (lastCheckpoint != null)
+                return await DeleteOrderCheckpointAsync(lastCheckpoint.CheckpointID);
+            return false;
         }
     }
 }
