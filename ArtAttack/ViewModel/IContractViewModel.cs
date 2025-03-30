@@ -7,6 +7,7 @@ namespace ArtAttack.ViewModel
 {
     public interface IContractViewModel
     {
+        //ADD HERE
         Task<Contract> GetContractByIdAsync(long contractId);
         Task<List<Contract>> GetAllContractsAsync();
         Task<List<Contract>> GetContractHistoryAsync(long contractId);
