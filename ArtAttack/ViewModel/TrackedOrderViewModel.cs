@@ -100,7 +100,7 @@ namespace ArtAttack.ViewModel
                 OrderCheckpoint checkpoint = await GetOrderCheckpointByIDAsync(checkpointID);
                 TrackedOrder trackedOrder = await GetTrackedOrderByIDAsync(checkpoint.TrackedOrderID);
 
-                await UpdateTrackedOrderAsync(trackedOrder.TrackedOrderID, trackedOrder.EstimatedDeliveryDate, status);
+                await UpdateTrackedOrderAsync(trackedOrder.TrackedOrderID, trackedOrder.EstimatedDeliveryDate, checkpoint.Status);
             }
             catch (Exception ex)
             {
