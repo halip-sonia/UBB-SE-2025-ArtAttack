@@ -1,16 +1,14 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Data.Common;
-using ArtAttack.Domain;
-using System.IO;
-using System.Threading.Tasks;
-using ArtAttack.Domain;
+﻿using ArtAttack.Domain;
 using ArtAttack.Model;
-using Microsoft.UI.Xaml;
 using QuestPDF.Fluent;
 using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using Windows.Storage;
+using Windows.System;
 
 namespace ArtAttack.ViewModel
 {
@@ -153,7 +151,7 @@ namespace ArtAttack.ViewModel
                             {
                                 column.Item()
                                       .Text(content);
-                                      //.TextAlignment(TextAlignment.Justify);
+                                //.TextAlignment(TextAlignment.Justify);
                             });
                     });
 
@@ -165,7 +163,7 @@ namespace ArtAttack.ViewModel
                         .PaddingTop(10)
                         .BorderTop(1)
                         .BorderColor(Colors.Grey.Lighten2)
-                        .Column(column => 
+                        .Column(column =>
                             column.Item().Row(row =>
                             {
                                 // Left part: Generation date.
@@ -188,7 +186,7 @@ namespace ArtAttack.ViewModel
                                    });
 
                             }));
-                        
+
                     });
                 });
             });
@@ -248,7 +246,7 @@ namespace ArtAttack.ViewModel
 
         public async Task GenerateAndSaveContractAsync(Contract contract, PredefinedContractType contractType)
         {
-            
+
             var predefinedContract = await GetPredefinedContractByPredefineContractTypeAsync(contractType);
 
 
@@ -264,6 +262,10 @@ namespace ArtAttack.ViewModel
 
             // Save the PDF file asynchronously.
             await File.WriteAllBytesAsync(filePath, pdfBytes);
+
+            // Open the saved PDF file using Windows.Storage and Windows.System APIs.
+            StorageFile file = await StorageFile.GetFileFromPathAsync(filePath);
+            await Launcher.LaunchFileAsync(file);
         }
     }
 }

@@ -1,9 +1,4 @@
-﻿using ArtAttack.Domain;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 
 
 namespace ArtAttack.Domain
@@ -13,8 +8,8 @@ namespace ArtAttack.Domain
         public int userWaitListID { get; set; }
         public int productWaitListID { get; set; }
         public int userID { get; set; }
-        public DateTime joinedTime { get;  set; }
-        public int positionInQueue { get;  set; }
+        public DateTime joinedTime { get; set; }
+        public int positionInQueue { get; set; }
 
         /*public void MoveUpInQueue()
         {
@@ -23,5 +18,5 @@ namespace ArtAttack.Domain
 
             positionInQueue--;
         }*/
-    } 
+    }
 }
