@@ -180,7 +180,7 @@ namespace ArtAttack.Model
                     {
                         Direction = ParameterDirection.Output
                     };
-                    cmd.Parameters.Add(outputParameter);
+                    cmd.Parameters.Add(outputParam);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();

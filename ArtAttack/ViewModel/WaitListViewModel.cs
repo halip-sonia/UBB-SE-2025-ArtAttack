@@ -9,7 +9,6 @@ namespace ArtAttack.Services
 {
     public class WaitListViewModel : IWaitListViewModel
     {
-        SqlParameter outputParam;
         private readonly WaitListModel _waitListModel;
         private readonly DummyProductModel _dummyProductModel;
 
@@ -46,7 +45,7 @@ namespace ArtAttack.Services
 
         public int GetUserWaitlistPosition(int userId, int productId)
         {
-            return _waitListModel.GetUserWaitlistPosition(userId, productId, outputParam);
+            return _waitListModel.GetUserWaitlistPosition(userId, productId);
         }
 
         public bool IsUserInWaitlist(int userId, int productWaitListId)
