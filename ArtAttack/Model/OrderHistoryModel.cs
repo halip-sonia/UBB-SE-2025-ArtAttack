@@ -38,6 +38,7 @@ namespace ArtAttack.Model
                                 ID = reader.GetInt32(reader.GetOrdinal("productID")),
                                 Name = reader.GetString(reader.GetOrdinal("name")),
                                 Price = (float)reader.GetDouble(reader.GetOrdinal("price")),
+                                ProductType = reader.GetString(reader.GetOrdinal("productType")),
                                 SellerID = reader["SellerID"] != DBNull.Value
                                 ? reader.GetInt32(reader.GetOrdinal("SellerID")): 0,
                                 StartDate = reader["startDate"] != DBNull.Value

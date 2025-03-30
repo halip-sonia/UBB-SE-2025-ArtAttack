@@ -1,4 +1,4 @@
-﻿create procedure get_borrowed_order_history @BuyerID int
+﻿create or alter procedure get_borrowed_order_history @BuyerID int
 as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType], o.[PaymentMethod], 
@@ -12,7 +12,7 @@ end
 
 go
 
-create procedure get_new_or_used_order_history @BuyerID int
+create or alter procedure get_new_or_used_order_history @BuyerID int
 as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType], o.[PaymentMethod], 

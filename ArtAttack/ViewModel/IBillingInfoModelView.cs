@@ -8,7 +8,7 @@ namespace ArtAttack.ViewModel
     {
         Task<List<DummyProduct>> GetDummyProductsFromOrderHistoryAsync(int orderHistoryID);
         void CalculateOrderTotal(int orderHistoryID);
-        void ApplyBorrowedTax(DummyProduct dummyProduct);
+        Task ApplyBorrowedTax(DummyProduct dummyProduct);
 
     }
 }

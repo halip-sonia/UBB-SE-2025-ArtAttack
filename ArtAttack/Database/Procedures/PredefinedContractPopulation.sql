@@ -34,3 +34,6 @@ The Borrower shall maintain the product in good condition and, in the event of a
 Additional Terms: {AdditionalTerms}.
 IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first above written.'
 );
+
+
+select * from PredefinedContract

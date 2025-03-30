@@ -1,6 +1,8 @@
 ﻿using ArtAttack.Domain;
 using ArtAttack.Model;
 using ArtAttack.Shared;
+using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -13,6 +15,7 @@ namespace ArtAttack.ViewModel
         private readonly OrderHistoryModel orderHistoryModel;
         private readonly OrderSummaryModel orderSummaryModel;
         private readonly OrderModel orderModel;
+        private readonly NotificationViewModel notificationViewModel;
 
         private int orderHistoryID;
 
@@ -30,12 +33,16 @@ namespace ArtAttack.ViewModel
 
         public ObservableCollection<DummyProduct> ProductList { get; set; }
         public List<DummyProduct> dummyProducts;
+        public List<Order> orders;
 
         public FinalizePurchaseViewModel(int orderHistoryID)
         {
             orderHistoryModel = new OrderHistoryModel(Configuration._CONNECTION_STRING_);
             orderModel = new OrderModel(Configuration._CONNECTION_STRING_);
             orderSummaryModel = new OrderSummaryModel(Configuration._CONNECTION_STRING_);
+            notificationViewModel = new NotificationViewModel(1);
+            //notificationViewModel.ShowPopup += ShowNotificationPopup;
+
 
             this.orderHistoryID = orderHistoryID;
 
@@ -58,9 +65,22 @@ namespace ArtAttack.ViewModel
 
         }
 
+        //private async void ShowNotificationPopup(string message)
+        //{
+        //    ContentDialog dialog = new ContentDialog
+        //    {
+        //        Title = "Notification",
+        //        Content = message,
+        //        CloseButtonText = "OK",
+        //        XamlRoot = this.Content.XamlRoot
+        //    };
+
+        //    await dialog.ShowAsync();
+        //}
+
         public async Task SetOrderHistoryInfo(OrderSummary orderSummary)
         {
-            List<Order> orders = await orderModel.GetOrdersFromOrderHistoryAsync(orderHistoryID);
+            orders = await orderModel.GetOrdersFromOrderHistoryAsync(orderHistoryID);
             Subtotal = orderSummary.Subtotal;
             DeliveryFee = orderSummary.DeliveryFee;
             Total = orderSummary.FinalTotal;
@@ -73,6 +93,17 @@ namespace ArtAttack.ViewModel
 
         }
 
+        public async Task GenerateContractForBorrowing()
+        {
+            foreach(var order in orders)
+            {
+                if (dummyProducts[order.ProductID].ProductType == "borrowed")
+                {
+                    var contract = new Contract();
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
         {
@@ -82,6 +113,13 @@ namespace ArtAttack.ViewModel
         public async Task<List<DummyProduct>> GetDummyProductsFromOrderHistoryAsync(int orderHistoryID)
         {
             return await orderHistoryModel.GetDummyProductsFromOrderHistoryAsync(orderHistoryID);
+        }
+
+        internal void HandleFinish()
+        {
+            foreach (var product in dummyProducts) { }
+                //notificationViewModel.AddNotificationAsync(new PaymentConfirmationNotification(1, System.DateTime.Now,));
+
         }
 
         public float Subtotal

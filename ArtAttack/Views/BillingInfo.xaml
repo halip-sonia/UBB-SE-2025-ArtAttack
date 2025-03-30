@@ -96,6 +96,10 @@
                 <TextBlock Text="{Binding Subtotal}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Warranty Tax: "/>
+                <TextBlock Text="{Binding WarrantyTax}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
                 <TextBlock Text="Delivery fee: "/>
                 <TextBlock Text="{Binding DeliveryFee}"/>
             </StackPanel>

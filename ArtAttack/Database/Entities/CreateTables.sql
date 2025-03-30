@@ -142,6 +142,9 @@ create table [Contract](
 	[renewedFromContractID] int null 
 );
 
+--ALTER TABLE Contract
+--ADD AdditionalTerms TEXT;
+
 create table [Notification](
 	[notificationID] int identity primary key not null,
 	[recipientID] int not null,

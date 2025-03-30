@@ -92,7 +92,9 @@
                 <TextBlock Text="{Binding OrderStatus}"/>
             </StackPanel>
         </StackPanel>
-        <Button x:Name="backButton"  Grid.Row="3" VerticalAlignment="Bottom" Foreground="Black" Background="#cccaca">Back to shop</Button>
+        <StackPanel HorizontalAlignment="Left" Grid.Row="3">
+            <Button x:Name="continueShoppingButton"  VerticalAlignment="Bottom" Foreground="Black" Background="#cccaca" Click="onContinueShopping_Clicked">Continue Shopping</Button>
+        </StackPanel>
 
     </Grid>
 </Page>
