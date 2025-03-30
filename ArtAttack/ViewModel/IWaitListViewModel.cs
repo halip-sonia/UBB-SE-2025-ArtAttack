@@ -1,4 +1,5 @@
 ﻿using ArtAttack.Domain;
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -15,5 +16,7 @@ namespace ArtAttack.Services
         Task<string> GetSellerNameAsync(int? sellerId);
         Task<DummyProduct> GetDummyProductByIdAsync(int productId);
         int GetUserWaitlistPosition(int userId, int productId);
+
+        
     }
 }
