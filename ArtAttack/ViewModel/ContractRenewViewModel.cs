@@ -1,15 +1,14 @@
-﻿using System;
+﻿using ArtAttack.Domain;
+using ArtAttack.Model;
+using Microsoft.Data.SqlClient;
+using QuestPDF.Fluent;
+using QuestPDF.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
-using ArtAttack.Domain;
-using ArtAttack.Model;
-using Microsoft.Data.SqlClient;
-using QuestPDF.Fluent;
-using QuestPDF.Helpers;
-using QuestPDF.Infrastructure;
 
 namespace ArtAttack.ViewModel
 {

@@ -61,7 +61,5 @@ namespace ArtAttack.Services
         {
             return await _dummyProductModel.GetDummyProductByIdAsync(productId);
         }
-
-
     }
 }

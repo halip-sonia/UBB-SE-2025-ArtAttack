@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using ArtAttack.Domain;
+﻿using ArtAttack.Domain;
 using Microsoft.Data.SqlClient;
+using System;
+using System.Data;
+using System.Threading.Tasks;
 
 namespace ArtAttack.Model
 {

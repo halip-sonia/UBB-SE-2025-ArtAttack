@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ArtAttack.Domain;
+using ArtAttack.Model;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using ArtAttack.Domain;
-using ArtAttack.Model;
-using Microsoft.Data.SqlClient;
 
 namespace ArtAttack.ViewModel
 {
@@ -87,7 +87,7 @@ namespace ArtAttack.ViewModel
 
         public async Task<List<Order>> GetOrdersFromOrderHistoryAsync(int orderHistoryId)
         {
-            return await Task.Run(() =>  _model.GetOrdersFromOrderHistoryAsync(orderHistoryId));
+            return await Task.Run(() => _model.GetOrdersFromOrderHistoryAsync(orderHistoryId));
         }
 
         public async Task<OrderSummary> GetOrderSummaryAsync(int orderSummaryId)
