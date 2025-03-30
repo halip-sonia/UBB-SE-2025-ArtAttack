@@ -36,9 +36,9 @@ namespace ArtAttack.ViewModel
             return await _model.GetContractHistoryAsync(contractId);
         }
 
-        private async Task _AddContractAsync(Contract contract, byte[] pdfFile)
+        public async Task<Contract> AddContractAsync(Contract contract, byte[] pdfFile)
         {
-            await _model.AddContractAsync(contract, pdfFile);
+            return await _model.AddContractAsync(contract, pdfFile);
         }
 
         public async Task<(int SellerID, string SellerName)> GetContractSellerAsync(long contractId)
@@ -285,7 +285,7 @@ namespace ArtAttack.ViewModel
 
             var pdfBytes = _GenerateContractPdf(contract, predefinedContract, fieldReplacements);
 
-            await _AddContractAsync(contract, pdfBytes);
+            await AddContractAsync(contract, pdfBytes);
         }
     }
 }
