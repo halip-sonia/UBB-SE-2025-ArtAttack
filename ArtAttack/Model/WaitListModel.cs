@@ -143,7 +143,23 @@ namespace ArtAttack.Model
             }
         }
 
-        public bool IsUserInWaitlist(int userId, int productWaitListId)
+        public bool IsUserInWaitlist(int userId, int productId)
+        {
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("CheckUserInProductWaitlist", conn))
+                {
+                    cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userId;
+                    cmd.Parameters.Add("@ProductID", SqlDbType.Int).Value = productId;
+
+                    conn.Open();
+                    return cmd.ExecuteScalar() != null;
+                }
+            }
+        }
+
+        public int GetUserWaitlistPosition(int userId, int productId)
+
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -170,18 +186,34 @@ namespace ArtAttack.Model
 
         public List<UserWaitList> GetUsersInWaitlistOrdered(int productId)
         {
-            //using (SqlConnection conn = new SqlConnection(_connectionString))
-            //{
-            //    var query = @"
-            //SELECT uw.* 
-            //FROM UserWaitList uw
-            //JOIN WaitListProduct wp ON uw.productWaitListID = wp.WaitListProductID
-            //WHERE wp.ProductID = @ProductId
-            //ORDER BY uw.positionInQueue ASC"; // Critical: Ordered by position
+            var waitlistEntries = new List<UserWaitList>();
 
-            //    return conn.Query<UserWaitList>(query, new { ProductId = productId }).ToList();
-            //}
-            throw new NotImplementedException();
+            using (SqlConnection conn = new SqlConnection(_connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand("GetOrderedWaitlistUsers", conn))
+                {
+                    cmd.Parameters.Add("@ProductId", SqlDbType.Int).Value = productId;
+
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var entry = new UserWaitList
+                            {
+                                productWaitListID = reader.GetInt32(reader.GetOrdinal("productWaitListID")),
+                                userID = reader.GetInt32(reader.GetOrdinal("userID")),
+                                joinedTime = reader.GetDateTime(reader.GetOrdinal("joinedTime")),
+                                positionInQueue = reader.GetInt32(reader.GetOrdinal("positionInQueue"))
+                            };
+                            waitlistEntries.Add(entry);
+                        }
+                    }
+                }
+            }
+
+            return waitlistEntries;
         }
 
         internal int GetUserWaitlistPosition(int userId, int productId)

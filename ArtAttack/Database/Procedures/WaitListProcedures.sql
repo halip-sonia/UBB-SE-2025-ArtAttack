@@ -112,6 +112,38 @@ END;
  -- Select all waitlists the user has joined
  go
 
+ create or alter procedure GetOrderedWaitlistUsers
+    @ProductId int
+as
+begin
+    SET NOCOUNT on;
+    
+    select 
+        uw.productWaitListID,
+        uw.userID,
+        uw.joinedTime,
+        uw.positionInQueue
+    from UserWaitList uw
+    join WaitListProduct wp ON uw.productWaitListID = wp.WaitListProductID
+    where wp.ProductID = @ProductId
+    order BY uw.positionInQueue asc;
+end;
+go
+
+create or alter procedure CheckUserInProductWaitlist
+    @UserID int,
+    @ProductID int
+as
+begin
+    set nocount on;
+    
+    select 1 AS IsInWaitlist
+    from UserWaitList uw
+    join WaitListProduct wp ON uw.productWaitListID = wp.waitListProductID
+    where uw.userID = @UserID AND wp.productID = @ProductID;
+END;
+GO
+
 /*CREATE PROCEDURE GetUserWaitlists
     @UserID INT
 AS
