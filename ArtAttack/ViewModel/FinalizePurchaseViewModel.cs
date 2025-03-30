@@ -2,6 +2,7 @@
 using ArtAttack.Model;
 using ArtAttack.Shared;
 using Microsoft.UI.Xaml.Controls;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -112,6 +113,13 @@ namespace ArtAttack.ViewModel
         public async Task<List<DummyProduct>> GetDummyProductsFromOrderHistoryAsync(int orderHistoryID)
         {
             return await orderHistoryModel.GetDummyProductsFromOrderHistoryAsync(orderHistoryID);
+        }
+
+        internal void HandleFinish()
+        {
+            foreach (var product in dummyProducts) { }
+                //notificationViewModel.AddNotificationAsync(new PaymentConfirmationNotification(1, System.DateTime.Now,));
+
         }
 
         public float Subtotal
