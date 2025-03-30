@@ -2,7 +2,7 @@
 
 namespace ArtAttack.Domain
 {
-    class TrackedOrder
+    internal class TrackedOrder
     {
         public int TrackedOrderID { get; set; }
         public int OrderID { get; set; }
