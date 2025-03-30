@@ -13,6 +13,7 @@ namespace ArtAttack.Model
     public class WaitListModel
     {
         private readonly string _connectionString;
+        private object productWaitListId;
 
         public WaitListModel(string connectionString)
         {
@@ -165,6 +166,7 @@ namespace ArtAttack.Model
         }
 
         public int GetUserWaitlistPosition(int userId, int productId)
+
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
@@ -178,7 +180,7 @@ namespace ArtAttack.Model
                     {
                         Direction = ParameterDirection.Output
                     };
-                    cmd.Parameters.Add(outputParam);
+                    cmd.Parameters.Add(outputParameter);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();

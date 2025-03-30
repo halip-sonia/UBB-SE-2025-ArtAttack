@@ -23,7 +23,7 @@ namespace ArtAttack.ViewModel
 
         public NotificationViewModel(int currentUserId)
         {
-            _dataAdapter = new NotificationDataAdapter("Server=IUSTINS_LAPTOP\\SQLEXPRESS;Database=Notifications;Integrated Security=True;Encrypt=False;");
+            _dataAdapter = new NotificationDataAdapter(Configuration._CONNECTION_STRING_);
             Notifications = new ObservableCollection<Notification>();
             this.currentUserId = currentUserId;
             MarkAsReadCommand = new NotificationRelayCommand<int>(async (id) => await MarkAsReadAsync(id));

@@ -7,7 +7,7 @@ namespace ArtAttack
 {
     public sealed partial class MainNotificationWindow : Window
     {
-        private const int CurrentUserId = 1003; // Replace with your actual user ID
+        private const int CurrentUserId = 1; // Replace with your actual user ID
 
         public NotificationViewModel ViewModel = new NotificationViewModel(CurrentUserId);
 
