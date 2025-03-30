@@ -1,5 +1,6 @@
 ﻿using ArtAttack.Domain;
 using ArtAttack.Model;
+using Microsoft.Data.SqlClient;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -8,6 +9,7 @@ namespace ArtAttack.Services
 {
     public class WaitListViewModel : IWaitListViewModel
     {
+        SqlParameter outputParam;
         private readonly WaitListModel _waitListModel;
         private readonly DummyProductModel _dummyProductModel;
 
@@ -44,7 +46,7 @@ namespace ArtAttack.Services
 
         public int GetUserWaitlistPosition(int userId, int productId)
         {
-            return _waitListModel.GetUserWaitlistPosition(userId, productId);
+            return _waitListModel.GetUserWaitlistPosition(userId, productId, outputParam);
         }
 
         public bool IsUserInWaitlist(int userId, int productWaitListId)

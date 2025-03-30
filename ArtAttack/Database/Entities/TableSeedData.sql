@@ -141,6 +141,7 @@ INSERT INTO Notification (recipientID, category, timestamp, isRead, contractID, 
 INSERT INTO Notification (recipientID, category, timestamp, isRead, contractID, isAccepted, productID, orderID, shippingState, deliveryDate, expirationDate)
   VALUES (5, 'CONTRACT_RENEWAL_REQ', '2025-03-28 14:05:00', 1, 5, 1, 5, 5, 'IL', '2025-04-03', '2025-05-04');
 
+  select * from Notification
 /****************************
 * 12. TrackedOrders
 *****************************/

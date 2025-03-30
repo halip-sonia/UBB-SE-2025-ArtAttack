@@ -17,9 +17,9 @@
             <Button x:Name="generateContractButton" Click="generateContractButton_Click">Generate Contract</Button>
             <Button x:Name="borrowButton" Click="borrowButton_Click">Borrow Product</Button>
             <Button x:Name="notificationButton" Click="notificationButton_Click">Notification Window</Button>
-            <!--Button x:Name="OrderHistoryButton" Click="OrderHitoryButton_Click">Order History</Button!-->
+            <Button x:Name="OrderHistoryButton" Click="OrderHitoryButton_Click">Order History</Button>
             <!--Button x:Name="renewContractButton" Click="renewContractButton_Click">Renew Contract</Button!-->
-            <Button x:Name="trackOrderButton" Click="trackOrderButton_Click">Track Order</Button>
+            <Button x:Name="trackOrderButton" Click="trackOrderButton_Clicked">Track Order</Button>
         </StackPanel>
     </Grid>
 

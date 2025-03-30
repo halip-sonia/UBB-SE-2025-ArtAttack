@@ -13,6 +13,7 @@ namespace ArtAttack.Model
     public class WaitListModel
     {
         private readonly string _connectionString;
+        private object productWaitListId;
 
         public WaitListModel(string connectionString)
         {
@@ -158,7 +159,7 @@ namespace ArtAttack.Model
             }
         }
 
-        public int GetUserWaitlistPosition(int userId, int productId)
+        public int GetUserWaitlistPosition(int userId, int productId, SqlParameter outputParam)
 
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -170,16 +171,16 @@ namespace ArtAttack.Model
                     cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userId;
                     cmd.Parameters.Add("@ProductWaitListID", SqlDbType.Int).Value = productWaitListId;
 
-                    SqlParameter outputParam = new SqlParameter("@IsInWaitlist", SqlDbType.Bit)
+                    SqlParameter outputParameter = new SqlParameter("@IsInWaitlist", SqlDbType.Bit)
                     {
                         Direction = ParameterDirection.Output
                     };
-                    cmd.Parameters.Add(outputParam);
+                    cmd.Parameters.Add(outputParameter);
 
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
-                    return (bool)outputParam.Value;
+                    return (int)outputParameter.Value;
                 }
             }
         }
@@ -216,9 +217,5 @@ namespace ArtAttack.Model
             return waitlistEntries;
         }
 
-        internal int GetUserWaitlistPosition(int userId, int productId)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
