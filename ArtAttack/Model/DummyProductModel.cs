@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using ArtAttack.Domain;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Data;
 using System.Threading.Tasks;
@@ -74,6 +75,16 @@ namespace ArtAttack.Model
                     await cmd.ExecuteNonQueryAsync();
                 }
             }
+        }
+
+        internal async Task<string> GetSellerNameAsync(int? sellerId)
+        {
+            throw new NotImplementedException();
+        }
+
+        internal async Task<DummyProduct> GetDummyProductByIdAsync(int productId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

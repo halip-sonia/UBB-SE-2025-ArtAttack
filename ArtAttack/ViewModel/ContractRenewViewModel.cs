@@ -54,9 +54,9 @@ namespace ArtAttack.ViewModel
         /// <summary>
         /// Retrieves the start and end dates of the product associated with a given contract.
         /// </summary>
-        public async Task<(DateTime StartDate, DateTime EndDate)?> GetProductDatesByContractIdAsync(long contractId)
+        public async Task<(DateTime StartDate, DateTime EndDate, double price, string name)?> GetProductDatesByContractIdAsync(long contractId)
         {
-            return await _contractModel.GetProductDatesByContractIdAsync(contractId);
+            return await _contractModel.GetProductDetailsByContractIdAsync(contractId);
         }
 
         /// <summary>
