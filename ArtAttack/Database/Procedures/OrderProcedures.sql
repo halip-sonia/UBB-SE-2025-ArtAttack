@@ -1,4 +1,4 @@
-﻿create procedure get_borrowed_order_history @BuyerID int
+﻿create or alter procedure get_borrowed_order_history @BuyerID int
 as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType], o.[PaymentMethod], 
@@ -6,13 +6,13 @@ begin
     os.[finalTotal], os.[address], os.[AdditionalInfo], os.[ContractDetails] , p.[name]
     from [Order] o inner join [OrderSummary] os on o.[OrderSummaryID]=os.[ID]
     inner join [DummyProduct] p on o.[ProductID]=p.[ID]
-    where o.[ProductType]='borrowed' and o.[BuyerID]=@BuyerID order by o.[OrderDate] desc;
+    where p.[ProductType]='borrowed' and o.[BuyerID]=@BuyerID order by o.[OrderDate] desc;
 
 end
 
 go
 
-create procedure get_new_or_used_order_history @BuyerID int
+create or alter procedure get_new_or_used_order_history @BuyerID int
 as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType], o.[PaymentMethod], 
@@ -20,7 +20,7 @@ begin
     os.[finalTotal], os.[address], os.[AdditionalInfo], p.[name]
     from [Order] o inner join [OrderSummary] os on o.[OrderSummaryID]=os.[ID]
     inner join [DummyProduct] p on o.[ProductID]=p.[ID]
-    where o.[ProductType]='new' or o.[ProductType]='used' and o.[BuyerID]=@BuyerID order by o.[OrderDate] desc;
+    where p.[ProductType]='new' or o.[ProductType]='used' and o.[BuyerID]=@BuyerID order by o.[OrderDate] desc;
 
 end
 go

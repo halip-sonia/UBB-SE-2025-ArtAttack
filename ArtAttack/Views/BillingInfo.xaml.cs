@@ -2,6 +2,7 @@
 using ArtAttack.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
+using System.Threading.Tasks;
 
 namespace ArtAttack
 {
@@ -27,19 +28,21 @@ namespace ArtAttack
 
         private void OnStartDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs e)
         {
-            UpdateBorrowedProductTax(sender);
+            viewModel.UpdateStartDate(sender.Date);
+
         }
 
-        private void OnEndDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs e)
+        private async void OnEndDateChanged(DatePicker sender, DatePickerSelectedValueChangedEventArgs e)
         {
-            UpdateBorrowedProductTax(sender);
+            viewModel.UpdateEndDate(sender.Date);
+            await UpdateBorrowedProductTax(sender);
         }
 
-        private void UpdateBorrowedProductTax(DatePicker sender)
+        private async Task UpdateBorrowedProductTax(DatePicker sender)
         {
             if (DataContext is BillingInfoModelView viewModel && sender.DataContext is DummyProduct product)
             {
-                viewModel.ApplyBorrowedTax(product);
+                await viewModel.ApplyBorrowedTax(product);
             }
         }
     }

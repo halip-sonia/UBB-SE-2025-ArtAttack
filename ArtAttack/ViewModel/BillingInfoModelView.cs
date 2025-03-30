@@ -17,8 +17,6 @@ namespace ArtAttack.ViewModel
         private readonly OrderModel orderModel;
         private readonly DummyProductModel dummyProductModel;
         private readonly DummyWalletModel dummyWalletModel;
-        private static readonly NavigationService _navigationService;
-
 
         private int orderHistoryID;
 
@@ -41,8 +39,8 @@ namespace ArtAttack.ViewModel
         private float _subtotal;
         private float _deliveryFee;
         private float _total;
+        private float _warrantyTax;
 
-        private float warrantyTax;
         public ObservableCollection<DummyProduct> ProductList { get; set; }
         public List<DummyProduct> dummyProducts;
 
@@ -52,12 +50,13 @@ namespace ArtAttack.ViewModel
             orderModel = new OrderModel(Configuration._CONNECTION_STRING_);
             orderSummaryModel = new OrderSummaryModel(Configuration._CONNECTION_STRING_);
             dummyWalletModel = new DummyWalletModel(Configuration._CONNECTION_STRING_);
+            dummyProductModel = new DummyProductModel(Configuration._CONNECTION_STRING_);
 
             this.orderHistoryID = orderHistoryID;
 
             _ = InitializeViewModelAsync();
 
-            warrantyTax = 0;
+            _warrantyTax = 0;
         }
 
         public async Task InitializeViewModelAsync()
@@ -120,7 +119,7 @@ namespace ArtAttack.ViewModel
             }
 
             // Currently, an order summary has the same ID as the order history for simplicity
-            await orderSummaryModel.UpdateOrderSummaryAsync(orderHistoryID, Subtotal, warrantyTax, DeliveryFee, Total, FullName, Email, PhoneNumber, Address, ZipCode, AdditionalInfo, null);
+            await orderSummaryModel.UpdateOrderSummaryAsync(orderHistoryID, Subtotal, _warrantyTax, DeliveryFee, Total, FullName, Email, PhoneNumber, Address, ZipCode, AdditionalInfo, null);
 
             await openNextWindowAsync(SelectedPaymentMethod);
         }
@@ -194,9 +193,11 @@ namespace ArtAttack.ViewModel
         }
 
 
-        public void ApplyBorrowedTax(DummyProduct dummyProduct)
+        public async Task ApplyBorrowedTax(DummyProduct dummyProduct)
         {
             if (dummyProduct == null || dummyProduct.ProductType != "borrowed")
+                return;
+            if (StartDate > EndDate)
                 return;
             int monthsBorrowed = ((EndDate.Year - StartDate.Year) * 12) + EndDate.Month - StartDate.Month;
             if (monthsBorrowed <= 0)
@@ -206,13 +207,33 @@ namespace ArtAttack.ViewModel
 
             float finalPrice = dummyProduct.Price * monthsBorrowed;
 
-            warrantyTax += finalPrice * warrantyTaxAmount;
+            _warrantyTax += finalPrice * warrantyTaxAmount;
+
+            WarrantyTax = _warrantyTax;
 
             dummyProduct.Price = finalPrice;
 
             CalculateOrderTotal(orderHistoryID);
 
-            // Will not enter here because the date pickers don't work
+            DateTime newStartDate = _startDate.Date;
+            DateTime newEndDate = _endDate.Date;
+
+            dummyProduct.StartDate = newStartDate;
+            dummyProduct.EndDate = newEndDate;
+
+            await dummyProductModel.UpdateDummyProductAsync(dummyProduct.ID, dummyProduct.Name, dummyProduct.Price, dummyProduct.SellerID ?? 0, dummyProduct.ProductType, newStartDate, newEndDate);
+        }
+
+        internal void UpdateStartDate(DateTimeOffset date)
+        {
+            _startDate = date.DateTime;
+            StartDate = date.DateTime;
+        }
+
+        internal void UpdateEndDate(DateTimeOffset date)
+        {
+            _endDate = date.DateTime;
+            EndDate = date.DateTime;
         }
 
         public string SelectedPaymentMethod
@@ -295,11 +316,18 @@ namespace ArtAttack.ViewModel
             get => _total;
             set { _total = value; OnPropertyChanged(nameof(Total)); }
         }
+        public float WarrantyTax
+        {
+            get => _warrantyTax;
+            set { _warrantyTax = value; OnPropertyChanged(nameof(_warrantyTax)); }
+        }
 
         public DateTime StartDate
         {
             get => _startDate;
-            set { _startDate = value; OnPropertyChanged(nameof(StartDate)); }
+            set { 
+                _startDate = value; OnPropertyChanged(nameof(StartDate));
+            }
         }
 
         public DateTime EndDate

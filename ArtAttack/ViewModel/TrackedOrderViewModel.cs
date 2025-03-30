@@ -202,5 +202,20 @@ namespace ArtAttack.ViewModel
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> RevertToLastCheckpoint(TrackedOrder order)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> ITrackedOrderViewModel.UpdateOrderCheckpointAsync(int checkpointID, DateTime timestamp, string? location, string description, OrderStatus status, int trackedOrderID)
+        {
+            throw new NotImplementedException();
+        }
+
+        Task<bool> ITrackedOrderViewModel.UpdateTrackedOrderAsync(int trackedOrderID, DateOnly estimatedDeliveryDate, string deliveryAddress, OrderStatus currentStatus, int orderID)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

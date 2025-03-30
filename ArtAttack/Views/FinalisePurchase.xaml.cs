@@ -1,4 +1,5 @@
 ﻿using ArtAttack.ViewModel;
+using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
 
 namespace ArtAttack
@@ -12,5 +13,11 @@ namespace ArtAttack
             viewModel = new FinalizePurchaseViewModel(orderHistoryID);
             DataContext = viewModel;
         }
+
+        private void onContinueShopping_Clicked(object sender, RoutedEventArgs e)
+        {
+
+        }
+
     }
 }

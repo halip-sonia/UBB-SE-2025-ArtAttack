@@ -113,6 +113,9 @@ INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummar
 *****************************/
 -- For predefinedContractID we use NULL since we are excluding PredefinedContract inserts.
 -- pdfID references PDF table and orderID references Order.
+
+DELETE FROM Contract;
+  DBCC CHECKIDENT ('Contract', RESEED, 0);
 INSERT INTO Contract (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
   VALUES (1, 'ACTIVE', 'Contract for order 1', 0, NULL, 1, NULL);
 INSERT INTO Contract (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
@@ -125,6 +128,10 @@ INSERT INTO Contract (orderID, contractStatus, contractContent, renewalCount, pr
   VALUES (5, 'ACTIVE', 'Contract for order 5', 0, NULL, 5, NULL);
   Select * from Contract;
   Select * from [Order];
+
+  update [Contract] set orderID = 2 where ID=1
+
+  
 /****************************
 * 11. Notification
 *****************************/

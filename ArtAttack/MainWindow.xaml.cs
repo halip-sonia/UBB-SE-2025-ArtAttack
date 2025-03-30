@@ -120,7 +120,7 @@ namespace ArtAttack
         {
             try
             {
-                int productId = 3; 
+                int productId = 2; 
 
 
                 var borrowWindow = new BorrowProductWindow(Configuration._CONNECTION_STRING_, productId);

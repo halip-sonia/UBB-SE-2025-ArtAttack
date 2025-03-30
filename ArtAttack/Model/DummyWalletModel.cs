@@ -82,7 +82,7 @@ namespace ArtAttack.Model
                     {
                         if (await reader.ReadAsync())
                         {
-                            walletBalance = reader.GetFloat(reader.GetOrdinal("balance"));
+                            walletBalance = (float)reader.GetDouble(reader.GetOrdinal("balance"));
                         }
                     }
 

@@ -61,7 +61,7 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@PhoneNumber", phoneNumber);
                     cmd.Parameters.AddWithValue("@Address", address);
                     cmd.Parameters.AddWithValue("@PostalCode", postalCode);
-                    cmd.Parameters.AddWithValue("@AdditionalInfo", additionalInfo);
+                    cmd.Parameters.AddWithValue("@AdditionalInfo", additionalInfo ?? (object)DBNull.Value);
                     cmd.Parameters.AddWithValue("@ContractDetails", contractDetails ?? (object)DBNull.Value);
 
                     await conn.OpenAsync();
