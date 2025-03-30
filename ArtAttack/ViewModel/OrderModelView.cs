@@ -1,11 +1,11 @@
-﻿using System;
+﻿using ArtAttack.Domain;
+using ArtAttack.Model;
+using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
-using ArtAttack.Domain;
-using ArtAttack.Model;
-using Microsoft.Data.SqlClient;
 
 namespace ArtAttack.ViewModel
 {
@@ -87,7 +87,7 @@ namespace ArtAttack.ViewModel
 
         public async Task<List<Order>> GetOrdersFromOrderHistoryAsync(int orderHistoryId)
         {
-            return await Task.Run(() =>  _model.GetOrdersFromOrderHistoryAsync(orderHistoryId));
+            return await Task.Run(() => _model.GetOrdersFromOrderHistoryAsync(orderHistoryId));
         }
 
         public async Task<OrderSummary> GetOrderSummaryAsync(int orderSummaryId)
@@ -133,14 +133,23 @@ namespace ArtAttack.ViewModel
         {
             return await Task.Run(async () =>
             {
-
                 var borrowedOrders = await _model.GetBorrowedOrderHistoryAsync(0);
-                var order = borrowedOrders.FirstOrDefault(o => o.OrderID == orderId);
-                if (order != null) return order;
 
+                foreach (var order in borrowedOrders)
+                {
+                    if (order.OrderID == orderId)
+                        return order;
+                }
 
                 var newUsedOrders = await _model.GetNewOrUsedOrderHistoryAsync(0);
-                return newUsedOrders.FirstOrDefault(o => o.OrderID == orderId);
+
+                foreach (var order in newUsedOrders)
+                {
+                    if (order.OrderID == orderId)
+                        return order;
+                }
+
+                return null;
             });
         }
 
@@ -168,8 +177,16 @@ namespace ArtAttack.ViewModel
                     default:
                         var borrowedOrders = await _model.GetBorrowedOrderHistoryAsync(buyerId);
                         var newUsedOrders = await _model.GetNewOrUsedOrderHistoryAsync(buyerId);
-                        orders.AddRange(borrowedOrders);
-                        orders.AddRange(newUsedOrders);
+
+                        foreach (var order in borrowedOrders)
+                        {
+                            orders.Add(order);
+                        }
+
+                        foreach (var order in newUsedOrders)
+                        {
+                            orders.Add(order);
+                        }
                         break;
                 }
 

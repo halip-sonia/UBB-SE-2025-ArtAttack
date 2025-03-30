@@ -1,15 +1,12 @@
 ﻿using ArtAttack.Domain;
 using ArtAttack.Model;
+using ArtAttack.Shared;
+using ArtAttack.Utils;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Input;
-using ArtAttack.Shared;
-using ArtAttack.Utils;
 
 namespace ArtAttack.ViewModel
 {
@@ -58,7 +55,7 @@ namespace ArtAttack.ViewModel
 
             this.orderHistoryID = orderHistoryID;
 
-             _ = InitializeViewModelAsync();
+            _ = InitializeViewModelAsync();
 
             warrantyTax = 0;
         }
@@ -117,7 +114,7 @@ namespace ArtAttack.ViewModel
             // This is subject to change, as the orderModel is to be switched to asynchronous architecture
             List<Order> orderList = await orderModel.GetOrdersFromOrderHistoryAsync(orderHistoryID);
 
-            foreach(var order in orderList)
+            foreach (var order in orderList)
             {
                 await orderModel.UpdateOrderAsync(order.OrderID, order.ProductType, SelectedPaymentMethod, DateTime.Now);
             }
@@ -174,14 +171,14 @@ namespace ArtAttack.ViewModel
         public void CalculateOrderTotal(int orderHistoryID)
         {
             float subtotalProducts = 0;
-            foreach(var product in dummyProducts)
+            foreach (var product in dummyProducts)
                 subtotalProducts += product.Price;
-                
+
             // For orders over 200 RON, a fixed delivery fee of 13.99 will be added
             // (this is only for orders of new, used or borrowed products)
 
             Subtotal = subtotalProducts;
-            if (subtotalProducts >= 200 || dummyProducts[0].ProductType=="refill" || dummyProducts[0].ProductType == "bid")
+            if (subtotalProducts >= 200 || dummyProducts[0].ProductType == "refill" || dummyProducts[0].ProductType == "bid")
                 Total = subtotalProducts;
             else
             {
@@ -199,10 +196,10 @@ namespace ArtAttack.ViewModel
 
         public void ApplyBorrowedTax(DummyProduct dummyProduct)
         {
-            if (dummyProduct == null || dummyProduct.ProductType != "borrowed" )
+            if (dummyProduct == null || dummyProduct.ProductType != "borrowed")
                 return;
             int monthsBorrowed = ((EndDate.Year - StartDate.Year) * 12) + EndDate.Month - StartDate.Month;
-            if (monthsBorrowed <= 0) 
+            if (monthsBorrowed <= 0)
                 monthsBorrowed = 1;
 
             float warrantyTaxAmount = 0.2f;
@@ -308,7 +305,9 @@ namespace ArtAttack.ViewModel
         public DateTime EndDate
         {
             get => _endDate;
-            set { _endDate = value; OnPropertyChanged(nameof(EndDate));
+            set
+            {
+                _endDate = value; OnPropertyChanged(nameof(EndDate));
             }
         }
 

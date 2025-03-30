@@ -1,15 +1,9 @@
 ﻿using ArtAttack.Domain;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Data.SqlClient;
-using Microsoft.UI.Xaml.Controls;
-using System.ComponentModel;
-using System.Reflection.PortableExecutable;
 using System.Data;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ArtAttack.Model
 {
@@ -151,7 +145,7 @@ namespace ArtAttack.Model
                     {
                         while (await reader.ReadAsync())
                         {
-                            orders.Add( new TrackedOrder
+                            orders.Add(new TrackedOrder
                             {
                                 TrackedOrderID = reader.GetInt32(reader.GetOrdinal("TrackedOrderID")),
                                 OrderID = reader.GetInt32(reader.GetOrdinal("OrderID")),
@@ -185,7 +179,7 @@ namespace ArtAttack.Model
                                 Timestamp = reader.GetDateTime(reader.GetOrdinal("Timestamp")),
                                 Location = reader.IsDBNull(reader.GetOrdinal("Location")) ? null : reader.GetString(reader.GetOrdinal("Location")),
                                 Description = reader.GetString(reader.GetOrdinal("Description")),
-                                Status = Enum.Parse<OrderStatus>(reader.GetString(reader.GetOrdinal("Status"))),
+                                Status = Enum.Parse<OrderStatus>(reader.GetString(reader.GetOrdinal("CheckpointStatus"))),
                                 TrackedOrderID = reader.GetInt32(reader.GetOrdinal("TrackedOrderID"))
                             };
                         }
@@ -200,11 +194,11 @@ namespace ArtAttack.Model
             using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 await conn.OpenAsync();
-                using(SqlCommand cmd = new SqlCommand("SELECT * FROM TrackedOrders WHERE TrackedOrderID = @trackedOrderID", conn))
+                using (SqlCommand cmd = new SqlCommand("SELECT * FROM TrackedOrders WHERE TrackedOrderID = @trackedOrderID", conn))
                 {
                     cmd.Parameters.AddWithValue("@trackedOrderID", trackOrderID);
 
-                    using(SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
                     {
                         if (await reader.ReadAsync())
                         {

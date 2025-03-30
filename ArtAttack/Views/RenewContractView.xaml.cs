@@ -1,10 +1,10 @@
+using ArtAttack.Domain;
+using ArtAttack.Shared;
+using ArtAttack.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using ArtAttack.ViewModel;
-using ArtAttack.Domain;
 using System;
 using System.Threading.Tasks;
-using ArtAttack.Shared;
 
 namespace ArtAttack
 {

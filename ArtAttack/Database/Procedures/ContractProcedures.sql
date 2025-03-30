@@ -10,6 +10,7 @@ Drop procedure if exists GetProductDetailsByContractID
 Drop procedure if exists GetContractsByBuyer
 Drop procedure if exists GetOrderDetails
 Drop procedure if exists GetDeliveryDateByContractID
+Drop procedure if exists GetPdfByContractID
 Go
 
 CREATE PROCEDURE GetContractByID
@@ -100,6 +101,21 @@ BEGIN
         VALUES
             (@OrderID, @ContractStatus, @ContractContent, @RenewalCount, @PredefinedContractID, @PDFID, @AdditionalTerms,@RenewedFromContractID);
         
+        DECLARE @NewContractID BIGINT;
+        SET @NewContractID = SCOPE_IDENTITY();
+
+        -- Return the newly added contract record.
+        SELECT 
+            ID,
+            orderID,
+            contractStatus,
+            contractContent,
+            renewalCount,
+            predefinedContractID,
+            pdfID,
+            renewedFromContractID
+        FROM Contract
+        WHERE ID = @NewContractID;
         COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH
@@ -207,7 +223,18 @@ BEGIN
 END;
 GO
 
-
+CREATE PROCEDURE GetPdfByContractID
+    @ContractID BIGINT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT p.[file] AS PdfFile
+    FROM [Contract] c
+    INNER JOIN [PDF] p ON c.pdfID = p.ID
+    WHERE c.ID = @ContractID;
+END
+GO
 
 -- Get a specific contract by ID
 EXEC GetContractByID @ContractID = 1;

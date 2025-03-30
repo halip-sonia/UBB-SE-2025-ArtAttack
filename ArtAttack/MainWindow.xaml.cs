@@ -1,25 +1,12 @@
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Runtime.InteropServices.WindowsRuntime;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
+using ArtAttack.Domain;
+using ArtAttack.Shared;
+using ArtAttack.ViewModel;
+using ArtAttack.Views;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
-using ArtAttack.Domain;
-using ArtAttack.Services;
-using ArtAttack.ViewModel;
-using ArtAttack.Shared;
-using Windows.UI.Popups;
-using System.Threading.Tasks;
 using QuestPDF.Infrastructure;
-using ArtAttack.Views;
+using System;
+using System.Threading.Tasks;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -56,10 +43,10 @@ namespace ArtAttack
             contract = await _contractViewModel.GetContractByIdAsync(1);
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
-        {
-            myButton.Content = "Clicked";
-        }
+        //private void myButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    myButton.Content = "Clicked";
+        //}
 
         private void purchaseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -83,6 +70,12 @@ namespace ArtAttack
             var bp = new BillingInfo(2);
             billingInfoWindow.Content = bp;
             billingInfoWindow.Activate();
+        }
+
+        private void notificationButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            MainNotificationWindow mainNotificationWindow = new MainNotificationWindow();
+            mainNotificationWindow.Activate();
         }
 
 
@@ -135,6 +128,7 @@ namespace ArtAttack
             {
                 int productId = 2; 
 
+
                 var borrowWindow = new BorrowProductWindow(Configuration._CONNECTION_STRING_, productId);
                 borrowWindow.Activate();
             }
@@ -145,23 +139,23 @@ namespace ArtAttack
         }
 
 
-        private async void renewContractButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // Create a new instance of the RenewContractView window
-                var renewContractWindow = new RenewContractView();
+        //private async void renewContractButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        // Create a new instance of the RenewContractView window
+        //        var renewContractWindow = new RenewContractView();
 
-                // Show (activate) the window to the user
-                renewContractWindow.Activate();
+        //        // Show (activate) the window to the user
+        //        renewContractWindow.Activate();
 
-            }
-            catch (Exception ex)
-            {
-                // If an error occurs while opening the window, show an error dialog with the message
-                await ShowErrorDialogAsync("Error opening Renew Contract", ex.Message);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // If an error occurs while opening the window, show an error dialog with the message
+        //        await ShowErrorDialogAsync("Error opening Renew Contract", ex.Message);
+        //    }
+        //}
 
 
 
@@ -192,7 +186,10 @@ namespace ArtAttack
                 try
                 {
                     var order = await trackedOrderViewModel.GetTrackedOrderByIDAsync(trackedOrderID);
+
+                    //false=readonly, true=sudomode; Modify according to the current user privileges
                     bool hasControlAccess = true;
+
                     TrackedOrderWindow trackedOrderWindow = new TrackedOrderWindow();
                     if (hasControlAccess)
                     {
