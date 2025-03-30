@@ -51,7 +51,7 @@ namespace ArtAttack
             {
                 await viewModel.SelectContractAsync(selected.ID);
 
-                var dates = await viewModel.GetProductDatesByContractIdAsync(selected.ID);
+                var dates = await viewModel.GetProductDetailsByContractIdAsync(selected.ID);
 
                 if (dates.HasValue)
                 {

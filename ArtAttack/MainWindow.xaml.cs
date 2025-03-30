@@ -19,6 +19,7 @@ using ArtAttack.Shared;
 using Windows.UI.Popups;
 using System.Threading.Tasks;
 using QuestPDF.Infrastructure;
+using ArtAttack.Views;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -33,6 +34,7 @@ namespace ArtAttack
 
         private Contract contract;
         private IContractViewModel _contractViewModel;
+        private ITrackedOrderViewModel trackedOrderViewModel;
 
         public MainWindow()
         {
@@ -41,6 +43,7 @@ namespace ArtAttack
             this.InitializeComponent();
             contract = new Contract();
             _contractViewModel = new ContractViewModel(Configuration._CONNECTION_STRING_);
+            trackedOrderViewModel = new TrackedOrderViewModel(Configuration._CONNECTION_STRING_);
         }
 
         // This event handler is called when the Grid (root element) is loaded.
@@ -172,5 +175,81 @@ namespace ArtAttack
             dialog.XamlRoot = this.Content.XamlRoot;
             await dialog.ShowAsync();
         }
+
+        private async void trackOrderButton_Click(object sender, RoutedEventArgs e)
+        {
+            var inputID = await ShowTrackedOrderInputDialogAsync();
+            if (inputID == null)
+                return;
+            if (inputID == -1)
+                await ShowNoTrackedOrderDialogAsync("Please enter an integer!");
+            else
+            {
+                int trackedOrderID = (int)inputID.Value;
+                try
+                {
+                    var order = await trackedOrderViewModel.GetTrackedOrderByIDAsync(trackedOrderID);
+                    bool hasControlAccess = true;
+                    TrackedOrderWindow trackedOrderWindow = new TrackedOrderWindow();
+                    if (hasControlAccess)
+                    {
+                        var controlp = new TrackedOrderControlPage(trackedOrderViewModel, trackedOrderID);
+                        trackedOrderWindow.Content = controlp;
+                    }
+                    else
+                    {
+                        var buyerp = new TrackedOrderBuyerPage(trackedOrderViewModel, trackedOrderID);
+                        trackedOrderWindow.Content = buyerp;
+                    }
+
+                    trackedOrderWindow.Activate();
+                }
+                catch (Exception)
+                {
+                    await ShowNoTrackedOrderDialogAsync("No TrackedOrder has been found with ID " + trackedOrderID.ToString());
+                }
+            }
+        }
+
+        private async Task<int?> ShowTrackedOrderInputDialogAsync()
+        {
+            var contentDialog = new ContentDialog
+            {
+                Title = "Enter Tracked Order ID",
+                PrimaryButtonText = "Confirm",
+                CloseButtonText = "Cancel",
+                DefaultButton = ContentDialogButton.Primary,
+                XamlRoot = RootGrid.XamlRoot
+            };
+
+            TextBox inputTextBox = new TextBox { PlaceholderText = "Enter Tracked Order ID" };
+            contentDialog.Content = inputTextBox;
+
+            var result = await contentDialog.ShowAsync();
+            bool parseSuccessful = int.TryParse(inputTextBox.Text, out int trackedOrderID);
+
+            if (result == ContentDialogResult.Primary && parseSuccessful)
+                return trackedOrderID;
+
+            if (result == ContentDialogResult.Primary && !parseSuccessful)
+                return -1;
+
+            return null;
+        }
+
+
+        private async Task ShowNoTrackedOrderDialogAsync(string message)
+        {
+            var contentDialog = new ContentDialog
+            {
+                Title = "Error",
+                Content = message,
+                CloseButtonText = "OK",
+                XamlRoot = RootGrid.XamlRoot
+            };
+
+            await contentDialog.ShowAsync();
+        }
+
     }
 }

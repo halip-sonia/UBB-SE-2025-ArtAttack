@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ArtAttack.Domain
 {
-    enum OrderStatus
+    internal enum OrderStatus
     {
         PROCESSING,
         SHIPPED,
@@ -16,7 +16,7 @@ namespace ArtAttack.Domain
         DELIVERED
     }
 
-    class OrderCheckpoint
+    internal class OrderCheckpoint
     {
         public int CheckpointID { get; set; }
         public DateTime Timestamp { get; set; }
