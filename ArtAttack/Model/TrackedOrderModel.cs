@@ -34,10 +34,19 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@status", checkpoint.Status.ToString());
                     cmd.Parameters.AddWithValue("@trackOrderID", checkpoint.TrackedOrderID);
 
-                    var returnedIDValue = await cmd.ExecuteScalarAsync();
-                    if (returnedIDValue == null)
-                        return -1;
-                    insertedID = (int)returnedIDValue;
+                    SqlParameter outputParam = new SqlParameter("@newCheckpointID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(outputParam);
+
+                    await cmd.ExecuteNonQueryAsync();
+
+                    int newID = (int)cmd.Parameters["@newCheckpointID"].Value;
+                    if (newID < 0)
+                        throw new Exception("Unexpected error when trying to add the OrderCheckpoint");
+                    checkpoint.CheckpointID = newID;
+                    return newID;
                 }
             }
 
@@ -61,10 +70,19 @@ namespace ArtAttack.Model
                     cmd.Parameters.AddWithValue("@status", order.CurrentStatus.ToString());
                     cmd.Parameters.AddWithValue("@orderID", order.OrderID);
 
-                    var returnedIDValue = await cmd.ExecuteScalarAsync();
-                    if (returnedIDValue == null)
-                        return -1;
-                    insertedID = (int)returnedIDValue;
+                    SqlParameter outputParam = new SqlParameter("@newTrackedOrderID", SqlDbType.Int)
+                    {
+                        Direction = ParameterDirection.Output
+                    };
+                    cmd.Parameters.Add(outputParam);
+
+                    await cmd.ExecuteNonQueryAsync();
+
+                    int newID = (int)cmd.Parameters["@newTrackedOrderID"].Value;
+                    if (newID < 0)
+                        throw new Exception("Unexpected error when trying to add the TrackedOrder");
+                    order.TrackedOrderID = newID;
+                    return newID;
                 }
             }
 

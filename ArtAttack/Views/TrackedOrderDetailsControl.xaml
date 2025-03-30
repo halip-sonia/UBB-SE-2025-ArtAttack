@@ -22,6 +22,10 @@
                 <TextBlock Text="{Binding TrackedOrderID}" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Spacing="10">
+                <TextBlock Text="Attached to Order ID: " FontWeight="Bold"/>
+                <TextBlock Text="{Binding OrderID}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Spacing="10">
                 <TextBlock Text="Current Status: " FontWeight="Bold"/>
                 <TextBlock Text="{Binding CurrentStatus}"/>
             </StackPanel>

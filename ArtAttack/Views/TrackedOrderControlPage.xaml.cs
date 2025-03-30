@@ -43,6 +43,7 @@ namespace ArtAttack.Views
                     TrackedOrderID = order.TrackedOrderID,
                     DeliveryAddress = order.DeliveryAddress,
                     EstimatedDeliveryDate = order.EstimatedDeliveryDate,
+                    OrderID = order.OrderID,
                     Checkpoints = checkpoints
                 };
             }
@@ -79,11 +80,14 @@ namespace ArtAttack.Views
             {
                 TrackedOrder order = await ViewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
                 await ViewModel.RevertToPreviousCheckpoint(order);
-                LoadOrderData();
             }
             catch (Exception ex)
             {
                 await ShowErrorDialog($"{ex.Message}");
+            }
+            finally
+            {
+                LoadOrderData();
             }
         }
 
@@ -113,7 +117,6 @@ namespace ArtAttack.Views
                     DateOnly newEstimatedDeliveryDate = DateOnly.FromDateTime(pickedDateTime);
                     var order = await ViewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
                     await ViewModel.UpdateTrackedOrderAsync(TrackedOrderID, newEstimatedDeliveryDate, order.CurrentStatus);
-                    LoadOrderData();
                 }
                 catch (Exception ex)
                 {
@@ -121,8 +124,9 @@ namespace ArtAttack.Views
                 }
                 finally
                 {
-                    deliveryCalendarDatePicker.Visibility = Visibility.Collapsed;
-                    confirmChangeEstimatedDeliveryDateButton.Visibility = Visibility.Collapsed;
+                    LoadOrderData();
+                    deliveryCalendarDatePicker.Visibility=Visibility.Collapsed;
+                    confirmChangeEstimatedDeliveryDateButton.Visibility=Visibility.Collapsed;
                     deliveryCalendarDatePicker.Date = null;
                 }
             }
@@ -160,7 +164,6 @@ namespace ArtAttack.Views
                 });
 
                 await ShowSuccessDialog("Checkpoint added successfully.");
-                LoadOrderData();
             }
             catch (Exception ex)
             {
@@ -168,8 +171,8 @@ namespace ArtAttack.Views
             }
             finally
             {
+                LoadOrderData();
                 AddDetails.Visibility = Visibility.Collapsed;
-
                 LocationTextBoxAdd.Text = "";
                 DescriptionTextBoxAdd.Text = "";
                 StatusComboBoxAdd.SelectedIndex = -1;
@@ -196,7 +199,6 @@ namespace ArtAttack.Views
                 return;
             }
 
-            // Set default values
             TimestampDatePicker.Date = lastCheckpoint.Timestamp.Date;
             TimestampTimePicker.Time = lastCheckpoint.Timestamp.TimeOfDay;
             LocationTextBoxUpdate.Text = lastCheckpoint.Location;
@@ -279,22 +281,22 @@ namespace ArtAttack.Views
                 );
 
                 await ShowSuccessDialog("Checkpoint updated successfully.");
-                LoadOrderData();
             }
             catch (Exception ex)
             {
                 await ShowErrorDialog("Failed to update checkpoint.\n" + ex.ToString());
             }
+            finally
+            {
+                LoadOrderData();
 
-            // Hide and reset fields
-            UpdateDetails.Visibility = Visibility.Collapsed;
-
-            TimestampDatePicker.Date = null;
-            TimestampTimePicker.Time = DateTime.Now.TimeOfDay;
-            LocationTextBoxUpdate.Text = "";
-            DescriptionTextBoxUpdate.Text = "";
-            StatusComboBoxUpdate.SelectedIndex = -1;
+                UpdateDetails.Visibility = Visibility.Collapsed;
+                TimestampDatePicker.Date = null;
+                TimestampTimePicker.Time = DateTime.Now.TimeOfDay;
+                LocationTextBoxUpdate.Text = "";
+                DescriptionTextBoxUpdate.Text = "";
+                StatusComboBoxUpdate.SelectedIndex = -1;
+            }
         }
-
     }
 }
