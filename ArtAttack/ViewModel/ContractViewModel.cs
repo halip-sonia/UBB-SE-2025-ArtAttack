@@ -36,7 +36,7 @@ namespace ArtAttack.ViewModel
             return await _model.GetContractHistoryAsync(contractId);
         }
 
-        public async Task AddContractAsync(Contract contract, byte[] pdfFile)
+        private async Task _AddContractAsync(Contract contract, byte[] pdfFile)
         {
             await _model.AddContractAsync(contract, pdfFile);
         }
@@ -81,9 +81,12 @@ namespace ArtAttack.ViewModel
             return await _model.GetDeliveryDateByContractIdAsync(contractId);
         }
 
+        public async Task<byte[]> GetPdfByContractIdAsync(long contractId)
+        {
+            return await _model.GetPdfByContractIdAsync(contractId);
+        }
 
-
-        public byte[] GenerateContractPdf(
+        private byte[] _GenerateContractPdf(
     Contract contract,
     PredefinedContract predefinedContract,
     Dictionary<string, string> fieldReplacements)
@@ -195,7 +198,7 @@ namespace ArtAttack.ViewModel
             return document.GeneratePdf();
         }
 
-        private async Task<Dictionary<string, string>> GetFieldReplacements(Contract contract)
+        private async Task<Dictionary<string, string>> _GetFieldReplacements(Contract contract)
         {
             var fieldReplacements = new Dictionary<string, string>();
 
@@ -250,10 +253,10 @@ namespace ArtAttack.ViewModel
             var predefinedContract = await GetPredefinedContractByPredefineContractTypeAsync(contractType);
 
 
-            var fieldReplacements = await GetFieldReplacements(contract);
+            var fieldReplacements = await _GetFieldReplacements(contract);
 
             // Generate the PDF (synchronously) using the generated replacements.
-            var pdfBytes = GenerateContractPdf(contract, predefinedContract, fieldReplacements);
+            var pdfBytes = _GenerateContractPdf(contract, predefinedContract, fieldReplacements);
 
             // Determine the Downloads folder path.
             string downloadsPath = System.IO.Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "Downloads");
@@ -266,6 +269,23 @@ namespace ArtAttack.ViewModel
             // Open the saved PDF file using Windows.Storage and Windows.System APIs.
             StorageFile file = await StorageFile.GetFileFromPathAsync(filePath);
             await Launcher.LaunchFileAsync(file);
+        }
+
+        public async Task GeneratePDFAndAddContract(Contract contract, PredefinedContractType contractType)
+        {
+            if(await GetPdfByContractIdAsync(contract.ID) != null)
+            {
+                throw new Exception("File already exists");
+            }
+
+            var predefinedContract = await GetPredefinedContractByPredefineContractTypeAsync(contractType);
+
+
+            var fieldReplacements = await _GetFieldReplacements(contract);
+
+            var pdfBytes = _GenerateContractPdf(contract, predefinedContract, fieldReplacements);
+
+            await _AddContractAsync(contract, pdfBytes);
         }
     }
 }
