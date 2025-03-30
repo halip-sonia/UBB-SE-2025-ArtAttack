@@ -30,8 +30,15 @@ namespace ArtAttack
             string connectionString = Configuration._CONNECTION_STRING_;
             viewModel = new ContractRenewViewModel(connectionString);
 
-            _ = LoadContractsAsync();
+            ContractComboBox.Loaded += ContractComboBox_Loaded;
+
         }
+
+        private async void ContractComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            await LoadContractsAsync();
+        }
+
 
         /// <summary>
         /// Loads the contracts for the predefined buyer and binds them to the ComboBox.
@@ -39,6 +46,7 @@ namespace ArtAttack
         private async Task LoadContractsAsync()
         {
             await viewModel.LoadContractsForBuyerAsync(BuyerID);
+            await ShowMessage($"Contracts loaded: {viewModel.BuyerContracts.Count}");
             ContractComboBox.ItemsSource = viewModel.BuyerContracts;
         }
 
@@ -60,7 +68,12 @@ namespace ArtAttack
 
                     StartDateValueTextBlock.Text = $"{dates.Value.EndDate:MM/dd/yyyy}";
 
-                    bool isValid = await viewModel.IsRenewalPeriodValidAsync();
+                    bool isValidPeriod = await viewModel.IsRenewalPeriodValidAsync();
+                    bool isAlreadyRenewed = await viewModel.HasContractBeenRenewedAsync();
+
+
+                    bool isValid = isValidPeriod && !isAlreadyRenewed;
+
                     StatusTextBlock.Text = isValid
                         ? "Status: Available (for renewal)"
                         : "Status: Not available (for renewal)";
@@ -108,10 +121,16 @@ namespace ArtAttack
             {
                 Title = "Renewal Status",
                 Content = message,
-                CloseButtonText = "OK",
-                XamlRoot = this.Content.XamlRoot
+                CloseButtonText = "OK"
             };
+
+            if (this.Content is FrameworkElement rootElement)
+            {
+                dialog.XamlRoot = rootElement.XamlRoot;
+            }
+
             await dialog.ShowAsync();
         }
+
     }
 }

@@ -37,6 +37,12 @@ namespace ArtAttack.Model
                     else
                         cmd.Parameters.AddWithValue("@PredefinedContractID", DBNull.Value);
 
+                    if (string.IsNullOrEmpty(contract.AdditionalTerms))
+                        cmd.Parameters.AddWithValue("@AdditionalTerms", DBNull.Value);
+                    else
+                        cmd.Parameters.AddWithValue("@AdditionalTerms", contract.AdditionalTerms);
+
+
                     if (contract.RenewedFromContractID.HasValue)
                         cmd.Parameters.AddWithValue("@RenewedFromContractID", contract.RenewedFromContractID.Value);
                     else
@@ -98,6 +104,9 @@ namespace ArtAttack.Model
                                     ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID"))
                                     : null,
                                 PDFID = reader.GetInt32(reader.GetOrdinal("pdfID")),
+                                AdditionalTerms = reader["AdditionalTerms"] != DBNull.Value
+                                    ? reader.GetString(reader.GetOrdinal("AdditionalTerms"))
+                                    : null,
                                 RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value
                                     ? (int?)reader.GetInt32(reader.GetOrdinal("renewedFromContractID"))
                                     : null

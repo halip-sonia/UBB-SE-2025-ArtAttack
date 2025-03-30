@@ -17,6 +17,7 @@ CREATE PROCEDURE [AddRenewedContract]
     @renewalCount INT,
     @predefinedContractID INT,
     @pdfID INT,
+    @AdditionalTerms TEXT = NULL,
     @renewedFromContractID INT
 AS
 BEGIN
@@ -27,6 +28,7 @@ BEGIN
         [renewalCount],
         [predefinedContractID],
         [pdfID],
+        [AdditionalTerms],
         [renewedFromContractID]
     )
     VALUES (
@@ -36,6 +38,7 @@ BEGIN
         @renewalCount,
         @predefinedContractID,
         @pdfID,
+        @AdditionalTerms,
         @renewedFromContractID
     );
 END;
@@ -55,7 +58,8 @@ CREATE PROCEDURE [UpdateRenewedContract]
     @contractContent TEXT,
     @renewalCount INT,
     @predefinedContractID INT,
-    @pdfID INT
+    @pdfID INT,
+    @AdditionalTerms TEXT
 AS
 BEGIN
     -- Updates a renewed contract's details based on its ID.
@@ -65,7 +69,8 @@ BEGIN
         [contractContent] = @contractContent,
         [renewalCount] = @renewalCount,
         [predefinedContractID] = @predefinedContractID,
-        [pdfID] = @pdfID
+        [pdfID] = @pdfID,
+        [AdditionalTerms] = @AdditionalTerms
     WHERE 
         [ID] = @contractID AND [contractStatus] = 'RENEWED';
 END;
@@ -88,6 +93,7 @@ BEGIN
         [renewalCount],
         [predefinedContractID],
         [pdfID],
+        [AdditionalTerms],
         [renewedFromContractID]
     FROM [Contract]
     WHERE [contractStatus] = 'RENEWED';
