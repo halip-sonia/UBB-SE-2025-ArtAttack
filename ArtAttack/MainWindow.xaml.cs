@@ -72,6 +72,12 @@ namespace ArtAttack
             billingInfoWindow.Activate();
         }
 
+        private void notificationButton_Clicked(object sender, RoutedEventArgs e)
+        {
+            MainNotificationWindow mainNotificationWindow = new MainNotificationWindow();
+            mainNotificationWindow.Activate();
+        }
+
 
         private void walletrefillButton_Clicked(object sender, RoutedEventArgs e)
         {
