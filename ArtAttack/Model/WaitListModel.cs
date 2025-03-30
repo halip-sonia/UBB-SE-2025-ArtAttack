@@ -6,7 +6,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
 
 namespace ArtAttack.Model
 {
@@ -147,11 +146,7 @@ namespace ArtAttack.Model
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand(@"
-            SELECT 1 
-            FROM UserWaitList uw
-            JOIN WaitListProduct wp ON uw.productWaitListID = wp.waitListProductID
-            WHERE uw.userID = @UserID AND wp.productID = @ProductID", conn))
+                using (SqlCommand cmd = new SqlCommand("CheckUserInProductWaitlist", conn))
                 {
                     cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userId;
                     cmd.Parameters.Add("@ProductID", SqlDbType.Int).Value = productId;
@@ -182,17 +177,34 @@ namespace ArtAttack.Model
 
         public List<UserWaitList> GetUsersInWaitlistOrdered(int productId)
         {
+            var waitlistEntries = new List<UserWaitList>();
+
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                var query = @"
-            SELECT uw.* 
-            FROM UserWaitList uw
-            JOIN WaitListProduct wp ON uw.productWaitListID = wp.WaitListProductID
-            WHERE wp.ProductID = @ProductId
-            ORDER BY uw.positionInQueue ASC"; // Critical: Ordered by position
+                using (SqlCommand cmd = new SqlCommand("GetOrderedWaitlistUsers", conn))
+                {
+                    cmd.Parameters.Add("@ProductId", SqlDbType.Int).Value = productId;
 
-                return conn.Query<UserWaitList>(query, new { ProductId = productId }).ToList();
+                    conn.Open();
+
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var entry = new UserWaitList
+                            {
+                                productWaitListID = reader.GetInt32(reader.GetOrdinal("productWaitListID")),
+                                userID = reader.GetInt32(reader.GetOrdinal("userID")),
+                                joinedTime = reader.GetDateTime(reader.GetOrdinal("joinedTime")),
+                                positionInQueue = reader.GetInt32(reader.GetOrdinal("positionInQueue"))
+                            };
+                            waitlistEntries.Add(entry);
+                        }
+                    }
+                }
             }
+
+            return waitlistEntries;
         }
 
     }
