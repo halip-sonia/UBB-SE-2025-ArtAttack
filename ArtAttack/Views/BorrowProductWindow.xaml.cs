@@ -27,6 +27,7 @@ namespace ArtAttack
             _waitListViewModel = new WaitListViewModel(connectionString);
             _notificationVM = new NotificationViewModel(GetCurrentUserId());
             this.Activated += Window_Activated;
+
         }
 
         private async void Window_Activated(object sender, WindowActivatedEventArgs args)
@@ -101,7 +102,7 @@ namespace ArtAttack
                 Title = title,
                 Content = message,
                 CloseButtonText = "OK",
-                XamlRoot = this.Content.XamlRoot
+                XamlRoot = RootGrid.XamlRoot
             };
             await dialog.ShowAsync();
         }
@@ -173,8 +174,7 @@ namespace ArtAttack
         private async void btnNotifications_Click(object sender, RoutedEventArgs e)
         {
             try
-            {
-                // Create and show a simple notifications popup
+            { 
                 var notificationPopup = new ContentDialog
                 {
                     Title = "Your Notifications",
@@ -185,12 +185,11 @@ namespace ArtAttack
                             Children =
                     {
                         new TextBlock { Text = _notificationVM.unReadNotificationsCountText },
-                        // Add more notification items here if needed
                     }
                         }
                     },
                     CloseButtonText = "Close",
-                    XamlRoot = this.Content.XamlRoot
+                    XamlRoot = RootGrid.XamlRoot
                 };
 
                 await notificationPopup.ShowAsync();

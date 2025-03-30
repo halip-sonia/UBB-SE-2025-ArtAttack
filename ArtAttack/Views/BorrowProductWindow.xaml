@@ -8,7 +8,7 @@
     mc:Ignorable="d"
     Title="Product Details">
 
-    <Grid Margin="20">
+    <Grid x:Name="RootGrid" Margin="20">
         <Grid.Resources>
             <Style TargetType="TextBlock">
                 <Setter Property="Foreground" Value="#cccaca"/>
