@@ -1,12 +1,13 @@
-using Microsoft.UI.Xaml;
-using Microsoft.UI.Xaml.Controls;
 using ArtAttack.Domain;
 using Microsoft.Data.SqlClient;
+using Microsoft.UI.Xaml;
+using Microsoft.UI.Xaml.Controls;
 using System;
-using System.Threading.Tasks;
 using System.Data;
 using ArtAttack.Services;
 using ArtAttack.ViewModel;
+
+using System.Threading.Tasks;
 
 namespace ArtAttack
 {

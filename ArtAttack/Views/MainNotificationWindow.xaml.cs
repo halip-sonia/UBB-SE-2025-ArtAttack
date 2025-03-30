@@ -1,8 +1,7 @@
+using ArtAttack.Domain;
 using ArtAttack.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using ArtAttack.Domain;
-using System;
 
 namespace ArtAttack
 {
@@ -35,7 +34,7 @@ namespace ArtAttack
             {
                 var secondaryWindow = new SecondaryNotificationWindow(selectedNotification);
                 secondaryWindow.Activate();
-                
+
                 await ViewModel.MarkAsReadAsync(selectedNotification.getNotificationID());
 
                 notificationList.SelectedItem = null;

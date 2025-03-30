@@ -10,6 +10,7 @@ Drop procedure if exists GetProductDetailsByContractID
 Drop procedure if exists GetContractsByBuyer
 Drop procedure if exists GetOrderDetails
 Drop procedure if exists GetDeliveryDateByContractID
+Drop procedure if exists GetPdfByContractID
 Go
 
 CREATE PROCEDURE GetContractByID
@@ -207,7 +208,18 @@ BEGIN
 END;
 GO
 
-
+CREATE PROCEDURE GetPdfByContractID
+    @ContractID BIGINT
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT p.[file] AS PdfFile
+    FROM [Contract] c
+    INNER JOIN [PDF] p ON c.pdfID = p.ID
+    WHERE c.ID = @ContractID;
+END
+GO
 
 -- Get a specific contract by ID
 EXEC GetContractByID @ContractID = 1;

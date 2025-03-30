@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ArtAttack.Domain
 {
-    internal enum OrderStatus
+    enum OrderStatus
     {
         PROCESSING,
         SHIPPED,
@@ -16,7 +12,7 @@ namespace ArtAttack.Domain
         DELIVERED
     }
 
-    internal class OrderCheckpoint
+    class OrderCheckpoint
     {
         public int CheckpointID { get; set; }
         public DateTime Timestamp { get; set; }
