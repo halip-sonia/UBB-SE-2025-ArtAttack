@@ -55,10 +55,17 @@ namespace ArtAttack.ViewModel
             {
                 int returnedID = await model.AddTrackedOrderAsync(trackedOrder);
                 OrderViewModel orderViewModel = new OrderViewModel(Shared.Configuration._CONNECTION_STRING_);
-                Order order = await orderViewModel.GetOrderByIdAsync(trackedOrder.OrderID);
-                NotificationViewModel buyerNotificationViewModel = new NotificationViewModel(order.BuyerID);
-                Notification placedOrderNotification = new OrderShippingProgressNotification(order.BuyerID, DateTime.Now, trackedOrder.TrackedOrderID, trackedOrder.CurrentStatus.ToString(), trackedOrder.EstimatedDeliveryDate.ToDateTime(TimeOnly.FromDateTime(DateTime.Now)));
-                await buyerNotificationViewModel.AddNotificationAsync(placedOrderNotification);
+                try
+                {
+                    Order order = await orderViewModel.GetOrderByIdAsync(trackedOrder.OrderID);
+                    NotificationViewModel buyerNotificationViewModel = new NotificationViewModel(order.BuyerID);
+                    Notification placedOrderNotification = new OrderShippingProgressNotification(order.BuyerID, DateTime.Now, trackedOrder.TrackedOrderID, trackedOrder.CurrentStatus.ToString(), trackedOrder.EstimatedDeliveryDate.ToDateTime(TimeOnly.FromDateTime(DateTime.Now)));
+                    await buyerNotificationViewModel.AddNotificationAsync(placedOrderNotification);
+                }
+                catch (Exception)
+                {
+                    throw new Exception("Notification could not be sent");
+                }
                 return returnedID;
             }
             catch (Exception ex)
@@ -77,11 +84,18 @@ namespace ArtAttack.ViewModel
                 await UpdateTrackedOrderAsync(trackedOrder.TrackedOrderID, trackedOrder.EstimatedDeliveryDate, checkpoint.Status);
                 if(checkpoint.Status == OrderStatus.SHIPPED || checkpoint.Status == OrderStatus.OUT_FOR_DELIVERY)
                 {
-                    OrderViewModel orderViewModel = new OrderViewModel(Shared.Configuration._CONNECTION_STRING_);
-                    Order order = await orderViewModel.GetOrderByIdAsync(trackedOrder.OrderID);
-                    NotificationViewModel buyerNotificationViewModel = new NotificationViewModel(order.BuyerID);
-                    Notification placedOrderNotification = new OrderShippingProgressNotification(order.BuyerID, DateTime.Now, trackedOrder.TrackedOrderID, trackedOrder.CurrentStatus.ToString(), trackedOrder.EstimatedDeliveryDate.ToDateTime(TimeOnly.FromDateTime(DateTime.Now)));
-                    await buyerNotificationViewModel.AddNotificationAsync(placedOrderNotification);
+                    try
+                    {
+                        OrderViewModel orderViewModel = new OrderViewModel(Shared.Configuration._CONNECTION_STRING_);
+                        Order order = await orderViewModel.GetOrderByIdAsync(trackedOrder.OrderID);
+                        NotificationViewModel buyerNotificationViewModel = new NotificationViewModel(order.BuyerID);
+                        Notification placedOrderNotification = new OrderShippingProgressNotification(order.BuyerID, DateTime.Now, trackedOrder.TrackedOrderID, trackedOrder.CurrentStatus.ToString(), trackedOrder.EstimatedDeliveryDate.ToDateTime(TimeOnly.FromDateTime(DateTime.Now)));
+                        await buyerNotificationViewModel.AddNotificationAsync(placedOrderNotification);
+                    }
+                    catch (Exception)
+                    {
+                        throw new Exception("Notification could not be sent");
+                    }
                 }
                 return returnedID;
             }
@@ -100,7 +114,7 @@ namespace ArtAttack.ViewModel
                 OrderCheckpoint checkpoint = await GetOrderCheckpointByIDAsync(checkpointID);
                 TrackedOrder trackedOrder = await GetTrackedOrderByIDAsync(checkpoint.TrackedOrderID);
 
-                await UpdateTrackedOrderAsync(trackedOrder.TrackedOrderID, trackedOrder.EstimatedDeliveryDate, status);
+                await UpdateTrackedOrderAsync(trackedOrder.TrackedOrderID, trackedOrder.EstimatedDeliveryDate, checkpoint.Status);
             }
             catch (Exception ex)
             {
@@ -117,17 +131,17 @@ namespace ArtAttack.ViewModel
                 TrackedOrder trackedOrder = await GetTrackedOrderByIDAsync(trackedOrderID);
                 if (trackedOrder.CurrentStatus == OrderStatus.SHIPPED || trackedOrder.CurrentStatus == OrderStatus.OUT_FOR_DELIVERY)
                 {
-                    OrderViewModel orderViewModel = new OrderViewModel(Shared.Configuration._CONNECTION_STRING_);
-                    Order order = await orderViewModel.GetOrderByIdAsync(trackedOrder.OrderID);
-                    NotificationViewModel buyerNotificationViewModel = new NotificationViewModel(order.BuyerID);
-                    Notification placedOrderNotification = new OrderShippingProgressNotification(order.BuyerID, DateTime.Now, trackedOrder.TrackedOrderID, trackedOrder.CurrentStatus.ToString(), trackedOrder.EstimatedDeliveryDate.ToDateTime(TimeOnly.FromDateTime(DateTime.Now)));
                     try
                     {
+                        OrderViewModel orderViewModel = new OrderViewModel(Shared.Configuration._CONNECTION_STRING_);
+                        Order order = await orderViewModel.GetOrderByIdAsync(trackedOrder.OrderID);
+                        NotificationViewModel buyerNotificationViewModel = new NotificationViewModel(order.BuyerID);
+                        Notification placedOrderNotification = new OrderShippingProgressNotification(order.BuyerID, DateTime.Now, trackedOrder.TrackedOrderID, trackedOrder.CurrentStatus.ToString(), trackedOrder.EstimatedDeliveryDate.ToDateTime(TimeOnly.FromDateTime(DateTime.Now)));
                         await buyerNotificationViewModel.AddNotificationAsync(placedOrderNotification);
                     }
-                    catch(Exception ex)
+                    catch (Exception)
                     {
-                        throw new Exception("Error adding notification\n" + ex.ToString());
+                        throw new Exception("Notification could not be sent");
                     }
                 }
             }
