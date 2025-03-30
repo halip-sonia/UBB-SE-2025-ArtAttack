@@ -187,7 +187,7 @@ namespace ArtAttack.Model
                                 Timestamp = reader.GetDateTime(reader.GetOrdinal("Timestamp")),
                                 Location = reader.IsDBNull(reader.GetOrdinal("Location")) ? null : reader.GetString(reader.GetOrdinal("Location")),
                                 Description = reader.GetString(reader.GetOrdinal("Description")),
-                                Status = Enum.Parse<OrderStatus>(reader.GetString(reader.GetOrdinal("Status"))),
+                                Status = Enum.Parse<OrderStatus>(reader.GetString(reader.GetOrdinal("CheckpointStatus"))),
                                 TrackedOrderID = reader.GetInt32(reader.GetOrdinal("TrackedOrderID"))
                             };
                         }
