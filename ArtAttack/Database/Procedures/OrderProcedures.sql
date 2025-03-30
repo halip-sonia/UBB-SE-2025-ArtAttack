@@ -20,7 +20,7 @@ begin
     os.[finalTotal], os.[address], os.[AdditionalInfo], p.[name]
     from [Order] o inner join [OrderSummary] os on o.[OrderSummaryID]=os.[ID]
     inner join [DummyProduct] p on o.[ProductID]=p.[ID]
-    where p.[ProductType]='new' or p.[ProductType]='used' and o.[BuyerID]=@BuyerID order by o.[OrderDate] desc;
+    where p.[ProductType]='new' or o.[ProductType]='used' and o.[BuyerID]=@BuyerID order by o.[OrderDate] desc;
 
 end
 go
