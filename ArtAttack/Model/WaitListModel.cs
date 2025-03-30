@@ -88,6 +88,8 @@ namespace ArtAttack.Model
             return waitlistEntries;
         }
 
+        /// <summary>
+        /// Gets all waitlists that a user is part of.
         public List<UserWaitList> GetUserWaitlists(int userId)
         {
             var userWaitlists = new List<UserWaitList>();
@@ -122,6 +124,8 @@ namespace ArtAttack.Model
             return userWaitlists;
         }
 
+        /// <summary>
+        /// Gets the number of users in a product's waitlist.
         public int GetWaitlistSize(int productWaitListId)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -144,6 +148,8 @@ namespace ArtAttack.Model
             }
         }
 
+        /// <summary>
+        /// Checks if a user is in a product's waitlist.
         public bool IsUserInWaitlist(int userId, int productId)
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
@@ -159,19 +165,18 @@ namespace ArtAttack.Model
             }
         }
 
-        public int GetUserWaitlistPosition(int userId, int productId, SqlParameter outputParam)
+        public int GetUserWaitlistPosition(int userId, int productId)
 
         {
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
-                using (SqlCommand cmd = new SqlCommand("CheckUserInWaitlist", conn))
+                using (SqlCommand cmd = new SqlCommand("GetUserWaitlistPosition", conn))
                 {
                     cmd.CommandType = CommandType.StoredProcedure;
-
                     cmd.Parameters.Add("@UserID", SqlDbType.Int).Value = userId;
-                    cmd.Parameters.Add("@ProductWaitListID", SqlDbType.Int).Value = productWaitListId;
+                    cmd.Parameters.Add("@ProductID", SqlDbType.Int).Value = productId;
 
-                    SqlParameter outputParameter = new SqlParameter("@IsInWaitlist", SqlDbType.Bit)
+                    SqlParameter outputParam = new SqlParameter("@Position", SqlDbType.Int)
                     {
                         Direction = ParameterDirection.Output
                     };
@@ -180,12 +185,12 @@ namespace ArtAttack.Model
                     conn.Open();
                     cmd.ExecuteNonQuery();
 
-                    return (int)outputParameter.Value;
+                    return outputParam.Value != DBNull.Value ? (int)outputParam.Value : -1;
                 }
             }
         }
 
-        public List<UserWaitList> GetUsersInWaitlistOrdered(int productId)
+            public List<UserWaitList> GetUsersInWaitlistOrdered(int productId)
         {
             var waitlistEntries = new List<UserWaitList>();
 
@@ -216,6 +221,5 @@ namespace ArtAttack.Model
 
             return waitlistEntries;
         }
-
     }
 }
