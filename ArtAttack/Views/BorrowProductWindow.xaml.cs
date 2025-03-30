@@ -5,6 +5,8 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Threading.Tasks;
 using System.Data;
+using ArtAttack.Services;
+using ArtAttack.ViewModel;
 
 namespace ArtAttack
 {
@@ -12,12 +14,17 @@ namespace ArtAttack
     {
         private readonly string _connectionString;
         private readonly int _currentProductId;
+        private readonly WaitListViewModel _waitListViewModel;
+        private readonly NotificationViewModel _notificationVM;
+
 
         public BorrowProductWindow(string connectionString, int productId)
         {
             InitializeComponent();
             _connectionString = connectionString;
             _currentProductId = productId;
+            _waitListViewModel = new WaitListViewModel(connectionString);
+            _notificationVM = new NotificationViewModel(GetCurrentUserId());
             this.Activated += Window_Activated;
         }
 
@@ -31,47 +38,33 @@ namespace ArtAttack
         {
             try
             {
-                using (var conn = new SqlConnection(_connectionString))
+                var product = await _waitListViewModel.GetDummyProductByIdAsync(_currentProductId);
+                if (product != null)
                 {
-                    await conn.OpenAsync();
+                    string sellerName = await _waitListViewModel.GetSellerNameAsync(product.SellerID);
+                    DisplayProduct(product, sellerName);
 
-                    // Get product and seller info
-                    var query = @"
-                        SELECT p.*, s.name as SellerName 
-                        FROM DummyProduct p
-                        LEFT JOIN DummySeller s ON p.SellerID = s.ID
-                        WHERE p.ID = @ProductId";
+                    int currentUserId = GetCurrentUserId();
+                    bool isOnWaitlist = _waitListViewModel.IsUserInWaitlist(currentUserId, _currentProductId);
 
-                    using (var cmd = new SqlCommand(query, conn))
-                    {
-                        cmd.Parameters.AddWithValue("@ProductId", _currentProductId);
-
-                        using (var reader = await cmd.ExecuteReaderAsync())
-                        {
-                            if (await reader.ReadAsync())
-                            {
-                                var product = new DummyProduct
-                                {
-                                    ID = reader.GetInt32(reader.GetOrdinal("ID")),
-                                    Name = reader.GetString(reader.GetOrdinal("name")),
-                                    Price = (float)reader.GetDouble(reader.GetOrdinal("price")),
-                                    SellerID = reader.IsDBNull("SellerID") ? 0 : reader.GetInt32("SellerID"),
-                                    ProductType = reader.GetString(reader.GetOrdinal("productType")),
-                                    StartDate = reader.IsDBNull("startDate") ? DateTime.MinValue : reader.GetDateTime("startDate"),
-                                    EndDate = reader.IsDBNull("endDate") ? DateTime.MinValue : reader.GetDateTime("endDate")
-                                };
-
-                                string sellerName = reader.IsDBNull("SellerName") ? "No Seller" : reader.GetString("SellerName");
-                                DisplayProduct(product, sellerName);
-                            }
-                        }
-                    }
+                    UpdateWaitlistUI(isOnWaitlist);
+                }
+                else
+                {
+                    await ShowMessageAsync("Error", "Product not found");
                 }
             }
             catch (Exception ex)
             {
                 await ShowMessageAsync("Error", $"Failed to load product: {ex.Message}");
             }
+        }
+
+        private void UpdateWaitlistUI(bool isOnWaitlist)
+        {
+            btnJoinWaitList.Visibility = isOnWaitlist ? Visibility.Collapsed : Visibility.Visible;
+            waitlistActionsPanel.Visibility = isOnWaitlist ? Visibility.Visible : Visibility.Collapsed;
+            txtPositionInQueue.Visibility = Visibility.Collapsed;
         }
 
         private void DisplayProduct(DummyProduct product, string sellerName)
@@ -110,6 +103,101 @@ namespace ArtAttack
                 XamlRoot = this.Content.XamlRoot
             };
             await dialog.ShowAsync();
+        }
+
+        private async void btnJoinWaitList_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int currentUserId = GetCurrentUserId();
+
+                _waitListViewModel.AddUserToWaitlist(currentUserId, _currentProductId);
+
+                UpdateWaitlistUI(true);
+
+                await ShowMessageAsync("Success", "You've joined the waitlist!");
+            }
+            catch (Exception ex)
+            {
+                await ShowMessageAsync("Error", $"Failed to join waitlist: {ex.Message}");
+            }
+        }
+
+        private int GetCurrentUserId()
+        {
+            return 1;
+        }
+
+        private async void btnLeaveWaitList_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int currentUserId = GetCurrentUserId();
+
+                _waitListViewModel.RemoveUserFromWaitlist(currentUserId, _currentProductId);
+
+                UpdateWaitlistUI(false);
+
+                await ShowMessageAsync("Success", "You've left the waitlist");
+            }
+            catch (Exception ex)
+            {
+                await ShowMessageAsync("Error", $"Failed to leave waitlist: {ex.Message}");
+            }
+        }
+
+        private async void btnViewPosition_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                int currentUserId = GetCurrentUserId();
+                int position = _waitListViewModel.GetUserWaitlistPosition(currentUserId, _currentProductId);
+
+                if (position > 0)
+                {
+                    txtPositionInQueue.Text = $"Your position: #{position}";
+                    txtPositionInQueue.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    await ShowMessageAsync("Position", "You are not currently on the waitlist");
+                }
+            }
+            catch (Exception ex)
+            {
+                await ShowMessageAsync("Error", $"Failed to get waitlist position: {ex.Message}");
+            }
+        }
+
+        private async void btnNotifications_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // Create and show a simple notifications popup
+                var notificationPopup = new ContentDialog
+                {
+                    Title = "Your Notifications",
+                    Content = new ScrollViewer
+                    {
+                        Content = new StackPanel
+                        {
+                            Children =
+                    {
+                        new TextBlock { Text = _notificationVM.unReadNotificationsCountText },
+                        // Add more notification items here if needed
+                    }
+                        }
+                    },
+                    CloseButtonText = "Close",
+                    XamlRoot = this.Content.XamlRoot
+                };
+
+                await notificationPopup.ShowAsync();
+            }
+            catch (Exception ex)
+            {
+                await ShowMessageAsync("Error", $"Couldn't load notifications: {ex.Message}");
+            }
         }
     }
 }

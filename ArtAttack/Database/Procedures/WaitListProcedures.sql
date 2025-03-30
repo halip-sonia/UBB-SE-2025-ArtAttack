@@ -4,7 +4,7 @@
 -- Select all users in the waitlist for the given product
 -- Select all waitlists the user has joined
 
-/*alter procedure AddUserToWaitlist
+alter procedure AddUserToWaitlist
     @UserID int,
     @ProductID int
 as
@@ -25,7 +25,7 @@ begin
     insert into UserWaitList (productWaitListID, userID, joinedTime, positionInQueue)
     values (@WaitListProductID, @UserID, getdate(), @NextPosition);
 end;
-go*/
+go
 
 CREATE OR ALTER PROCEDURE GetUserWaitlistPosition
     @UserID INT,
@@ -56,35 +56,29 @@ BEGIN
     DECLARE @WaitListProductID INT;
     DECLARE @UserPosition INT;
 
-    -- Get the WaitListProductID
     SELECT @WaitListProductID = waitListProductID 
     FROM WaitListProduct 
     WHERE productID = @ProductID;
 
-    -- Ensure that we found a valid waitlist entry
     IF @WaitListProductID IS NULL
     BEGIN
         PRINT 'No matching product found in the waitlist.';
         RETURN;
     END
 
-    -- Get the User's Position BEFORE deleting them
     SELECT @UserPosition = positionInQueue
     FROM UserWaitList
     WHERE userID = @UserID AND productWaitListID = @WaitListProductID;
 
-    -- Ensure user exists in the waitlist before proceeding
     IF @UserPosition IS NULL
     BEGIN
         PRINT 'User not found in the waitlist.';
         RETURN;
     END
 
-    -- Delete the user from the waitlist
     DELETE FROM UserWaitList
     WHERE userID = @UserID AND productWaitListID = @WaitListProductID;
 
-    -- Update positions of remaining users
     UPDATE UserWaitList
     SET positionInQueue = positionInQueue - 1
     WHERE productWaitListID = @WaitListProductID AND positionInQueue > @UserPosition;
@@ -93,13 +87,18 @@ BEGIN
 END;
 
         
-/*
 -- Select all users in the waitlist for the given product
 go
-CREATE PROCEDURE GetUsersInWaitlist
-    @WaitListProductID BIGINT
+create or alter PROCEDURE GetUsersInWaitlist
+    @ProductID INT
 AS
 BEGIN
+    DECLARE @WaitListProductID INT;
+        
+     SELECT @WaitListProductID = waitListProductID 
+     FROM WaitListProduct 
+     WHERE productID = @ProductID;
+
     SELECT
         UserWaitList.[userID],
         UserWaitList.[positionInQueue],
@@ -113,7 +112,7 @@ END;
  -- Select all waitlists the user has joined
  go
 
-CREATE PROCEDURE GetUserWaitlists
+/*CREATE PROCEDURE GetUserWaitlists
     @UserID INT
 AS
 BEGIN
