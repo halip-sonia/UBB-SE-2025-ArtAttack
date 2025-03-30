@@ -61,7 +61,7 @@ namespace ArtAttack.ViewModel
                 }
                 catch (Exception)
                 {
-                    throw new Exception("Notification could not be sent");
+                    //throw new Exception("Notification could not be sent");
                 }
                 return returnedID;
             }
@@ -91,7 +91,7 @@ namespace ArtAttack.ViewModel
                     }
                     catch (Exception)
                     {
-                        throw new Exception("Notification could not be sent");
+                        //throw new Exception("Notification could not be sent");
                     }
                 }
                 return returnedID;
@@ -138,7 +138,7 @@ namespace ArtAttack.ViewModel
                     }
                     catch (Exception)
                     {
-                        throw new Exception("Notification could not be sent");
+                        //throw new Exception("Notification could not be sent");
                     }
                 }
             }
