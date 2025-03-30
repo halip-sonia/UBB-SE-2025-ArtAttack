@@ -101,6 +101,21 @@ BEGIN
         VALUES
             (@OrderID, @ContractStatus, @ContractContent, @RenewalCount, @PredefinedContractID, @PDFID, @AdditionalTerms,@RenewedFromContractID);
         
+        DECLARE @NewContractID BIGINT;
+        SET @NewContractID = SCOPE_IDENTITY();
+
+        -- Return the newly added contract record.
+        SELECT 
+            ID,
+            orderID,
+            contractStatus,
+            contractContent,
+            renewalCount,
+            predefinedContractID,
+            pdfID,
+            renewedFromContractID
+        FROM Contract
+        WHERE ID = @NewContractID;
         COMMIT TRANSACTION;
     END TRY
     BEGIN CATCH

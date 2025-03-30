@@ -169,8 +169,9 @@ namespace ArtAttack.Model
         /// <summary>
         /// Asynchronously inserts a new contract and updates the PDF file using the AddContract stored procedure.
         /// </summary>
-        public async Task AddContractAsync(Contract contract, byte[] pdfFile)
+        public async Task<Contract> AddContractAsync(Contract contract, byte[] pdfFile)
         {
+            Contract newContract = null;
             using (SqlConnection conn = new SqlConnection(_connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand("AddContract", conn))
@@ -196,9 +197,32 @@ namespace ArtAttack.Model
                         cmd.Parameters.AddWithValue("@RenewedFromContractID", DBNull.Value);
 
                     await conn.OpenAsync();
+                    using (SqlDataReader reader = await cmd.ExecuteReaderAsync())
+                    {
+                        if (await reader.ReadAsync())
+                        {
+                            newContract = new Contract
+                            {
+                                ID = reader.GetInt64(reader.GetOrdinal("ID")),
+                                OrderID = reader.GetInt32(reader.GetOrdinal("orderID")),
+                                ContractStatus = reader.GetString(reader.GetOrdinal("contractStatus")),
+                                ContractContent = reader["contractContent"] as string,
+                                RenewalCount = reader.GetInt32(reader.GetOrdinal("renewalCount")),
+                                PredefinedContractID = reader["predefinedContractID"] != DBNull.Value
+                                                        ? (int?)reader.GetInt32(reader.GetOrdinal("predefinedContractID"))
+                                                        : null,
+                                PDFID = reader.GetInt32(reader.GetOrdinal("pdfID")),
+                                RenewedFromContractID = reader["renewedFromContractID"] != DBNull.Value
+                                                        ? (long?)reader.GetInt64(reader.GetOrdinal("renewedFromContractID"))
+                                                        : null
+                            };
+                        }
+                    }
                     await cmd.ExecuteNonQueryAsync();
                 }
+
             }
+            return newContract;
         }
 
         /// <summary>
