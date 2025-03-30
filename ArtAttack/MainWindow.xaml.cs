@@ -43,10 +43,10 @@ namespace ArtAttack
             contract = await _contractViewModel.GetContractByIdAsync(1);
         }
 
-        private void myButton_Click(object sender, RoutedEventArgs e)
-        {
-            myButton.Content = "Clicked";
-        }
+        //private void myButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    myButton.Content = "Clicked";
+        //}
 
         private void purchaseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -133,23 +133,23 @@ namespace ArtAttack
         }
 
 
-        private async void renewContractButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                // Create a new instance of the RenewContractView window
-                var renewContractWindow = new RenewContractView();
+        //private async void renewContractButton_Click(object sender, RoutedEventArgs e)
+        //{
+        //    try
+        //    {
+        //        // Create a new instance of the RenewContractView window
+        //        var renewContractWindow = new RenewContractView();
 
-                // Show (activate) the window to the user
-                renewContractWindow.Activate();
+        //        // Show (activate) the window to the user
+        //        renewContractWindow.Activate();
 
-            }
-            catch (Exception ex)
-            {
-                // If an error occurs while opening the window, show an error dialog with the message
-                await ShowErrorDialogAsync("Error opening Renew Contract", ex.Message);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // If an error occurs while opening the window, show an error dialog with the message
+        //        await ShowErrorDialogAsync("Error opening Renew Contract", ex.Message);
+        //    }
+        //}
 
 
 

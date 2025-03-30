@@ -1,11 +1,11 @@
 ﻿using ArtAttack.Domain;
 using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dapper;
 
 
 namespace ArtAttack.Model
@@ -170,18 +170,23 @@ namespace ArtAttack.Model
 
         public List<UserWaitList> GetUsersInWaitlistOrdered(int productId)
         {
-            using (SqlConnection conn = new SqlConnection(_connectionString))
-            {
-                var query = @"
-            SELECT uw.* 
-            FROM UserWaitList uw
-            JOIN WaitListProduct wp ON uw.productWaitListID = wp.WaitListProductID
-            WHERE wp.ProductID = @ProductId
-            ORDER BY uw.positionInQueue ASC"; // Critical: Ordered by position
+            //using (SqlConnection conn = new SqlConnection(_connectionString))
+            //{
+            //    var query = @"
+            //SELECT uw.* 
+            //FROM UserWaitList uw
+            //JOIN WaitListProduct wp ON uw.productWaitListID = wp.WaitListProductID
+            //WHERE wp.ProductID = @ProductId
+            //ORDER BY uw.positionInQueue ASC"; // Critical: Ordered by position
 
-                return conn.Query<UserWaitList>(query, new { ProductId = productId }).ToList();
-            }
+            //    return conn.Query<UserWaitList>(query, new { ProductId = productId }).ToList();
+            //}
+            throw new NotImplementedException();
         }
 
+        internal int GetUserWaitlistPosition(int userId, int productId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
