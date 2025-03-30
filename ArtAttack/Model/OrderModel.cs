@@ -1,13 +1,11 @@
 
-using Microsoft.Data.SqlClient;
 using ArtAttack.Domain;
+using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
-using Microsoft.Data.SqlClient;
 
 namespace ArtAttack.Model
 {
@@ -92,6 +90,7 @@ namespace ArtAttack.Model
                             Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
+
                                 ProductID = reader.GetInt32("ProductID"),
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
@@ -127,6 +126,7 @@ namespace ArtAttack.Model
                             Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
+
                                 ProductID = reader.GetInt32("ProductID"),
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
@@ -162,6 +162,7 @@ namespace ArtAttack.Model
                             Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
+
                                 ProductID = reader.GetInt32("ProductID"),
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
@@ -196,6 +197,7 @@ namespace ArtAttack.Model
                             Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
+
                                 ProductID = reader.GetInt32("ProductID"),
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
@@ -230,6 +232,7 @@ namespace ArtAttack.Model
                             Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
+
                                 ProductID = reader.GetInt32("ProductID"),
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
@@ -264,6 +267,7 @@ namespace ArtAttack.Model
                             Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
+
                                 ProductID = reader.GetInt32("ProductID"),
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
@@ -299,6 +303,8 @@ namespace ArtAttack.Model
                             {
                                 OrderID = reader.GetInt32("OrderID"),
                                 ProductID = reader.GetInt32("ProductID"),
+
+
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),
                                 OrderHistoryID = reader.GetInt32("OrderHistoryID"),
@@ -333,6 +339,7 @@ namespace ArtAttack.Model
                             Order order = new Order()
                             {
                                 OrderID = reader.GetInt32("OrderID"),
+
                                 ProductID = reader.GetInt32("ProductID"),
                                 BuyerID = reader.GetInt32("BuyerID"),
                                 OrderSummaryID = reader.GetInt32("OrderSummaryID"),

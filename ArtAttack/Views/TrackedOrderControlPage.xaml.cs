@@ -2,21 +2,9 @@ using ArtAttack.Domain;
 using ArtAttack.ViewModel;
 using Microsoft.UI.Xaml;
 using Microsoft.UI.Xaml.Controls;
-using Microsoft.UI.Xaml.Controls.Primitives;
-using Microsoft.UI.Xaml.Data;
-using Microsoft.UI.Xaml.Input;
-using Microsoft.UI.Xaml.Media;
-using Microsoft.UI.Xaml.Navigation;
 using System;
 using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
-using Windows.Foundation;
-using Windows.Foundation.Collections;
-using Windows.UI.Popups;
 
 // To learn more about WinUI, the WinUI project structure,
 // and more about our project templates, see: http://aka.ms/winui-project-info.
@@ -55,6 +43,7 @@ namespace ArtAttack.Views
                     TrackedOrderID = order.TrackedOrderID,
                     DeliveryAddress = order.DeliveryAddress,
                     EstimatedDeliveryDate = order.EstimatedDeliveryDate,
+                    OrderID = order.OrderID,
                     Checkpoints = checkpoints
                 };
             }
@@ -91,17 +80,20 @@ namespace ArtAttack.Views
             {
                 TrackedOrder order = await ViewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
                 await ViewModel.RevertToPreviousCheckpoint(order);
-                LoadOrderData();
             }
             catch (Exception ex)
             {
                 await ShowErrorDialog($"{ex.Message}");
             }
+            finally
+            {
+                LoadOrderData();
+            }
         }
 
         private void ChangeEstimatedDeliveryDateButton_Clicked(object sender, RoutedEventArgs e)
         {
-            if(deliveryCalendarDatePicker.Visibility == Visibility.Collapsed)
+            if (deliveryCalendarDatePicker.Visibility == Visibility.Collapsed)
             {
                 deliveryCalendarDatePicker.Visibility = Visibility.Visible;
                 deliveryCalendarDatePicker.MinDate = DateTime.Now;
@@ -117,7 +109,7 @@ namespace ArtAttack.Views
         private async void ConfirmChangeEstimatedDeliveryDateButton_Clicked(object sender, RoutedEventArgs e)
         {
             var pickedDate = deliveryCalendarDatePicker.Date;
-            if(pickedDate!=null)
+            if (pickedDate != null)
             {
                 try
                 {
@@ -125,7 +117,6 @@ namespace ArtAttack.Views
                     DateOnly newEstimatedDeliveryDate = DateOnly.FromDateTime(pickedDateTime);
                     var order = await ViewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
                     await ViewModel.UpdateTrackedOrderAsync(TrackedOrderID, newEstimatedDeliveryDate, order.CurrentStatus);
-                    LoadOrderData();
                 }
                 catch (Exception ex)
                 {
@@ -133,6 +124,7 @@ namespace ArtAttack.Views
                 }
                 finally
                 {
+                    LoadOrderData();
                     deliveryCalendarDatePicker.Visibility=Visibility.Collapsed;
                     confirmChangeEstimatedDeliveryDateButton.Visibility=Visibility.Collapsed;
                     deliveryCalendarDatePicker.Date = null;
@@ -142,7 +134,7 @@ namespace ArtAttack.Views
 
         private void AddNewCheckpointButton_Clicked(object sender, RoutedEventArgs e)
         {
-            if(AddDetails.Visibility == Visibility.Collapsed)
+            if (AddDetails.Visibility == Visibility.Collapsed)
                 AddDetails.Visibility = Visibility.Visible;
             else
                 AddDetails.Visibility = Visibility.Collapsed;
@@ -172,7 +164,6 @@ namespace ArtAttack.Views
                 });
 
                 await ShowSuccessDialog("Checkpoint added successfully.");
-                LoadOrderData();
             }
             catch (Exception ex)
             {
@@ -180,8 +171,8 @@ namespace ArtAttack.Views
             }
             finally
             {
+                LoadOrderData();
                 AddDetails.Visibility = Visibility.Collapsed;
-
                 LocationTextBoxAdd.Text = "";
                 DescriptionTextBoxAdd.Text = "";
                 StatusComboBoxAdd.SelectedIndex = -1;
@@ -208,7 +199,6 @@ namespace ArtAttack.Views
                 return;
             }
 
-            // Set default values
             TimestampDatePicker.Date = lastCheckpoint.Timestamp.Date;
             TimestampTimePicker.Time = lastCheckpoint.Timestamp.TimeOfDay;
             LocationTextBoxUpdate.Text = lastCheckpoint.Location;
@@ -233,7 +223,7 @@ namespace ArtAttack.Views
 
         private void ManualTimestampRadio_Checked(object sender, RoutedEventArgs e)
         {
-            if(DateTimePickers!=null)
+            if (DateTimePickers != null)
                 DateTimePickers.Visibility = Visibility.Visible;
         }
 
@@ -254,7 +244,7 @@ namespace ArtAttack.Views
             if (ManualTimestampRadio.IsChecked == true)
             {
                 var pickedDate = TimestampDatePicker.Date;
-                if(pickedDate == null)
+                if (pickedDate == null)
                 {
                     await ShowErrorDialog("Please fill in all fields.");
                     return;
@@ -271,7 +261,8 @@ namespace ArtAttack.Views
             string description = DescriptionTextBoxUpdate.Text;
             string status = (StatusComboBoxUpdate.SelectedItem as ComboBoxItem)?.Content.ToString();
 
-            try {
+            try
+            {
                 TrackedOrder order = await ViewModel.GetTrackedOrderByIDAsync(TrackedOrderID);
 
                 var lastCheckpoint = await ViewModel.GetLastCheckpoint(order);
@@ -290,22 +281,22 @@ namespace ArtAttack.Views
                 );
 
                 await ShowSuccessDialog("Checkpoint updated successfully.");
-                LoadOrderData();
             }
             catch (Exception ex)
             {
                 await ShowErrorDialog("Failed to update checkpoint.\n" + ex.ToString());
             }
+            finally
+            {
+                LoadOrderData();
 
-            // Hide and reset fields
-            UpdateDetails.Visibility = Visibility.Collapsed;
-
-            TimestampDatePicker.Date = null;
-            TimestampTimePicker.Time = DateTime.Now.TimeOfDay;
-            LocationTextBoxUpdate.Text = "";
-            DescriptionTextBoxUpdate.Text = "";
-            StatusComboBoxUpdate.SelectedIndex = -1;
+                UpdateDetails.Visibility = Visibility.Collapsed;
+                TimestampDatePicker.Date = null;
+                TimestampTimePicker.Time = DateTime.Now.TimeOfDay;
+                LocationTextBoxUpdate.Text = "";
+                DescriptionTextBoxUpdate.Text = "";
+                StatusComboBoxUpdate.SelectedIndex = -1;
+            }
         }
-
     }
 }

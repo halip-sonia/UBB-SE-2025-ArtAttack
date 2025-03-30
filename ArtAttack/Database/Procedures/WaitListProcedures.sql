@@ -4,51 +4,101 @@
 -- Select all users in the waitlist for the given product
 -- Select all waitlists the user has joined
 
-create procedure AddUserToWaitlist
+alter procedure AddUserToWaitlist
     @UserID int,
-    @ProductWaitListID int
+    @ProductID int
 as
 begin
     set nocount on;
+
+     DECLARE @WaitListProductID INT;
+        
+     SELECT @WaitListProductID = waitListProductID 
+     FROM WaitListProduct 
+     WHERE productID = @ProductID;
 
     declare @NextPosition int;
     select @NextPosition = isnull(max(positionInQueue), 0) + 1
     from UserWaitList
-    where productWaitListID = @ProductWaitListID;
+    where productWaitListID = @WaitListProductID;
 
     insert into UserWaitList (productWaitListID, userID, joinedTime, positionInQueue)
-    values (@ProductWaitListID, @UserID, getdate(), @NextPosition);
+    values (@WaitListProductID, @UserID, getdate(), @NextPosition);
 end;
 go
 
---procedure to delete a user from a given waitList
-create procedure RemoveUserFromWaitlist
-    @UserID int,
-    @ProductWaitListID int
-as
-begin
-    set nocount on;
-
-    declare @UserPosition int;
-
-    select @UserPosition = positionInQueue
-    from UserWaitList
-    where userID = @UserID and productWaitListID = @ProductWaitListID;
-
-    delete from UserWaitList
-    where userID = @UserID and productWaitListID = @ProductWaitListID;--'where' was written as 'wehere'
-
-    update UserWaitList
-    set positionInQueue = positionInQueue - 1
-    where productWaitListID = @ProductWaitListID and positionInQueue > @UserPosition;
-end;
-
--- Select all users in the waitlist for the given product
-go
-CREATE PROCEDURE GetUsersInWaitlist
-    @WaitListProductID BIGINT
+CREATE OR ALTER PROCEDURE GetUserWaitlistPosition
+    @UserID INT,
+    @ProductID INT
 AS
 BEGIN
+    SET NOCOUNT ON;
+    
+    -- Get the user's position in the waitlist for the specified product
+    SELECT uw.positionInQueue
+    FROM UserWaitList uw
+    JOIN WaitListProduct wp ON uw.productWaitListID = wp.waitListProductID
+    WHERE uw.userID = @UserID AND wp.productID = @ProductID;
+    
+    -- If no rows returned, the user isn't on this waitlist
+    -- The C# code will handle this as position -1
+END
+GO
+
+--procedure to delete a user from a given waitList
+ALTER PROCEDURE RemoveUserFromWaitlist
+    @UserID INT,
+    @ProductID INT
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    DECLARE @WaitListProductID INT;
+    DECLARE @UserPosition INT;
+
+    SELECT @WaitListProductID = waitListProductID 
+    FROM WaitListProduct 
+    WHERE productID = @ProductID;
+
+    IF @WaitListProductID IS NULL
+    BEGIN
+        PRINT 'No matching product found in the waitlist.';
+        RETURN;
+    END
+
+    SELECT @UserPosition = positionInQueue
+    FROM UserWaitList
+    WHERE userID = @UserID AND productWaitListID = @WaitListProductID;
+
+    IF @UserPosition IS NULL
+    BEGIN
+        PRINT 'User not found in the waitlist.';
+        RETURN;
+    END
+
+    DELETE FROM UserWaitList
+    WHERE userID = @UserID AND productWaitListID = @WaitListProductID;
+
+    UPDATE UserWaitList
+    SET positionInQueue = positionInQueue - 1
+    WHERE productWaitListID = @WaitListProductID AND positionInQueue > @UserPosition;
+
+    PRINT 'User removed and positions updated successfully.';
+END;
+
+        
+-- Select all users in the waitlist for the given product
+go
+create or alter PROCEDURE GetUsersInWaitlist
+    @ProductID INT
+AS
+BEGIN
+    DECLARE @WaitListProductID INT;
+        
+     SELECT @WaitListProductID = waitListProductID 
+     FROM WaitListProduct 
+     WHERE productID = @ProductID;
+
     SELECT
         UserWaitList.[userID],
         UserWaitList.[positionInQueue],
@@ -62,7 +112,7 @@ END;
  -- Select all waitlists the user has joined
  go
 
-CREATE PROCEDURE GetUserWaitlists
+/*CREATE PROCEDURE GetUserWaitlists
     @UserID INT
 AS
 BEGIN
@@ -104,6 +154,6 @@ BEGIN
     FROM UserWaitList
     WHERE productWaitListID = @ProductWaitListID;
 END;
-
+*/
 
 

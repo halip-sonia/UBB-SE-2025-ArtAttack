@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Diagnostics.Metrics;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
-using ArtAttack.Domain;
+﻿using ArtAttack.Domain;
 using Microsoft.Data.SqlClient;
-using static System.Runtime.InteropServices.JavaScript.JSType;
-using static QuestPDF.Helpers.Colors;
+using System;
+using System.Data;
+using System.Threading.Tasks;
 
 namespace ArtAttack.Model
 {
@@ -88,7 +81,7 @@ namespace ArtAttack.Model
 
                     cmd.Parameters.AddWithValue("@cnumber", cardNumber);
                     await conn.OpenAsync();
-                   
+
 
 
                     using (SqlDataReader reader = await cmd.ExecuteReaderAsync())

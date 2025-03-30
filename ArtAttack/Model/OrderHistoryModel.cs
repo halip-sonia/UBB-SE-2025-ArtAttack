@@ -3,11 +3,7 @@ using Microsoft.Data.SqlClient;
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Windows.ApplicationModel.Store;
 
 namespace ArtAttack.Model
 {
@@ -38,14 +34,16 @@ namespace ArtAttack.Model
                         {
                             DummyProduct product = new DummyProduct
                             {
-                                
+
                                 ID = reader.GetInt32(reader.GetOrdinal("productID")),
                                 Name = reader.GetString(reader.GetOrdinal("name")),
                                 Price = (float)reader.GetDouble(reader.GetOrdinal("price")),
-                                SellerID = reader["SellerID"] != DBNull.Value ? (int?)reader.GetInt32(reader.GetOrdinal("SellerID")) : null,
-                                ProductType = reader.GetString(reader.GetOrdinal("productType")),
-                                StartDate = reader["startDate"] != DBNull.Value ? (DateTime?)reader.GetDateTime(reader.GetOrdinal("startDate")) : null,
-                                EndDate = reader["endDate"] != DBNull.Value ? (DateTime?)reader.GetDateTime(reader.GetOrdinal("endDate")) : null
+                                SellerID = reader["SellerID"] != DBNull.Value
+                                ? reader.GetInt32(reader.GetOrdinal("SellerID")): 0,
+                                StartDate = reader["startDate"] != DBNull.Value
+                                ? reader.GetDateTime(reader.GetOrdinal("startDate")): DateTime.MinValue,  
+                                EndDate = reader["endDate"] != DBNull.Value
+                                ? reader.GetDateTime(reader.GetOrdinal("endDate")): DateTime.MaxValue
                             };
                             products.Add(product);
                         }
