@@ -1,19 +1,16 @@
 ﻿insert into [DummyWallet] 
-values (120.0);
-
-update [DummyWallet] set balance = 1200
+values (1200.0);
 
 insert into [DummyCard]
 values 
 ('Alice Johnson', '5425233430109903', '123', '08', '26', 'Romania', 1500.50),
-('Bob Smith', '2222420000001113	', '456', '12', '27', 'Canada', 12.00),
-('Charlie Brown', '2223000048410010', '789', '01', '25', 'Spain', 500.00)
-update [DummyCard] set balance = 1500
+('Bob Smith', '2222420000001113	', '456', '12', '27', 'Canada', 1500.00),
+('Charlie Brown', '2223000048410010', '789', '01', '25', 'Spain', 1500.00)
 
 
 insert into [DummyBuyer]
 values
-('Buyer1'),('Buyer2'),('Buyer3')
+('Buyer1')
 
 insert into [DummySeller]
 values
@@ -25,10 +22,7 @@ values
 ('Toothbrush', 10.00, 1, 'new', NULL,NULL),
 ('Hair Dryer', 150.00, 1, 'borrowed', NULL,NULL),
 ('Ancient Chinese Vase', 100, 2, 'bid',NULL,NULL),
-('Wallet Top Up', 200,NULL,'refill',NULL,NULL)
-
-insert into [DummyProduct]
-values
+('Wallet Top Up', 200,NULL,'refill',NULL,NULL),
 ('IPhone 4 Penguin Phone Case', 75.00, 3, 'used', NULL,NULL)
 
 
@@ -65,9 +59,3 @@ values (0, 0, 0, 0, 'Placeholder3', 'placeholder@email.com', '0000000000', 'TBD'
 insert into [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderHistoryID)
 values (4, 1, 4, NULL, 3, 3);
 
-select * from [DummyWallet]
-select * from [DummyCard]
-select * from [DummyProduct]
-select * from [OrderHistory]
-select * from [OrderSummary]
-select * from [Order]

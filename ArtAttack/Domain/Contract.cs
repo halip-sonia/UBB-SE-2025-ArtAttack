@@ -28,6 +28,5 @@
 
         // Holds the ID of the original contract if this is a renewal; null otherwise
         public long? RenewedFromContractID { get; set; }
-
     }
 }

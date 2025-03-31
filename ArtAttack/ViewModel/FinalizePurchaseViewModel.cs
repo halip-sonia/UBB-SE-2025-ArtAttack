@@ -95,11 +95,19 @@ namespace ArtAttack.ViewModel
 
         public async Task GenerateContractForBorrowing()
         {
+            var contractViewModel = new ContractViewModel(Configuration._CONNECTION_STRING_);
             foreach(var order in orders)
             {
                 if (dummyProducts[order.ProductID].ProductType == "borrowed")
                 {
-                    var contract = new Contract();
+                    //var newContract = new Contract
+                    //{
+                    //    ID = 1,
+                    //    OrderID = order.OrderID
+                    //};
+
+
+                    
                 }
             }
         }
@@ -115,10 +123,12 @@ namespace ArtAttack.ViewModel
             return await orderHistoryModel.GetDummyProductsFromOrderHistoryAsync(orderHistoryID);
         }
 
-        internal void HandleFinish()
+        internal async void HandleFinish()
         {
-            foreach (var product in dummyProducts) { }
-                //notificationViewModel.AddNotificationAsync(new PaymentConfirmationNotification(1, System.DateTime.Now,));
+            foreach (var order in orders) {
+                await notificationViewModel.AddNotificationAsync(new PaymentConfirmationNotification(1, System.DateTime.Now,order.ProductID,order.OrderID));
+
+            }
 
         }
 

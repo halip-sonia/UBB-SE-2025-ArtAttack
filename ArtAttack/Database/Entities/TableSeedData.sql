@@ -1,47 +1,5 @@
-/****************************
-* 1. DummyBuyer
-*****************************/
-INSERT INTO DummyBuyer (name) VALUES ('Alice Johnson');
-INSERT INTO DummyBuyer (name) VALUES ('Bob Smith');
-INSERT INTO DummyBuyer (name) VALUES ('Carol Davis');
-INSERT INTO DummyBuyer (name) VALUES ('David Wilson');
-INSERT INTO DummyBuyer (name) VALUES ('Eva Brown');
 
-/****************************
-* 2. DummySeller
-*****************************/
-INSERT INTO DummySeller (name) VALUES ('Seller One');
-INSERT INTO DummySeller (name) VALUES ('Seller Two');
-INSERT INTO DummySeller (name) VALUES ('Seller Three');
-INSERT INTO DummySeller (name) VALUES ('Seller Four');
-INSERT INTO DummySeller (name) VALUES ('Seller Five');
 
-/****************************
-* 3. DummyCard
-*****************************/
-INSERT INTO DummyCard (cardholderName, cardNumber, cvc, month, year, country, balance) 
-  VALUES ('Alice Johnson', '4111111111111111', '123', '01', '25', 'USA', 1500.00);
-INSERT INTO DummyCard (cardholderName, cardNumber, cvc, month, year, country, balance) 
-  VALUES ('Bob Smith', '4222222222222222', '234', '02', '26', 'USA', 2000.00);
-INSERT INTO DummyCard (cardholderName, cardNumber, cvc, month, year, country, balance) 
-  VALUES ('Carol Davis', '4333333333333333', '345', '03', '27', 'Canada', 1800.00);
-INSERT INTO DummyCard (cardholderName, cardNumber, cvc, month, year, country, balance) 
-  VALUES ('David Wilson', '4444444444444444', '456', '04', '28', 'UK', 2200.00);
-INSERT INTO DummyCard (cardholderName, cardNumber, cvc, month, year, country, balance) 
-  VALUES ('Eva Brown', '4555555555555555', '567', '05', '29', 'Australia', 1700.00);
-
-/****************************
-* 4. DummyWallet
-*****************************/
-INSERT INTO DummyWallet (balance) VALUES (500.00);
-INSERT INTO DummyWallet (balance) VALUES (750.00);
-INSERT INTO DummyWallet (balance) VALUES (300.00);
-INSERT INTO DummyWallet (balance) VALUES (950.00);
-INSERT INTO DummyWallet (balance) VALUES (600.00);
-
-/****************************
-* 5. PDF
-*****************************/
 -- Using sample hex binary data for file content
 INSERT INTO PDF ([file]) VALUES (0xCAFEBABE);
 INSERT INTO PDF ([file]) VALUES (0xDEADBEEF);
@@ -49,64 +7,67 @@ INSERT INTO PDF ([file]) VALUES (0xB16B00B5);
 INSERT INTO PDF ([file]) VALUES (0xFEEDFACE);
 INSERT INTO PDF ([file]) VALUES (0xC001D00D);
 
-/****************************
-* 6. OrderSummary
-*****************************/
-INSERT INTO OrderSummary 
-  (Subtotal, WarrantyTax, DeliveryFee, FinalTotal, FullName, Email, PhoneNumber, Address, PostalCode, AdditionalInfo, ContractDetails)
-  VALUES (100.00, 5.00, 10.00, 115.00, 'Alice Johnson', 'alice@example.com', '1234567890', '123 Main St', 'A1B2C3', 'Leave at door', 'Standard contract');
-INSERT INTO OrderSummary 
-  (Subtotal, WarrantyTax, DeliveryFee, FinalTotal, FullName, Email, PhoneNumber, Address, PostalCode, AdditionalInfo, ContractDetails)
-  VALUES (200.00, 10.00, 15.00, 225.00, 'Bob Smith', 'bob@example.com', '2345678901', '456 Oak Ave', 'D4E5F6', 'Ring bell', 'Premium contract');
-INSERT INTO OrderSummary 
-  (Subtotal, WarrantyTax, DeliveryFee, FinalTotal, FullName, Email, PhoneNumber, Address, PostalCode, AdditionalInfo, ContractDetails)
-  VALUES (150.00, 7.50, 12.00, 169.50, 'Carol Davis', 'carol@example.com', '3456789012', '789 Pine Rd', 'G7H8I9', 'Call on arrival', 'Standard contract');
-INSERT INTO OrderSummary 
-  (Subtotal, WarrantyTax, DeliveryFee, FinalTotal, FullName, Email, PhoneNumber, Address, PostalCode, AdditionalInfo, ContractDetails)
-  VALUES (250.00, 12.50, 20.00, 282.50, 'David Wilson', 'david@example.com', '4567890123', '321 Maple Ln', 'J1K2L3', 'Back door', 'Premium contract');
-INSERT INTO OrderSummary 
-  (Subtotal, WarrantyTax, DeliveryFee, FinalTotal, FullName, Email, PhoneNumber, Address, PostalCode, AdditionalInfo, ContractDetails)
-  VALUES (300.00, 15.00, 25.00, 340.00, 'Eva Brown', 'eva@example.com', '5678901234', '654 Cedar Blvd', 'M4N5O6', 'Front desk', 'Standard contract');
+insert into [DummyWallet] 
+values (1200.0);
 
-/****************************
-* 7. OrderHistory
-*****************************/
-INSERT INTO OrderHistory DEFAULT VALUES;
-INSERT INTO OrderHistory DEFAULT VALUES;
-INSERT INTO OrderHistory DEFAULT VALUES;
-INSERT INTO OrderHistory DEFAULT VALUES;
-INSERT INTO OrderHistory DEFAULT VALUES;
+insert into [DummyCard]
+values 
+('Alice Johnson', '5425233430109903', '123', '08', '26', 'Romania', 1500.50),
+('Bob Smith', '2222420000001113	', '456', '12', '27', 'Canada', 1500.00),
+('Charlie Brown', '2223000048410010', '789', '01', '25', 'Spain', 1500.00)
 
-/****************************
-* 8. DummyProduct
-*****************************/
--- Assumes SellerIDs 1 to 5 exist from DummySeller table.
-INSERT INTO DummyProduct (name, price, SellerID, productType, startDate, endDate)
-  VALUES ('Product A', 49.99, 1, 'Electronics', '2025-03-28', '2025-12-31');
-INSERT INTO DummyProduct (name, price, SellerID, productType, startDate, endDate)
-  VALUES ('Product B', 79.99, 2, 'Books', '2025-03-28', '2025-12-31');
-INSERT INTO DummyProduct (name, price, SellerID, productType, startDate, endDate)
-  VALUES ('Product C', 29.99, 3, 'Clothing', '2025-03-28', '2025-12-31');
-INSERT INTO DummyProduct (name, price, SellerID, productType, startDate, endDate)
-  VALUES ('Product D', 99.99, 4, 'Home', '2025-03-28', '2025-12-31');
-INSERT INTO DummyProduct (name, price, SellerID, productType, startDate, endDate)
-  VALUES ('Product E', 59.99, 5, 'Garden', '2025-03-28', '2025-12-31');
 
-/****************************
-* 9. Order
-*****************************/
--- Note: ProductType is a foreign key to DummyProduct so we use a product ID.
--- OrderSummaryID and OrderHistoryID are assumed to be 1 to 5.
-INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderDate, OrderHistoryID)
-  VALUES (1, 1, 1, 'card', 1, '2025-03-28', 1);
-INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderDate, OrderHistoryID)
-  VALUES (2, 2, 2, 'cash', 2, '2025-03-28', 2);
-INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderDate, OrderHistoryID)
-  VALUES (3, 3, 3, 'wallet', 3, '2025-03-28', 3);
-INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderDate, OrderHistoryID)
-  VALUES (4, 4, 4, 'card', 4, '2025-03-28', 4);
-INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderDate, OrderHistoryID)
-  VALUES (5, 5, 5, 'cash', 5, '2025-03-28', 5);
+insert into [DummyBuyer]
+values
+('Buyer1')
+
+insert into [DummySeller]
+values
+('Seller1'),('Seller2'),('Seller3')
+
+
+insert into [DummyProduct]
+values
+('Toothbrush', 10.00, 1, 'new', NULL,NULL),
+('Hair Dryer', 150.00, 1, 'borrowed', NULL,NULL),
+('Ancient Chinese Vase', 100, 2, 'bid',NULL,NULL),
+('Wallet Top Up', 200,NULL,'refill',NULL,NULL),
+('IPhone 4 Penguin Phone Case', 75.00, 3, 'used', NULL,NULL)
+
+
+
+insert into [OrderHistory] default values
+insert into [OrderHistory] default values
+insert into [OrderHistory] default values
+
+
+
+insert into [OrderSummary] (Subtotal, WarrantyTax, DeliveryFee, FinalTotal, FullName, Email, PhoneNumber, [Address], PostalCode, AdditionalInfo, ContractDetails)
+values (0, 0, 0, 0, 'Placeholder1', 'placeholder@email.com', '0000000000', 'TBD', '000000', 'N/A', NULL);
+
+insert into [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderHistoryID)
+values (1, 1, 1, NULL, 1, 1);
+
+insert into [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID,OrderHistoryID)
+values (2, 1, 2, NULL, 1, 1);
+
+insert into [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID,  OrderHistoryID)
+values (5, 1, 5, NULL, 1, 1);
+
+--order 2: bid product purchase
+insert into [OrderSummary] (Subtotal, WarrantyTax, DeliveryFee, FinalTotal, FullName, Email, PhoneNumber, [Address], PostalCode, AdditionalInfo, ContractDetails)
+values (0, 0, 0, 0, 'Placeholder2', 'placeholder@email.com', '0000000000', 'TBD', '000000', 'N/A', NULL);
+
+insert into [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderHistoryID)
+values (3, 1, 3, NULL, 2, 2);
+
+--order 3: wallet refill
+insert into [OrderSummary] (Subtotal, WarrantyTax, DeliveryFee, FinalTotal, FullName, Email, PhoneNumber, [Address], PostalCode, AdditionalInfo, ContractDetails)
+values (0, 0, 0, 0, 'Placeholder3', 'placeholder@email.com', '0000000000', 'TBD', '000000', 'N/A', NULL);
+
+insert into [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummaryID, OrderHistoryID)
+values (4, 1, 4, NULL, 3, 3);
+
 
 /****************************
 * 10. Contract
@@ -117,19 +78,8 @@ INSERT INTO [Order] (ProductID, BuyerID, ProductType, PaymentMethod, OrderSummar
 DELETE FROM Contract;
   DBCC CHECKIDENT ('Contract', RESEED, 0);
 INSERT INTO Contract (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
-  VALUES (1, 'ACTIVE', 'Contract for order 1', 0, NULL, 1, NULL);
-INSERT INTO Contract (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
-  VALUES (2, 'EXPIRED', 'Contract for order 2', 1, NULL, 2, NULL);
-INSERT INTO Contract (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
-  VALUES (3, 'RENEWED', 'Contract for order 3', 2, NULL, 3, NULL);
-INSERT INTO Contract (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
-  VALUES (4, 'ACTIVE', 'Contract for order 4', 0, NULL, 4, NULL);
-INSERT INTO Contract (orderID, contractStatus, contractContent, renewalCount, predefinedContractID, pdfID, renewedFromContractID)
-  VALUES (5, 'ACTIVE', 'Contract for order 5', 0, NULL, 5, NULL);
-  Select * from Contract;
-  Select * from [Order];
+  VALUES (2, 'ACTIVE', 'Contract for order 2', 0, NULL, 1, NULL);
 
-  update [Contract] set orderID = 2 where ID=1
 
   
 /****************************
@@ -138,17 +88,8 @@ INSERT INTO Contract (orderID, contractStatus, contractContent, renewalCount, pr
 -- Using various allowed categories and assuming recipientID corresponds to DummyBuyer,
 -- contractID from Contract, productID from DummyProduct and orderID from Order.
 INSERT INTO Notification (recipientID, category, timestamp, isRead, contractID, isAccepted, productID, orderID, shippingState, deliveryDate, expirationDate)
-  VALUES (1, 'PAYMENT_CONFIRMATION', '2025-03-28 10:05:00', 0, 1, 1, 1, 1, 'CA', '2025-03-30', '2025-04-30');
-INSERT INTO Notification (recipientID, category, timestamp, isRead, contractID, isAccepted, productID, orderID, shippingState, deliveryDate, expirationDate)
-  VALUES (2, 'CONTRACT_EXPIRATION', '2025-03-28 11:05:00', 0, 2, 0, 2, 2, 'NY', '2025-03-31', '2025-05-01');
-INSERT INTO Notification (recipientID, category, timestamp, isRead, contractID, isAccepted, productID, orderID, shippingState, deliveryDate, expirationDate)
-  VALUES (3, 'ORDER_SHIPPING_PROGRESS', '2025-03-28 12:05:00', 1, 3, 1, 3, 3, 'TX', '2025-04-01', '2025-05-02');
-INSERT INTO Notification (recipientID, category, timestamp, isRead, contractID, isAccepted, productID, orderID, shippingState, deliveryDate, expirationDate)
-  VALUES (4, 'PRODUCT_AVAILABLE', '2025-03-28 13:05:00', 0, 4, 0, 4, 4, 'FL', '2025-04-02', '2025-05-03');
-INSERT INTO Notification (recipientID, category, timestamp, isRead, contractID, isAccepted, productID, orderID, shippingState, deliveryDate, expirationDate)
-  VALUES (5, 'CONTRACT_RENEWAL_REQ', '2025-03-28 14:05:00', 1, 5, 1, 5, 5, 'IL', '2025-04-03', '2025-05-04');
+  VALUES (1, 'PAYMENT_CONFIRMATION', '2025-03-28 10:05:00', 0, 1, 1, 1, 1, 'PROCESSING', '2025-03-30', '2025-04-30');
 
-  select * from Notification
 /****************************
 * 12. TrackedOrders
 *****************************/
@@ -183,23 +124,52 @@ INSERT INTO OrderCheckpoints (Timestamp, Location, Description, CheckpointStatus
 * 14. WaitListProduct
 *****************************/
 -- Each wait list product references a product from DummyProduct.
-INSERT INTO WaitListProduct (productID, availableAgain) VALUES (1, '2025-04-10 09:00:00');
-INSERT INTO WaitListProduct (productID, availableAgain) VALUES (2, '2025-04-11 10:00:00');
-INSERT INTO WaitListProduct (productID, availableAgain) VALUES (3, '2025-04-12 11:00:00');
-INSERT INTO WaitListProduct (productID, availableAgain) VALUES (4, '2025-04-13 12:00:00');
-INSERT INTO WaitListProduct (productID, availableAgain) VALUES (5, '2025-04-14 13:00:00');
+INSERT INTO WaitListProduct (productID, availableAgain) VALUES (2, '2025-04-10 09:00:00');
 
 /****************************
 * 15. UserWaitList
 *****************************/
 -- Each UserWaitList references a WaitListProduct and a DummyBuyer.
 INSERT INTO UserWaitList (productWaitListID, userID, joinedTime, positionInQueue)
-  VALUES (1, 1, '2025-03-28 09:30:00', 1);
-INSERT INTO UserWaitList (productWaitListID, userID, joinedTime, positionInQueue)
-  VALUES (2, 2, '2025-03-28 09:35:00', 2);
-INSERT INTO UserWaitList (productWaitListID, userID, joinedTime, positionInQueue)
-  VALUES (3, 3, '2025-03-28 09:40:00', 3);
-INSERT INTO UserWaitList (productWaitListID, userID, joinedTime, positionInQueue)
-  VALUES (4, 4, '2025-03-28 09:45:00', 4);
-INSERT INTO UserWaitList (productWaitListID, userID, joinedTime, positionInQueue)
-  VALUES (5, 5, '2025-03-28 09:50:00', 5);
+  VALUES (2, 2, '2025-03-28 09:35:00', 1);
+
+
+
+INSERT INTO PredefinedContract (content)
+VALUES (
+'Product Purchase Agreement
+This Purchase Agreement ("Agreement") is made and entered into as of {AgreementDate} by and between {SellerName} ("Seller") and {BuyerName} ("Buyer").
+WHEREAS, the Seller desires to sell and the Buyer desires to purchase the product {ProductDescription} under the terms and conditions set forth herein;
+NOW, THEREFORE, in consideration of the mutual covenants and promises contained herein, the parties agree as follows:
+1. Purchase Price: The Buyer shall pay {Price} by {PaymentMethod}.
+2. Delivery: The product shall be delivered on or before {DeliveryDate}.
+3. Additional Terms: {AdditionalTerms}.
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first written above.'
+);
+
+
+-- Predefined Contract for Selling a Product
+INSERT INTO PredefinedContract (content)
+VALUES (
+'Sales Agreement
+This Sales Agreement ("Agreement") is entered into on {AgreementDate} by and between {SellerName} ("Seller") and {BuyerName} ("Buyer").
+The Seller agrees to sell, and the Buyer agrees to purchase, the product {ProductDescription} for the total sum of {Price}.
+Payment shall be made by {PaymentMethod} and delivery is scheduled for {DeliveryDate}.
+Additional Provisions: {AdditionalTerms}.
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date stated above.'
+);
+
+
+
+-- Predefined Contract for Borrowing a Product
+INSERT INTO PredefinedContract (content)
+VALUES (
+'Product Loan Agreement
+This Loan Agreement ("Agreement") is made on {AgreementDate} between {SellerName} ("Lender") and {BuyerName} ("Borrower").
+The Borrower agrees to borrow the product {ProductDescription} for a period of {LoanPeriod} days, with a due date of {DueDate}.
+The Borrower shall maintain the product in good condition and, in the event of a late return, shall incur a late fee of {LateFee} per day.
+Additional Terms: {AdditionalTerms}.
+IN WITNESS WHEREOF, the parties have executed this Agreement as of the date first above written.'
+);
+
+

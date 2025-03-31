@@ -224,9 +224,9 @@ namespace ArtAttack.ViewModel
                 fieldReplacements["BuyerName"] = buyerDetails.BuyerName;
                 fieldReplacements["SellerName"] = sellerDetails.SellerName;
                 fieldReplacements["PaymentMethod"] = orderDetails.PaymentMethod;
-                fieldReplacements["AgreementDate"] = orderDetails.OrderDate.ToShortDateString();
+                fieldReplacements["AgreementDate"] = StartDate.ToShortDateString();
                 fieldReplacements["LateFee"] = orderSummaryData["warrantyTax"].ToString();
-                fieldReplacements["DeliveryDate"] = deliveryDate.ToString();
+                fieldReplacements["DueDate"] = EndDate.ToShortDateString();
             }
             else
             {
