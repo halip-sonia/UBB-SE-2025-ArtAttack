@@ -93,24 +93,18 @@ namespace ArtAttack.ViewModel
 
         }
 
-        public async Task GenerateContractForBorrowing()
-        {
-            var contractViewModel = new ContractViewModel(Configuration._CONNECTION_STRING_);
-            foreach(var order in orders)
-            {
-                if (dummyProducts[order.ProductID].ProductType == "borrowed")
-                {
-                    //var newContract = new Contract
-                    //{
-                    //    ID = 1,
-                    //    OrderID = order.OrderID
-                    //};
-
+        //public async Task GenerateContractForBorrowing()
+        //{
+        //    var contractViewModel = new ContractViewModel(Configuration._CONNECTION_STRING_);
+        //    foreach(var order in orders)
+        //    {
+        //        if (dummyProducts[order.ProductID].ProductType == "borrowed")
+        //        { 
 
                     
-                }
-            }
-        }
+        //        }
+        //    }
+        //}
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged(string propertyName)
