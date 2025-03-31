@@ -4,7 +4,9 @@
 -- Select all users in the waitlist for the given product
 -- Select all waitlists the user has joined
 
-alter procedure AddUserToWaitlist
+
+
+create or alter procedure AddUserToWaitlist
     @UserID int,
     @ProductID int
 as
@@ -46,7 +48,7 @@ END
 GO
 
 --procedure to delete a user from a given waitList
-ALTER PROCEDURE RemoveUserFromWaitlist
+create or ALTER PROCEDURE RemoveUserFromWaitlist
     @UserID INT,
     @ProductID INT
 AS
@@ -143,49 +145,5 @@ begin
     where uw.userID = @UserID AND wp.productID = @ProductID;
 END;
 GO
-
-/*CREATE PROCEDURE GetUserWaitlists
-    @UserID INT
-AS
-BEGIN
-    SELECT
-        UserWaitList.productWaitListID,
-        WaitListProduct.productID,
-        UserWaitList.positionInQueue,
-        UserWaitList.joinedTime,
-        WaitListProduct.availableAgain
-    FROM UserWaitList
-    INNER JOIN WaitListProduct ON UserWaitList.productWaitListID = WaitListProduct.waitListProductID
-    WHERE UserWaitList.userID = @UserID
-    ORDER BY UserWaitList.joinedTime ASC;
-END;
-
-go
---procedure to check if a user is or not in a waitlist
-CREATE PROCEDURE CheckUserInWaitlist
-    @UserID INT,
-    @ProductWaitListID INT,
-    @IsInWaitlist BIT OUTPUT
-AS
-BEGIN
-    SET @IsInWaitlist = 0;
-
-    IF EXISTS (SELECT 1 FROM UserWaitList WHERE userID = @UserID AND productWaitListID = @ProductWaitListID)
-    BEGIN
-        SET @IsInWaitlist = 1;
-    END
-END;
-go
---count the users in a waitList
-CREATE PROCEDURE GetWaitlistSize
-    @ProductWaitListID INT,
-    @TotalUsers INT OUTPUT
-AS
-BEGIN
-    SELECT @TotalUsers = COUNT(*)
-    FROM UserWaitList
-    WHERE productWaitListID = @ProductWaitListID;
-END;
-*/
 
 

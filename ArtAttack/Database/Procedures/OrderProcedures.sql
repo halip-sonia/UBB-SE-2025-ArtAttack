@@ -1,4 +1,7 @@
-﻿create or alter procedure get_borrowed_order_history @BuyerID int
+﻿
+
+
+create or alter procedure get_borrowed_order_history @BuyerID int
 as
 begin
     select o.[OrderID], o.[ProductID], o.[ProductType], o.[PaymentMethod], 
@@ -103,6 +106,8 @@ end
 go
 
 
+
+
 CREATE PROCEDURE UpdateOrder
     @OrderID INT,
     @ProductType varchar(20),
@@ -133,6 +138,7 @@ BEGIN
 END
 GO
 
+
 CREATE PROCEDURE DeleteOrder
     @OrderID INT
 AS
@@ -154,6 +160,7 @@ BEGIN
     END CATCH
 END
 GO
+
 
 CREATE PROCEDURE AddOrder
    @ProductID INT,
@@ -181,7 +188,6 @@ BEGIN
     END CATCH
 END
 GO
-
 
 
 CREATE PROCEDURE UpdateOrderSummary
@@ -230,6 +236,7 @@ BEGIN
 END
 GO
 
+
 CREATE PROCEDURE DeleteOrderSummary
     @ID INT
 AS
@@ -251,6 +258,7 @@ BEGIN
     END CATCH
 END
 GO
+
 
 CREATE PROCEDURE AddOrderSummary
    @Subtotal float,

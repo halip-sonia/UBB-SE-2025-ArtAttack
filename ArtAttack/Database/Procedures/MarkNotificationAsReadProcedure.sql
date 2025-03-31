@@ -1,3 +1,4 @@
+
 GO
 CREATE PROCEDURE MarkNotificationAsRead (
     @notificationID INT

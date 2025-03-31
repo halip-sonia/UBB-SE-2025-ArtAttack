@@ -11,3 +11,4 @@ begin
 		raiserror(N'uspDeleteTrackedOrder: Error %i: %s', 16, 1, @err_number, @err_message)
 	end catch
 end
+

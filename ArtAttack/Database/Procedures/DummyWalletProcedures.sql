@@ -1,4 +1,6 @@
-﻿create or alter proc [AddWallet] 
+﻿
+
+create or alter proc [AddWallet] 
 @balance float as
 
 begin 

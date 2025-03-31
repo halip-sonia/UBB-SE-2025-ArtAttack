@@ -1,3 +1,4 @@
+
 go
 create procedure uspInsertOrderCheckpoint (@timestamp datetime, @location varchar(255), @description varchar(255), @checkpointStatus varchar(100), @trackedOrderID int) as
 begin

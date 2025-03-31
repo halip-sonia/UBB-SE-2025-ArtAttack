@@ -1,3 +1,6 @@
+
+
+
 CREATE OR ALTER TRIGGER tr_CreateWaitListForProduct
 ON DummyProduct
 AFTER INSERT, UPDATE

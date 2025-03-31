@@ -1,3 +1,4 @@
+
 go
 create procedure uspUpdateOrderCheckpoint (@checkpointID bigint, @timestamp datetime, @location varchar(255), @description varchar(255), @checkpointStatus varchar(100)) as
 begin
